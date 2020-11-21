@@ -1,0 +1,51 @@
+<%
+  data = {
+    title: 'Nowcast - Frequently Asked Questions',
+    subtitle: 'Ask us anything',
+
+    top_buttons: [
+      {link: '/signup', text: 'Start'},
+      {link: '/how_it_works', text: 'How It Works'},
+      {link: '/how_it_works', text: 'About'}
+    ],
+    rows: [
+      {title: 'Why should I broadcast through Nowcast?', 
+       content: 'Nowcast’s mission is to help you succeed in selling online. Your success is our success, and we will never charge you any money to use Nowcast. We take a small percentage of sales made on Nowcast itself, which makes it our mission to see you succeed.<br/><br/>
+
+To ensure your success, we develop special solutions for user management, scheduling, billing, and other features that creators like you need in order to connect with your audience and sell to them. We are looking to collaborate with you in order to understand what additional features you need and implement them for you.'
+      },
+      # {
+      #   title: 'How do I send a link to people who will join after paying?',
+      #   content: 'You can sign up at <a href="https://nowcast.co">https://nowcast.co</a>. For premium members, please contact <a mailto=talent@nowcast.co>talent@nowcast.co</a> directly so we can help you personally.',
+      # },
+      {
+        title: 'How can I send a link to people who will join before paying?',
+        content: 'Each cast has a page, such as https://nowcast.co/@sellarafaeli/7_PH3. This is the permanent link for the cast everyone who will or has already subscribed to the cast. At this link, you will be able to see who has subscribed and who is currently in the “waiting room” for the cast, as well as share a video meeting link for the live cast itself.',
+      },
+      {
+        title: 'When do I get paid?',
+        content: '
+At the beginning of each month, we will contact you to arrange payment details and inform you of how much money we expect to pay you. Subject to terms of service, after verifying the exact amount you are owed, we will pay you within 2 weeks of receiving the necessary details (including invoices, in relevant countries) for the previous month.',
+      },
+      {
+        title: 'How do I get paid?',
+        content: 'We do our best to support as many payout methods as possible. Please contact us directly to inquire for any specific questions.',
+      },
+      {
+        title: 'What commission do you charge for using your platform?',
+        content: 'We take a 20% commission on tickets and digital content sold through the site, in order to pay our operating costs.',
+      },
+      {
+        title: 'What are the privacy protections I have in terms of payment?',
+        content: 'Subject to the terms of service (https://nowcast.co/terms_of_service), anything passed through your casts is considered to have been bought by the parties paying for the cast.',
+      },
+      {
+        title: 'What do I do if I have further questions?',
+        content: 'We do our best to give personal assistance to all of our creators. Please contact us directly at hi@nowcast.co.',
+      },
+    ],
+    bottom_msg: 'Go Live, Get Paid'
+  }
+%>
+
+<%= erb :'/other/template_page', locals: data %>

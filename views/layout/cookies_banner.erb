@@ -1,0 +1,20 @@
+<div class="cookies_banner" id="cookies_banner">
+  <div>
+  To offer you a better experience, this site uses profile cookies, even from third parties. <br/>
+  By continuing to use this website you consent to the use of cookies. <br/>
+  For more information or to select your preferences consult our Privacy Policy.
+  </div>
+  <div class='accept_cookies_btn'>
+    <small>      
+      <a 
+        id=accept_cookies_btn 
+        class='btn btn-primary btn-raised' 
+        onclick='
+          $.ajax({
+            url: "/accept_cookies",
+            success: function() {$("#cookies_banner")[0].hidden = true}})'>
+        Accept Cookies
+      </a>
+    </small>
+  </div>
+</div> 

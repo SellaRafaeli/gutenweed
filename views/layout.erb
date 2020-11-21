@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<%# flash.message = 'test' %>
+<%
+record_pageview
+@brand = get_brand
+%>
+<%= erb :'layout/doc_head' %>
+<body>  
+    <%= erb :"layout/flash" %>        
+    
+    <%= erb :"header/links" %>
+    
+    <div class='<%="container" unless @no_container || _req.path=='/' || _req.path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
+      <%= yield %> 
+    </div>
+
+    <div style='zpadding-bottom: 100px'></div>
+    
+    <%#= erb :"footer" %>           
+  <link rel="stylesheet" href="/css/fonts/RobotoFonts.css">
+  <link rel="stylesheet" href="/css/fonts/MaterialIcons.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2Cregular%2Citalic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7COpen%20Sans%3A400%2C700&amp;display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<style>
+
+body {
+  <%= is_heb ? "direction: rtl;" : "direction: ltr;" %>
+}
+</style>
+<% if !$prod %>
+<style>
+.dev_mode {
+  position: fixed; 
+  top: 0; 
+  <% if heb %>
+  left: 0;
+  <% else %>
+  right: 0; 
+  <% end %>
+
+  height: 100px; 
+  width: 100px; 
+  background-color: goldenrod; 
+  text-align: center; 
+  font-weight: bold; 
+  font-size: 30px;
+}
+</style>
+<div class=dev_mode>
+  DEV MODE
+</div>
+
+<% end %>
+
+  <script>
+    <% if cuid %> window.cuid ="<%=cuid%>";<% end %>
+
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-100769576-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+
+<script>
+function updateOpenChats() {
+  $.get('/chat/open').then(res => {
+    if (res.ouids.length) {
+      res.ouids.forEach(ouid => {
+        console.log('open chat with ouid '+ouid);  
+        $(`.user_id_${ouid}`).addClass('unread');
+      });
+      $('.header_envelope_num_unreads').text(`(${res.ouids.length})`).removeClass('noDisplay');  
+    }
+    
+    
+  })
+}
+
+
+function layoutOnLoad() {
+  //$('[data-toggle="tooltip"]').tooltip(); 
+  updateOpenChats();
+  console.log('done layoutOnLoad');
+}
+
+$(document).ready(layoutOnLoad);
+</script>
+
+<%= erb :'layout/cookies_banner' if !session[:cookies_accepted].present? %>
+
+<script>
+window.filestackAPIkey = 'AHuQo4ciRwufvk1mRbnaNz';
+window.filestackClient = filestack.init(filestackAPIkey);
+
+
+function filestackUpload(cb) {
+  const foo = {
+    bar: 'true',
+    yes: 'foo'
+  };
+  const options = {
+    onFileUploadFinished: cb,
+    fromSources: ['local_file_system','webcam','video'],
+    onFileSelected: file => {
+        // If you throw any error in this function it will reject the file selection.
+        // The error message will be displayed to the user as an alert.
+        if (file.size > 1000 * 1000 * 150) {
+          throw new Error('File too big, select something smaller than 150MB');
+        }
+      }
+  };
+
+  window.filestackClient.picker(options).open();
+}
+</script>
+
+<% if pr[:css] %>
+<link rel="stylesheet" type="text/css" href="<%=pr[:css]%>">  
+<% end %>
+</body>
+</html>

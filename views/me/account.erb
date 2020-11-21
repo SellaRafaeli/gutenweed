@@ -1,0 +1,55 @@
+<div class='display_flex'>
+  <label> Email: </label>
+  <input style='border:none' disabled readonly style='color: black; font-weight: bold; text-align: left' value="<%= user['email'] %>" />
+  <!-- <span>We won't show this to anybody.</span> -->
+  </div>
+
+  <br/>
+
+  <div class='display_flex'>                  
+    <label> Username <div></div></label>
+    <input class='input1' placeholder='' value="<%=user['name']%>" name='name' style='margin-right: 5px; margin-left: 0'/>
+    <!-- <span> This is what you'll be known as.</span> -->
+  </div>
+
+  
+  <br/> 
+
+  <% if false %>
+  <div class='display_flex'>                  
+    <label> Title <div></div> </label>
+    <input class='input1' placeholder='I am...' value="<%=user['title']%>" name='title' style='margin-right: 5px; margin-left: 0'/>
+    <!-- <span> Describe your title. </span> -->
+  </div>
+  <% end %>
+  
+  <br/> 
+
+  <div class='display_flex'>
+    <label> Payment Details </label>
+    <textarea name=payout_info placeholder="How should we pay you? We support Paypal, Venmo, Bit, and bank transfers." value=""><%=user['payout_info']%></textarea> 
+    <!-- <span>Use #hashtags like #actor or #dance_teacher</span> -->
+  </div>
+  <br/>
+
+  <% if false %>
+  <div class='display_flex'>
+    <label> How To Contact You </label>
+    <textarea name=contact placeholder="Contact me at..." value=""><%=user['contact']%></textarea> 
+    <!-- <span>Your public email, Facebook, Instagram, Twitter, phone, Whatsapp, or whatever you want.</span> -->
+  </div>
+  <br/>
+
+  <% end %>
+  <% if false %>
+  <div class='display_flex'>
+    <label style='flex:2'> Username </label>
+    https://nowcast.co/<input class='input1 ltr' placeholder='' value="<%=cu['handle']%>" name='handle' style='margin-right: 0px; margin-left: 0'/>
+    <!-- <span> </span> -->
+  </div>
+  <% end %>
+
+  <!-- <label> Vimeo ID </label>
+  <input class='input1 ltr' placeholder='' value="<%=cu['vimeo_id']%>" name='vimeo_id' style='margin-right: 0px; margin-left: 0'/>
+  <br/> -->      
+  <%#= erb :'me/my_referrals', locals: {user: user} %>            

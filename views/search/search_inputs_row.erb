@@ -1,0 +1,75 @@
+<style>
+.search_inputs_row {
+  padding: 20px 0 0 0;
+  text-align: left;
+  display: inline-block;
+  /*background-color: #63d634bd;*/
+}
+.search_input_expand_gear {
+  margin-right: 10px; 
+  position: relative; 
+  top:3px; 
+  color: grey;
+  cursor: pointer;
+}
+.search_input_expand_gear:hover {
+  color: goldenrod;
+  
+}
+.search_input_expand_gear.clicked {
+  color: darkred;
+}
+#extra_search_inputs {
+  justify-content: center;
+}
+#extra_search_inputs select {
+  /*margin: 20px;*/
+  max-width: 300px;
+}
+@media screen and (max-width: 601px) {
+  .search_inputs_row .flex1 a {
+    display: block;
+  }
+}
+
+</style>
+<div class='search_inputs_row'>
+  <form class='search_input_form' method=get action='/'>
+    <div class='first_row display_flex'>
+      
+      <div class='flex1 ct'>
+        <!-- <a class='search_input_expand_gear' onclick='$(this).toggleClass("clicked"); $("#extra_search_inputs").toggleClass("noDisplayImportant")'>
+          <i class='fa fa-gear'></i>
+        </a> -->
+        
+          <input class='search_input' name=search placeholder='Search' value="<%=pr[:search]%>" <%="zautofocus" if !search_input_on_top %> />
+          <button class='search_go_btn btn2' type=submit style='margin-left:20px'><i class='fal fa-search' style='margin-right:5px'></i> Go </button>
+        
+      </div>      
+    
+    <% if false %>
+    <span id=extra_search_inputs style='flex: 3' class='<%="noDisplayImportant " unless (pr[:lang] || pr[:geographic_area]) %>second_row display_flex'> 
+      <% lang = pr[:lang] || cu && cu[:lang] %>
+      <select class="flex1 ct <%= %>" name=lang>
+          <option value="" <%="selected" if !lang.present? %>>Any language</option>
+        <% LANGUAGES.each do |lang| %>
+          <option class="<%=%>" value="<%=lang[:val]%>" <%="selected" if lang[:val] == pr[:lang] %>>
+            <%=lang[:label]%>
+          </option>
+        <% end %>
+      </select>
+
+      <select class='flex1 ct' name=geographic_area>
+        <option value='' <%="selected" if cu && cu[:lang]==""%>> Any area </option>
+        <% area = pr[:geographic_area] || (cu && cu[:geographic_area]) %>
+        <% GEOGRAPHIC_AREAS.each do |geographic_area| %>
+          <option value="<%=geographic_area[:val]%>" <%="selected" if geographic_area[:val]==area%> >
+            <%=geographic_area[:label]%>                
+          </option>
+        <% end %>
+      </select>
+    </span>
+    <% end %>
+    </div>
+  </form>
+</div>

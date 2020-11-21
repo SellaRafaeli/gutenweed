@@ -1,0 +1,20 @@
+<style>
+.user_box {
+/*  border:1px solid gold;*/
+  cursor: pointer;
+}
+.user_box a {
+  text-decoration: none;
+}
+.user_box:hover {
+  background-color: whitesmoke;  
+}
+</style>
+<div class='user_box'>
+  <div>
+    <a href='/@<%=user[:handle]%>'>
+      <img class='user_img' src='<%=user[:img_url]%>'>
+      <span><%= user[:handle] %></span>
+    </a>
+  </div>
+</div>

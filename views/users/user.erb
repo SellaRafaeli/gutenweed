@@ -1,0 +1,309 @@
+<%
+  user_id  = user[:_id]
+  is_owner = user && (user[:_id] == cuid)
+  vimeo_id = user[:vimeo_id]
+  allow_reviews = false
+  show_create_btn = !is_owner && false
+  show_contact    = !is_owner || true
+  location        = user_location_for_header(user)
+
+  user_casts = $casts.all(user_id: user_id).select {|cast| !cast_is_hidden(cast) }
+
+  any_reviews = false 
+  user_casts.each { |cast| cast[:reviews] = cast_reviews(cast[:_id]); any_reviews = true if cast[:reviews].any?  }
+
+  title = user[:title]
+  title = "Hi! my name is #{user[:name]}." unless title.present?
+
+  subtitle = user[:subtitle]
+  subtitle = "You can find me here on nowcast." unless subtitle.present?
+%>
+
+<!-- https://github.com/muaz-khan/WebRTC-Experiment/tree/master/one-to-many-video-broadcasting -->
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<!-- <script src="https://www.webrtc-experiment.com/one-to-many-video-broadcasting/meeting.js"></script> -->
+
+<style>
+.user_desc {
+  font-size: 22px;
+  margin: 10px auto;
+}
+.analytics_btn {
+  margin-right: 10px;
+}
+.analytics_btn button {
+  cursor: pointer;
+}
+.analytics_btn img {
+  height: 30px;
+}
+#setup-new-btn {
+  border:2px solid gold;
+  height: 100px;
+  width: 100px;
+}
+.live_indicator {
+  cursor: auto;
+}
+
+.user_page .contact_form label {
+  display: inline-block;
+  margin-bottom: 10px;
+  min-width: 300px;
+}
+.user_page textarea, .user_page input {
+  height: 50px;
+  font-size: 18px;
+  padding: 8px;
+  margin-bottom: 20px;
+  font-family: inherit;
+  max-width: 90%;
+}
+
+.user_location {
+  font-size: 16px;
+  margin-left: 75px;
+  font-weight: normal;
+  color: grey;
+}
+
+.user_top_half {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.user_top_left {      
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+    /*height: 100%;*/
+    align-items: center;
+}
+
+.user_profile_btn {
+  display: inline-block; 
+  text-align: right;
+}
+
+.user_top_right {
+  margin-top: 20px;
+}
+.user_main_img {
+  padding-right: 20px;
+  text-align: center;
+  padding: 5px;
+  background: linear-gradient(#e66465, #9198e5);
+}
+
+.user_page .title {
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.user_page .subtitle {
+  font-size: 30px;
+}
+
+.user_main_img img {
+  max-height: 400px;
+  border:3px solid white;
+  max-width: 600px;
+}
+
+.user_img_white_wrapper {
+  background-color: white;
+}
+
+@media (max-width: 1200px) {
+  .user_main_img img {
+    max-height: 500px;  
+    max-width: 330px;
+  }  
+}
+
+@media (min-width: 1200px) {
+  .user_main_img img {
+    max-height: 500px;  
+    max-width: 600px;
+  }  
+  .user_top_left {
+    margin-right: 30px;
+  }
+}
+
+.user_page .buttons i {
+  margin-right: 10px;
+}
+.user_profile_btn:hover {
+  color: #00b140;
+}
+.linkified {
+  text-decoration: underline;
+}
+</style>
+
+<%= erb :"users/themes/#{user[:my_theme].to_s.downcase}.css" if user[:my_theme].present? %>
+
+<div class='user_page container1300'>
+
+  <div class='user_top_half display_flex_wrap'>
+    <% if is_admin %>
+    <a style='position: absolute; left: 10px' class='btn btn-raised btn-danger' href='/protected/login_as?email=<%=user[:email]%>'>admin login</a>
+    <% end %>
+
+    <% if user[:img_url].present? && CGI.unescape_html(user[:img_url]) != DEFAULT_IMG%>
+
+    <div class='user_top_left flex1'>
+      <div class='user_main_img'>
+        <div class='user_img_white_wrapper'>
+          <img src="<%=user[:img_url]%>" />
+        </div>
+      </div>      
+    </div>
+    <% end %>
+    
+    <div class='user_top_right flex1'>
+      <h1 id=about class='title'><%= title %></h1>
+      
+      <div class='display_flex' style='width: 100%'>
+        <div class='flex1 center_contents'>
+          <% if location.present? %><div class='user_location'><i class='fa fa-globe'></i> <%= location %></div><% end %>
+        </div>
+        <div class='flex1' style='text-align: right; margin-top: 8px'>
+          <%= erb :'users/social_media', locals: {user: user} %>
+        </div>
+      </div>      
+
+      <div class='subtitle'><%= subtitle %></div>
+      <div class='user_sub_imgs'>
+        <br/>
+        <%= erb :'casts/show_media', locals: {item: user} %>
+        <br/>
+      </div>
+
+      
+      <br/>      
+      
+    </div>
+  </div>
+
+  <div class='user_bottom_half container1000'>
+    <div class='subsubtitle user_desc'><%= user[:desc] %></div>      
+    <br/>
+
+    
+    <div class='buttons ct'>
+      <!-- <a href='#about' class='btn user_profile_btn'>
+        <i class='fal fa-user-circle'></i> <label>About </label>
+      </a>   -->
+      
+      <% if user_casts.any? %>
+      <a href='#casts' class='btn user_profile_btn'>
+        <i class='fal fa-users-class'></i> <label> Casts </label>
+      </a>  
+      <% end %>
+
+      <% if any_reviews && false %>
+      <a href='#reviews' class='btn user_profile_btn'>
+        <i class='fal fa-comment-dots'></i> <label> Reviews </label>
+      </a>  
+      <% end %>
+      
+      <!-- <a href='#faq' class='btn user_profile_btn'>
+        <i class='fal fa-question-circle'></i> <label> FAQ </label>
+      </a>   -->
+
+      <a href='#contact' class='btn user_profile_btn' onclick=$('.contact_input_form').toggleClass("noDisplay")>
+        <i class='fal fa-envelope-open-text'></i> <label> Contact </label>
+      </a>  
+    </div>
+    
+  <% if user_casts.any? %>    
+    <div class=user_section>
+      <%= erb :'casts/casts_list', locals: {casts: user_casts} %>
+    </div>
+  <% end %>
+
+  <div class='user_section'>
+  <h3 id=contact> Contact </h3>
+  <div>
+    <form class=contact_form method=post action='/chat/send'>
+      <input hidden name=target_id value="<%=user[:_id]%>" />
+      <input hidden name=user_chat value="true" />
+      <input hidden name=redirect_back value="true" />
+      <% if !cu %>
+      <label> Email </label><input name=email placeholder='you@gmail.com' />
+      <% end %>
+      <br/>
+      <!-- <textarea placeholder='Your message...' name=msg></textarea>   -->
+      <label> Message </label><textarea placeholder='...' name=msg ></textarea>
+      <br/>
+      <% if !cu %>
+      <label><input type=checkbox required style='vertical-align: -webkit-baseline-middle;'> I accept Nowcast's terms of service</label>
+      <% end %>
+      <br/>
+      <div style='text-align: center'>
+        <button class='btn btn-raised btn-primary'> Send </button>
+      </div>
+    </form>    
+  </div>
+  </div>
+
+
+  <% if false %>
+  <div class='user_section' id=reviews>
+    <% if any_reviews %>
+    <h3> Reviews </h3>
+    
+      <% user_casts.each do |cast| %>
+        <% next unless cast[:reviews].any? %>
+        <h5> <%= cast[:title] %> </h5>
+        <%= erb :'casts/cast_reviews', locals: {cast: cast, skip_submit: true} %>
+      <% end %>
+    <% end %>
+  </div>
+  <% end %>
+
+  <% if false %>
+  <div class='ct'> 
+    <div class='contact_input_form noDisplay'>
+      <input id=write_seller_input placeholder='Write here' type="" name="quick_contact" style='max-width: 400px' />
+      <button class='btn btn_green' onclick=sendContactSeller()> send </button>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+</div>
+<script>
+function onUserLoad() {
+  $('.user_desc').linkify({target: "_blank"});
+}
+function sendContactSeller() {
+  var newEmail;
+
+  <% if !cu %>
+  if (!(newEmail = prompt("What is your email for a response?"))) return false;
+  var signupMsg = `Do you accept our terms of service?`;
+  if (!(confirm(signupMsg))) return false;
+  <% end %>
+  
+  postJSON('/chat/send', {email: newEmail, msg: $("#write_seller_input").val(), user_chat: true, target_id: "<%=user_id%>", go_back_to: "<%=_req.fullpath%>"}).then(res => {
+    if (res.err) {   
+      if (res.goto && confirm(res.err)) { 
+        return goToPath(res.goto); 
+      } else {
+        alert(res.err);  
+      }      
+    } else {
+      alert('Message sent, thank you.')
+      document.location.reload();
+    }
+  });
+}
+
+$(document).ready(onUserLoad);
+
+</script>

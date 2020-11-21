@@ -1,0 +1,390 @@
+<%
+
+search = pr[:search]
+search = cleanup_search(search)
+@channel ||= search
+
+@channel.present? ? (channels = [@channel]) : channels = HOMEPAGE_TOPICS
+
+all_channel_casts = channels.map {|channel| 
+  topic     = channel
+  tag       = topic 
+  subtopics = []
+  if channel.is_a?(Hash)
+    topic     = channel[:topic]
+#    subtopics = channel[:subtopics]
+    tag       = channel[:tag] || topic
+  end
+  {title: topic, casts: get_channel_casts(tag.to_s.downcase, must_have_tag: !@channel.present?), subchannels: subtopics} 
+}
+
+# all_channel_casts = [{casts: homepage_casts}]
+
+%>
+
+<%= erb :'/home/css/home_css1.css' %>
+<%= erb :'/home/css/video_bg.css' %>
+<%= erb :'/home/css/home_css2.css' %>
+
+<style>
+.single_hp_term {
+  color: white;
+  background-color: #f9647e;
+  background: white;
+  color: #00b140;
+  padding: 10px;
+  font-size: 20px;
+  /*border-radius: 4px;*/
+  margin-top: 10px;
+  display: inline-block;
+}
+
+
+.single_hp_term:hover {
+  /*background-color: #ab1a34;
+  background-color: lightgreen;*/
+
+  cursor: pointer;
+  color: black;  
+}
+
+.single_mini_term {
+  background-color: #099a6b;
+  background-color: #00b140;
+  color: white;
+  padding: 10px;
+  /*border-radius: 3px;*/
+  font-size: 18px;
+  width: 100%;
+  display: inline-block;
+  padding: 10px;
+}
+.single_mini_term:hover {
+  background-color: #ab1a34;
+  background-color: lightgreen;
+  color: black
+}
+
+.single_hp_term_container:hover .single_hp_term {
+  background-color: #00b140;
+  color: white;
+}
+
+.single_hp_term .fa { display: none; }
+.single_hp_term .fal { display: inline-block; }
+.single_hp_term_container:hover .fa { display: inline-block; }
+.single_hp_term_container:hover .fal { display: none; }
+
+.single_hp_term_container { 
+  display: inline-block; 
+  position: relative;
+}  
+@media(max-width: 1000px) {
+  .single_hp_term_container.selected .mini_terms_list {
+    display: block;
+    position: relative;
+  }
+}
+.single_hp_term_container .mini_terms_list { 
+  /*border: 1px solid red;*/
+  position: absolute;
+  left: 0;
+  top: 100%;
+  text-align: left;
+  z-index: 10;
+  display: none;
+}
+.single_hp_term_container:hover .mini_terms_list { display: inline-block; }
+
+.single_hp_term_container.selected .single_hp_term {
+  background-color: lightgreen;
+  color: black;
+}
+
+.sub_main_title { 
+  font-size: 70%;
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1.5;
+  position: relative;
+}
+.above_terms {
+  background-color: white;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.registration_open {
+  position: absolute;
+  background-color: maroon;
+  color: white;
+  padding: 10px;
+  display: none;
+}
+
+.sub_main_title .focus {
+  font-weight: bold;
+  color: darkred;
+}
+
+.sub_main_title .focus:hover {
+  color: darkblue;
+  cursor: pointer;
+}
+.hp_header {
+  /*text-align: left;*/
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hp_header h1 {
+  font-size: 35px;
+}
+.hp h1, .hp h2, .hp h3, .hp h4 {
+  font-weight: normal;
+}
+.langs_list {
+  margin-top: 20px;
+  font-size: 70%;
+  color: grey;
+}
+</style>
+
+<div class='hp ct'>
+
+  <div class='hp_header'>
+    <% 
+      msg2 = '<span class="nowcast_color">Online</span> classes. Live <span class="nowcast_color">teachers</span>  and <span class="nowcast_color">freelancers.</span> </h4>'
+      msg1 = 'Just take an <span class="nowcast_color">online course on nowcast.</span></h1>'
+      msg1 = 'Teach and take <span class="nowcast_color">live classes </span>on <span class="nowcast_color"> nowcast.</span></h1>'
+      
+      msg1 = '<span class=nowcast_color> Learn Coding Online </span>with<span class="nowcast_color"> Live Teachers and Tutors.</span> <span class=nowcast_color></span>'
+      msg1 = 'Live video <span class="nowcast_color"> education</span> and <span class="nowcast_color"> entertainment.</span>'
+      
+      msg2 = 'Learn tech skills online with <span class=nowcast_color> live video classes </span> by the best <span class="nowcast_color">Live online teachers and schools.</span>'
+      msg2 = 'Take <span class="nowcast_color2"> private online classes</span> to <span class="nowcast_color2">level up your career.</span>'
+      
+      msg1 = '<span class="nowcast_color">Online Private Teachers.</span> <span class="nowcast_color"></span>'
+      msg2 = '<span class="znowcast_color2">Learn and teach </span> <span class="nowcast_color2"></span> <span class="nowcast_color2"><a class="simple_link" href="/fullstack">coding,</a> </span> <span class="nowcast_color"></span> <span class="nowcast_color2">graphic design, online marketing</span> and more on live video.'
+ 
+      if @fullstack
+        msg1 = 'Learn <span class="nowcast_color">full-stack coding</span> with a <span class="nowcast_color">private online teacher.</span>'
+        msg2 = '<span class="znowcast_color2">Boost </span> <span class="nowcast_color2"></span> <span class="znowcast_color2">your career skills</span> <span class="nowcast_color2"></span> with a <span class="znowcast_color2"> personal tutor.</span><br/><div class=langs_list>English, Español, Pусский, עברית</div>'      
+      end 
+
+      if beautiful_ones = true 
+        msg1 = 'A <span class="nowcast_color2">Marketplace</span> <span class="nowcast_color2"> </span> for <span class=nowcast_color>Companionship </span> and <span class=nowcast_color>Skills.</span>'
+        zmsg1 = 'Meet <span class="nowcast_color2">Creators</span> <span class="nowcast_color"> Live. </span> <span class=nowcast_color></span>'
+        msg2 = '<span class="nowcast_color">Hang out together</span> <span class="nowcast_color2"></span> <span class="znowcast_color2"></span> <span class="nowcast_color2"></span> on <span class="nowcast_color2"> live video. </span> <span class="nowcast_color"></span><br/>'
+
+        msg1 = '<span class="nowcast_color2"></span> <span class="nowcast_color2"> </span> <span class=nowcast_color>Perfect Online Activities For Your Team.</span>'
+        zmsg1 = 'Meet <span class="nowcast_color2">Creators</span> <span class="nowcast_color"> Live. </span> <span class=nowcast_color></span>'
+        msg2 = 'A Marketplace<span class="nowcast_color2"></span> for <span class="nowcast_color2"></span> <span class="znowcast_color2"></span> <span class="nowcast_color"> Skills</span> and <span class="nowcast_color2"> </span> <span class="nowcast_color"> Companionship.</span><br/>'
+
+        msg2 = 'Live Talks, Classes and Team-Building Events Hand-Picked Manually Together with Your HR.'
+
+        msg1 = '<span class=nowcast_color2>Guest Speakers</span> for <span class="znowcast_color2">Remote Dev Teams.</span>'        
+        
+        msg1 = '<span class=nowcast_color2>Guest Speakers</span> <span class="znowcast_color2">Your Team Will Love.</span>'
+        
+        msg1 = '<span class=nowcast_color2>Online Speakers and Performers</span> <span class="znowcast_color2">'
+        #for <span class=nowcast_color2>Remote Dev Teams.</span></span>'
+
+        msg2 = "<span class='nowcast_color'><b>Customized online events</b></span> for your team. </span><span style='position:relative; top: 1px'>❤️</span>"
+
+        if is_heb
+          msg1 = '<span class=nowcast_color2>כנסים וירטואליים</span> <span class="znowcast_color2"> עבור צוותי פיתוח. </b></span>'
+          msg2 = "<span class='nowcast_color'><b>חוויות ואירועים מותאמים אישית</b></span> שהחבר׳ה יעופו עליהם. </span><span style='position:relative; top: 3px'>❤️</span>"
+
+          msg1 = '<span class="nowcast_color">הופעות בזום </span>בזמן  <span class="zznowcast_color">״הסגר 2״</span>'
+          msg2 = '<span class="znowcast_color">בילוי משותף לצוות</span>, <span class="nowcast_color">ותמיכה באמנים ותרבות מקומית.</span>'
+        end
+      end
+
+      terms = CAST_TYPES_PLURAL
+
+      terms = ['Coding', 'Tech', 'Business', 'Fitness', 'Lifestyle', 'Languages']
+      terms = []
+      # if _req.path
+      search     = pr[:search].to_s.downcase
+      show_terms = !pr[:search] 
+      show_terms = true
+      sub_terms  = []
+      mini_terms = []
+
+
+      def get_sub_terms(term)
+        subterms = {
+          'coding': ['JavaScript', 'CSS', 'Ruby', 'Python', 'React', 'Angular', 'Vue', 'Tutors', 'Bootcamps'],
+          'tech': ['SQL', 'Git', 'Wordpress', 'Photoshop', 'Sketch', 'Cybersecurity'],
+                    
+          'zlearn online tech skills': ['Coding', 'UI/UX', 'Graphic Design', 'Data Science', 'Cybersecurity', 'QA', 'Online Marketing', 'Online Sales'],
+          'business': ['Interviewing Skills', 'Digital Marketing', 'Social Media Management', 'SEO', 'Content Writing', 'Video Production', 'Content Marketing', 'Product Marketing', 'Sales', 'Branding'],
+          fitness: ['Yoga', 'Pilates', 'Dancing', 'Weight-Loss', 'Workouts', 'Coaching'],
+          
+          'lifestyle': ['Meditation', 'Emotional Support', 'Therapy', 'Coaching', 'Mentoring', 'Spirituality', 'Christianity'],
+
+          languages: ['English', 'Spanish', 'Chinese', 'Japanese', 'French', 'Italian', 'Russian', 'Hebrew', 'Arabic', 'Greek'],
+        }.hwia
+        return subterms[term.to_s.downcase] || []
+      end
+
+      # sub_terms = languages_terms if (search == 'languages') || search.in?(languages_terms.map(&:downcase))      
+      # sub_terms = tech_terms if (search == 'tech') || search.in?(tech_terms.map(&:downcase))
+      # sub_terms = fitness_terms if (search == 'fitness') || search.in?(fitness_terms.map(&:downcase))      
+      # sub_terms = business_terms if (search == 'business') || search.in?(business_terms.map(&:downcase))      
+      # sub_terms = mental_terms if (search == 'mental well-being') || search.in?(mental_terms.map(&:downcase))      
+      # sub_terms = hobby_terms if (search == 'hobbies') || search.in?(hobby_terms.map(&:downcase))      
+        
+      
+      
+      # if @teach 
+      #   msg1 = 'Teach a <span class="nowcast_color">live class </span> on <span class="nowcast_color"> nowcast.</span>'
+      #   msg2 = "<span class='nowcast_color'>nowcast</span> is the easiest platform to make money teaching online <span class='nowcast_color'>live courses and classes.</span>"        
+      #   # terms = ['Virtual Classroom', 'Video Conferencing', 'Payment Processing', 'Student Management', 'Online Collaborative Coding Boards', 'Model Pre-Prepared Curriculums', 'Custom Features Per Class Type']
+      #   terms = ['Virtual Classroom', 'Video Conferencing', 'Payments', 'Student Management', 'Remote Collaboration Tools', 'Model Curriculums', 'Custom Features']
+      # end
+    %>
+
+    <h1 style='display: inline-block; margin:20px 20px 0px 10px'><%=msg1%></h1>    
+    <h3 style='padding-left:10px'><%=msg2%></h3>    
+  </div>
+
+  <% if @teach %>
+  <%= erb :'home/hp_features', locals: locals %>       
+  <% end %>
+
+  <% if !search_input_on_top %>
+
+  <% if show_terms %>
+  <h3 style='    text-align: center;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    margin-top: 40px;'>
+    <% terms.each_with_index do |term, idx| %>
+      <div class='single_hp_term_container <%='selected' if idx==0%> <%="zselected" if pr[:search].to_s.downcase==term.to_s.downcase%>'>
+      <a href='/?search=<%=term.to_s.downcase%>' class='single_hp_term'><%= term %> 
+        <i class='fal fa-caret-down'></i>
+        <i class='fa fa-caret-down'></i>        
+      </a>
+        <span class='mini_terms_list'>
+            <%           
+            get_sub_terms(term).each_with_index do |subterm, idx| %>
+              <a href='/?search=<%=subterm.to_s.downcase%>' class='single_mini_term'><%= subterm %></a>
+            <% end %>
+        </span>
+      </div>
+    <% end %>
+  </h3>
+  <% end %>
+
+
+  <div style='display: none'>
+    <span class='sub_main_title' style='font-size: 100%; zbackground-color: pink; zmargin-bottom: 20px'>
+      <!-- Apply for an online school.
+      <br/>  -->
+
+<%
+
+x=1
+%>
+    <% if cu %>      
+      <% else %>
+      <%= erb :'search/search_inputs_row' %>
+      <% end %>
+      
+      <!-- <span style='margin:20px; display: inline-block;'><input style='width: 100%' class=input placeholder='spanish class'/></span> 
+      <button class='btn'> search </button> -->      
+      <!-- <span style='margin:10px'>or</span> -->
+      <% if false %>
+      <div>
+      <span><a href='/signup?type=star' class='nowcast_color2' style='font-size: 70%'>
+        <button class='btn2'><i class='zfal fa-user' style='margin-right:5px'></i> list yourself</button>
+        Join us to.
+        </a>
+      </span>
+      </div>
+      <% end %>
+      
+      <% if pr[:search] && is_admin && false %>
+        <%= erb :'search/advanced_search' %>
+      <% end %>      
+      <!-- <a class='focus' href='/signup'>Get started</a> or take <a target=_blank href='https://nowcast.co/@Nowcast/IrwyB/' class='focus'>our class on teaching online.</a> -->
+    </span>
+  </div>
+
+  
+  
+  <% end %>
+
+    
+    <div class='mw1000 ct'>
+      <%= erb :'home/quick_contact' %>
+    </div>
+      <div class='cast_types_container'>
+      <% (all_channel_casts).each do |channel_casts|
+        casts = channel_casts[:casts].to_a
+        # casts = $casts.random(10) if !$prod && !casts.any?      
+        title = channel_casts[:title]
+      %>
+        <div class='cast_types' style='display: zflex;'>
+        <h3 class=hp_casts_container style='text-align:left; display: block; padding-left: 20px; text-transform: capitalize'> 
+
+          <% if !pr[:search] %>
+          <%#= title %>         
+          <div class=ct>אמנים לדוגמא</div>
+          <% end %>
+          <span class='subchannels'>
+          <% channel_casts[:subchannels].to_a.each do |subchannel| %>
+            <a href='/<%=subchannel.to_s.downcase%>' class='subchannel'><%=subchannel%></a>          
+          <% end %>
+          </span>
+        </h3>
+        <% if casts.any? %>
+          <div class='hp_casts_container'>
+            <% casts[0..7].each do |cast| %>
+              <%= erb :'/casts/single_cast_box', locals: {cast: cast, show_user_desc: true} %>
+            <% end %>
+          </div>
+        
+          <% else %>
+          <h4> No results found :( 
+            <% if false %>
+            <a href='/community?sec=ads&text=<%=title%>'>
+              <button class=btn2>Post a "Help Wanted" ad </button>
+            </a> 
+            <% end %>
+          </h4>
+          <% end %> <!-- end if  -->
+        </div>
+      <% end %> <!-- end each -->
+
+      <% if cu %>
+    <% else %>
+    
+    <% end %>
+
+     <% if false %>  
+    <div class='ct' style='background-color:zwhitesmoke; padding-bottom: 20px'>
+      <br/>
+      <a style='margin-left:10px; display: inline-block;' class='btn btn-primary' href='/teach'>Course Instructors, Coaches and Tutors - <br/> join us!
+        <span style='position: relative; right: -6px'>❤️</span> </a>      
+    </div>  
+    <% end %>
+
+    <%= erb :'layout/footer' %>  
+  </div>   
+</div>
+
+<% if true || $prod %>
+<script>
+$(document).ready(function() {
+  convertTimesToLocal();
+}); 
+</script>
+<!-- <script src='/js/lib/confetti.js'></script> -->
+<% end %>

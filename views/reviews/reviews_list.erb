@@ -1,0 +1,92 @@
+<%
+  is_owner ||= locals[:is_owner] ||= false
+
+%>
+
+<style>
+.review_box_li {
+  border:1px solid whitesmoke;
+  max-width: 700px;
+}
+.review_box_li blockquote {
+  margin-left: 0;
+  display: inline-block;
+  width: 400px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.review_box_li small {
+/*  margin-left: 10px;*/
+  display: inline-block;
+}
+.delete_review_btn {
+  cursor: pointer;
+}
+.delete_review_btn:hover {
+  color: grey;
+}
+.review_rating {
+  padding: 10px;
+}
+</style>
+
+<ul style='list-style:none; padding-left: 0'>
+<% reviews.each do |review| %>
+  <% 
+    id     = review[:_id] 
+    reviewer_handle = ''
+    reviewer_id = review[:reviewer_id]
+    reviewer    = $users.get(reviewer_id) || {}
+    reviewer_name = "#{reviewer[:name]}"
+  %>  
+    <li class='review_box_li <%=review[:_id]%>'>
+      <div>
+        <div style='background-color: whitesmoke;'>
+          <small style=''>
+            <img class='user_img' src='<%=reviewer[:img_url]%>' />
+            <a href='<%=user_link(reviewer)%>'><%= reviewer_name %>, <%= nice_date(review[:created_at]) %></a>
+          </small>
+        
+          <% if can_delete_review(review) %>
+            <form method=post action='/reviews/<%=review[:_id]%>/delete' 
+              onsubmit='if (!confirm("Are you sure? This is irreversible.")) return false;'
+              style='margin-left:10px; display: inline-block;'
+              >
+              <button style='border: transparent; background-color: transparent;'><i class='delete_review_btn fa fa-trash'></i></button>
+            </form>
+          <% end %>
+        </div>
+
+        
+        <blockquote><%= review[:msg] %></blockquote>        
+        <div class='review_rating'><% review[:rating].to_i.times { %> ⭐ <% } %></div>
+      </div>
+    </li>  
+<% end %>
+</ul>
+
+<% unless locals[:skip_submit] %>
+<div class='display_flex'>
+  <div style='width: 90%'>    
+    <form method=post action='/reviews/new'>
+      <input name=cast_id value="<%=cast[:_id]%>" style='display: none' />
+      <!-- <textarea placeholder='Your review...' name=msg></textarea>   -->
+      <textarea style='height:50px' placeholder='Add review for <%=cast[:title]%>' name=msg required ></textarea>
+      <br>
+      <select name=rating required>
+        <option value=""> Rate</option>
+        <option value=1>1 star  (terrible)</option>
+        <option value=2>2 stars (bad)</option>
+        <option value=3>3 stars (decent)</option>
+        <option value=4>4 stars (great)</option>
+        <option value=5>5 stars (amazing)</option>
+      </select>
+      
+      
+      <button class='btn btn-raised btn-sm'> submit </button>
+    </form>
+  </div>
+</div>
+
+<% end %>

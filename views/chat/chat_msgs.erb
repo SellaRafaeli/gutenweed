@@ -1,0 +1,31 @@
+<%
+  msgs_crit   = {cast_id: cast_id, status: CHAT_MSG_OK}
+  
+  # msgs_crit[:created_at] = {'$gt': locals[:msgs_since]} if locals[:msgs_since]
+  chat_msgs   = $chat.get_many(msgs_crit)
+  chat_videos ||= false
+%> 
+
+<style>
+.chat_msg_content a {
+  color: goldenrod;
+  font-weight: bold;
+}
+.chat_msg_content a:hover {
+  color: grey;
+}
+</style>
+
+<!-- <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script> -->
+
+<div style='max-height: 300px;'>
+<% chat_msgs.each do |msg| %>
+  <div class='chat_msg' data-date="<%=msg[:created_at]%>">    
+    <span class='chat_name'>
+      <span class='chat_user_img'><img src="<%=msg[:img_url]%>" /> </span>
+      <%=msg[:name]%>        
+    </span> 
+    <span class='chat_msg_content'><%= escape_html msg[:message] %> </span>
+    <span class="chat_date" data-date="<%=msg[:created_at]%>"><%=time_ago msg[:created_at]%></span></div>
+<% end %>
+</div>

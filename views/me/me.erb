@@ -1,0 +1,164 @@
+<% 
+  show_help = false
+  err = nil
+  user    = cu
+  user_id = user[:_id]
+  stripe_url = "https://connect.stripe.com/oauth/authorize?client_id=ca_HDQdpUCE1szAeh7NrwdA0BG0ZuHGu7RW&state={STATE_VALUE}&scope=read_write&response_type=code&stripe_user[email]=#{user[:email]}"
+  tzones = TIME_ZONES
+%>
+<style>
+.pic_label {
+/*  font-weight: bold; */
+  cursor: pointer;
+}
+.pic_label:hover {
+  background-color: whitesmoke;
+  cursor: pointer;
+}
+form .user_img:hover {
+  cursor: pointer;
+}
+
+.delete_prog_btn {
+  margin-left: 10px;
+  cursor: pointer;
+}
+.btn:hover > div {
+  background-color:rgba(0, 0, 0, 0.1);
+}
+
+.stripe_button {
+  width: 203px;
+  margin-top: 30px;
+}
+#me_form {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#me_form .display_flex label, #me_form .display_flex span, #me_form .display_flex input, #me_form .display_flex img {
+  flex: 1;
+  margin-left: 20px;
+  text-align: left;
+}
+
+#me_form .display_flex label {
+/*  min-width: 200px;*/
+  margin-right: 10px;
+  top: 5px;
+}
+#me_form .display_flex span {
+  color: #938b8b;
+  font-weight: bold;
+}
+#me_form textarea, #me_form input, #me_form select {
+  font-size: 18px;
+  position: relative;
+  top: -5px;
+  width: 47%;
+}
+
+#me_form select {
+  padding: 10px;
+}
+
+.chosen_me_form_link {
+  font-weight: bold;
+  background-color: whitesmoke;
+}
+
+.profile_tabs i {
+  margin-right: 10px;
+}
+.profile_tabs a:hover {
+  color: #00b140;
+}
+</style>
+
+<div>
+    <form id=me_form action='update_me' method='post' class='form1'>      
+      <h1> <span>Me</span> </h1>
+
+    <% sec = pr[:sec] || 'profile' %>
+      <div class='profile_tabs' style='margin-bottom: 50px; text-align: center; direction: ltr'>
+        
+        <a class='btn <%= "chosen_me_form_link" if sec == "profile" %>' href='/me?sec=profile'><i class='fal fa-user'></i> Profile </a>
+
+        <a class='btn <%= "chosen_me_form_link" if sec == "by_me" %>' href='/me?sec=by_me'><i class='fal fa-webcam'></i> My Casts </a>
+        <!-- <a class='btn <%= "chosen_me_form_link" if sec == "for_me" %>' href='/me?sec=for_me'><i class='fal fa-user-graduate'></i> I learn </a> -->
+        <!-- <a class='btn <%= "chosen_me_form_link" if sec == "my_referrals" %>' href='/me?sec=my_referrals'> My Referrals </a> -->
+        
+        <a class='btn <%= "chosen_me_form_link" if sec == "account" %>' href='/me?sec=account'><i class='fal fa-street-view'></i> Account </a>
+        <a class='btn' target=_blank href='/@<%=cu['handle']%>'>
+           <i class='fa fa-external-link' style='margin-right: 5px'></i> My Page
+        </a>    
+      </div>
+
+    <% if sec == 'account' %>       
+      <%= erb :'me/account', locals: {user: user} %>          
+    <% elsif sec == 'profile' %>
+      <%= erb :'me/profile', locals: {user: user} %>            
+    <% elsif sec == 'by_me' %>
+      <%= erb :'me/by_me', locals: {user: user, user_id: user_id} %>            
+    <% elsif sec == 'for_me' %>
+      <%= erb :'me/for_me', locals: {user: user, user_id: user_id} %>            
+    <% end %>  
+
+    <% if sec == 'account' || sec == 'profile' %>
+      <br/>
+      <div class=ct>
+        <button onclick='$("#me_form").submit()' class='btn btn-raised btn-info'>Save</button>
+      </div>
+    <% end %>
+    </form>
+
+</div>
+
+<script>
+
+function updateImgURL(res) {
+  console.log(res);
+  window.res = res;
+  var link = JSON.parse(res).data.link;
+  $("#img_url").val(link);
+  $("#user_profile_input_img").attr('src',link);
+}
+
+function attachImgUploader() {
+  $('#img_uploader').on("change", function() {
+    var file = $(this).get(0).files[0];
+    if (file) { uploadImg(file, updateImgURL) }
+  });
+}
+
+function setTZvalue() {
+  var offset = (new Date).getTimezoneOffset()/-60;
+  if (!$("#tz_input").val()) {
+    $("#tz_input").val(offset);
+  }
+}
+
+function onLoad() {
+  attachImgUploader();
+  setTZvalue();
+}
+
+function deleteProg(prog_id) {
+  if (confirm("Are you sure you want to delete this program?")) {
+    
+    $(`.prog_box_li.${prog_id}`).remove();
+    var inp = $('#deleted_prog_ids');
+
+    var vals= inp.val().split(',')
+    console.log(vals);
+    vals.push(prog_id);
+    console.log(vals);
+    vals = vals.filter(v=>v).join(',')
+    console.log(vals);
+    inp.val(vals);
+  }
+}
+
+$(document).ready(onLoad);
+</script>

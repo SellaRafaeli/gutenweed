@@ -1,0 +1,18 @@
+<%
+  title = cast[:title]
+  owner_name   = owner[:name]
+  viewer_name  = viewer[:name]
+  time  = cast_time1(cast, only_content: true)
+  link  = cast_link(cast)
+%>
+
+Hey <%= owner_name%>, a new viewer just joined your cast "<%= title %>": <%=viewer_name%>! See them at <%= time %>.
+
+<br/>
+<br/>
+
+Here's the link to the cast:
+<br/>
+<br/>
+
+<a href="<%=link%>"><%= link %> </a>
