@@ -33,7 +33,7 @@
 
   .top-nav {
     margin: 0 20px;
-
+    padding: 20px 0;
     
     /*position: absolute;
     
@@ -161,7 +161,7 @@
     <% end %>       
 
 
-    <div class='logo_container' style='display: inline-block;'>
+    <div class='logo_container' style='display: inline-block; display: none'>
       <a href='/' class='logo'>
         <b style='color: #00b140'>
           <img src='/img/nowcast_logo_pause.png' style='height:80px' />
@@ -174,11 +174,15 @@
     
     <% unless @hide_header %>
     
+    <a class='nowcast_color' href='/' style='color: #00b140'>
+      Gutenweed
+    </a>    
     <% if cu %>
       <a class='' href='/me'>
         <% if !is_heb %><i class='fal fa-user' style='margin-right: 10px'></i><% end %>
 
-         <%= cu[:name] %> <%= "<b class='nowcast_color'>(pro)</b>" if is_pro(cu) %></a>
+         <%= cu[:name] %> <%= "<b class='nowcast_color'>(pro)</b>" if is_pro(cu) %>
+       </a>       
       <!-- <a class='' target=_blank href='/@<%=cu['handle']%>'>
         <i class='fa fa-external-link' style='margin-right: 5px'></i> View @<%=cu['handle']%>         
       </a>     -->
@@ -195,7 +199,7 @@
         <a style='padding: 0' class='country_icon_container' href='/?country=<%=country%>'><img class='country_icon' src='/img/icons/<%=country%>.png' /></a>
       <% end %>
       <!-- <a class='' href='/community'>Community</a> -->
-    <% if cu %>
+    <% if cu && false %>
       <a href='/chat'>
 
         <i style='zfont-size: 50%; position: relative; zbottom:5px; zmargin-left:20px' class='fal fa-envelope'></i>

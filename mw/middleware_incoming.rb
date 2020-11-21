@@ -137,7 +137,7 @@ def _params #allows us to call 'params' safely, including within tux
 end
 
 def is_israel
-  return true
+  # return true
   session[:country] == "israel"
 end
 

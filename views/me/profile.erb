@@ -10,7 +10,7 @@
   <div class='display_flex' style='margin-top:20px'>
     <div style='flex:1'>
       <input type=file id=img_uploader style='display: none' />
-      <label class='pic_label' onclick=$("#img_uploader").click()> Profile Photo </label>
+      <label class='pic_label' onclick=$("#img_uploader").click()> Photo </label>
       <input name=img_url id=img_url style='display: none' value="<%=user[:img_url]%>"/>
     </div>
     <div class='ct flex1'>
@@ -35,7 +35,7 @@
   <% end %>
 
   <div class='display_flex'>
-    <label> About Me </label>
+    <label> Description </label>
     <textarea name=desc placeholder="A little bit about you" value=""><%=user['desc']%></textarea> 
     <!-- <span>Use #hashtags like #actor or #dance_teacher</span> -->
   </div>
@@ -44,8 +44,8 @@
   <br/>
 
   <div class='display_flex'>                  
-    <label> Location <div></div></label>
-    <input class='input1' placeholder='Where in the world are you?' value="<%=user['location']%>" name='location' style='margin-right: 0px; margin-left: 0'/>
+    <label> City <div></div></label>
+    <input class='input1' placeholder='' value="<%=user['location']%>" name='location' style='margin-right: 0px; margin-left: 0'/>
     <!-- <span> This is what you'll be known as.</span> -->
   </div>
 

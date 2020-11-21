@@ -13,10 +13,10 @@
   user_casts.each { |cast| cast[:reviews] = cast_reviews(cast[:_id]); any_reviews = true if cast[:reviews].any?  }
 
   title = user[:title]
-  title = "Hi! my name is #{user[:name]}." unless title.present?
+  title = "#{user[:name]}." unless title.present?
 
   subtitle = user[:subtitle]
-  subtitle = "You can find me here on nowcast." unless subtitle.present?
+  subtitle = "" #"You can find me here on nowcast." unless subtitle.present?
 %>
 
 <!-- https://github.com/muaz-khan/WebRTC-Experiment/tree/master/one-to-many-video-broadcasting -->
@@ -215,9 +215,11 @@
         <i class='fal fa-question-circle'></i> <label> FAQ </label>
       </a>   -->
 
+      <% if false %>
       <a href='#contact' class='btn user_profile_btn' onclick=$('.contact_input_form').toggleClass("noDisplay")>
         <i class='fal fa-envelope-open-text'></i> <label> Contact </label>
       </a>  
+      <% end %>
     </div>
     
   <% if user_casts.any? %>    
@@ -226,7 +228,7 @@
     </div>
   <% end %>
 
-  <div class='user_section'>
+  <div class='user_section noDisplay'>
   <h3 id=contact> Contact </h3>
   <div>
     <form class=contact_form method=post action='/chat/send'>

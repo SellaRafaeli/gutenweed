@@ -13,7 +13,7 @@ Bundler.require
 puts "loading dotenv..."
 Dotenv.load
 
-$app_name   = 'nowcast'
+$app_name   = 'gutenweed'
 
 require './setup'
 require './my_lib'
