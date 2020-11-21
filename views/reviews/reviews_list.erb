@@ -36,9 +36,9 @@
   <% 
     id     = review[:_id] 
     reviewer_handle = ''
-    reviewer_id = review[:reviewer_id]
-    reviewer    = $users.get(reviewer_id) || {}
-    reviewer_name = "#{reviewer[:name]}"
+    buyer_id        = review[:buyer_id]
+    reviewer        = $users.get(buyer_id) || {}
+    reviewer_name   = "#{reviewer[:name]}"
   %>  
     <li class='review_box_li <%=review[:_id]%>'>
       <div>
@@ -59,7 +59,7 @@
         </div>
 
         
-        <blockquote><%= review[:msg] %></blockquote>        
+        <blockquote><%= review[:text] %></blockquote>        
         <div class='review_rating'><% review[:rating].to_i.times { %> ⭐ <% } %></div>
       </div>
     </li>  
@@ -70,10 +70,12 @@
 <div class='display_flex'>
   <div style='width: 90%'>    
     <form method=post action='/reviews/new'>
-      <input name=cast_id value="<%=cast[:_id]%>" style='display: none' />
+      <input name=seller_id value="<%=user[:_id]%>" hidden />
       <!-- <textarea placeholder='Your review...' name=msg></textarea>   -->
-      <textarea style='height:50px' placeholder='Add review for <%=cast[:title]%>' name=msg required ></textarea>
+      <textarea style='height:150px' placeholder='Add review for <%=user[:name]%>' name=text required ></textarea>
+
       <br>
+      <% if false %>
       <select name=rating required>
         <option value=""> Rate</option>
         <option value=1>1 star  (terrible)</option>
@@ -82,9 +84,9 @@
         <option value=4>4 stars (great)</option>
         <option value=5>5 stars (amazing)</option>
       </select>
+      <% end %>
       
-      
-      <button class='btn btn-raised btn-sm'> submit </button>
+      <button class='btn btn-raised btn-primary btn-sm'> submit </button>
     </form>
   </div>
 </div>

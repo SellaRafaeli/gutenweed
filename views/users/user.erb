@@ -10,7 +10,7 @@
   user_casts = $casts.all(user_id: user_id).select {|cast| !cast_is_hidden(cast) }
 
   any_reviews = false 
-  user_casts.each { |cast| cast[:reviews] = cast_reviews(cast[:_id]); any_reviews = true if cast[:reviews].any?  }
+  # user_casts.each { |cast| cast[:reviews] = cast_reviews(cast[:_id]); any_reviews = true if cast[:reviews].any?  }
 
   title = user[:title]
   title = "#{user[:name]}." unless title.present?
@@ -62,7 +62,7 @@
 
 .user_location {
   font-size: 16px;
-  margin-left: 75px;
+  margin-top: 20px;
   font-weight: normal;
   color: grey;
 }
@@ -93,7 +93,7 @@
   padding-right: 20px;
   text-align: center;
   padding: 5px;
-  background: linear-gradient(#e66465, #9198e5);
+  /*background: linear-gradient(#e66465, #9198e5);*/
 }
 
 .user_page .title {
@@ -165,15 +165,17 @@
     <% end %>
     
     <div class='user_top_right flex1'>
-      <h1 id=about class='title'><%= title %></h1>
+      <h1 id=about class='ct title'><%= title %></h1>
       
-      <div class='display_flex' style='width: 100%'>
-        <div class='flex1 center_contents'>
+      <div class='ct' style='width: 100%'>
+        <div class='zflex1 center_contents'>
           <% if location.present? %><div class='user_location'><i class='fa fa-globe'></i> <%= location %></div><% end %>
         </div>
+        <% if false %>
         <div class='flex1' style='text-align: right; margin-top: 8px'>
           <%= erb :'users/social_media', locals: {user: user} %>
         </div>
+        <% end %>
       </div>      
 
       <div class='subtitle'><%= subtitle %></div>
@@ -199,18 +201,6 @@
         <i class='fal fa-user-circle'></i> <label>About </label>
       </a>   -->
       
-      <% if user_casts.any? %>
-      <a href='#casts' class='btn user_profile_btn'>
-        <i class='fal fa-users-class'></i> <label> Casts </label>
-      </a>  
-      <% end %>
-
-      <% if any_reviews && false %>
-      <a href='#reviews' class='btn user_profile_btn'>
-        <i class='fal fa-comment-dots'></i> <label> Reviews </label>
-      </a>  
-      <% end %>
-      
       <!-- <a href='#faq' class='btn user_profile_btn'>
         <i class='fal fa-question-circle'></i> <label> FAQ </label>
       </a>   -->
@@ -232,7 +222,7 @@
   <h3 id=contact> Contact </h3>
   <div>
     <form class=contact_form method=post action='/chat/send'>
-      <input hidden name=target_id value="<%=user[:_id]%>" />
+      <input hidden name=target_id value="<%=user_id%>" />
       <input hidden name=user_chat value="true" />
       <input hidden name=redirect_back value="true" />
       <% if !cu %>
@@ -254,28 +244,13 @@
   </div>
 
 
-  <% if false %>
   <div class='user_section' id=reviews>
-    <% if any_reviews %>
+    <%
+      reviews = seller_reviews(user_id)
+    %>
     <h3> Reviews </h3>
-    
-      <% user_casts.each do |cast| %>
-        <% next unless cast[:reviews].any? %>
-        <h5> <%= cast[:title] %> </h5>
-        <%= erb :'casts/cast_reviews', locals: {cast: cast, skip_submit: true} %>
-      <% end %>
-    <% end %>
+    <%= erb :'reviews/reviews_list', locals: {reviews: reviews, user: user} %>
   </div>
-  <% end %>
-
-  <% if false %>
-  <div class='ct'> 
-    <div class='contact_input_form noDisplay'>
-      <input id=write_seller_input placeholder='Write here' type="" name="quick_contact" style='max-width: 400px' />
-      <button class='btn btn_green' onclick=sendContactSeller()> send </button>
-    </div>
-  </div>
-  <% end %>
 </div>
 
 </div>

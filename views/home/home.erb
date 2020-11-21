@@ -300,7 +300,7 @@ all_channel_casts = channels.map {|channel|
   <% 
     users.each do |user| 
 
-    revs     = seller_reviews(user) || []
+    revs     = seller_reviews(user[:_id]) || []
     last_rev = revs.last || {}
   %>
   <a href='<%=user_link(user)%>'>
@@ -311,15 +311,19 @@ all_channel_casts = channels.map {|channel|
 
     <div class='user_name flex2'>
       <%= user[:name] %>
+      <div>
+        <small><%= user[:location] %></small>
+      </div>
+
     </div>
 
-    <div class='user_desc flex2'>
+    <div class='user_desc flex2' style='text-align: left'>
       <%= user[:desc] %>
     </div>
 
-    <div class='last_review flex2'>
+    <!-- <div class='last_review flex2'>
        <%= last_rev[:text] %> <%=last_rev[:created_at]%>
-    </div>
+    </div> -->
 
     <div class='num_reviews flex1'>
       <%= revs.count %>

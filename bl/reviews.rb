@@ -21,26 +21,26 @@ end
 # 	$reviews.get_many(cast_id: cast_id).to_a
 # end
 
-# def can_delete_review(review) 
-# 	return false unless review 
-# 	(review[:cast_owner_id] == cuid) || (review[:reviewer_id] == cuid) || is_admin
-# end
+def can_delete_review(review) 
+	return false unless review 
+	(review[:buyer_id] == cuid) || is_admin
+end
 
-# post '/reviews/new' do 
-# 	require_user 
+post '/reviews/new' do 
+	require_user 
 
-# 	data = pr.just(:cast_id, :msg, :rating)
-# 	data[:reviewer_id]   = cuid 
-# 	data[:cast_owner_id] = $casts.get(data[:cast_id])[:user_id]
-# 	data[:rating]        = pr[:rating].to_i 
-# 	data[:rating]        = 5 if data[:rating] > 5
-# 	data[:rating]        = 1 if data[:rating] < 1
+	data = pr.just(:seller_id, :text, :rating)
+	data[:buyer_id]   = cuid 
 	
-# 	$reviews.add(data)
+	# data[:rating]        = pr[:rating].to_i 
+	# data[:rating]        = 5 if data[:rating] > 5
+	# data[:rating]        = 1 if data[:rating] < 1
+	
+	$reviews.add(data)
 
-# 	flash.message = 'Review submitted.'
-# 	redirect back
-# end
+	flash.message = 'Thanks!'
+	redirect back
+end
 
 # post '/reviews/:id/delete' do 
 # 	require_user 
