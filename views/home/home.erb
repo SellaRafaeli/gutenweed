@@ -256,8 +256,10 @@ all_channel_casts = channels.map {|channel|
       # end
     %>
 
-    <% if false %>
     <h1 style='display: inline-block; margin:20px 20px 0px 10px; font-weight: bold'><%=msg1%></h1>    
+    <div>
+      <input style='border-radius: 4px; width: 800px; margin: 50px;' placeholder='Search...' />
+    <% if false %>
     <h3 style='padding-left:10px;'><%=msg2%></h3>    
     <% end %>
   </div>
@@ -294,6 +296,21 @@ all_channel_casts = channels.map {|channel|
   </h3>
   <% end %>
 
+  <% if show_cities = false %>
+  <div>
+    <% 
+      cities = ['מרכז', 'צפון', 'ירושלים', 'דרום']#.sort
+    %>
+    <br/>
+    <select>
+      <% cities.each do |city| %>
+      <option value="<%=city%>"><%=city%></option>
+      <% end %>
+    </select>
+    <br/>
+    <br/>
+  </div>
+  <% end %>
 
   <% users = $users.random(10) %> 
 
