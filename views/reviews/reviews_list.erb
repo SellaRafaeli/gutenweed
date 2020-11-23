@@ -7,14 +7,14 @@
 .review_box_li {
   border:1px solid whitesmoke;
   max-width: 700px;
+  margin-bottom: 20px;
 }
 .review_box_li blockquote {
   margin-left: 0;
   display: inline-block;
   width: 400px;
   padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin-top: 5px;  
 }
 .review_box_li small {
 /*  margin-left: 10px;*/
@@ -38,23 +38,28 @@
     reviewer_handle = ''
     buyer_id        = review[:buyer_id]
     reviewer        = $users.get(buyer_id) || {}
-    reviewer_name   = "#{reviewer[:name]}"
+    reviewer_name   = reviewer[:name] ? "#{reviewer[:name]}, " : 'anonymous'
   %>  
     <li class='review_box_li <%=review[:_id]%>'>
       <div>
         <div style='background-color: whitesmoke;'>
-          <small style=''>
+          
+          <small style='padding: 15px'>            
+            <% if reviewer[:_id] %>
             <img class='user_img' src='<%=reviewer[:img_url]%>' />
-            <a href='<%=user_link(reviewer)%>'><%= reviewer_name %>, <%= nice_date(review[:created_at]) %></a>
+            <% end %>  
+            <a href='<%=user_link(reviewer)%>'><%= reviewer_name %> <%= nice_date(review[:created_at]) %></a>
           </small>
         
-          <% if can_delete_review(review) %>
-            <form method=post action='/reviews/<%=review[:_id]%>/delete' 
-              onsubmit='if (!confirm("Are you sure? This is irreversible.")) return false;'
-              style='margin-left:10px; display: inline-block;'
-              >
-              <button style='border: transparent; background-color: transparent;'><i class='delete_review_btn fa fa-trash'></i></button>
-            </form>
+          <% if reviewer[:_id] %>
+            <% if can_delete_review(review) %>
+              <form method=post action='/reviews/<%=review[:_id]%>/delete' 
+                onsubmit='if (!confirm("Are you sure? This is irreversible.")) return false;'
+                style='margin-left:10px; display: inline-block;'
+                >
+                <button style='border: transparent; background-color: transparent;'><i class='delete_review_btn fa fa-trash'></i></button>
+              </form>
+            <% end %>
           <% end %>
         </div>
 

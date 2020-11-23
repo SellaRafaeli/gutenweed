@@ -31,8 +31,6 @@ get '/recommend' do
 end
 
 post '/reviews/new' do 
-	require_user 
-
 	data = pr.just(:seller_id, :text, :rating)
 	data[:buyer_id]   = cuid 
 	
