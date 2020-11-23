@@ -156,6 +156,27 @@ all_channel_casts = channels.map {|channel|
   font-size: 70%;
   color: grey;
 }
+
+.hp_reviews_list {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hp_review {
+  border:1px solid black;
+  margin-bottom: 20px;
+}
+.hp_review_container {
+
+}
+.hp_review_top {
+  padding: 15px;
+    text-align: left;
+    background-color: whitesmoke;
+}
+.hp_review_body {  
+  padding: 15px;
+}
 </style>
 
 <div class='hp ct'>
@@ -227,9 +248,15 @@ all_channel_casts = channels.map {|channel|
         end
       %> 
         <% if show_search %>
-        <input style='border-radius: 4px; width: 800px; margin: 50px;' placeholder='Search...' />
+        <form action='/' method='get'>
+          <input name=q style='border-radius: 4px; width: 800px; margin: 50px;' placeholder='Search...' />
+        </form>
         <% end %>
-        <h3 style='padding:10px; margin: 0'><%=msg2%></h3>    
+        <!-- <h3 style='padding:10px; margin: 0'><%=msg2%></h3>     -->
+        <div style='margin-bottom: 40px'>
+          <a class="btn btn-primary <%="btn-raised" if pr[:type]=="sellers"%>" href='/?q=<%=pr[:q]%>&type=sellers'>sellers</a>
+          <a class="btn btn-primary <%="btn-raised" if pr[:type]=="reviews"%>" href='/?q=<%=pr[:q]%>&type=reviews'>reviews</a>
+        </div>
       
     </div>
     
@@ -287,45 +314,21 @@ all_channel_casts = channels.map {|channel|
   %>
     <%= erb :'reviews/submit_review_form', locals: {seller: nil} %>
   <% 
-    else 
+    elsif pr[:type] == "sellers"
       users = $users.get_many 
   %> 
 
+    <%= erb :'users/users_list', locals: {users: users} %>
+  <% else # reviews %> 
     <% 
-      users.each do |user| 
-      revs     = seller_reviews(user[:_id]) || []
-      last_rev = revs.last || {}
+      reviews = $reviews.get_many
+      reviews.each do |review| 
     %>
-    <a href='<%=user_link(user)%>'>
-    <div class='hp_single_user flex'>    
-      <div class='flex1'>
-        <img src='<%=user[:img_url]%>' style='width: 40px; object-fit: cover' />
-      </div>
-
-      <div class='user_name flex2'>
-        <%= user[:name] %>
-        <div>
-          <small><%= user[:location] %></small>
-        </div>
-
-      </div>
-
-      <div class='user_desc flex2' style='text-align: left'>
-        <%= user[:desc] %>
-      </div>
-
-      <!-- <div class='last_review flex2'>
-         <%= last_rev[:text] %> <%=last_rev[:created_at]%>
-      </div> -->
-
-      <div class='num_reviews flex1'>
-        <%= revs.count %>
-      </div>
-    
+    <div class='hp_reviews_list'>
+      <%= erb :'reviews/single_hp_review', locals: {review: review} %>
     </div>
-    </a>
-
     <% end %>
+    
   <% end %>
 
   <div style='display: none'>
