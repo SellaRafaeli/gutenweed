@@ -26,6 +26,10 @@ def can_delete_review(review)
 	(review[:buyer_id] == cuid) || is_admin
 end
 
+get '/recommend' do 
+	erb :'/reviews/submit_review_page', layout: :layout 
+end
+
 post '/reviews/new' do 
 	require_user 
 

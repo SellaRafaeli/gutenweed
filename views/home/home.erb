@@ -18,6 +18,7 @@ all_channel_casts = channels.map {|channel|
   {title: topic, casts: get_channel_casts(tag.to_s.downcase, must_have_tag: !@channel.present?), subchannels: subtopics} 
 }
 
+  is_submit_recommendation = pr[:submit]
 # all_channel_casts = [{casts: homepage_casts}]
 
 %>
@@ -163,51 +164,9 @@ all_channel_casts = channels.map {|channel|
     <% 
       msg2 = '<span class="nowcast_color">Online</span> classes. Live <span class="nowcast_color">teachers</span>  and <span class="nowcast_color">freelancers.</span> </h4>'
       msg1 = 'Just take an <span class="nowcast_color">online course on nowcast.</span></h1>'
-      msg1 = 'Teach and take <span class="nowcast_color">live classes </span>on <span class="nowcast_color"> nowcast.</span></h1>'
-      
-      msg1 = '<span class=nowcast_color> Learn Coding Online </span>with<span class="nowcast_color"> Live Teachers and Tutors.</span> <span class=nowcast_color></span>'
-      msg1 = 'Live video <span class="nowcast_color"> education</span> and <span class="nowcast_color"> entertainment.</span>'
-      
-      msg2 = 'Learn tech skills online with <span class=nowcast_color> live video classes </span> by the best <span class="nowcast_color">Live online teachers and schools.</span>'
-      msg2 = 'Take <span class="nowcast_color2"> private online classes</span> to <span class="nowcast_color2">level up your career.</span>'
-      
-      msg1 = '<span class="nowcast_color">Online Private Teachers.</span> <span class="nowcast_color"></span>'
-      msg2 = '<span class="znowcast_color2">Learn and teach </span> <span class="nowcast_color2"></span> <span class="nowcast_color2"><a class="simple_link" href="/fullstack">coding,</a> </span> <span class="nowcast_color"></span> <span class="nowcast_color2">graphic design, online marketing</span> and more on live video.'
- 
-      if @fullstack
-        msg1 = 'Learn <span class="nowcast_color">full-stack coding</span> with a <span class="nowcast_color">private online teacher.</span>'
-        msg2 = '<span class="znowcast_color2">Boost </span> <span class="nowcast_color2"></span> <span class="znowcast_color2">your career skills</span> <span class="nowcast_color2"></span> with a <span class="znowcast_color2"> personal tutor.</span><br/><div class=langs_list>English, Español, Pусский, עברית</div>'      
-      end 
 
-      if beautiful_ones = true 
-        msg1 = 'A <span class="nowcast_color2">Marketplace</span> <span class="nowcast_color2"> </span> for <span class=nowcast_color>Companionship </span> and <span class=nowcast_color>Skills.</span>'
-        zmsg1 = 'Meet <span class="nowcast_color2">Creators</span> <span class="nowcast_color"> Live. </span> <span class=nowcast_color></span>'
-        msg2 = '<span class="nowcast_color">Hang out together</span> <span class="nowcast_color2"></span> <span class="znowcast_color2"></span> <span class="nowcast_color2"></span> on <span class="nowcast_color2"> live video. </span> <span class="nowcast_color"></span><br/>'
-
-        msg1 = '<span class="nowcast_color2"></span> <span class="nowcast_color2"> </span> <span class=nowcast_color>Perfect Online Activities For Your Team.</span>'
-        zmsg1 = 'Meet <span class="nowcast_color2">Creators</span> <span class="nowcast_color"> Live. </span> <span class=nowcast_color></span>'
-        msg2 = 'A Marketplace<span class="nowcast_color2"></span> for <span class="nowcast_color2"></span> <span class="znowcast_color2"></span> <span class="nowcast_color"> Skills</span> and <span class="nowcast_color2"> </span> <span class="nowcast_color"> Companionship.</span><br/>'
-
-        msg2 = 'Live Talks, Classes and Team-Building Events Hand-Picked Manually Together with Your HR.'
-
-        msg1 = '<span class=nowcast_color2>Guest Speakers</span> for <span class="znowcast_color2">Remote Dev Teams.</span>'        
-        
-        msg1 = '<span class=nowcast_color2>Guest Speakers</span> <span class="znowcast_color2">Your Team Will Love.</span>'
-        
-        msg1 = '<span class=nowcast_color>Gutenweed</span> <span class="znowcast_color2">'
-        #for <span class=nowcast_color2>Remote Dev Teams.</span></span>'
-
-        msg2 = "<span class='znowcast_color'>Find the right guy for you.</span>  </span><span style='position:relative; top: 1px'>❤</span>"
-
-        if is_heb
-          msg1 = '<span class=nowcast_color2>כנסים וירטואליים</span> <span class="znowcast_color2"> עבור צוותי פיתוח. </b></span>'
-          msg2 = "<span class='nowcast_color'><b>חוויות ואירועים מותאמים אישית</b></span> שהחבר׳ה יעופו עליהם. </span><span style='position:relative; top: 3px'>❤️</span>"
-
-          msg1 = '<span class="nowcast_color">הופעות בזום </span>בזמן  <span class="zznowcast_color">״הסגר 2״</span>'
-          msg2 = '<span class="znowcast_color">בילוי משותף לצוות</span>, <span class="nowcast_color">ותמיכה באמנים ותרבות מקומית.</span>'
-        end
-      end
-
+      msg1 = 'Gutenweed'
+      msg2 = 'recommendations'
       terms = CAST_TYPES_PLURAL
 
       terms = ['Coding', 'Tech', 'Business', 'Fitness', 'Lifestyle', 'Languages']
@@ -256,13 +215,24 @@ all_channel_casts = channels.map {|channel|
       # end
     %>
 
-    <h1 style='display: inline-block; margin:20px 20px 0px 10px; font-weight: bold'><%=msg1%></h1>    
-    <div>
-      <input style='border-radius: 4px; width: 800px; margin: 50px;' placeholder='Search...' />
-    <% if false %>
-    <h3 style='padding-left:10px;'><%=msg2%></h3>    
-    <% end %>
-  </div>
+    
+    <h1 class='nowcast_color' style='display: inline-block; margin:20px 20px 0px 10px; font-weight: bold'><%=msg1%></h1>    
+    <div style=''>
+      <% 
+        msg2 = 'recommendations'
+        show_search = true
+        if is_submit_recommendation 
+          msg2 = ''
+          show_search = false
+        end
+      %> 
+        <% if show_search %>
+        <input style='border-radius: 4px; width: 800px; margin: 50px;' placeholder='Search...' />
+        <% end %>
+        <h3 style='padding:10px; margin: 0'><%=msg2%></h3>    
+      
+    </div>
+    
 
   <% if @teach %>
   <%#= erb :'home/hp_features', locals: locals %>       
@@ -312,59 +282,56 @@ all_channel_casts = channels.map {|channel|
   </div>
   <% end %>
 
-  <% users = $users.get_many %> 
-
-  <% 
-    users.each do |user| 
-
-    revs     = seller_reviews(user[:_id]) || []
-    last_rev = revs.last || {}
+  <%
+    if is_submit_recommendation
   %>
-  <a href='<%=user_link(user)%>'>
-  <div class='hp_single_user flex'>    
-    <div class='flex1'>
-      <img src='<%=user[:img_url]%>' style='width: 40px; object-fit: cover' />
-    </div>
+    <%= erb :'reviews/submit_review_form', locals: {seller: nil} %>
+  <% 
+    else 
+      users = $users.get_many 
+  %> 
 
-    <div class='user_name flex2'>
-      <%= user[:name] %>
-      <div>
-        <small><%= user[:location] %></small>
+    <% 
+      users.each do |user| 
+      revs     = seller_reviews(user[:_id]) || []
+      last_rev = revs.last || {}
+    %>
+    <a href='<%=user_link(user)%>'>
+    <div class='hp_single_user flex'>    
+      <div class='flex1'>
+        <img src='<%=user[:img_url]%>' style='width: 40px; object-fit: cover' />
       </div>
 
+      <div class='user_name flex2'>
+        <%= user[:name] %>
+        <div>
+          <small><%= user[:location] %></small>
+        </div>
+
+      </div>
+
+      <div class='user_desc flex2' style='text-align: left'>
+        <%= user[:desc] %>
+      </div>
+
+      <!-- <div class='last_review flex2'>
+         <%= last_rev[:text] %> <%=last_rev[:created_at]%>
+      </div> -->
+
+      <div class='num_reviews flex1'>
+        <%= revs.count %>
+      </div>
+    
     </div>
+    </a>
 
-    <div class='user_desc flex2' style='text-align: left'>
-      <%= user[:desc] %>
-    </div>
-
-    <!-- <div class='last_review flex2'>
-       <%= last_rev[:text] %> <%=last_rev[:created_at]%>
-    </div> -->
-
-    <div class='num_reviews flex1'>
-      <%= revs.count %>
-    </div>
-  
-  </div>
-  </a>
-
+    <% end %>
   <% end %>
 
   <div style='display: none'>
     <span class='sub_main_title' style='font-size: 100%; zbackground-color: pink; zmargin-bottom: 20px'>
       <!-- Apply for an online school.
-      <br/>  -->
-
-<%
-
-x=1
-%>
-    <% if cu %>      
-    <% else %>
-    <%#= erb :'search/search_inputs_row' %>
-    <% end %>
-      
+      <br/>  -->  
       <!-- <span style='margin:20px; display: inline-block;'><input style='width: 100%' class=input placeholder='spanish class'/></span> 
       <button class='btn'> search </button> -->      
       <!-- <span style='margin:10px'>or</span> -->
@@ -381,84 +348,12 @@ x=1
       <% if pr[:search] && is_admin && false %>
         <%= erb :'search/advanced_search' %>
       <% end %>      
-      <!-- <a class='focus' href='/signup'>Get started</a> or take <a target=_blank href='https://nowcast.co/@Nowcast/IrwyB/' class='focus'>our class on teaching online.</a> -->
     </span>
   </div>
-
-  
-  
   <% end %>
 
-    
-    <div class='mw1000 ct'>
-      <%#= erb :'home/quick_contact' %>
-    </div>
-      <div class='cast_types_container'>
-      <% 
-        users = [{name: 'moshe', handle: 'blabla'}]
-      %>
-
-
-      <% ([] || all_channel_casts).each do |channel_casts|
-        casts = channel_casts[:casts].to_a
-        # casts = $casts.random(10) if !$prod && !casts.any?      
-        title = channel_casts[:title]
-      %>
-        <div class='cast_types' style='display: zflex;'>
-        <h3 class=hp_casts_container style='text-align:left; display: block; padding-left: 20px; text-transform: capitalize'> 
-
-          <% if !pr[:search] %>
-          <%#= title %>         
-          <div class=ct>אמנים לדוגמא</div>
-          <% end %>
-          <span class='subchannels'>
-          <% channel_casts[:subchannels].to_a.each do |subchannel| %>
-            <a href='/<%=subchannel.to_s.downcase%>' class='subchannel'><%=subchannel%></a>          
-          <% end %>
-          </span>
-        </h3>
-        <% if casts.any? %>
-          <div class='hp_casts_container'>
-            <% casts[0..7].each do |cast| %>
-              <%= erb :'/casts/single_cast_box', locals: {cast: cast, show_user_desc: true} %>
-            <% end %>
-          </div>
-        
-          <% else %>
-          <h4> No results found :( 
-            <% if false %>
-            <a href='/community?sec=ads&text=<%=title%>'>
-              <button class=btn2>Post a "Help Wanted" ad </button>
-            </a> 
-            <% end %>
-          </h4>
-          <% end %> <!-- end if  -->
-        </div>
-      <% end %> <!-- end each -->
-
-      <% if cu %>
-    <% else %>
-    
-    <% end %>
-
-     <% if false %>  
-    <div class='ct' style='background-color:zwhitesmoke; padding-bottom: 20px'>
-      <br/>
-      <a style='margin-left:10px; display: inline-block;' class='btn btn-primary' href='/teach'>Course Instructors, Coaches and Tutors - <br/> join us!
-        <span style='position: relative; right: -6px'>❤️</span> </a>      
-    </div>  
-    <% end %>
 
     <%= erb :'layout/footer' %>  
   </div>   
 </div>
-
-<% if true || $prod %>
-<script>
-$(document).ready(function() {
-  convertTimesToLocal();
-}); 
-</script>
-<!-- <script src='/js/lib/confetti.js'></script> -->
-<% end %>
 </div>

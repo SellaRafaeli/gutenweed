@@ -67,28 +67,7 @@
 </ul>
 
 <% unless locals[:skip_submit] %>
-<div class='display_flex'>
-  <div style='width: 90%'>    
-    <form method=post action='/reviews/new'>
-      <input name=seller_id value="<%=user[:_id]%>" hidden />
-      <!-- <textarea placeholder='Your review...' name=msg></textarea>   -->
-      <textarea style='height:150px' placeholder='Add review for <%=user[:name]%>' name=text required ></textarea>
 
-      <br>
-      <% if false %>
-      <select name=rating required>
-        <option value=""> Rate</option>
-        <option value=1>1 star  (terrible)</option>
-        <option value=2>2 stars (bad)</option>
-        <option value=3>3 stars (decent)</option>
-        <option value=4>4 stars (great)</option>
-        <option value=5>5 stars (amazing)</option>
-      </select>
-      <% end %>
-      
-      <button class='btn btn-raised btn-primary btn-sm'> submit </button>
-    </form>
-  </div>
-</div>
+<%= erb :'reviews/submit_review_form', locals: {seller: user} %>
 
 <% end %>

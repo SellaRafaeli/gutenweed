@@ -1,0 +1,54 @@
+<%
+  
+%>
+
+<style>
+.submit_review_form {
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+</style>
+<div class='submit_review_form_container'>
+  <div class='submit_review_form'>    
+
+    <form method=post action='/reviews/new'>
+      <h4 style='margin:0'> Submit Recommendation / Review </h4>
+      <% if locals[:seller] %>
+      <input name=seller_id value="<%=seller[:_id]%>" hidden />
+      <% text = "What was your experience buying from #{seller[:name]}?" %>
+      <% else %>
+      <br/>
+      <label> Who did you buy from? </label>
+      <br/>
+      <input name=seller_name placeholder='@bob_marley2'/>
+      <br/>
+      <br/>
+
+
+      
+      <% end %>
+      <label> What did you buy and how was it? </label>
+      <br/>
+      <!-- <textarea placeholder='Your review...' name=msg></textarea>   -->
+      <textarea style='height:150px' placeholder='Review price, quality, service, and anything else.' name=text required ></textarea>
+
+      <br/>
+      <br/>
+      <% if false %>
+      <select name=rating required>
+        <option value=""> Rate</option>
+        <option value=1>1 star  (terrible)</option>
+        <option value=2>2 stars (bad)</option>
+        <option value=3>3 stars (decent)</option>
+        <option value=4>4 stars (great)</option>
+        <option value=5>5 stars (amazing)</option>
+      </select>
+      <% end %>
+      
+      <button class='btn btn-raised btn-primary btn-sm'> submit </button>
+    </form>
+  </div>
+</div>

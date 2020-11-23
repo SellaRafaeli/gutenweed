@@ -195,6 +195,7 @@
       
       </a>
     <% end %>
+    
       <% ([] || ['usa', 'israel']).each do |country| %>
         <a style='padding: 0' class='country_icon_container' href='/?country=<%=country%>'><img class='country_icon' src='/img/icons/<%=country%>.png' /></a>
       <% end %>
@@ -221,6 +222,9 @@
       <a class='' href='/logout' onclick="return confirm('Are you sure you wish to log out?')"><i class='fal fa-times-circle' ></i></a>
     <% end %>    
 
+    <a class='btn btn-raised btn-primary' href='/?submit=1'>
+      <%= !heb ? 'submit recommendation <i class="fa fa-leaf" style="margin-left:5px"></i>' : 'הגש המלצה' %>      
+    </a>
     <% end %>
 
     <%= erb :'header/hamburger' %>
