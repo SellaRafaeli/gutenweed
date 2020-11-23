@@ -312,7 +312,7 @@ all_channel_casts = channels.map {|channel|
   </div>
   <% end %>
 
-  <% users = $users.random(10) %> 
+  <% users = $users.get_many %> 
 
   <% 
     users.each do |user| 
