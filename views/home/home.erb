@@ -1,30 +1,21 @@
 <%
 
-search = pr[:search]
-search = cleanup_search(search)
-@channel ||= search
+is_submit_recommendation = pr[:submit]
 
-@channel.present? ? (channels = [@channel]) : channels = HOMEPAGE_TOPICS
+users   = []
+reviews = []
+if !is_submit_recommendation
+  users   = $users.get_many 
+  reviews = $reviews.get_many.reverse
 
-all_channel_casts = channels.map {|channel| 
-  topic     = channel
-  tag       = topic 
-  subtopics = []
-  if channel.is_a?(Hash)
-    topic     = channel[:topic]
-#    subtopics = channel[:subtopics]
-    tag       = channel[:tag] || topic
+  if pr[:q]
+    users   = users.select {|u| "#{u[:name]} #{u[:desc]} #{u[:location]}".to_s.include?(pr[:q])} 
+    reviews = reviews.select {|r| "#{r[:text]} #{r[:seller_name]}".to_s.include?(pr[:q])} 
   end
-  {title: topic, casts: get_channel_casts(tag.to_s.downcase, must_have_tag: !@channel.present?), subchannels: subtopics} 
-}
-
-  is_submit_recommendation = pr[:submit]
-# all_channel_casts = [{casts: homepage_casts}]
-
+end
 %>
 
 <%= erb :'/home/css/home_css1.css' %>
-<%= erb :'/home/css/video_bg.css' %>
 <%= erb :'/home/css/home_css2.css' %>
 
 <style>
@@ -182,62 +173,8 @@ all_channel_casts = channels.map {|channel|
 <div class='hp ct'>
 
   <div class='hp_header'>
-    <% 
-      msg2 = '<span class="nowcast_color">Online</span> classes. Live <span class="nowcast_color">teachers</span>  and <span class="nowcast_color">freelancers.</span> </h4>'
-      msg1 = 'Just take an <span class="nowcast_color">online course on nowcast.</span></h1>'
-
-      msg1 = 'Gutenweed'
-      msg2 = 'recommendations'
-      terms = CAST_TYPES_PLURAL
-
-      terms = ['Coding', 'Tech', 'Business', 'Fitness', 'Lifestyle', 'Languages']
-      terms = ['San Francisco', 'New York City', 'London', 'Berlin', 'Tel Aviv']
-      # if _req.path
-      search     = pr[:search].to_s.downcase
-      show_terms = !pr[:search] 
-      show_terms = false
-      sub_terms  = []
-      mini_terms = []
-
-
-      def get_sub_terms(term)
-        subterms = {
-          'tel aviv': ['Jerusalem', 'Haifa', 'Rishon', 'Beer Sheva', 'אילת'],
-          'coding': ['JavaScript', 'CSS', 'Ruby', 'Python', 'React', 'Angular', 'Vue', 'Tutors', 'Bootcamps'],
-          'tech': ['SQL', 'Git', 'Wordpress', 'Photoshop', 'Sketch', 'Cybersecurity'],
-                    
-          'zlearn online tech skills': ['Coding', 'UI/UX', 'Graphic Design', 'Data Science', 'Cybersecurity', 'QA', 'Online Marketing', 'Online Sales'],
-          'business': ['Interviewing Skills', 'Digital Marketing', 'Social Media Management', 'SEO', 'Content Writing', 'Video Production', 'Content Marketing', 'Product Marketing', 'Sales', 'Branding'],
-          fitness: ['Yoga', 'Pilates', 'Dancing', 'Weight-Loss', 'Workouts', 'Coaching'],
-          
-          'lifestyle': ['Meditation', 'Emotional Support', 'Therapy', 'Coaching', 'Mentoring', 'Spirituality', 'Christianity'],
-
-          languages: ['English', 'Spanish', 'Chinese', 'Japanese', 'French', 'Italian', 'Russian', 'Hebrew', 'Arabic', 'Greek'],
-        }.hwia
-        return []
-        return subterms['coding']
-        return subterms[term.to_s.downcase] || []
-      end
-
-      # sub_terms = languages_terms if (search == 'languages') || search.in?(languages_terms.map(&:downcase))      
-      # sub_terms = tech_terms if (search == 'tech') || search.in?(tech_terms.map(&:downcase))
-      # sub_terms = fitness_terms if (search == 'fitness') || search.in?(fitness_terms.map(&:downcase))      
-      # sub_terms = business_terms if (search == 'business') || search.in?(business_terms.map(&:downcase))      
-      # sub_terms = mental_terms if (search == 'mental well-being') || search.in?(mental_terms.map(&:downcase))      
-      # sub_terms = hobby_terms if (search == 'hobbies') || search.in?(hobby_terms.map(&:downcase))      
-        
-      
-      
-      # if @teach 
-      #   msg1 = 'Teach a <span class="nowcast_color">live class </span> on <span class="nowcast_color"> nowcast.</span>'
-      #   msg2 = "<span class='nowcast_color'>nowcast</span> is the easiest platform to make money teaching online <span class='nowcast_color'>live courses and classes.</span>"        
-      #   # terms = ['Virtual Classroom', 'Video Conferencing', 'Payment Processing', 'Student Management', 'Online Collaborative Coding Boards', 'Model Pre-Prepared Curriculums', 'Custom Features Per Class Type']
-      #   terms = ['Virtual Classroom', 'Video Conferencing', 'Payments', 'Student Management', 'Remote Collaboration Tools', 'Model Curriculums', 'Custom Features']
-      # end
-    %>
-
-    
-    <h1 class='nowcast_color' style='display: inline-block; margin:20px 20px 0px 10px; font-weight: bold'><%=msg1%></h1>    
+    <img src='/img/gutenweed.png' style='width: 200px;'/>
+    <h1 class='nowcast_color' style='display: none; margin:20px 20px 0px 10px;'>Gutenweed</h1>    
     <div style=''>
       <% 
         msg2 = 'recommendations'
@@ -249,120 +186,43 @@ all_channel_casts = channels.map {|channel|
       %> 
         <% if show_search %>
         <form action='/' method='get'>
-          <input name=q value="<%=pr[:q]%>" style='border-radius: 4px; font-size: 18px; padding: 10px; width: 400px; margin: 50px 0 50px 0;' placeholder='Search...' />
+          <input name=q value="<%=pr[:q]%>" style='border-radius: 4px; font-size: 18px; padding: 15px; width: 400px; margin: 0 0 0 0; border-radius: 20px; color: green; outline: none' placeholder='Search...' />
           <input name=type value="<%=pr[:type]%>" hidden />
           <button class='btn btn-lg'> <i class="fa fa-search"></i> </button>
         </form>
         <% end %>
         <!-- <h3 style='padding:10px; margin: 0'><%=msg2%></h3>     -->
-        <div style='margin-bottom: 40px'>
+        <div style='margin: 40px'>
           <%
             pr[:type] = pr[:type] || 'sellers'
           %>
-          <a class="btn btn-primary <%="btn-raised" if pr[:type]=="sellers"%>" href='/?q=<%=pr[:q]%>&type=sellers'>sellers</a>
-          <a class="btn btn-primary <%="btn-raised" if pr[:type]=="reviews"%>" href='/?q=<%=pr[:q]%>&type=reviews'>reviews</a>
+          <a class="btn btn-primary <%="btn-raised" if pr[:type]=="sellers"%>" href='/?q=<%=pr[:q]%>&type=sellers'>sellers (<%=users.count%>)</a>
+          <a class="btn btn-primary <%="btn-raised" if pr[:type]=="reviews"%>" href='/?q=<%=pr[:q]%>&type=reviews'>reviews (<%=reviews.count%>)</a>
 
         </div>
       
     </div>
-    
+  
 
-  <% if @teach %>
-  <%#= erb :'home/hp_features', locals: locals %>       
-  <% end %>
-
-  <% if !search_input_on_top %>
-
-  <% if show_terms %>
-  <h3 style='    text-align: center;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 0px;
-    margin-top: 40px;'>
-    <% terms.each_with_index do |term, idx| %>
-      <div class='single_hp_term_container <%="selected" if pr[:city].to_s.downcase==term.to_s.downcase%>'>
-      <a href='/?city=<%=term.to_s.downcase%>' class='single_hp_term'><%= term %> 
-        <% if false %>
-        <i class='fal fa-caret-down'></i>
-        <i class='fa fa-caret-down'></i>        
-        <% end %>
-      </a>
-        <span class='mini_terms_list'>
-            <%           
-            get_sub_terms(term).each_with_index do |subterm, idx| %>
-              <a href='/?search=<%=subterm.to_s.downcase%>' class='single_mini_term'><%= subterm %></a>
-            <% end %>
-        </span>
-      </div>
-    <% end %>
-  </h3>
-  <% end %>
-
-  <% if show_cities = false %>
-  <div>
-    <% 
-      cities = ['מרכז', 'צפון', 'ירושלים', 'דרום']#.sort
-    %>
-    <br/>
-    <select>
-      <% cities.each do |city| %>
-      <option value="<%=city%>"><%=city%></option>
-      <% end %>
-    </select>
-    <br/>
-    <br/>
-  </div>
-  <% end %>
-
-  <%
-    if is_submit_recommendation
-  %>
+  <% if is_submit_recommendation %>
     <%= erb :'reviews/submit_review_form', locals: {seller: nil} %>
   <% 
-    elsif pr[:type] != "reviews"
-      users   = $users.get_many 
-      users = users.select {|u| "#{u[:name]} #{u[:desc]} #{u[:location]}".to_s.include?(pr[:q])
-      } if pr[:q]
-  %> 
-
-    <%= erb :'users/users_list', locals: {users: users} %>
-  <% else # reviews %> 
+    else
+      if pr[:type] != "reviews"
+    %> 
+      <%= erb :'users/users_list', locals: {users: users} %>
     <% 
-      reviews = $reviews.get_many.reverse
-      reviews = reviews.select {|r| "#{r[:text]} #{r[:seller_name]}".to_s.include?(pr[:q])} if pr[:q]
-      reviews.each do |review| 
+      else  
+        reviews.each do |review| 
     %>
-    <div class='hp_reviews_list'>
-      <%= erb :'reviews/single_hp_review', locals: {review: review} %>
-    </div>
-    <% end %>
-    
-  <% end %>
-
-  <div style='display: none'>
-    <span class='sub_main_title' style='font-size: 100%; zbackground-color: pink; zmargin-bottom: 20px'>
-      <!-- Apply for an online school.
-      <br/>  -->  
-      <!-- <span style='margin:20px; display: inline-block;'><input style='width: 100%' class=input placeholder='spanish class'/></span> 
-      <button class='btn'> search </button> -->      
-      <!-- <span style='margin:10px'>or</span> -->
-      <% if false %>
-      <div>
-      <span><a href='/signup?type=star' class='nowcast_color2' style='font-size: 70%'>
-        <button class='btn2'><i class='zfal fa-user' style='margin-right:5px'></i> list yourself</button>
-        Join us to.
-        </a>
-      </span>
+      <div class='hp_reviews_list'>
+        <%= erb :'reviews/single_hp_review', locals: {review: review} %>
       </div>
+        <% end %>
       <% end %>
       
-      <% if pr[:search] && is_admin && false %>
-        <%= erb :'search/advanced_search' %>
-      <% end %>      
-    </span>
-  </div>
-  <% end %>
+    <% end %>
+  
 
 
     <%= erb :'layout/footer' %>  
