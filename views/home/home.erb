@@ -249,13 +249,18 @@ all_channel_casts = channels.map {|channel|
       %> 
         <% if show_search %>
         <form action='/' method='get'>
-          <input name=q style='border-radius: 4px; width: 800px; margin: 50px;' placeholder='Search...' />
+          <input name=q value="<%=pr[:q]%>" style='border-radius: 4px; width: 800px; margin: 50px;' placeholder='Search...' />
+          <input name=type value="<%=pr[:type]%>" hidden />
         </form>
         <% end %>
         <!-- <h3 style='padding:10px; margin: 0'><%=msg2%></h3>     -->
         <div style='margin-bottom: 40px'>
+          <%
+            pr[:type] = pr[:type] || 'sellers'
+          %>
           <a class="btn btn-primary <%="btn-raised" if pr[:type]=="sellers"%>" href='/?q=<%=pr[:q]%>&type=sellers'>sellers</a>
           <a class="btn btn-primary <%="btn-raised" if pr[:type]=="reviews"%>" href='/?q=<%=pr[:q]%>&type=reviews'>reviews</a>
+
         </div>
       
     </div>
@@ -314,14 +319,17 @@ all_channel_casts = channels.map {|channel|
   %>
     <%= erb :'reviews/submit_review_form', locals: {seller: nil} %>
   <% 
-    elsif pr[:type] == "sellers"
-      users = $users.get_many 
+    elsif pr[:type] != "reviews"
+      users   = $users.get_many 
+      users = users.select {|u| "#{u[:name]} #{u[:desc]} #{u[:location]}".to_s.include?(pr[:q])
+      } if pr[:q]
   %> 
 
     <%= erb :'users/users_list', locals: {users: users} %>
   <% else # reviews %> 
     <% 
-      reviews = $reviews.get_many
+      reviews = $reviews.get_many.reverse
+      reviews = reviews.select {|r| "#{r[:text]} #{r[:seller_name]}".to_s.include?(pr[:q])} if pr[:q]
       reviews.each do |review| 
     %>
     <div class='hp_reviews_list'>

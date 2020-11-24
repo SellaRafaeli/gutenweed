@@ -1,6 +1,6 @@
 $reviews = $mongo.collection('reviews')
 
-REVIEW_FIELDS = ['_id', 'buyer_id', 'seller_id', 'text']
+REVIEW_FIELDS = ['_id', 'buyer_id', 'seller_id', 'text', 'seller_name']
 
 def seller_reviews(seller_id)
 	$reviews.get_many(seller_id: seller_id)
@@ -31,7 +31,7 @@ get '/recommend' do
 end
 
 post '/reviews/new' do 
-	data = pr.just(:seller_id, :text, :rating)
+	data = pr.just(:seller_id, :text, :rating, :seller_name)
 	data[:buyer_id]   = cuid 
 	
 	# data[:rating]        = pr[:rating].to_i 
@@ -41,7 +41,7 @@ post '/reviews/new' do
 	$reviews.add(data)
 
 	flash.message = 'Thanks!'
-	redirect back
+	redirect '/?type=reviews'
 end
 
 # post '/reviews/:id/delete' do 
