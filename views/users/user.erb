@@ -248,7 +248,7 @@
     <%
       reviews = seller_reviews(user_id)
     %>
-    <h3> Reviews </h3>
+    <h3> <%= is_heb ? 'ביקורות' : 'Reviews' %></h3>
     <%= erb :'reviews/reviews_list', locals: {reviews: reviews, user: user} %>
   </div>
 </div>
