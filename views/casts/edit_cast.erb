@@ -76,7 +76,7 @@ is_forum = is_cast_forum(nc)
 </style>
 <div class='ct' style='font-size:16px'>
   <h1> 
-    <span><%= is_new ? 'Create' : 'Edit' %> <%=nc[:title] || nc[:type] %></span>    
+    <span><%= is_new ? 'Create' : 'Edit' %> Item </span>    
   </h1>
   <div style='font-weight: bold; font-size: 120%; margin:20px'>
   
@@ -107,7 +107,7 @@ is_forum = is_cast_forum(nc)
       <label style='width: auto'> Title </label>
 
       <input name=type hidden value='<%=cast[:type]%>' />
-      <input name=title style='width: 350px' class='input1 nc_name' placeholder="Videochat with me"value="<%= nc[:title] %>" required />
+      <input name=title style='width: 350px' class='input1 nc_name' placeholder="Good weed"value="<%= nc[:title] %>" required />
       <br/>
 
       <% if false %>
@@ -195,7 +195,7 @@ is_forum = is_cast_forum(nc)
           <div>Description</div>
           <div style='margin-top:20px; color:grey; padding-right: 20px'><!-- What can people expect from you? Make it both informational and attractive! The more info and details you can give, the more prepared and interested potential viewers will be. --></div>
         </label>
-        <textarea placeholder="What do you do?" style='width: 40%; font-family: inherit;' class='ml10 cast_desc_textarea' name=desc><%=nc[:desc]%></textarea>
+        <textarea placeholder="Describe the item to be sold" style='width: 40%; font-family: inherit;' class='ml10 cast_desc_textarea' name=desc><%=nc[:desc]%></textarea>
       </div>
 
       
