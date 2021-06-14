@@ -78,7 +78,7 @@ form .user_img:hover {
 
 <div>
     <form id=me_form action='update_me' method='post' class='form1'>      
-      <h1> <span>Me</span> </h1>
+      <h1> <span><%= cu[:name] %></span> </h1>
 
     <% sec = pr[:sec] || 'profile' %>
       <div class='profile_tabs' style='margin-bottom: 50px; text-align: center; direction: ltr'>
@@ -86,7 +86,7 @@ form .user_img:hover {
         <a class='btn <%= "chosen_me_form_link" if sec == "profile" %>' href='/me?sec=profile'><i class='fal fa-user'></i> Profile </a>
 
         <% if true %>
-        <a class='btn <%= "chosen_me_form_link" if sec == "by_me" %>' href='/me?sec=by_me'><i class='fal fa-webcam'></i> My Items </a>
+        <a class='btn <%= "chosen_me_form_link" if sec == "by_me" %>' href='/me?sec=by_me'><i class='fal fa-cannabis'></i> Products </a>
 
         <!-- <a class='btn <%= "chosen_me_form_link" if sec == "for_me" %>' href='/me?sec=for_me'><i class='fal fa-user-graduate'></i> I learn </a> -->
         <!-- <a class='btn <%= "chosen_me_form_link" if sec == "my_referrals" %>' href='/me?sec=my_referrals'> My Referrals </a> -->

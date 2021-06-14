@@ -76,7 +76,7 @@ is_forum = is_cast_forum(nc)
 </style>
 <div class='ct' style='font-size:16px'>
   <h1> 
-    <span><%= is_new ? 'Create' : 'Edit' %> Item </span>    
+    <span><%= is_new ? 'Create' : 'Edit' %> Product </span>    
   </h1>
   <div style='font-weight: bold; font-size: 120%; margin:20px'>
   
@@ -103,11 +103,11 @@ is_forum = is_cast_forum(nc)
   <form id=edit_cast_form method=post action='/casts/edit/<%=id%>'>
     <div class='nc_box ct'>
 
-      <div class='ct'>
-      <label style='width: auto'> Title </label>
+      <div class=''>
+      <label style='zwidth: auto'> Name </label>
 
       <input name=type hidden value='<%=cast[:type]%>' />
-      <input name=title style='width: 350px' class='input1 nc_name' placeholder="Good weed"value="<%= nc[:title] %>" required />
+      <input name=title style='width: 40%; margin-left: 0' class='input1 nc_name' placeholder="Good weed"value="<%= nc[:title] %>" required />
       <br/>
 
       <% if false %>
@@ -141,7 +141,6 @@ is_forum = is_cast_forum(nc)
       <% end #end if is_pro %> 
       </div>
 
-      <hr/>
       <br/>
       <!-- <br/>       -->
       

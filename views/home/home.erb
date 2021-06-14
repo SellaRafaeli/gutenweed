@@ -175,6 +175,10 @@ end
   <div class='hp_header'>
     <a href='/'><img src='/img/gutenweed.png' style='width: 200px;'/></a>
     <h1 class='nowcast_color' style='display: none; margin:20px 20px 0px 10px;'>Gutenweed</h1>    
+    <h3> A Marketplace for Legal Weed. </h3>
+    <h4> Launching on July 1st, 2021. </h4>
+    <h5> hi@gutenweed.com </h5>
+   <% if false %>
     <div style=''>
       <% 
         msg2 = 'recommendations'
@@ -206,7 +210,7 @@ end
       
     </div>
   
-
+ 
   <% if is_submit_recommendation %>
     <%= erb :'reviews/submit_review_form', locals: {seller: nil} %>
   <% 
@@ -225,7 +229,7 @@ end
       <% end %>
       
     <% end %>
-  
+  <% end %>
 
 
     <%= erb :'layout/footer' %>  

@@ -6,7 +6,7 @@
   show_create_btn = !is_owner && false
   show_contact    = !is_owner || true
   location        = user_location_for_header(user)
-
+  
   user_casts = $casts.all(user_id: user_id).select {|cast| !cast_is_hidden(cast) }
 
   any_reviews = false 
@@ -20,7 +20,7 @@
 %>
 
 <!-- https://github.com/muaz-khan/WebRTC-Experiment/tree/master/one-to-many-video-broadcasting -->
-<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<!-- <script src="https://cdn.firebase.com/v0/firebase.js"></script> -->
 <!-- <script src="https://www.webrtc-experiment.com/one-to-many-video-broadcasting/meeting.js"></script> -->
 
 <style>
@@ -244,6 +244,7 @@
   </div>
 
 
+  <% if false %>
   <div class='user_section' id=reviews>
     <%
       reviews = seller_reviews(user_id)
@@ -251,6 +252,7 @@
     <h3> <%= is_heb ? 'ביקורות' : 'Reviews' %></h3>
     <%= erb :'reviews/reviews_list', locals: {reviews: reviews, user: user} %>
   </div>
+  <% end %>
 </div>
 
 </div>

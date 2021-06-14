@@ -45,10 +45,10 @@ post '/update_me' do
 
 	data[:handle].to_s.gsub!(/[^0-9A-Za-z]/, '')
 	data[:timezone] = data[:timezone].to_i
-	if (user = $users.get(handle: data[:handle])) && (user[:_id]!=cuid)
-		flash_err 'Handle is taken.'
-		redirect '/me'
-	end
+	# if (user = $users.get(handle: data[:handle])) && (user[:_id]!=cuid)
+	# 	flash_err 'Handle is taken.'
+	# 	redirect '/me'
+	# end
 
 	user = $users.update_id(cu['_id'],data)
 	flash.message = 'Updated!'
@@ -90,9 +90,15 @@ rescue => e
 end
 
 def verify_signup_data
+	if pr[:name] == 'test' || (pr[:email] == 'test')
+		num        = nice_id
+		pr[:name]  = "Name "+num
+		pr[:email] = "email_#{num}@domain.com"
+	end
+
 	email    = pr[:email].to_s.downcase
 	password = pr[:password].to_s.downcase
-	name     = pr[:name].to_s.downcase
+	name     = pr[:name].to_s.downcase	
 
 	if !valid_email(email)
 		if pr[:ajax] 
@@ -125,7 +131,7 @@ def verify_signup_data
 end
 
 def add_user
-	email    = pr[:email].to_s.downcase
+	email    = pr[:email].to_s.downcase	
 	password = pr[:password].to_s.downcase
 	name     = pr[:name].to_s.downcase
 
