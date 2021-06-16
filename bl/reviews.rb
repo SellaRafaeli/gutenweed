@@ -44,6 +44,10 @@ post '/reviews/new' do
 	redirect '/?type=reviews'
 end
 
+def cast_reviews(item_id)
+	return []
+end
+
 # post '/reviews/:id/delete' do 
 # 	require_user 
 
