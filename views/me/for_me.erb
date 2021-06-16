@@ -3,7 +3,7 @@
         if my_tickets.any? 
       %>
         <div class='my_tickets'>
-          <h3 class=ct> I signed up for: </h3>
+          <h3 class=ct> I purchased: </h3>
           <%= erb :'casts/casts_list', locals: {casts: my_tickets, offer_cancel: true} %>      
         </div>
       <% end %>
