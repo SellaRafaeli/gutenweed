@@ -10,12 +10,14 @@
 }
 </style>
 
+    <% if true %>
     <div>
       <label class='w200'> 
       <%= is_heb ? 'שם' : 'Name' %> 
     </label>
       <input required zautofocus id=signup_name_input class='input1' placeholder='<%= is_heb ? "יעל ההייטקיסטית" : 'Jane Doe' %>' name='name' value="<%=pr[:name]%>" style='margin-right: 5px;'/>
     </div>
+    <% end %>
 
     <input id=tz_input name=timezone placeholder='timezone' hidden >
 
@@ -40,9 +42,9 @@
     </small>
     </div>
     <% end %>
-    <% if false %>
+    <% if true %>
     <div>
-      <label class='w200'> New Password (optional) </label>
+      <label class='w200'> New Password </label>
       <input class='input1' value="<%=pr[:password]%>" placeholder='Secret Password' name='password' type=password style='margin-right: 5px'/>
     </div>
     <% end %>
