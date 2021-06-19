@@ -1,9 +1,22 @@
 <h1> Location </h1>
 
-<%= loc.to_json %>
+<%#= loc.to_json %>
+<style>
+.edit_location_form label {
+  width: 200px;  
+}
+.location_input {
+  margin-bottom:5px;
+}
+</style>
+<div class='edit_location_form'>
+  <form method=post action="/locations/<%=loc[:_id]%>">
+    <div class='location_input'><label> Name </label> <input name=name value="<%=loc[:name]%>"> </div>
+    
+    <div class='location_input'><label> Address </label> <input name=address value="<%=loc[:address]%>"> </div>
+    
+    <div class='location_input'><label> Type </label> <input name=type value="<%=loc[:type]%>"> </div>
 
-<form method=post action="/locations/<%=loc[:_id]%>">
-  <label> Name <input name=name value="<%=loc[:name]%>"> </label>
-
-  <button class='btn btn-raised btn-primary'>Submit </button>
-</form>
+    <button class='btn btn-raised btn-primary'>Submit </button>
+  </form>
+</div>

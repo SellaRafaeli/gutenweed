@@ -193,8 +193,11 @@
       <a class='' href='/signup'>
       <%= !heb ? 'Sign Up' : 'הרשמה' %>
       
-      </a>
+      </a>      
     <% end %>
+    <a class='' href='/search'>
+      <i class='fa fa-search'></i> <%= 'search' %>      
+      </a>
     
       <% ([] || ['usa', 'israel']).each do |country| %>
         <a style='padding: 0' class='country_icon_container' href='/?country=<%=country%>'><img class='country_icon' src='/img/icons/<%=country%>.png' /></a>

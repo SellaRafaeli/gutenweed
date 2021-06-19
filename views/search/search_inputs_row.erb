@@ -34,7 +34,7 @@
 
 </style>
 <div class='search_inputs_row'>
-  <form class='search_input_form' method=get action='/'>
+  <form class='search_input_form' method=get action='/search'>
     <div class='first_row display_flex'>
       
       <div class='flex1 ct'>
@@ -42,7 +42,7 @@
           <i class='fa fa-gear'></i>
         </a> -->
         
-          <input class='search_input' name=search placeholder='Search' value="<%=pr[:search]%>" <%="zautofocus" if !search_input_on_top %> />
+          <input class='search_input' name=q autofocus placeholder='Search' value="<%=pr[:search]%>" <%="zautofocus" if !search_input_on_top %> />
           <button class='search_go_btn btn2' type=submit style='margin-left:20px'><i class='fal fa-search' style='margin-right:5px'></i> Go </button>
         
       </div>      

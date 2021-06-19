@@ -1,13 +1,12 @@
-<style>
-.single_user {
-  font-size: 24px;
-}
-</style>
+<%
+  casts = $casts.all.sample(100)
+  if pr[:q]
+    casts = casts.select {|c| c.to_json.to_s.downcase.include?(pr[:q])}
+  end
+%>
 
-<h1> Search </h1>
-
-<% $users.all.each do |user| %>
-<div>
-  <a class='single_user' href='/users/<%=user[:_id]%>'> <%= user['name'] %> </a>
+<!-- <h1> Search </h1> -->
+<div class='ct'>
+<%= erb :'/search/search_inputs_row' %>
 </div>
-<% end %>
+<%= erb :'casts/casts_list', locals: {casts: casts} %>
