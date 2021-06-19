@@ -1,9 +1,21 @@
 <% 
-        my_tickets = casts_for_user(user_id) 
-        if my_tickets.any? 
-      %>
-        <div class='my_tickets'>
-          <h3 class=ct> I purchased: </h3>
-          <%= erb :'casts/casts_list', locals: {casts: my_tickets, offer_cancel: true} %>      
-        </div>
-      <% end %>
+  my_purchases = casts_for_user(user_id) 
+  if my_purchases.any? 
+%>
+  <div class='my_tickets'>
+    <h3 class=ct> I purchased: </h3>
+    <%= erb :'orders/orders_list', locals: {orders: my_purchases} %>    
+  </div>
+  <% end %>
+<% 
+  orders = my_sales(user_id) 
+  if orders.any? 
+%>
+  <div class='my_tickets'>
+    <% orders.each do |product| %>
+    <h3 class=ct> I sold: </h3>
+    <%= erb :'orders/orders_list', locals: {orders: orders} %>
+    <% end %>
+  </div>
+
+<% end %>

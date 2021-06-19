@@ -1,3 +1,4 @@
+# enrollment is like an "order"
 $enrolls = $enrollment = $mongo.collection('enrollment')
 
 ENROLL_ACTIVE   = 'active'
@@ -48,6 +49,11 @@ def casts_for_user(user_id)
 	enrolls = $enrolls.get_many(user_id: user_id, status: ENROLL_ACTIVE) 
 	casts   = enrolls.map {|enroll| $casts.get(enroll[:cast_id]) }.compact
 	casts
+end
+
+def my_sales(user_id)
+	cast_ids = $casts.all(user_id: user_id).to_a.mapo(:_id)
+	enrolls  = cast_ids.map {|cast_id| $enrolls.get_many(cast_id: cast_id, status: ENROLL_ACTIVE)  }.flatten
 end
 
 def send_enrollment_emails(user_id, cast_id)

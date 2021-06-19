@@ -1,5 +1,5 @@
 $prod       = settings.production? #RACK_ENV==production?
-$prod_url   = 'https://nowcast.co'
+$prod_url   = 'https://gutenweed.com'
 $root_url   = $prod ? $prod_url : 'http://localhost:4200'
 
 ONE_YEAR_IN_SECONDS = 31556952

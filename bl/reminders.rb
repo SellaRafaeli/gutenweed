@@ -7,11 +7,6 @@ def is_cast_tmw(cast)
 	return false
 end
 
-def user_enrolled_casts_tmw(user)
-	enrolled_casts     = casts_for_user(user[:_id])
-	return enrolled_casts.select {|c| is_cast_tmw(c) }	
-end
-
 def send_reminder_email_tmw_casts(user, casts)
 	return unless casts.any?
 	links = casts.map {|c| "<a href=#{cast_link(c)}>#{cast_link(c)}</a>"}.join('<br/>')

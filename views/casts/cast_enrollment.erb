@@ -31,7 +31,7 @@
       <% else %>      
       <% if already_bought %>
       <div class='already_bought'>
-        You enrolled on <%= already_bought[:created_at] %> for $<%= (already_bought[:amount].to_f/100) %>.
+        You bought this at <%= already_bought[:created_at] %> for $<%= (already_bought[:amount].to_f/100) %>.
         <small>
           <button class='btn' style='float: right; position: relative; bottom: 12px;' 
           type=button onclick=cancelEnrollment("<%=cast[:_id]%>")> <i class='fal fa-times'></i> 
