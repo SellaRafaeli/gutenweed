@@ -1,0 +1,18 @@
+
+<style>
+.single_order_list {
+  background-color: whitesmoke;
+  padding: 10px;
+  margin: 10px;
+}
+</style>
+<h2> Orders List </h2>
+
+<% orders.each do |o| %>
+
+  <div class='single_order_list'>    
+    <div>item id: <%= o[:cast_id] %> </div>
+    <b> amount: <%= o[:amount].to_f/100 %> </b> 
+  </div>
+  
+<% end %>

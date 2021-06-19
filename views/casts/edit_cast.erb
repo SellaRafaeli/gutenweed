@@ -248,6 +248,17 @@ is_forum = is_cast_forum(nc)
           <span></span>        
         </div>
 
+        <div class='display_flex' style='margin-top:20px'>
+          <label class='pic_label' onclick=$("#img_uploader").click()>
+            <div> Location </div>            
+          </label>          
+          <select name=location_id>
+              <% $locations.all(user_id: cuid).to_a.each do |loc|  %>
+                <option <%="selected" if cast[:loc]=="loc[:_id]"%>><%=loc[:name] %></option>                
+              <% end %>
+            </select>
+        </div>
+
         <%#= erb :'/casts/cast_amenities', locals: {cast: cast, can_edit: true} %>
         
 

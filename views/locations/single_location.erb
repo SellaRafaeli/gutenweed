@@ -1,0 +1,9 @@
+<h1> Location </h1>
+
+<%= loc.to_json %>
+
+<form method=post action="/locations/<%=loc[:_id]%>">
+  <label> Name <input name=name value="<%=loc[:name]%>"> </label>
+
+  <button class='btn btn-raised btn-primary'>Submit </button>
+</form>
