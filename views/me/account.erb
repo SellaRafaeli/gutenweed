@@ -32,6 +32,18 @@
   </div>
   <br/>
 
+  <div class='display_flex'>
+    <label> Language </label>
+    <select name=lang style='margin-right: 0px; margin-left: 0; margin-top:0px'>
+      <% LANGUAGES.each do |opt| %>
+        <option value="<%=opt[:val]%>" <%="selected" if cu[:lang]==opt[:val]%> >
+          <%= opt[:label] %>
+        </option>
+      <% end %>
+    </select>
+    <!-- <span> </span> -->
+  </div>
+
   <% if false %>
   <div class='display_flex'>
     <label> How To Contact You </label>
