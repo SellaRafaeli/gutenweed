@@ -20,7 +20,7 @@
     <form method=post action='/reviews/new' class="<%= rtl_if_heb %> <%= text_align_right_if_heb %> ">
       <h4 style='margin:0'> <%= title1 %></h4>
       <% if locals[:seller] %>
-      <input name=seller_id value="<%=seller[:_id]%>" hidden />
+      <input name=cast_id value="<%=cast[:_id]%>" hidden />
       <% text = "What was your experience buying from #{seller[:name]}?" %>
       <% else %>
       <br/>
@@ -34,13 +34,13 @@
       <label> <%= title3 %> </label>
       <br/>
       <!-- <textarea placeholder='Your review...' name=msg></textarea>   -->
-      <textarea class="<%= rtl_if_heb %> <%=text_align_right_if_heb%>" style='height:150px' placeholder='<%=placeholder%>' name=text required ></textarea>
+      <textarea class="<%= rtl_if_heb %> <%=text_align_right_if_heb%>" style='height:50px' placeholder='<%=placeholder%>' name=text required ></textarea>
 
       <br/>
       <br/>
-      <% if false %>
+      <% if true %>
       <select name=rating required>
-        <option value=""> Rate</option>
+        <option value=""> Rating</option>
         <option value=1>1 star  (terrible)</option>
         <option value=2>2 stars (bad)</option>
         <option value=3>3 stars (decent)</option>

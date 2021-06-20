@@ -1,10 +1,10 @@
 <% 
-  my_purchases = casts_for_user(user_id) 
-  if my_purchases.any? 
+  orders = my_buys(user_id)   
+  if orders.any? 
 %>
   <div class='my_tickets'>
     <h3 class=ct> I purchased: </h3>
-    <%= erb :'orders/orders_list', locals: {orders: my_purchases} %>    
+    <%= erb :'orders/orders_list', locals: {orders: orders} %>    
   </div>
   <% end %>
 <% 

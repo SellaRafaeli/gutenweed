@@ -11,7 +11,8 @@
 <% orders.each do |o| %>
 
   <div class='single_order_list'>    
-    <div>item id: <%= o[:cast_id] %> </div>
+    <%#= o.to_json %>
+    <div>item id: <a class=simple_link href='/casts/<%=o[:cast_id]%>'><%= o[:cast_id] %></a> </div>
     <b> amount: <%= o[:amount].to_f/100 %> </b> 
   </div>
   

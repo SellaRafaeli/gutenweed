@@ -1,6 +1,6 @@
 <%
-  is_owner ||= locals[:is_owner] ||= false
-
+  is_owner = false #||= locals[:is_owner] ||= false
+  seller = $users.get(cast[:user_id])
 %>
 
 <style>
@@ -62,8 +62,7 @@
             <% end %>
           <% end %>
         </div>
-
-        
+ 
         <blockquote><%= review[:text] %></blockquote>        
         <div class='review_rating'><% review[:rating].to_i.times { %> ⭐ <% } %></div>
       </div>
@@ -73,6 +72,6 @@
 
 <% unless locals[:skip_submit] %>
 
-<%= erb :'reviews/submit_review_form', locals: {seller: user} %>
+<%= erb :'reviews/submit_review_form', locals: {seller: seller, cast: cast} %>
 
 <% end %>

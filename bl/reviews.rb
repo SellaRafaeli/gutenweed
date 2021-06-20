@@ -31,7 +31,7 @@ get '/recommend' do
 end
 
 post '/reviews/new' do 
-	data = pr.just(:seller_id, :text, :rating, :seller_name)
+	data = pr.just(:cast_id, :text, :rating)
 	data[:buyer_id]   = cuid 
 	
 	# data[:rating]        = pr[:rating].to_i 
@@ -41,7 +41,7 @@ post '/reviews/new' do
 	$reviews.add(data)
 
 	flash.message = 'Thanks!'
-	redirect '/?type=reviews'
+	redirect back
 end
 
 def cast_reviews(item_id)
