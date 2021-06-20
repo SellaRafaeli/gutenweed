@@ -42,34 +42,41 @@
           <i class='fa fa-gear'></i>
         </a> -->
         
-          <input class='search_input' name=q autofocus placeholder='Search' value="<%=pr[:search]%>" <%="zautofocus" if !search_input_on_top %> />
+          <input class='search_input' name=q autofocus placeholder='Search' value="<%=pr[:q]%>" <%="zautofocus" if !search_input_on_top %> />
           <button class='search_go_btn btn2' type=submit style='margin-left:20px'><i class='fal fa-search' style='margin-right:5px'></i> Go </button>
         
       </div>      
     
-    <% if false %>
-    <span id=extra_search_inputs style='flex: 3' class='<%="noDisplayImportant " unless (pr[:lang] || pr[:geographic_area]) %>second_row display_flex'> 
-      <% lang = pr[:lang] || cu && cu[:lang] %>
-      <select class="flex1 ct <%= %>" name=lang>
-          <option value="" <%="selected" if !lang.present? %>>Any language</option>
-        <% LANGUAGES.each do |lang| %>
-          <option class="<%=%>" value="<%=lang[:val]%>" <%="selected" if lang[:val] == pr[:lang] %>>
-            <%=lang[:label]%>
-          </option>
-        <% end %>
-      </select>
+    <br/>    
+    </div>
+    
+    <div class='second_row' style='max-width: 600px'>
+      <% SEARCH_OPTS.each do |opt| %>
+        <span class='single_search_opt'><a class='simple_link' style='font-size: 12px' href='/search?q=<%=opt%>'>#<%= opt %></a></span>
+      <% end %>
+        <% if false  %>
+      <span id=extra_search_inputs style='flex: 3' class='<%="znoDisplayImportant " unless (pr[:lang] || pr[:geographic_area]) %>second_row display_flex'> 
+        <% lang = pr[:lang] || cu && cu[:lang] %>
+        <select class="flex1 ct <%= %>" name=lang>
+            <option value="" <%="selected" if !lang.present? %>>Any Strain</option>
+          <% STRAINS.each do |strain| %>
+            <option class="<%=%>" value="<%=strain[:val]%>" <%="selected" if strain[:val] == pr[:strain] %>>
+              <%=strain[:label]%>
+            </option>
+          <% end %>
+        </select>
 
-      <select class='flex1 ct' name=geographic_area>
-        <option value='' <%="selected" if cu && cu[:lang]==""%>> Any area </option>
-        <% area = pr[:geographic_area] || (cu && cu[:geographic_area]) %>
-        <% GEOGRAPHIC_AREAS.each do |geographic_area| %>
-          <option value="<%=geographic_area[:val]%>" <%="selected" if geographic_area[:val]==area%> >
-            <%=geographic_area[:label]%>                
-          </option>
-        <% end %>
-      </select>
-    </span>
-    <% end %>
+        <select class='flex1 ct' name=geographic_area>
+          <option value='' <%="selected" if cu && cu[:lang]==""%>> Any Item Type </option>
+          <% item_type = pr[:item_type]  %>
+          <% ITEM_TYPES.each do |item_type| %>
+            <option value="<%=item_type[:val]%>" <%="selected" if item_type[:val]==area%> >
+              <%=item_type[:label]%>                
+            </option>
+          <% end %>
+        </select>
+      </span>
+      <% end %>
     </div>
   </form>
 </div>

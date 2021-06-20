@@ -103,6 +103,13 @@
         <% end %>
       </span>
     </label>
+    <br/>
+    <label>
+      <input required type=checkbox <%="checked" if !$prod %> /> 
+      <span class='tos_prompt'>
+        I am over 21 years old<a style='color: #6b6262' target=_blank href='/terms_of_service'></a>.
+      </span>
+    </label>
 
     <% if locals[:only_signup] && false %>
     <br/>

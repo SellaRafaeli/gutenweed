@@ -230,6 +230,22 @@ LANGUAGES = [
   {val: 'he', label: 'Hebrew' }  
 ]
 
+SEARCH_OPTS = ['test', 'sativa', 'indica', 'joints', 'brownies', 'bongs', 'Kush', 'Afghan Kush', 'Hindu Kush', 'Green Kush', 'Purple Kush', 'Blueberry Kush', 'Golden Jamaican Kush', 'Diesel Haze'] 
+
+STRAINS = [
+  {val: 'Sativa', label: 'English'},
+  {val: 'es', label: 'Spanish'},
+  {val: 'ru', label: 'Russian'},  
+  {val: 'he', label: 'Hebrew' }  
+]
+
+ITEM_TYPES = [
+  {val: 'en', label: 'English'},
+  {val: 'es', label: 'Spanish'},
+  {val: 'ru', label: 'Russian'},  
+  {val: 'he', label: 'Hebrew' }  
+]
+
 SOCIAL_NETWORKS = [
   'website', 'twitter', 'instagram', 'facebook', 'linkedin', 'github'
 ]
