@@ -15,11 +15,12 @@
       <label class='w200'> 
       <%= is_heb ? 'שם' : 'Name' %> 
     </label>
-      <input required zautofocus id=signup_name_input class='input1' placeholder='<%= is_heb ? "יעל ההייטקיסטית" : 'Jane Doe' %>' name='name' value="<%=pr[:name]%>" style='margin-right: 5px;'/>
+      <input required zautofocus id=signup_name_input class='input1' placeholder='<%= is_heb ? "יעל ההייטקיסטית" : 'Jane Doe' %>' name='name' value="<%=pr[:name] || (!$prod && "test") %>" style='margin-right: 5px;'/>
     </div>
     <% end %>
 
     <input id=tz_input name=timezone placeholder='timezone' hidden >
+    <input id=user_type name=type placeholder='type' value="<%= pr[:type] %>" hidden >
 
     <!-- <div><small>We won't show this to anybody.</small></div> -->
 
@@ -27,7 +28,7 @@
       <label class='w200'> 
       <%= is_heb ? 'אימייל' : 'Email' %>
     </label>
-      <input id=signup_email_input class='input1 ltr' value="<%=pr[:email]%>" placeholder='jane@awesomecorp.com' name='email' <%="zautofocus" if is_fullpage && !pr[:email]%> style='margin-right: 5px'/>
+      <input id=signup_email_input class='input1 ltr' value="<%=pr[:email] || (!$prod && 'test') %>" placeholder='jane@awesomecorp.com' name='email' <%="zautofocus" if is_fullpage && !pr[:email]%> style='margin-right: 5px'/>
     </div>
     <!-- <div><small>We won't show this to anybody.</small></div> -->
 

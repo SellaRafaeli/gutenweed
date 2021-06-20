@@ -9,6 +9,10 @@ USER_KEYS = ["email",  "name", "handle", "img_url", "timezone",
 
 DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
 
+def is_seller
+	cu[:type] == 'seller'
+end
+
 get '/me' do
 	redirect_unless_user
 
@@ -100,6 +104,8 @@ def verify_signup_data
 	password = pr[:password].to_s.downcase
 	name     = pr[:name].to_s.downcase	
 
+	pr[:type] = :buyer unless pr[:type].to_s == 'seller' 
+
 	if !valid_email(email)
 		if pr[:ajax] 
 			halt(401,{err: 'Invalid email.'}) 
@@ -139,7 +145,7 @@ def add_user
 	
 	handle   = $users.available_field('handle', name.split(/@/).first).to_s.strip.downcase
 
-	data = {email: email, name: name, handle: handle, img_url: '/img/profile.png', timezone: timezone}
+	data = {email: email, name: name, handle: handle, img_url: '/img/profile.png', type: pr[:type]}
 	# data[:style]    = pr[:style] || DEFAULT_BRAND
 	data[:password]   = BCrypt::Password.create(password) if password.present?
 	data[:referrer]   = session[EXTERNAL_REFERER] if session[EXTERNAL_REFERER]
@@ -156,7 +162,7 @@ def add_user
 	if pr[:ajax] 
 		{msg: "signed up"}
 	else 
-		flash.message = 'Welcome to nowcast.'
+		flash.message = "Welcome to good-weed, the online cannabis marketplace."
 		if pr[:event_title] #signup and create event at once
 			redirect "/casts/create?event_title=#{pr[:event_title]}"
 		else 

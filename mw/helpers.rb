@@ -11,3 +11,9 @@ end
 def slugify(str)
   str.to_s.to_slug.normalize.to_s.slice(0,200)
 end
+
+def cu_logo
+	type = "child"
+	type = "store-alt" if is_seller 
+	return "<i class='fal fa-#{type}' style='margin-right:10px'></i> "
+end

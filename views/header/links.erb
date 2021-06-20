@@ -179,7 +179,7 @@
     </a>    
     <% if cu %>
       <a class='' href='/me'>
-        <% if !is_heb %><i class='fal fa-user' style='margin-right: 10px'></i><% end %>
+        <%= cu_logo %> 
 
          <%= cu[:name] %> <%= "<b class='nowcast_color'>(pro)</b>" if is_pro(cu) %>
        </a>       
@@ -190,8 +190,12 @@
       <a class='' href='/login'>
       <%= !heb ? 'Login' : 'כניסה' %>
       </a>    
-      <a class='' href='/signup'>
-      <%= !heb ? 'Sign Up' : 'הרשמה' %>
+      <a class='btn btn-primary btn-raised' href='/signup?type=buyer'>
+      <%= !heb ? 'Sign Up To Buy' : 'הרשמה' %>
+      
+      </a>      
+      <a class='btn btn-info btn-raised' href='/signup?type=seller'>
+      <%= !heb ? 'Start Selling' : 'הרשמה' %>
       
       </a>      
     <% end %>

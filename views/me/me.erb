@@ -77,28 +77,32 @@ form .user_img:hover {
 </style>
 
 <div>    
-      <h1> <span><%= cu[:name] %></span> </h1>
+      <h1> 
+        <%= cu[:name] %></span> 
+      </h1>
 
     <% sec = pr[:sec] || 'profile' %>
       <div class='profile_tabs' style='margin-bottom: 50px; text-align: center; direction: ltr'>
         
         <a class='btn <%= "chosen_me_form_link" if sec == "profile" %>' href='/me?sec=profile'><i class='fal fa-user'></i> Profile </a>
 
-        <a class='btn <%= "chosen_me_form_link" if sec == "locations" %>' href='/me?sec=locations'><i class='fal fa-warehouse'></i> Locations </a>
+        <% if is_seller %>
+          <a class='btn <%= "chosen_me_form_link" if sec == "locations" %>' href='/me?sec=locations'><i class='fal fa-warehouse'></i> Locations </a>
 
-        <% if true %>
-        <a class='btn <%= "chosen_me_form_link" if sec == "by_me" %>' href='/me?sec=by_me'><i class='fal fa-cannabis'></i> Products </a>
+        
+          <a class='btn <%= "chosen_me_form_link" if sec == "by_me" %>' href='/me?sec=by_me'><i class='fal fa-cannabis'></i> Products </a>
 
-
+        <% end %>
         <a class='btn <%= "chosen_me_form_link" if sec == "for_me" %>' href='/me?sec=for_me'><i class='fal fa-user-graduate'></i> Purchases </a>
         <!-- <a class='btn <%= "chosen_me_form_link" if sec == "my_referrals" %>' href='/me?sec=my_referrals'> My Referrals </a> -->
         
         <a class='btn <%= "chosen_me_form_link" if sec == "account" %>' href='/me?sec=account'><i class='fal fa-street-view'></i> Account </a>
-        <% end %>
-
+        
+        <% if is_seller %>
         <a class='btn' target=_blank href='/@<%=cu['handle']%>'>
            <i class='fa fa-external-link' style='margin-right: 5px'></i> My Page
         </a>    
+        <% end %>
       </div>
     <form id=me_form action='update_me' method='post' class='form1'>      
     <% if sec == 'account' %>       
