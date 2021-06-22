@@ -1,19 +1,65 @@
+<%
+  is_seller ||= false
 
+
+%>
 <style>
 .single_order_list {
   background-color: whitesmoke;
   padding: 10px;
   margin: 10px;
+  display: flex;
 }
+.order_img {
+  height: 50px;
+  width: 50px;
+}
+
 </style>
 <h2> Orders List </h2>
 
-<% orders.each do |o| %>
-
+<% orders.reverse.each do |o| %>  
+  <% cast = $casts.get(o[:cast_id]) %>
+  <% buyer = $users.get(o[:user_id]) %>
   <div class='single_order_list'>    
     <%#= o.to_json %>
-    <div>item id: <a class=simple_link href='/casts/<%=o[:cast_id]%>'><%= o[:cast_id] %></a> </div>
-    <b> amount: <%= o[:amount].to_f/100 %> </b> 
+    <div class=flex2>
+      <a class=simple_link href='/casts/<%=o[:cast_id]%>'>
+        <img src='<%=cast[:img_url]%>' class='order_img' />
+        <div><%= cast[:title] %></div>
+      </a>
+    </div>
+
+    <div class=flex2>
+      <a class=simple_link href='/users/<%=buyer[:_id]%>'>
+        <img src='<%=buyer[:img_url]%>' class='order_img' />
+        <div><%= buyer[:name] %></div>
+        <%#= buyer.to_json %>
+      </a>
+    </div>
+
+    <div class=flex2>
+      <div><b> amount: <%= o[:amount].to_f/100 %> </b> </div>
+      <div>time: <%= o[:created_at] %></div>
+        <div>
+          <b> status </b>
+          <% if is_seller %>
+            <select onchange="updateOrderStatus($(this).val(), '<%=o[:_id]%>')">
+              <% ['active', 'received', 'delivered', 'reviewed'].each do |status| %>
+                <option <%="selected" if o[:status]==status %> ><%=status%></option>
+              <% end %>
+            </select>        
+          <% else %>
+            <%= o[:status] %>
+          <% end %>
+        </div>
+      </div>
   </div>
   
 <% end %>
+
+<script>
+function updateOrderStatus(val, orderId) {
+  $.post('/enrolls/'+orderId, {status: val}).then(()=>alert('updated'));
+} 
+</script>

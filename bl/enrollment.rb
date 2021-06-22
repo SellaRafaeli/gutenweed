@@ -52,12 +52,12 @@ def casts_for_user(user_id)
 end
 
 def my_buys(user_id)
-	enrolls  = $enrolls.get_many(user_id: user_id, status: ENROLL_ACTIVE)
+	enrolls  = $enrolls.get_many(user_id: user_id)
 end
 
 def my_sales(user_id)
 	cast_ids = $casts.all(user_id: user_id).to_a.mapo(:_id)
-	enrolls  = cast_ids.map {|cast_id| $enrolls.get_many(cast_id: cast_id, status: ENROLL_ACTIVE)  }.flatten
+	enrolls  = cast_ids.map {|cast_id| $enrolls.get_many(cast_id: cast_id)  }.flatten
 end
 
 def send_enrollment_emails(user_id, cast_id)
@@ -107,6 +107,18 @@ post '/enrollment/cancel' do
 	else 
 		halt(404,{err: 'No such enrollment'})
 	end
+end
+
+post '/enrolls/:id' do 
+	require_user
+	
+	halt unless pr[:status]
+	enroll = $enrolls.get(pr[:id])
+	cast   = $casts.get(enroll[:cast_id])
+	owner  = cast[:user_id]
+	halt unless owner == cuid
+
+	enroll = $enrolls.update_id(pr[:id], status: pr[:status])
 end
 
 post '/joinFree' do 

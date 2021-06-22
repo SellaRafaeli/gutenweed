@@ -6,8 +6,10 @@ TODOs
   - nicer item page
   - email on order to buyer and seller
   - my orders page (with status btns)
+
   - search: like YouTube/video sites
   - dashboard: all sales..? 
+  - prettier orders page
   - ML for recommendations
   - chat between any two users 
   - forum

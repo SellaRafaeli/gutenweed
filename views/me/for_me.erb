@@ -1,21 +1,20 @@
 <% 
-  orders = my_buys(user_id)   
-  if orders.any? 
+  buys = my_buys(user_id)   
+  if buys.any? 
 %>
   <div class='my_tickets'>
     <h3 class=ct> I purchased: </h3>
-    <%= erb :'orders/orders_list', locals: {orders: orders} %>    
+    <%= erb :'orders/orders_list', locals: {orders: buys} %>    
   </div>
   <% end %>
+
 <% 
   orders = my_sales(user_id) 
   if orders.any? 
 %>
   <div class='my_tickets'>
-    <% orders.each do |product| %>
     <h3 class=ct> I sold: </h3>
-    <%= erb :'orders/orders_list', locals: {orders: orders} %>
-    <% end %>
+    <%= erb :'orders/orders_list', locals: {orders: orders, is_seller: true} %>
   </div>
 
 <% end %>
