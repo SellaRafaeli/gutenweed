@@ -67,11 +67,11 @@ def send_enrollment_emails(user_id, cast_id)
 
 	# notify viewer
 	html = email_by_view('enrollment_welcome', cast: cast, viewer: viewer, owner: owner)
-	send_email(viewer[:email], "Thanks for joining '#{cast['title']}!'", html)
+	send_email(viewer[:email], "Thanks for ordering '#{cast['title']}!'", html)
 
 	# notify owner
 	html = email_by_view('enrollment_inform_owner', cast: cast, viewer: viewer, owner: owner)
-	send_email(owner[:email], "New viewer for '#{cast['title']}: #{viewer['name']}'", html)
+	send_email(owner[:email], "New order for '#{cast['title']}: #{viewer['name']}'", html)
 end
 
 def cancel_enroll(enroll)

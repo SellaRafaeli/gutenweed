@@ -1,6 +1,22 @@
 Business Plan Options
 > NowCast: a marketplace for online teachers for tech skills and teams.
 
+TODOs
+- Good-Weed features:
+  - nicer item page
+  - email on order to buyer and seller
+  - my orders page (with status btns)
+  - search: like YouTube/video sites
+  - dashboard: all sales..? 
+  - ML for recommendations
+  - chat between any two users 
+  - forum
+  - Signup with just email?
+  - Views analytics
+
+
+
+
 Septmber goals: 
 
 1. Get paid as tutor
