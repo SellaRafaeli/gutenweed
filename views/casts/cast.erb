@@ -107,7 +107,7 @@
   z-index: 9999;
 }
 .cast_desc, .cast_schedule {
-  text-align: left;
+  ztext-align: left;
   white-space: break-spaces;
 }
 </style>
@@ -191,6 +191,7 @@
   <div class='cast_desc_and_time' style='text-align: center'>
     <div class='cast_desc'><%= cast[:desc] %></div>
     <div class='cast_schedule'><%= cast[:custom_time] %></div>
+    <button onclick='$("#cast_enrollment").fadeIn();' style='margin-top: 10px' class='btn btn-primary btn-lg btn-raised'> Order Now </button>
   </div>
   
   <br/>
@@ -221,12 +222,13 @@
     
   </div>
 
-  <%= erb :'casts/show_media', locals: {item: cast} %>
 
-  <div id=cast_enrollment>
+
+  <div id=cast_enrollment class=noDisplay>
     <%= erb :'casts/cast_enrollment', locals: {cast: cast, is_owner: is_owner, local_data: local_data} %>
   </div>
-  
+
+  <%= erb :'casts/show_media', locals: {item: cast} %>  
 
   <% if false %>
   <div id=cast_msgs class='cast_msgs cast_body_component flex1' style='padding-right:20px'>

@@ -1,7 +1,7 @@
 <%
-  title1 = is_heb ? 'השאיר/י ביקורת' : 'Submit Recommendation / Review'
+  title1 = is_heb ? 'השאיר/י ביקורת' : 'Leave Your Review'
   title2 = is_heb ? 'ממי קנית?' : 'Who did you buy from?'
-  title3 = is_heb ? 'מה קנית, ואיך היה?' : 'What did you buy and how was it?'
+  title3 = is_heb ? 'מה קנית, ואיך היה?' : '' || 'What did you buy and how was it?'
   placeholder = is_heb ? 'התייחס/י למחיר, איכות, שירות, וכל דבר אחר.' : 'Review price, quality, service, and anything else.'
 %>
 
@@ -18,7 +18,7 @@
   <div class='submit_review_form'>    
 
     <form method=post action='/reviews/new' class="<%= rtl_if_heb %> <%= text_align_right_if_heb %> ">
-      <h4 style='margin:0'> <%= title1 %></h4>
+      <h5 style='margin:0'> <%= title1 %></h5>
       <% if locals[:seller] %>
       <input name=cast_id value="<%=cast[:_id]%>" hidden />
       <% text = "What was your experience buying from #{seller[:name]}?" %>

@@ -5,9 +5,11 @@
 
 <style>
 .review_box_li {
-  border:1px solid whitesmoke;
-  max-width: 700px;
+  border: 1px solid whitesmoke;
+  max-width: 800px;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .review_box_li blockquote {
   margin-left: 0;
@@ -28,8 +30,17 @@
 }
 .review_rating {
   padding: 10px;
+  display: inline-block;
+  flex: 8;
 }
 </style>
+
+<% if can_leave_review(cu, cast) %>
+  <% unless locals[:skip_submit] %>
+
+  <%= erb :'reviews/submit_review_form', locals: {seller: seller, cast: cast} %>
+<% end %>
+<% end %>
 
 <ul style='list-style:none; padding-left: 0'>
 <% reviews.each do |review| %>
@@ -42,15 +53,22 @@
   %>  
     <li class='review_box_li <%=review[:_id]%>'>
       <div>
-        <div style='background-color: whitesmoke;'>
+        <div style='background-color: whitesmoke; display: flex'>
           
-          <small style='padding: 15px'>            
+          <small style='padding: 15px; text-align: center; flex: 1'>            
             <% if reviewer[:_id] %>
             <img class='user_img' src='<%=reviewer[:img_url]%>' />
             <% end %>  
-            <a href='<%=user_link(reviewer)%>'><%= reviewer_name %> <%= nice_date(review[:created_at]) %></a>
+            <a href='<%=user_link(reviewer)%>' style='display: block; margin-top:10px'><%= reviewer_name %> <%= nice_date(review[:created_at]) %></a>
           </small>
-        
+          
+          <div class='review_rating'>
+            <div><% review[:rating].to_i.times { %> ⭐ <% } %></div>
+            <br/>
+            <div><%= review[:text] %> </div>
+          </div>
+            
+
           <% if reviewer[:_id] %>
             <% if can_delete_review(review) %>
               <form method=post action='/reviews/<%=review[:_id]%>/delete' 
@@ -62,16 +80,9 @@
             <% end %>
           <% end %>
         </div>
- 
-        <blockquote><%= review[:text] %></blockquote>        
-        <div class='review_rating'><% review[:rating].to_i.times { %> ⭐ <% } %></div>
+         
+        
       </div>
     </li>  
 <% end %>
 </ul>
-
-<% unless locals[:skip_submit] %>
-
-<%= erb :'reviews/submit_review_form', locals: {seller: seller, cast: cast} %>
-
-<% end %>
