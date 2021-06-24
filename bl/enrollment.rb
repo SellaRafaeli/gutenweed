@@ -8,6 +8,7 @@ ENROLL_CANCELED = 'canceled'
 # cast_id - enrolled cast
 
 def enroll_user(user_id, cast_id, data = {})
+	buyer_id       = user_id
 	data[:user_id] = user_id
 	data[:cast_id] = cast_id
 	data[:status]  = ENROLL_ACTIVE
@@ -19,9 +20,19 @@ def enroll_user(user_id, cast_id, data = {})
 	end	
 	
 	$users.update_id(user_id, nowcast_pro: Time.now) if $casts.get(cast_id)[:tags].to_s.include?(NOWCAST_PRO)
+
 	send_enrollment_emails(user_id, cast_id)
+
+	add_user_as_customer(user_id, cast_id)	
 rescue => e 
 	log_e(e)
+end
+
+def add_user_as_customer(buyer_id, cast_id)
+	seller_id = $casts.get(cast_id)[:user_id]
+	seller = $users.get(seller_id)
+
+	$customers.add(buyer_id, seller)
 end
 
 def user_enrolled(user_id, cast)

@@ -18,10 +18,3 @@ def record_view(data)
 	data[:user] = cu[:_id] if cu
 	$cast_clicks.add(data)
 end
-
-def record_cast_view
-	cast = $casts.get(pr[:_id])
-	data = cast.just(CAST_CLICK_FIELDS)
-	data[:cast_id] = cast[:_id]
-	record_view(data)
-end

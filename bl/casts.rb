@@ -497,9 +497,8 @@ def show_cast_by_id
 	erb :'casts/cast', default_layout
 end
 
-get '/casts/:_id' do	
-	record_cast_view	
-	show_cast_by_id
+def record_cast_view
+	$events.add(cast_id: pr[:id], buyer_id: cuid)
 end
 
 get '/casts/:_id/analytics' do	
@@ -508,6 +507,11 @@ get '/casts/:_id/analytics' do
   views      = $cast_clicks.get_many(cast_id: cast[:_id]).to_a.reverse
 
 	erb :'casts/analytics', default_layout.merge(locals: {views: views, title: cast[:title]}) 
+end
+
+get '/casts/:_id' do	
+	record_cast_view	
+	show_cast_by_id
 end
 
 get '/@*/:_id/:cast_title' do

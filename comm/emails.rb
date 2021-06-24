@@ -60,7 +60,7 @@ end
 
 post '/emails/forgot_password' do 
   email = pr[:email]
-  record_event(type: :forgot_password, email: email)
+  record_event(event: :forgot_password, email: email)
   if email.present? && $users.get(email: email)
     send_login_email(email)
     {ok: 'ok'}
