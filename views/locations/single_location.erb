@@ -2,13 +2,22 @@
 
 <%#= loc.to_json %>
 <style>
+.edit_location_form {
+  width: 700px;  
+  margin-left: auto;
+  margin-right: auto;
+
+}
 .edit_location_form label {
-  width: 200px;  
+  width: 100px;  
+  
 }
 .location_input {
   margin-bottom:5px;
 }
 </style>
+
+<%= erb :'me/profile_tabs', locals: {is_seller: true, sec: 'locations'} %> 
 <div class='edit_location_form'>
   <form method=post action="/locations/<%=loc[:_id]%>">
     <div class='location_input'><label> Name </label> <input name=name value="<%=loc[:name]%>"> </div>
