@@ -498,7 +498,7 @@ def show_cast_by_id
 end
 
 def record_cast_view
-	$events.add(cast_id: pr[:id], buyer_id: cuid)
+	# $events.add(cast_id: pr[:id], buyer_id: cuid)
 end
 
 get '/casts/:_id/analytics' do	

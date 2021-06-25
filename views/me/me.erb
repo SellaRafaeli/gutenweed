@@ -84,21 +84,46 @@ form .user_img:hover {
       </h1>
 
     <% sec = pr[:sec] || 'profile' %>
-      <%= erb :'me/profile_tabs', locals: {is_seller: is_seller, sec: sec} %>     
+    <%= erb :'me/profile_tabs', locals: {is_seller: is_seller, sec: sec} %>     
+    <script>
+      $('.profile_tabs a').click(ev => {
+        // when in "me" form, make behaviour SPA-like
+        var btn = $(ev.target).closest('a');
+        var sec = btn.attr('href').split('?')[1].split('=')[1];
+        $('.me_sec').addClass('noDisplay');
+        $('.me_sec.'+sec).removeClass('noDisplay');
+
+        $('.profile_tabs a').removeClass('chosen_me_form_link');
+        btn.addClass('chosen_me_form_link')
+        return false;
+      });
+    </script>
+
     <form id=me_form action='update_me' method='post' class='form1'>      
-    <% if sec == 'account' %>       
-      <%= erb :'me/account', locals: {user: user} %>          
-    <% elsif sec == 'customers' %>
-      <%= erb :'me/customers', locals: {user: user} %>            
-    <% elsif sec == 'profile' %>
-      <%= erb :'me/profile', locals: {user: user} %>            
-    <% elsif sec == 'by_me' %>
-      <%= erb :'me/by_me', locals: {user: user, user_id: user_id} %>            
-    <% elsif sec == 'for_me' %>
-      <%= erb :'me/for_me', locals: {user: user, user_id: user_id} %>            
-    <% elsif sec == 'locations' %>
-      <%= erb :'me/locations', locals: {user: user, user_id: user_id} %>            
-    <% end %>  
+
+    <div style='max-width: 800px; margin-left:auto; margin-right: auto;'>
+      <% ['account', 'customers', 'profile', 'by_me', 'for_me', 'locations'].each do |part_sec| %>
+        <div class='me_sec <%=part_sec%> <%="noDisplay" unless sec == part_sec%>'>    
+          <%= erb :"me/#{part_sec}", locals: {user: user, user_id: user_id} %>    
+        </div>
+      <% end %>
+    </div>
+
+    <% if false %>    
+      <% if sec == 'account' %>
+        <%= erb :'me/account', locals: {user: user} %>    
+      <% elsif sec == 'customers' %>
+        <%= erb :'me/customers', locals: {user: user} %>            
+      <% elsif sec == 'profile' %>
+        <%= erb :'me/profile', locals: {user: user} %>            
+      <% elsif sec == 'by_me' %>
+        <%= erb :'me/by_me', locals: {user: user, user_id: user_id} %>            
+      <% elsif sec == 'for_me' %>
+        <%= erb :'me/for_me', locals: {user: user, user_id: user_id} %>            
+      <% elsif sec == 'locations' %>
+        <%= erb :'me/locations', locals: {user: user, user_id: user_id} %>            
+      <% end %>  
+    <% end %>
 
     <% if sec == 'account' || sec == 'profile' %>
       <br/>
