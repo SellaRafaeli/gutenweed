@@ -1,12 +1,18 @@
 <%
   customers = $customers.get_many(user_id: cuid).to_a
 %>
+<style>
+.single_customer_list {
+
+}
+</style>
+
 <h1> Customers </h1>
 
 <div class='customers_list'>
   <% customers.each do |customer| %>
     <a href='/customers/<%=customer[:_id]%>'>
-      <div class='single_customer_list'>
+      <div class='single_customer_list nice_list_item'>
         <div class=''><%= customer[:name] %></div> 
         <div class=''><%= customer[:notes] %></div> 
       </div>
