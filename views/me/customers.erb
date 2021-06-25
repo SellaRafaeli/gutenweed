@@ -26,6 +26,9 @@
 
 <script>
   function addCustomer() {
-    $.post('/customers').then(()=>document.location.reload());
+    $.post('/customers').then(()=> {
+      
+      document.location.reload()
+    });
   }
 </script>

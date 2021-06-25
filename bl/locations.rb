@@ -18,7 +18,12 @@ post '/locations/:id' do
 	loc = $locations.get(pr[:id])
 	halt unless loc[:user_id] == cuid
 
+	pr[:items] = pr[:items].values rescue [] if pr[:items]
+		
 	$locations.update_id(pr[:id], pr)
+	
+	return {msg: 'ok'} if pr[:ajax] 
+
 	flash.message = 'Updated Location.'
 	redirect back;
 end
