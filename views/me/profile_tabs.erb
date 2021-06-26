@@ -1,5 +1,17 @@
-<%
-%>
+<style>
+@media (min-width: 800px) {
+  .profile_tabs {
+    position: absolute;
+    /*border:1px solid black;    */
+  }
+  .profile_tabs a {
+    display: block;
+    border:3px solid whitesmoke;
+    border-radius: 4px;
+  }
+}
+
+</style>
  <div class='profile_tabs' style='margin-bottom: 50px; text-align: center; direction: ltr'>
   <% if is_seller %>
     <a class='btn <%= "chosen_me_form_link" if sec == "customers" %>' href='/me?sec=customers'><i class='fal fa-users'></i> Customers </a>

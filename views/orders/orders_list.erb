@@ -17,6 +17,9 @@
 
 </style>
 <h2> Orders List </h2>
+<div>
+    <button type=button onclick=addOrder()>Add Order</button>
+  </div>
 
 <div class='orders_list'>
 <% orders.reverse.each do |o| %>  
@@ -24,10 +27,7 @@
 <% end %>
 </div>
 
-  <div>
-    <button type=button onclick=addOrder()>Add Order</button>
-  </div>
-
+  
 <script>
 function addOrder() {
 

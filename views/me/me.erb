@@ -97,7 +97,8 @@ form .user_img:hover {
         btn.addClass('chosen_me_form_link');
 
         var href = btn.attr('href');
-        document.location.history.push(href);
+//        document.location.history.push(href);
+        window.history.replaceState({}, '',href);
         return false;
       });
     </script>

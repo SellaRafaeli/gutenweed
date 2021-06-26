@@ -10,9 +10,9 @@ Potential clients:
 
 TODOs
 - Good-Weed features:
-  - nicer item page
-  - email on order to buyer and seller
-  - my orders page (with status btns)
+  - manually add orders
+  - nicely designer everything
+  - move top links to left 
 
   - search: like YouTube/video sites
 
