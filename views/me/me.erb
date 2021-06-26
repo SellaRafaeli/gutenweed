@@ -94,7 +94,10 @@ form .user_img:hover {
         $('.me_sec.'+sec).removeClass('noDisplay');
 
         $('.profile_tabs a').removeClass('chosen_me_form_link');
-        btn.addClass('chosen_me_form_link')
+        btn.addClass('chosen_me_form_link');
+
+        var href = btn.attr('href');
+        document.location.history.push(href);
         return false;
       });
     </script>

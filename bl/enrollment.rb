@@ -120,6 +120,18 @@ post '/enrollment/cancel' do
 	end
 end
 
+post '/enrolls' do 
+	require_user 
+
+	cast   = $casts.get_many(user_id: cuid).sample
+	halt(400, {err: 'You must create a product first. No orders with no product.'}) unless cast
+
+	cast_id = cast[:_id]
+	enroll = $enrolls.add(user_id: nil, cast_id: cast_id, status: ENROLL_ACTIVE)	
+	html   = erb :'orders/single_order', locals: {order: enroll, is_seller: true}
+	{enroll: enroll, html: html}
+end
+
 post '/enrolls/:id' do 
 	require_user
 	

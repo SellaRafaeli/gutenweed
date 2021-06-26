@@ -1,0 +1,46 @@
+<%
+  is_seller ||= false
+  o = order
+%>
+<% cast  = $casts.get(o[:cast_id]) %>
+<% buyer = $users.get(o[:user_id]) %>
+
+<%
+  buyer = {} unless buyer # for example for manually-created orders which are initially empty
+%>
+  <div class='single_order_list'>    
+    <%#= o.to_json %>    
+    <div class=flex2>
+      <a class=simple_link href='/casts/<%=o[:cast_id]%>'>
+        <img src='<%=cast[:img_url]%>' class='order_img' />
+        <div><%= cast[:title] %></div>
+      </a>
+    </div>
+
+    <div class=flex2>
+      <a class=simple_link href='/users/<%=buyer[:_id]%>'>
+        <% if buyer[:img_url] %>
+        <img src='<%=buyer[:img_url]%>' class='order_img' />
+        <div><%= buyer[:name] %></div>
+        <% end %>
+        <%#= buyer.to_json %>
+      </a>
+    </div>
+
+    <div class=flex2>
+      <div><b> amount: <%= o[:amount].to_f/100 %> </b> </div>
+      <div>time: <%= o[:created_at] %></div>
+        <div>
+          <b> status </b>
+          <% if is_seller %>
+            <select onchange="updateOrderStatus($(this).val(), '<%=o[:_id]%>')">
+              <% ['active', 'received', 'delivered', 'reviewed'].each do |status| %>
+                <option <%="selected" if o[:status]==status %> ><%=status%></option>
+              <% end %>
+            </select>        
+          <% else %>
+            <%= o[:status] %>
+          <% end %>
+        </div>
+      </div>
+  </div>  
