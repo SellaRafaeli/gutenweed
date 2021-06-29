@@ -5,7 +5,7 @@ $users.indexes.create_one({email: 1}, unique: true) rescue nil
 USER_KEYS = ["email",  "name", "handle", "img_url", "timezone", 
 	"contact_me", "title", "subtitle", "desc", "lang", "country",
 	 "location", "my_theme", "media", "payout_info", "tags", 
-	 "media_object_fit"] + SOCIAL_NETWORKS
+	 "media_object_fit", "license_url", "license_filename"] + SOCIAL_NETWORKS
 
 DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
 
@@ -40,7 +40,6 @@ post '/update_me' do
 	redirect_unless_user
 
 	# gather media input into single array of objects
-
 	pr[:media]         = []
 	pr[:media_types] ||= [] #sent alongsides the URLs arr
 	pr[:media_img].to_a.each_with_index { |url, idx| pr[:media].push({type: pr[:media_types][idx], url: url}) }
