@@ -8,6 +8,27 @@ Potential clients:
 * Siach Medical 
 * נטפים
 
+Luz:
+
+Sun
+
+Mon
+  - 10:00-13:00 - Fiverr
+  - 14:00 - Legal Meeting
+
+Tue
+
+Wed
+- 10:00 - 14:00 - Crux 
+- 15:00 - 
+
+Thu 
+- 16:20, company party
+
+Fri
+Sat 
+
+
 TODOs
 - Good-Weed features:
   - manually add orders
