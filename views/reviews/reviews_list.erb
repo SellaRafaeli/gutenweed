@@ -39,7 +39,7 @@
 <h4> Reviews </h4>
 <% end %>
 
-<% if can_leave_review(cu, cast) rescue false %>
+<% if can_leave_review(cu, cast) %>
   <% unless locals[:skip_submit] %>
 
   <%= erb :'reviews/submit_review_form', locals: {seller: seller, cast: cast} %>
