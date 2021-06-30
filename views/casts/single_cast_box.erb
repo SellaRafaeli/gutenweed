@@ -2,7 +2,7 @@
   user = cast[:user] || $users.get(cast[:user_id]) || {}
   
   cast_pic = cast[:img_url]
-  cast_pic = user[:img_url] unless (cast_pic.present? && CGI.unescape_html(cast_pic)!=DEFAULT_PIC)  
+  # cast_pic = user[:img_url] unless (cast_pic.present? && CGI.unescape_html(cast_pic)!=DEFAULT_PIC)  
   cast_pic = DEFAULT_PIC unless cast_pic.present?
   
   user_pic = user[:img_url]

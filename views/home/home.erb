@@ -168,12 +168,27 @@ end
 .hp_review_body {  
   padding: 15px;
 }
+.beta_sign {
+  margin: 0;
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  background-color: #00b140;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 17px;
+}
 </style>
 
 <div class='hp ct'>
 
   <div class='hp_header'>
-    <a href='/'><img src='/img/gutenweed.png' style='width: 200px;'/></a>
+    <a href='/' style='position: relative; display: inline-block;'>
+      <img src='/img/gutenweed.png' style='width: 200px;'/>
+      <h3 class='beta_sign'> beta </h3>
+    </a>
+
     <h1 class='nowcast_color' style='display: none; margin:20px 20px 0px 10px;'>Gutenweed</h1>    
     <%= erb :'search/search' %>
    <% if false %>

@@ -155,8 +155,8 @@ end
 def get_cast_img(cast)
 	img = cast[:img_url] 
   
-  img = $users.get(cast[:user_id])[:img_url] if !img || is_default_img(img)
-  img = nil if is_default_img(img)
+  # img = $users.get(cast[:user_id])[:img_url] if !img || is_default_img(img)
+  # img = nil if is_default_img(img)
 
   img
 rescue => e 

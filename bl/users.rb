@@ -7,7 +7,8 @@ USER_KEYS = ["email",  "name", "handle", "img_url", "timezone",
 	 "location", "my_theme", "media", "payout_info", "tags", 
 	 "media_object_fit", "license_url", "license_filename"] + SOCIAL_NETWORKS
 
-DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
+#DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
+DEFAULT_IMG = DEFAULT_PIC = '/img/leaf.svg'
 
 def is_seller
 	cu[:type] == 'seller'
