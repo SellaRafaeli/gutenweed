@@ -22,6 +22,7 @@ end
 # end
 
 def can_leave_review(user, cast)
+	return false unless user && cast
 	order_exists  = $enrolls.exists?(cast_id: cast[:_id], user_id: user[:_id])
 	review_exists = $reviews.exists?(cast_id: cast[:_id], buyer_id: user[:_id])
 	order_exists && !review_exists

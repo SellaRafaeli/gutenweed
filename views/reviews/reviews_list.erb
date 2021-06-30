@@ -35,7 +35,11 @@
 }
 </style>
 
-<% if can_leave_review(cu, cast) %>
+<% if reviews.any? %>
+<h4> Reviews </h4>
+<% end %>
+
+<% if can_leave_review(cu, cast) rescue false %>
   <% unless locals[:skip_submit] %>
 
   <%= erb :'reviews/submit_review_form', locals: {seller: seller, cast: cast} %>
@@ -43,6 +47,7 @@
 <% end %>
 
 <ul style='list-style:none; padding-left: 0'>
+
 <% reviews.each do |review| %>
   <% 
     id     = review[:_id] 
