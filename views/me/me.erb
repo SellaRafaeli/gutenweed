@@ -1,4 +1,6 @@
 <% 
+  puts "in me.erb"
+  start = Time.now
   show_help = false
   err = nil
   user    = cu
@@ -100,13 +102,14 @@ form .user_img:hover {
     <div style='max-width: 800px; margin-left:auto; margin-right: auto;'>
       <% ['dashboard','account', 'customers', 'profile', 'by_me', 'for_me', 'locations'].each do |part_sec| %>
         <div class='me_sec <%=part_sec%> <%="noDisplay" unless sec == part_sec%>'>    
+          <% puts "#{part_sec} #{(Time.now - start)/1000.to_f}" %>
           <%= erb :"me/#{part_sec}", locals: {user: user, user_id: user_id} %>    
         </div>
       <% end %>
     </div>
 
     <% if false %>    
-      <% zif sec == 'account' %>
+      <% zif sec == 'account' %>      
         <%= erb :'me/account', locals: {user: user} %>    
       <% zelsif true || sec == 'dashboard' %>
         <%= erb :'me/dashboard', locals: {user: user} %>            
