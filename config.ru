@@ -4,3 +4,4 @@ use Rack::Protection::EscapedParams  #https://github.com/sinatra/sinatra/tree/ma
 run Sinatra::Application
 
 puts "#{$app_name} is now running."
+$stdout.sync = true if $prod
