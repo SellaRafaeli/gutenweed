@@ -13,7 +13,7 @@ end
 after do 
   session[:device_id] ||= guid
   request_time = Time.now - @time_started_request rescue nil
-  log_request({time_took: request_time}) unless request_is_public?
+  # log_request({time_took: request_time}) unless request_is_public?
   if @response.body.is_a? Hash #return hashes as json
     #@response.body = {data: @response.body}
     @response.body[:time] = request_time
