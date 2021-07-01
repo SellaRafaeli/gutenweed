@@ -47,19 +47,7 @@
   <div class='display_flex'>
     <label> Payment Details </label>
     <textarea name=payout_info placeholder="How should we pay you? We support Paypal, Venmo, Bit, and bank transfers." value=""><%=user['payout_info']%></textarea> 
-    <!-- <span>Use #hashtags like #actor or #dance_teacher</span> -->
-    <h4> Payouts </h4>
-    <% if payouts.any? %>
-      <% payouts.each do |payout| %>
-        <div class='single_payout'>
-          <div>Amount: <%= payout[:amount] %></div>
-          <div>Time: <%= payout[:created_at] %></div>
-          <div>Notes: <%= payout[:created_at] %></div>
-        </div>
-      <% end %>
-    <% else %>  
-    <div> We have not paid you out anything yet.</div>
-    <% end %>
+    <!-- <span>Use #hashtags like #actor or #dance_teacher</span> -->    
   </div>
   <br/>
 
@@ -92,6 +80,28 @@
   </div>
   <% end %>
 
+  <hr/>
+  <div class='display_flex'>
+  <label> Payouts </label>
+    <% if payouts.any? %>
+      <% payouts.each do |payout| %>
+        <div class='single_payout'>
+          <div>Amount: <%= payout[:amount] %></div>
+          <div>Time: <%= payout[:created_at] %></div>
+          <div>Notes: <%= payout[:created_at] %></div>
+        </div>
+      <% end %>
+    <% else %>  
+    <div> We have not paid you out anything yet.</div>
+    <% end %>
+  </div>
+  
+
+<br/>
+      <div class=ct>
+        <button onclick='$("#me_form").submit()' class='btn btn-raised btn-info'>Save</button>
+      </div>
+      
 <script>
 function submitLicense() {
   filestackUpload(res => {
