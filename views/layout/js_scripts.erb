@@ -1,6 +1,6 @@
 <%
 
-JS_SCRIPTS = [
+js_scripts = [
   '/js/lib/jquery-2.2.1.min.js',
   '/js/lib/bootstrap3.js',
   '/js/lib/material.min.js',
@@ -20,16 +20,16 @@ JS_SCRIPTS = [
 ]
 
 
-BOTTOM_CSS_TAGS = [
+bottom_css_tags = [
   '/css/lib/sweet_alert.min.css'
 ]
 %>
 
-<% JS_SCRIPTS.each do |path| %>
+<% js_scripts.each do |path| %>
   <script src='<%=path%>'></script>
 <% end %>
 
-<% BOTTOM_CSS_TAGS.each do |path| %>
+<% bottom_css_tags.each do |path| %>
   <link rel="stylesheet" href="<%=path%>"/>
 <% end %>
 
