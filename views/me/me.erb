@@ -73,6 +73,9 @@ form .user_img:hover {
 .profile_tabs i {
   margin-right: 10px;
 }
+.profile_tabs a {
+  display: flex;
+}
 .profile_tabs a:hover {
   color: #00b140;
 }
@@ -116,6 +119,8 @@ form .user_img:hover {
     <% if false %>    
       <% if sec == 'account' %>
         <%= erb :'me/account', locals: {user: user} %>    
+      <% elsif sec == 'dashboard' %>
+        <%= erb :'me/dashboard', locals: {user: user} %>            
       <% elsif sec == 'customers' %>
         <%= erb :'me/customers', locals: {user: user} %>            
       <% elsif sec == 'profile' %>

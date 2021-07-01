@@ -1,12 +1,19 @@
 GoodWeed - A Marketplace for Cannabis and Sales Platform for Cannabis 
 
-10-Step RoadMap:
-1. Sell to Cannabis player that needs management software. 
+- Design Partners: https://docs.google.com/spreadsheets/d/1BZKwpMUHdG35f2NR69JfhPmXA9aVzrPpKSmu6K5ivuk/edit#gid=0
 
 Potential clients:
 * Ran 
 * Siach Medical 
 * נטפים
+
+TODOs
+=====
+- dashboard 
+- verification process 
+- customer: notes
+
+
 
 Luz:
 
@@ -30,17 +37,4 @@ Sat
 
 
 TODOs
-- Good-Weed features:
-  - manually add orders
-  - nicely designer everything
-  - move top links to left 
-
-  - search: like YouTube/video sites
-
-  - dashboard: all sales..? 
-  - prettier orders page
-  - ML for recommendations  
-  - Forum
-  - Views analytics
-
-  - chat between any two users 
+- go to 
