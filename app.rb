@@ -32,7 +32,7 @@ MEDIUMS = ['email', 'sms']
 get '/ping' do
 	# received_session_bla = session[:bla]
 	# session[:bla] = session[:bla].to_i + 1
-  {msg: "pong from #{$app_name}", val: 'It is always now', foo: '123'}
+  {msg: "pong from #{$app_name}", val: 'It is always now', domain: 'good'}
 end
 
 get '/ping' do
