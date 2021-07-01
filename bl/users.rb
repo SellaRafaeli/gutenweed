@@ -17,6 +17,7 @@ end
 get '/me' do
 	redirect_unless_user
 
+	puts "in me now"
 	erb :'me/me', default_layout
 end
 
