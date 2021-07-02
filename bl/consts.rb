@@ -180,6 +180,13 @@ GEOGRAPHIC_AREAS = [
   {val: 'united_kingdom'  ,  label: 'United Kingdom'},
 ].sort_by {|area| area[:label] }
 
+US_STATES = [
+  {val: 'CA',    label: 'California'},
+  {val: 'WA',    label: 'Washington'},
+  {val: 'OR',    label: 'Oregon'},
+  {val: 'NY',    label: 'New York'},
+]
+
 COUNTRIES = [
   {val: 'usa',    label: 'United States'},
   {val: 'uk',     label: 'United Kingdom'},

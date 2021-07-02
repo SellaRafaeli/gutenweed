@@ -9,9 +9,12 @@ Potential clients:
 
 TODOs
 =====
-- dashboard 
-- verification process 
-- customer: notes
+- dashboard?
+- verification process? 
+- search: 
+- locations list: show by type
+- customer: private notes
+- location: private notes
 
 
 

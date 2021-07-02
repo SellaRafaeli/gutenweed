@@ -1,5 +1,7 @@
 $locations = $mongo.collection('locations')
 
+LOCATION_FIELDS = ['']
+
 post '/locations' do
 	new_loc = {user_id: cuid, name: 'New Location'} #, type: 'Store', address: '123 Main Street'}
 	$locations.add(new_loc)
