@@ -6,7 +6,9 @@
 %>
 
 <!-- <h1> Search </h1> -->
-<div class='ct'>
-<%= erb :'/search/search_inputs_row' %>
+<div style='max-width: 800px; margin-left: auto; margin-right: auto'>
+  <div class='ct'>
+  <%= erb :'/search/search_inputs_row' %>
+  </div>
+  <%= erb :'casts/casts_list', locals: {casts: casts} %>
 </div>
-<%= erb :'casts/casts_list', locals: {casts: casts} %>

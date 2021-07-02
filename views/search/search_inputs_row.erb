@@ -44,14 +44,43 @@
         
           <input class='search_input' name=q autofocus placeholder='Search' value="<%=pr[:q]%>" <%="zautofocus" if !search_input_on_top %> />
           <button class='search_go_btn btn2' type=submit style='margin-left:20px'><i class='fal fa-search' style='margin-right:5px'></i> Go </button>
-        
+                
       </div>      
-    
+
     <br/>    
     </div>
     
-    <div class='second_row' style='max-width: 600px'>
-      <% SEARCH_OPTS.each do |opt| %>
+    <div class='second_row' style='max-width: 600px; zdisplay: flex'>
+
+        
+          <select class="flex1 ct <%= %>" name=lang>
+              <!-- <option value="" <%="selected" if !pr[:state].present? %>>State</option> -->
+            <% US_STATES.each do |state| %>
+              <option value="<%=state[:val]%>" <%="selected" if state[:val] == pr[:state] %>>
+                <%=state[:label]%>
+              </option>
+            <% end %>
+          </select>
+        
+
+        
+          <select class="flex1 ct <%= %>" name=lang>
+              <!-- <option value="" <%="selected" if !pr[:state].present? %>>State</option> -->
+            <% search_modes = [
+              {val: 'top_rated', label: 'Top-Rated'},
+              {val: 'new', label: 'New'},
+              {val: 'near_you', label: 'Near You'}
+              ] %>
+              
+            <% search_modes.each do |mode| %>
+              <option value="<%=mode[:val]%>" <%="selected" if mode[:val] == pr[:mode] %>>
+                <%=mode[:label]%>
+              </option>
+            <% end %>
+          </select>
+        
+
+      <% ([] || SEARCH_OPTS).each do |opt| %>
         <span class='single_search_opt'><a class='simple_link' style='font-size: 12px' href='/search?q=<%=opt%>'>#<%= opt %></a></span>
       <% end %>
         <% if false  %>
@@ -70,7 +99,7 @@
           <option value='' <%="selected" if cu && cu[:lang]==""%>> Any Item Type </option>
           <% item_type = pr[:item_type]  %>
           <% ITEM_TYPES.each do |item_type| %>
-            <option value="<%=item_type[:val]%>" <%="selected" if item_type[:val]==area%> >
+            <option value="<%=item_type[:val]%>" <%="selected" if item_type[:val]==item_type%> >
               <%=item_type[:label]%>                
             </option>
           <% end %>

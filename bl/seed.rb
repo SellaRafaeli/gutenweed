@@ -1,5 +1,15 @@
-$seed_data = 
+def add_seed_data
+	users = [
+		{_id: 'a1', handle: 'a1', email: 'biz@a1.com', name: 'user 1'}
+	]
 
+	products = [
+		{user_id: 'a1', cost_dollars: 10, desc: 'my awesome product'}
+	]
+
+	users.each {|user| $users.update_id(user[:_id], user, {upsert: true }) }
+	products.each {|cast| $casts.update_id(cast[:_id], cast, {upsert: true }) }
+end
 
 
 def add_seed_users
@@ -28,3 +38,5 @@ end
 def remove_seed_users
 	$users.delete_many(seed: true)
 end
+
+
