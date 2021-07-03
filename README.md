@@ -9,11 +9,19 @@ Potential clients:
 
 TODOs
 =====
+- talk to Avner Shekel 
+- make content 
+
 - dashboard?
 - verification process? 
 
+> Features: 
 - homepage: list of brands 
-- search: 
+- admin dashboard: list of events (user joined, order made, ... ), each with data, filterable, also in graph 
+- comments for orders 
+- comments for customers 
+- search: make filters actually work
+- search: "filters" popout like booking.com
 
 - schedule hours to create content: sellers, products, buyers, orders, ratings, reviews. All with a script. 
 
