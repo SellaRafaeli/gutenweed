@@ -37,39 +37,31 @@
   <form class='search_input_form' method=get action='/search'>
     <div class='first_row display_flex'>
       
-      <div class='flex1 ct'>
+      <div class='flex1 ct' style='display: flex; align-items: baseline'>
         <!-- <a class='search_input_expand_gear' onclick='$(this).toggleClass("clicked"); $("#extra_search_inputs").toggleClass("noDisplayImportant")'>
           <i class='fa fa-gear'></i>
         </a> -->
-        
-          <input class='search_input' name=q autofocus placeholder='Search' value="<%=pr[:q]%>" <%="zautofocus" if !search_input_on_top %> />
-          <button class='search_go_btn btn2' type=submit style='margin-left:20px'><i class='fal fa-search' style='margin-right:5px'></i> Go </button>
-                
-      </div>      
 
-    <br/>    
-    </div>
-    
-    <div class='second_row' style='max-width: 600px; zdisplay: flex'>
-
-        
+        <div class='flex1'>          
           <select class="flex1 ct <%= %>" name=lang>
               <!-- <option value="" <%="selected" if !pr[:state].present? %>>State</option> -->
+            
             <% US_STATES.each do |state| %>
               <option value="<%=state[:val]%>" <%="selected" if state[:val] == pr[:state] %>>
                 <%=state[:label]%>
               </option>
             <% end %>
           </select>
+        </div>
         
 
-        
+        <div class='flex1'>
           <select class="flex1 ct <%= %>" name=lang>
               <!-- <option value="" <%="selected" if !pr[:state].present? %>>State</option> -->
             <% search_modes = [
               {val: 'top_rated', label: 'Top-Rated'},
               {val: 'new', label: 'New'},
-              {val: 'near_you', label: 'Near You'}
+              # {val: 'near_you', label: 'Near You'}
               ] %>
               
             <% search_modes.each do |mode| %>
@@ -78,6 +70,21 @@
               </option>
             <% end %>
           </select>
+        </div>
+        
+        <div class='flex3'>
+          <input class='search_input' name=q autofocus placeholder='Search' value="<%=pr[:q]%>" <%="zautofocus" if !search_input_on_top %> />
+          <button class='search_go_btn btn2' type=submit style='margin-left:20px'><i class='fal fa-search' style='margin-right:5px'></i> Go </button>
+        </div>
+              
+      </div>      
+
+    <br/>    
+    </div>
+    
+    <div class='second_row' style='max-width: 600px; zdisplay: flex'>
+
+        
         
 
       <% ([] || SEARCH_OPTS).each do |opt| %>

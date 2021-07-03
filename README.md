@@ -11,7 +11,15 @@ TODOs
 =====
 - dashboard?
 - verification process? 
+
+- homepage: list of brands 
 - search: 
+
+- schedule hours to create content: sellers, products, buyers, orders, ratings, reviews. All with a script. 
+
+- from created content, create the categories on the screen. 
+
+
 - locations list: show by type
 - customer: private notes
 - location: private notes

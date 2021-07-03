@@ -1,6 +1,6 @@
 def add_seed_data
 	users = [
-		{_id: 'a1', handle: 'a1', email: 'biz@a1.com', name: 'user 1'}
+		{_id: 'a1', handle: 'a1', email: 'biz@a1.com', name: 'Cool Cannabis Labs'}
 	]
 
 	products = [
