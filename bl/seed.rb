@@ -3,6 +3,7 @@ def add_seed_data
 		{_id: 'a1', handle: 'a1', email: 'biz@a1.com', name: 'Cool Cannabis Labs'}
 	]
 
+	# pre-rolls, mini-joints, bongs, cartridges, vapes, hash, capsules, gummies, dog treats, chocolates, coffee, tinctures, bud, skin lotion, oils
 	products = [
 		{user_id: 'a1', cost_dollars: 10, desc: 'my awesome product'}
 	]
