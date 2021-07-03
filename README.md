@@ -7,6 +7,14 @@ Potential clients:
 * Siach Medical 
 * נטפים
 
+
+VISION - END GOAL
+=================
+To be the best online cannabis marketplace.
+
+* VP Design & Brand 
+* VP R&D 
+
 TODOs
 =====
 - talk to Avner Shekel 
@@ -16,6 +24,8 @@ TODOs
 - verification process? 
 
 > Features: 
+- "chat" between any 2 users
+- search: sort by rating (calc and cache cast rating after each rating made)
 - homepage: list of brands 
 - admin dashboard: list of events (user joined, order made, ... ), each with data, filterable, also in graph 
 - comments for orders 
