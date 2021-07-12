@@ -25,6 +25,9 @@
 .single_location_item_list {
 
 }
+.edit_location_form input {
+  width: 300px;
+}
 </style>
 <br/>
 <%= erb :'me/profile_tabs', locals: {is_seller: true, sec: 'locations'} %> 
@@ -47,7 +50,9 @@
 
       <input hidden name=lat id=address_lat value="<%=loc[:lat]%>" type=number step=0.000000000001 />
       <input hidden name=lng id=address_lng value="<%=loc[:lng]%>" type=number step=0.000000000001 />
-      <div class='location_input'><label> Type </label> <input name=type value="<%=loc[:type]%>"> </div>
+      <div class='location_input noDisplay'><label> Type </label> <input name=type value="<%=loc[:type]%>"> </div>
+
+      <div class='location_input'><label> Phone </label> <input name=phone value="<%=loc[:phone]%>"> </div>
 
       <button class='btn btn-raised btn-primary'>Update Location Details </button>
     </form>

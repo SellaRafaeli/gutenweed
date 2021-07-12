@@ -244,11 +244,11 @@ is_forum = is_cast_forum(nc)
           </label>
           
           <input name=img_url id=img_url style='display: none' value="<%=img_url %>"/>
-          <img style='cursor: pointer' id=cast_input_img onclick=$("#img_uploader").click() class=user_img_fullsize src="<%=img_url%>" />
+          <img style='cursor: pointer; width: 40px' id=cast_input_img onclick=$("#img_uploader").click() class=user_img_fullsize src="<%=img_url%>" />          
           <span></span>        
         </div>
 
-        <div class='display_flex' style='margin-top:20px'>
+        <div class='display_flex' style='margin-top:20px; display: none'>
           <label class='pic_label' onclick=$("#img_uploader").click()>
             <div> Location </div>            
           </label>          
