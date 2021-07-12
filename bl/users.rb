@@ -48,7 +48,7 @@ post '/update_me' do
 
 	data = pr.just_keys(USER_KEYS)
 
-	data[:handle].to_s.gsub!(/[^0-9A-Za-z]/, '')
+	# data[:handle]   = data[:handle].to_s.gsub!(/[^0-9A-Za-z]/, '') 
 	data[:timezone] = data[:timezone].to_i
 	# if (user = $users.get(handle: data[:handle])) && (user[:_id]!=cuid)
 	# 	flash_err 'Handle is taken.'

@@ -94,7 +94,7 @@
     function initialize() {
       var input = document.getElementById('address_input');
       const autocomplete = new google.maps.places.Autocomplete(input);
-
+      console.log('set up google maps autocomplete on address_input')
 
       autocomplete.addListener("place_changed", () => {
         //ev.stopPropagation();
