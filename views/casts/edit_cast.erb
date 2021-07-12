@@ -244,7 +244,7 @@ is_forum = is_cast_forum(nc)
           </label>
           
           <input name=img_url id=img_url style='display: none' value="<%=img_url %>"/>
-          <img style='cursor: pointer; width: 40px' id=cast_input_img onclick=$("#img_uploader").click() class=user_img_fullsize src="<%=img_url%>" />          
+          <img style='cursor: pointer; min-width: 40px' id=cast_input_img onclick=$("#img_uploader").click() class=user_img_fullsize src="<%=img_url%>" />          
           <span></span>        
         </div>
 
@@ -261,6 +261,18 @@ is_forum = is_cast_forum(nc)
 
         <%#= erb :'/casts/cast_amenities', locals: {cast: cast, can_edit: true} %>
         
+
+        <% if false || is_admin %>
+        <br/>
+        <br/>
+        <div style='zbackground-color: goldenrod'>
+        <label> Search Tags </label>
+          <span style="width: 40%; display: inline-block; text-align: right">
+            <input style='width: 100%' value="<%=nc[:tags]%>" name=tags placeholder='sativa, relaxation'/>
+          </span>       
+        </div>
+        <% end %>
+
 
         <h4 style='margin-bottom: 40px'> Add Images and Videos </h4>      
         <%= erb :'/me/upload_media', locals: locals.merge(item: cast) %>
@@ -489,15 +501,7 @@ is_forum = is_cast_forum(nc)
 
       <% end #end more options %>
 
-      <% if is_admin %>
-        <div style='background-color: goldenrod'>
-        <label> Cast Tags </label>
-          <span style="width: 40%; display: inline-block; text-align: right">
-            <input style='width: 100%' value="<%=nc[:tags]%>" name=tags placeholder='fitness, homepage, programming'/>
-          </span>       
-        </div>
-        <% end %>
-
+  
 
     <% end %> <!-- end !is_website -->
     </div> <!-- end nc box -->

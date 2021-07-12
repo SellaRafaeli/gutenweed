@@ -14,6 +14,8 @@ Shops
 * https://herbantribe.com/
 more: https://amazonorganics.net/our-brands/
 
+TODOs: enable cast logistics-overlay and payment note
+
 GoodWeed - A Cannabis e-Commerce Business Platform for Ambitious 
 
 
