@@ -14,11 +14,11 @@ Shops
 * https://herbantribe.com/
 more: https://amazonorganics.net/our-brands/
 
-TODOs: enable cast logistics-overlay and payment note
+TODOs: 
+- connect between customers, orders, locations, products 
+- enable "internal notes" on customer, order, product, location 
 
 GoodWeed - A Cannabis e-Commerce Business Platform for Ambitious 
-
-
 
 We're an Israeli-American (SF) startup developing an all-in-one online platform for cannabis e-commerce and operations management: a White-Label Cannabis Marketplace & CRM. 
 

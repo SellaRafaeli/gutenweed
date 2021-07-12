@@ -178,17 +178,7 @@ is_forum = is_cast_forum(nc)
       </div>
       <% end %>
     
-    <% else %>        
-      <% if false %>
-      <div class='only_if_costs_money'>
-        <label> Payment Note </label>
-        <span style="width: 40%; display: inline-block; text-align: right">
-          <input style='width: 100%' value="<%=nc[:payment_note]%>" name=payment_note placeholder='e.g. "Introductory Price" or "COVID19 Special"' />
-        </span>          
-      </div>
-      <br/>
-      <% end %>
-
+    <% else %>              
       <div>
         <label>
           <div>Description</div>
@@ -260,11 +250,22 @@ is_forum = is_cast_forum(nc)
         </div>
 
         <%#= erb :'/casts/cast_amenities', locals: {cast: cast, can_edit: true} %>
+      
+        <br/>
+        <br/>
         
+      <% if true %>
+      <div class='zonly_if_costs_money'>
+        <label> Payment Note </label>
+        <span style="width: 40%; display: inline-block; text-align: right">
+          <input style='width: 100%' value="<%=nc[:payment_note]%>" name=payment_note placeholder='e.g. "Introductory Price" or "COVID19 Special"' />
+        </span>          
+      </div>
+      <br/>
+      <% end %>
 
-        <% if false || is_admin %>
-        <br/>
-        <br/>
+
+        <% if false #|| is_admin %>
         <div style='zbackground-color: goldenrod'>
         <label> Search Tags </label>
           <span style="width: 40%; display: inline-block; text-align: right">

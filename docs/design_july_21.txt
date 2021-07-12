@@ -2,8 +2,10 @@ Design for July 2021:
 
 Seller's Dashboard:
 * List of products 
-	- the items this seller sells. 
+	- Items I sell.
 * Single Product page 
+	- to-add: attributes like THC/CBD level 
+	- no need to go 
 * List of customers 
 * Single customer 
 * List of locations (stores)
@@ -14,8 +16,14 @@ Seller's Dashboard:
 
 Buyer's View:
 * Seller's page 
+	- show locations 
 * Product page
 	- reviews and ratings 
 
 Future: 
-* Search page 
+* Search page, facets 
+- connect between customers, orders, locations, products 
+	> customer: show orders and reviews 
+
+- enable "internal notes" a la "FB comments" on customer, order, product, location 
+- 'chat' with seller 
