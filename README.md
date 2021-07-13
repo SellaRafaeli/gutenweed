@@ -14,9 +14,10 @@ Shops
 * https://herbantribe.com/
 more: https://amazonorganics.net/our-brands/
 
+
+https://dohliam.github.io/dropin-minimal-css/#embedded__images
+
 TODOs: 
-- connect between customers, orders, locations, products 
-- enable "internal notes" on customer, order, product, location 
 
 GoodWeed - A Cannabis e-Commerce Business Platform for Ambitious 
 

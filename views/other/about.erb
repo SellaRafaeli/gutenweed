@@ -1,36 +1,83 @@
-<%
-  data = {
-    title: 'About Nowcast',
-    subtitle: 'Go Live, Sell Tickets',
-
-    top_buttons: [
-      {link: '/signup', text: 'Start'},
-      {link: '/how_it_works', text: 'How It Works'}
-    ],
-    rows: [
-      {title: 'Online live courses.', 
-       content: 'Learn from experts all over the world - coding, cybersecurity, data science, graph design, UI/UX, product management, and more.', fa_icon: 'fa-video-camera'
-      },      
-      {title: 'Run courses from anywhere - to students everywhere', 
-       content: 'Market and manage your course on Nowcast, using any supported video platform.', fa_icon: 'fa-user'
-      },
-      {title: 'Get more exposure - pay only when you start to earn.', 
-       content: 'Selling a course on Nowcast is free. Pay only for advanced features or a percentage of your income.', fa_icon: 'fa-user'
-      },
-      {
-        title: 'Promote and Sell Even More: Pre-recorded, Private or Premium Content',
-        content: 'Use Nowcast to deliver both live services and sell pre-recorded content. Set the price yourself. We recommend using pre-recorded content as free previews for your live classes.',
-        fa_icon: 'fa-dollar'
-      },
-      {
-        title: 'Get More Clients, Get Expert Advice.',
-        content: 'NowCast.co will recommend your NowCasts and channel to relevant potential clients and drive related online traffic your way, both within NowCast.co (this site) and from Google and Facebook. In addition, NowCasters receive access to premium content on how to produce great live videos and how to sell them well, led by NowCast staff.',
-        fa_icon: 'fa-line-chart',
-
-      }
-    ],
-    bottom_msg: 'Go Live, Get Paid'
-  }
+<% 
+  title = 'Software for Cannabis e-Commerce '
+  title = 'A Cannabis Marketplace & CRM'
+  
+  css   = 'https://raw.githubusercontent.com/dohliam/dropin-minimal-css/gh-pages/min/attri-dark-fairy-pink.min.css'
+  css   = '/css/lib/flat-ui.min.css'
+  # https://dohliam.github.io/dropin-minimal-css
+  # https://github.com/dohliam/dropin-minimal-css/tree/gh-pages/min
 %>
 
-<%= erb :'/other/template_page', locals: data %>
+<html>
+<title><%= title %></title>
+
+<link rel="stylesheet" type="text/css" href="<%=css%>">  
+<style>
+p {
+  font-size: 1.5em;
+}
+.b {
+  color: black;
+}
+body {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+a { cursor: pointer; }
+</style>
+
+</html>
+
+<body>
+  <h3>Good-Weed.co </h3>
+  <h1><%= title %></h1>
+
+  <h3>Intro </h3>
+
+  <p> Here at good-weed.co <b>we are building the world's best multi-brand online cannabis marketplace</b>, and we'd like to supply a multi-brand enterprise with the tools it needs to scale e-commerce for its brands.</p>
+
+  <h3> About Us </h3>
+  
+  <p> Our product is an online, multi-brand cannabis marketplace which allows a cannabis enterprise to sell multiple self-managed brands. Our marketplace supplies each seller with robust tools to manage customers, products, stores, stock, orders, payments, and reviews, and each buyer with reviews, search tools, and every kind of support available to create the best online shopping experience for cannabis products and accessories. </p>
+
+  <p>We are looking to join <b>an ambitious cannabis enterprise</b> and supply the technical platform to facilitate a multi-brand, national and international marketplace for home-grown and third-party cannabis brands, to position ourselves as the go-to marketplace for cannabis products. </p>
+  
+  <h3> Solutions </h3>
+  
+  <p>
+    Our marketplace allows a multiple cannabis brands (each "seller") to open an online store via which they can manage their customers, products, stock, physical locations, as well as accept and manage order life-cycle, payments, and reviews. The marketplace further allows buyers to search for brands and products, leave reviews, and communicate with sellers and among themselves. 
+  </p>
+
+  <p>
+    As of July 2021, we are actively developing additional features to improve the e-commerce life for both buyers and sellers and for the administering enterprise - <b>that's you.</b> 
+  </p>
+
+  <p>
+    If your enterprise is looking to scale its e-commerce to lead the online cannabis marketplace, please <a onclick=contact()>contact us</a> today to schedule a demo. 
+  </p>
+
+  <h3> Team </h3>
+
+  <p> CEO, Sella Rafaeli, 36 </p>
+  <p> COO, Hadar Daniel, 36 </p>
+  <p> VP R&D, Daniel Aharonovich, 36 </p>
+
+  <p> We are headquartered in <b>Tel Aviv</b>, at Jabotisnky 41 suite 2. </p>
+
+  <h3> Contact </h3>
+  <p>
+    <p>+972-3-8244450 / +972-52-293-4321</p>
+    <p><a mailto=hi@good-weed.co>hi@good-weed.co</a></p>
+    <p><a onclick=contact()>Click Here</a></p>
+  </p>
+
+<script src='/js/lib/jquery-2.2.1.min.js'></script>
+<script>
+function contact() {
+  if (email = prompt('What is your email?')) {
+    $.post('/quick_contact',{email}).then(()=>alert('Thanks! We\'ll be in touch soon.'))
+  }
+}
+</script>
+</body>

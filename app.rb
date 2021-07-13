@@ -43,6 +43,10 @@ post '/ping' do
   {msg: "post pong from #{$app_name}", val: 'It is always now'}
 end
 
+post '/contact' do 
+	
+end
+
 get '/login_as/?:handle?' do 
 	return if $prod
 	handle = pr[:handle]
@@ -153,7 +157,11 @@ get '/fullstack' do
 end
 
 get '/' do	
-	#erb :'home/home', default_layout
+	erb :'other/about'
+	# erb :'search/search', default_layout
+end
+
+get '/app' do 
 	erb :'search/search', default_layout
 end
 
