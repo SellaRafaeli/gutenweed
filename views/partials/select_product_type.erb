@@ -1,0 +1,7 @@
+<select id=product_type_selector <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %>>
+  <option value="">Any</option>
+  <% PRODUCT_TYPES.each do |product_type| %>
+    <option value="<%=product_type%>" <%="selected" if pr[:product_type] == product_type %>><%=product_type%></option>
+  <% end %>
+  </select>
+</select>

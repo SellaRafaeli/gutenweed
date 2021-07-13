@@ -187,6 +187,17 @@ US_STATES = [
   {val: 'NY',    label: 'New York'},
 ]
 
+US_STATES_CITIES = {
+    'California': ['San Francisco', 'San Jose', 'Sacramento', 'Los Angeles', 'San Diego'].sort,        
+    'Nevada': ['Reno', 'Las Vegas', 'Carson City'].sort,
+    'Oregon': ['Portland', 'Eugene', 'Bend'].sort,
+    'Washington': ['Seattle', 'Olympia', 'Spokane'].sort,
+  }
+
+PRODUCT_TYPES = [
+  'Flower', 'Vapes', 'Oils', 'Hemp', 'Tinctures', 'Edibles'
+]
+
 COUNTRIES = [
   {val: 'usa',    label: 'United States'},
   {val: 'uk',     label: 'United Kingdom'},

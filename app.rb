@@ -153,7 +153,8 @@ get '/fullstack' do
 end
 
 get '/' do	
-	erb :'home/home', default_layout
+	#erb :'home/home', default_layout
+	erb :'search/search', default_layout
 end
 
 get '/teach' do	

@@ -11,7 +11,7 @@
     
     <%= erb :"header/links" %>
     
-    <div class='<%="container" unless @no_container || _req.path=='/' || _req.path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
+    <div class='<%="container" unless @no_container || _req.path=='z/' || _req.path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
       <%= yield %> 
     </div>
 

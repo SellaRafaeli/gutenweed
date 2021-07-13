@@ -34,10 +34,10 @@
 <div class='center_form'>
   <div class='edit_location_form'>
     <h1> Location: <%= loc[:name] %> </h1>
-    <form method=post action="/locations/<%=loc[:_id]%>">
+    <form method=post action="/locations/<%=loc[:_id]%>" autocomplete='off'>
       <div class='location_input'><label> Name </label> <input name=name value="<%=loc[:name]%>"> </div>
             
-      <div class='location_input'>
+      <div class='location_input noDisplay'>
         <label> State </label> 
         <select name=state>
           <% US_STATES.each do |state| %>
@@ -46,7 +46,13 @@
         </select>        
       </div>
       
-      <div class='location_input'><label> Address </label> <input id=address_input name=address value="<%=loc[:address]%>"> </div>
+      <div class='location_input'>
+        <label> City </label>
+        <%= erb :'/partials/state_city_select' %>      
+      </div>
+
+      <div class='location_input'><label> Address </label> <input autocomplete="new-password" id=address_input name=address value="<%=loc[:address]%>"> </div>
+
 
       <input hidden name=lat id=address_lat value="<%=loc[:lat]%>" type=number step=0.000000000001 />
       <input hidden name=lng id=address_lng value="<%=loc[:lng]%>" type=number step=0.000000000001 />

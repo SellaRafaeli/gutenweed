@@ -1,4 +1,6 @@
 <%
+  brands = $users.all.select {|u| u[:type] == 'seller'}.mapo(:handle)
+
   casts = $casts.all.sample(100)
   if pr[:q]
     casts = casts.select {|c| c.to_json.to_s.downcase.include?(pr[:q])}
@@ -6,9 +8,53 @@
 %>
 
 <!-- <h1> Search </h1> -->
-<div style='max-width: 1000px; margin-left: auto; margin-right: auto'>
-  <div class='ct'>
-  <%= erb :'/search/search_inputs_row' %>
+<div style='zmax-width: 1000px; margin: 0 auto'>
+  
+  
+  
+  <div class='displayFlex'>
+  <div class='flex2' style='background-color: #c1e6c1; zheight: 100%'>    
+    <div class='brandSelector'>
+      <h5> Brand </h5>
+      <select id='selectBrand' onchange='rerunSearch()'>
+        <option value=""> Any </option>
+        <% brands.each do |brand| %>
+          <option value="<%=brand%>" <%="selected" if pr[:brand] == brand %>> <%= brand %> </option>
+        <% end %>
+        
+        <option> Brand2 </option>
+      </select>
+    </div>
+
+    <div class='locationSelector'>
+      <h5> State / City </h5>
+      <%= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+    </div>
+
+    <div class='locationSelector'>
+      <h5> Product Type </h5>
+      <%= erb :'/partials/select_product_type', locals: {searchOnChange: true} %>      
+    </div>
   </div>
-  <%= erb :'casts/casts_list', locals: {casts: casts} %>
+  <div class='flex9' style='background-colro: blue; zheight: 100%'>  
+    <div class='' style='text-align: left'>  
+      <%= erb :'/search/search_inputs_row' %>
+    </div>
+    <%= erb :'casts/casts_list', locals: {casts: casts} %>
+  </div>
 </div>
+
+<script>
+function rerunSearch() {
+  var brand        = $('#selectBrand').val();
+  var city         = $('#city_selector').val();
+  var product_type = $('#product_type_selector').val();
+
+  var loc   = '/search?p=1';
+  if (brand) loc+='&brand='+brand;
+  if (city)  loc+='&city='+city;
+  if (product_type)  loc+='&product_type='+product_type;
+  document.location=loc;
+  
+}
+</script>
