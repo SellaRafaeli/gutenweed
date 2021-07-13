@@ -194,9 +194,13 @@ US_STATES_CITIES = {
     'Washington': ['Seattle', 'Olympia', 'Spokane'].sort,
   }
 
-PRODUCT_TYPES = [
-  'Flower', 'Vapes', 'Oils', 'Hemp', 'Tinctures', 'Edibles'
-]
+PRODUCT_TYPES = {
+    'Edibles': ['Gummies', 'Chocolates', 'Brownies', 'Mints'].sort,
+    'Flower': ['Alaska', 'Purple Haze', 'Lemon Kush'].sort,    
+    'Tinctures': ['CBD Oil', 'THC Oil'].sort,
+    'Other': ['Other'].sort,
+  }
+
 
 COUNTRIES = [
   {val: 'usa',    label: 'United States'},

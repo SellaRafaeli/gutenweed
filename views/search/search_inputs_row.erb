@@ -34,7 +34,7 @@
 
 </style>
 <div class='search_inputs_row'>
-  <form class='search_input_form' method=get action='/search'>
+  <form class='search_input_form' method=get action='/search' <% if locals[:searchOnChange] %> onsubmit='rerunSearch(); return false' <% end %>>
     <div class='first_row display_flex'>
       
       <div class='flex1 ct' style='display: flex; align-items: baseline'>

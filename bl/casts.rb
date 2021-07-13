@@ -62,7 +62,8 @@ CAST_FIELDS = [
 	'lang',
 	'media_object_fit',
 	'privacy',
-	'location'
+	'location',
+	'product_type'
 ] + CAST_AMENITIES_NAMES + CAST_AMENITIES_DETAILS
 
 MIN_VARIABLE_AMOUNT = 5

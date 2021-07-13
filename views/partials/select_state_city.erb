@@ -1,9 +1,13 @@
+<%
+  locals[:city] ||= pr[:city]
+%>
+
 <select id=city_selector name=city <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %>>
   <option value="">Any</option>
   <% US_STATES_CITIES.each do |state,cities| %>
     <optgroup label="<%=state%>">
       <% cities.each do |city| %>
-        <option value="<%=city%>" <%="selected" if pr[:city] == city %>><%=city%></option>
+        <option value="<%=city%>" <%="selected" if locals[:city] == city %>><%=city%></option>
       <% end %>
     </optgroup>
   <% end %>

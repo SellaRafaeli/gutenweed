@@ -1,28 +1,50 @@
 <%
-  brands = $users.all.select {|u| u[:type] == 'seller'}.mapo(:handle)
+  all_brands = $users.all.select {|u| u[:type] == 'seller'}.mapo(:handle)
 
-  casts = $casts.all.sample(100)
+  casts = $casts.all
+
+
+  brand = pr[:brand] 
+  if brand
+    user = $users.get(handle: brand)
+    casts = casts.select {|c| c[:user_id] == user[:_id] }
+  end 
+
+  if pr[:city]
+
+    user_ids_with_that_location = $locations.all.select {|loc| loc[:city] == pr[:city] }.mapo(:user_id)
+    
+    casts = casts.select {|c| c[:user_id].in?(user_ids_with_that_location) }
+  end
+
+  if pr[:product_type] 
+    casts = casts.select {|c| c[:product_type] == pr[:product_type] }
+  end
+
+  # if pr[:casts]
+  #   casts = 
+  # end
+
+
   if pr[:q]
     casts = casts.select {|c| c.to_json.to_s.downcase.include?(pr[:q])}
   end
 %>
 
 <!-- <h1> Search </h1> -->
-<div style='zmax-width: 1000px; margin: 0 auto'>
+<div style='height: 100%; zmax-width: 1000px; margin: 0 auto'>
   
   
   
-  <div class='displayFlex'>
+  <div class='displayFlex' style='height: 100%'>
   <div class='flex2' style='background-color: #c1e6c1; zheight: 100%'>    
     <div class='brandSelector'>
       <h5> Brand </h5>
       <select id='selectBrand' onchange='rerunSearch()'>
         <option value=""> Any </option>
-        <% brands.each do |brand| %>
+        <% all_brands.each do |brand| %>
           <option value="<%=brand%>" <%="selected" if pr[:brand] == brand %>> <%= brand %> </option>
         <% end %>
-        
-        <option> Brand2 </option>
       </select>
     </div>
 
@@ -38,9 +60,13 @@
   </div>
   <div class='flex9' style='background-colro: blue; zheight: 100%'>  
     <div class='' style='text-align: left'>  
-      <%= erb :'/search/search_inputs_row' %>
+      <%= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
     </div>
+    <% if casts.any? %>
     <%= erb :'casts/casts_list', locals: {casts: casts} %>
+    <% else %>
+    <h3 style='padding:100px; background-color: lightblue; margin: 100px'> No Results Found :\ </h3>
+    <% end %>
   </div>
 </div>
 
@@ -49,11 +75,13 @@ function rerunSearch() {
   var brand        = $('#selectBrand').val();
   var city         = $('#city_selector').val();
   var product_type = $('#product_type_selector').val();
-
+  var q            = $('.search_input').val();
   var loc   = '/search?p=1';
-  if (brand) loc+='&brand='+brand;
-  if (city)  loc+='&city='+city;
+  if (brand)         loc+='&brand='+brand;
+  if (city)          loc+='&city='+city;
   if (product_type)  loc+='&product_type='+product_type;
+  if (q)             loc+='&q='+q;
+  
   document.location=loc;
   
 }

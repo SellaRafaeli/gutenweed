@@ -238,6 +238,11 @@ is_forum = is_cast_forum(nc)
           <span></span>        
         </div>
 
+        <div class='display_flex' style='margin-top: 20px'>
+        <label>Product Type</label>
+        <%= erb :'/partials/select_product_type', locals: {product_type: cast[:product_type]} %>      
+      </div>
+
         <div class='display_flex' style='margin-top:20px; display: none'>
           <label class='pic_label' onclick=$("#img_uploader").click()>
             <div> Location </div>            
@@ -275,7 +280,7 @@ is_forum = is_cast_forum(nc)
         <% end %>
 
 
-        <h4 style='margin-bottom: 40px'> Add Images and Videos </h4>      
+        <h4 style='margin-bottom: 40px'> Additional Images/Videos </h4>      
         <%= erb :'/me/upload_media', locals: locals.merge(item: cast) %>
 
         <% if is_special %>
