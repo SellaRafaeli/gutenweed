@@ -48,7 +48,7 @@
 
 <ul style='list-style:none; padding-left: 0'>
 
-<% reviews.each do |review| %>
+<% reviews.to_a.reverse.each do |review| %>
   <% 
     id     = review[:_id] 
     reviewer_handle = ''
