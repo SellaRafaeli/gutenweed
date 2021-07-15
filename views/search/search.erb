@@ -1,7 +1,6 @@
 <%
-  all_brands = $users.all.select {|u| u[:type] == 'seller'}.mapo(:handle)
 
-  
+  all_brands = $users.all.select {|u| u[:type] == 'seller'}.mapo(:handle)
 
   if pr[:brand] || pr[:city] || pr[:product_type]
     casts = $casts.all
@@ -35,26 +34,69 @@
   end
 %>
 
+<style>
+.fa-caret-down {visibility: hidden; margin-left: 20px;}
+.open .fa-caret-down {visibility: inherit;}
+.open .fa-caret-up {visibility: hidden;}
+
+.single_brand_search_link {
+  cursor: pointer;
+  border-radius: 10px;
+  background-color:white;
+  margin: 5px;
+  display: inline-block;
+  width: 80%;
+  padding: 5px 10px;
+}
+.single_brand_search_link.selected {
+  background-color: lightblue;
+  color: white;
+}
+.single_brand_search_link:hover {
+  font-weight: bold;
+  border:1px solid black;
+
+}
+.product_type_selector, .brandSelector {
+  flex: 1;
+  zborder:1px solid blue;
+  overflow-y: scroll;
+}
+.selectorBox.closed .single_brand_search_link { display: none; }
+
+</style>
 <!-- <h1> Search </h1> -->
 <div style='height: 100%; zmax-width: 1000px; margin: 0 auto'>
   <div class='displayFlex' style='height: 100%'>
-  <div class='flex2' style='background-color: whitesmoke; padding-left: 20px'>    
-    <div class='brandSelector'>
-      <h5> Brand </h5>
+  <div class='flex2' style='background-color: whitesmoke; padding-left: 20px; display: flex; flex-direction: column'>    
+    <div class='selectorBox brandSelector open'>
+      <h5 onclick='$(this).parent().toggleClass("open").toggleClass("closed")'> 
+        Brand <i class='fal fa-caret-down'></i><i class='fal fa-caret-up'></i>
+      </h5>
+      <% if true %>
+      <div class='selector_options_list'>
+        <% all_brands.sort.each do |brand| %>
+          <div>
+            <a class='single_brand_search_link <%=pr[:brand] == brand ? "selected" : "" %>' onclick='rerunSearch({brand: "<%=brand%>"})' <%="selected" if pr[:brand] == brand %>> <%= brand %></a>  
+          </div>
+        <% end %>
+      </div>
+      <% else %>
       <select id='selectBrand' onchange='rerunSearch()'>
         <option value=""> Any </option>
         <% all_brands.each do |brand| %>
           <option value="<%=brand%>" <%="selected" if pr[:brand] == brand %>> <%= brand %> </option>
         <% end %>
       </select>
+      <% end %>
     </div>
-
     
-    <div class='locationSelector'>
+    <div class='selectorBox product_type_selector'>
       <h5> Product Type </h5>
       <%= erb :'/partials/select_product_type', locals: {searchOnChange: true} %>      
     </div>
   </div>
+
   <div class='flex9' style='background-color: whitesmoke;'>  
     <div class='' style='text-align: left'>  
       <%= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
@@ -69,10 +111,10 @@
 </div>
 
 <script>
-function rerunSearch() {
-  var brand        = $('#selectBrand').val();
+function rerunSearch(opts = {}) {
+  var brand        = opts.brand || $('#selectBrand').val();
   var city         = $('#city_selector').val();
-  var product_type = $('#product_type_selector').val();
+  var product_type = opts.product_type || $('#product_type_selector').val();
   var q            = $('.search_input').val();
   var loc   = '/search?p=1';
   if (brand)         loc+='&brand='+brand;
