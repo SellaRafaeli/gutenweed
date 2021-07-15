@@ -2,6 +2,14 @@ https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 
 
 
+TODOs:
+- in search, if no results, show list of brands (user cards - make new erb for this, showing mostly image and below it the name) - the list of brands is users with "verified". 
+- make sure user can be verified via admin dashboard (probably in main admin edit for users)
+- so: show list of brands
+- in search, make "search state" on top 
+- make products/brands show all options, and be vertical accordions 
+
+
 Shops 
 * https://cannabiscity.us/shop-online/?
 * https://www.marleynaturalshop.com/

@@ -22,14 +22,15 @@
       <% end %>
 
       <% if show_logistics_overlay(cast) %>
-      <span class='cast_logistics_overlay'>
-        <div><%= cast_logistics_overlay_text(cast)%></div>
-        <% if cast[:payment_note].present? %>
-        <div style='color: lightgreen' class='cast_logistics_payment_note'><%= cast[:payment_note] %></div>
-        <% end %>
-      </span>
+      
       <% end %>
     </a>
+    <span class='cast_logistics_overlay'>
+      <div><%= cast_logistics_overlay_text(cast)%></div>
+      <% if cast[:payment_note].present? %>
+      <div style='color: lightgreen' class='cast_logistics_payment_note'><%= cast[:payment_note] %></div>
+      <% end %>
+    </span>
   </div> 
   <div class='cast_box_text_and_img display_flex' style='margin-top: 10px; word-break: break-word;'>
     <div style='flex:1'>
