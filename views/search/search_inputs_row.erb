@@ -3,6 +3,8 @@
   padding: 20px 0 0 0;
   text-align: left;
   display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
   /*background-color: #63d634bd;*/
 }
 .search_input_expand_gear {
@@ -37,7 +39,7 @@
   <form class='search_input_form' method=get action='/search' <% if locals[:searchOnChange] %> onsubmit='rerunSearch(); return false' <% end %>>
     <div class='first_row display_flex'>
       
-      <div class='flex1 ct' style='display: flex; align-items: baseline'>
+      <div class='flex1' style='display: flex; zalign-items: baseline'>
         <!-- <a class='search_input_expand_gear' onclick='$(this).toggleClass("clicked"); $("#extra_search_inputs").toggleClass("noDisplayImportant")'>
           <i class='fa fa-gear'></i>
         </a> -->
@@ -56,7 +58,7 @@
         
 
         <div class='flex1 noDisplay'>
-          <select class="flex1 ct <%= %>" name=lang>
+          <select class="flex1 <%= %>" name=lang>
               <!-- <option value="" <%="selected" if !pr[:state].present? %>>State</option> -->
             <% search_modes = [
               {val: 'top_rated', label: 'Top-Rated'},
@@ -76,7 +78,17 @@
           <input class='search_input' name=q autofocus placeholder='Search' value="<%=pr[:q]%>" <%="zautofocus" if !search_input_on_top %> />
           <button class='search_go_btn btn2' type=submit style='margin-left:20px'><i class='fal fa-search' style='margin-right:5px'></i> Go </button>
         </div>
-              
+            
+        <div class='flex3'>
+          <div class=''>
+            <div style='font-size: 12px;padding-left: 12px;'> City </div>
+            <%= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+          </div>
+
+        </div>    
+        <div class='flex3'>
+          <!-- filler -->
+        </div>
       </div>      
 
     <br/>    
@@ -93,7 +105,7 @@
         <% if false  %>
       <span id=extra_search_inputs style='flex: 3' class='<%="znoDisplayImportant " unless (pr[:lang] || pr[:geographic_area]) %>second_row display_flex'> 
         <% lang = pr[:lang] || cu && cu[:lang] %>
-        <select class="flex1 ct <%= %>" name=lang>
+        <select class="flex1 <%= %>" name=lang>
             <option value="" <%="selected" if !lang.present? %>>Any Strain</option>
           <% STRAINS.each do |strain| %>
             <option class="<%=%>" value="<%=strain[:val]%>" <%="selected" if strain[:val] == pr[:strain] %>>
