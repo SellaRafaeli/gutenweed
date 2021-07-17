@@ -240,7 +240,7 @@ is_forum = is_cast_forum(nc)
 
         <div class='display_flex' style='margin-top: 20px'>
         <label>Product Type</label>
-        <%= erb :'/partials/select_product_type', locals: {product_type: cast[:product_type]} %>      
+        <%= erb :'/partials/select_product_type', locals: {product_type: cast[:product_type], simple_drop_down: true} %>      
       </div>
 
         <div class='display_flex' style='margin-top:20px; display: none'>

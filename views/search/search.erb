@@ -1,6 +1,7 @@
 <%
 
-  all_brands = $users.all.select {|u| u[:type] == 'seller'}.mapo(:handle)
+  cast_owners = $casts.all.mapo(:user_id).uniq
+  all_brands  = $users.all.select {|u| u[:type] == 'seller'}.select {|u| u[:_id].in?(cast_owners)}.mapo(:handle)
 
   if pr[:brand] || pr[:city] || pr[:product_type]
     casts = $casts.all
@@ -71,7 +72,8 @@
   <div class='flex2' style='background-color: whitesmoke; padding-left: 20px; display: flex; flex-direction: column'>    
     <div class='selectorBox brandSelector open'>
       <h5 onclick='$(this).parent().toggleClass("open").toggleClass("closed")'> 
-        Brand <i class='fal fa-caret-down'></i><i class='fal fa-caret-up'></i>
+        Brand 
+        <!-- <i class='fal fa-caret-down'></i><i class='fal fa-caret-up'></i> -->
       </h5>
       <% if true %>
       <div class='selector_options_list'>
