@@ -10,6 +10,8 @@
 %>
 
 <html>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+
 <title><%= title %></title>
 
 <!-- <link rel="stylesheet" type="text/css" href="<%=css%>">   -->
@@ -95,9 +97,19 @@ a { cursor: pointer; text-decoration: none}
   margin-top: 5px;
 }
 
-@media (max-width: 1000px) {
+body {
+  font-size: 90%;
+}
+@media only screen and (max-width: 800px) {  
+  .about_section {
+    padding: 20px;
+  }
+  p {
+    font-size: 20px;
+    line-height: 30px;
+  }
   .links a {
-    font-size: 50px;
+    font-size: 20px;
   }
 }
 
@@ -152,7 +164,7 @@ a { cursor: pointer; text-decoration: none}
   
   <div class='about_section aa'>
     <h3 id=intro></h3>
-    <p> Good-Weed is <b> <span class='looking' style='padding:10px'>the world's best online cannabis marketplace</span></b> - a holistic e-commerce management and sales system for your cannabis brands .<br/><br/> We supply a multi-brand cannabis enterprise the platform you need to launch e-commerce sales for your brands, customers, and market. </p>    
+    <p> Good-Weed is <b> <span class='' style='padding: 3px;border-bottom: 2px dashed gold;'>the world's best online cannabis marketplace</span></b> - a holistic e-commerce management and sales system for your cannabis brands .<br/><br/> We supply a multi-brand cannabis enterprise the platform you need to launch e-commerce sales for your brands, customers, and market. </p>    
   </div>
 
   <div class='about_section b'>
@@ -189,6 +201,12 @@ a { cursor: pointer; text-decoration: none}
         height: 200px;
         width: 200px;
         border-radius: 50%;
+      }
+      @media (max-width: 800px) {
+        #team-list img {
+          width: 100px;
+          height: 100px
+        }
       }
       #team-list .team-member {
         text-align: center;
