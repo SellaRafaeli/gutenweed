@@ -2,6 +2,7 @@
   title = 'Software for Cannabis e-Commerce '
   title = 'A Cannabis Marketplace & CRM'
   title = 'Online Marketplace for a Cannabis Enterprise'
+  title = "Your Multi-Brand Online Cannabis Marketplace"
   css   = 'https://raw.githubusercontent.com/dohliam/dropin-minimal-css/gh-pages/min/attri-dark-fairy-pink.min.css'
   css   = '/css/lib/flat-ui.min.css'
   # https://dohliam.github.io/dropin-minimal-css
@@ -24,8 +25,9 @@ body {
   zmax-width: 1200px;
   margin: auto;
   zpadding: 20px;
+  font-family: Rubik !important;
 }
-a { cursor: pointer; }
+a { cursor: pointer;}
 
 .about_section { border-bottom:10px solid green; }
 <% if false %>
@@ -35,10 +37,16 @@ a { cursor: pointer; }
 .about_section.d { background-color: #464F41; } 
 .about_section.e { background-color: #1F5151; } 
 <% else %>
-.about_section.aa { background-color: white; }
+.about_section a {
+  text-decoration: underline;
+}
+.about_section.aa { background-color: white; padding-top: 0; }
 .about_section.b { background-color: #1F5151; color: white; }
+.about_section.b { background: linear-gradient(#1F5151, black); }
+
 .about_section.c { background-color: white; }
 .about_section.d { background-color: #C2D3D1; color: white;} 
+.about_section.d { background: linear-gradient(#C2D3D1, black); }
 .about_section.e { background-color: white; } 
 <% end %>
 
@@ -48,19 +56,48 @@ a { cursor: pointer; }
   color: black;
 }
 .links {
-  display: flex;
+  zdisplay: flex;
+  zheight: 100%;
+  zmax-width: 50%;
+}
+.links_container {
+  zdisplay: inline-flex;
+  text-align: center;
+  width: 100%;
+  justify-content: space-around;
 }
 .links a {
   flex:1;
   font-size: 2.5em;
-  background-color: green;
+  zbackground-color: green;
   padding: 5px 10px;
-  color: black;
+  color: darkgreen;
   zborder-radius: 4px;
+  zheight: 100%;
+  font-size: 30px;
+  text-align: center;
+  margin-right: 10px;
+  margin-top: 5px;
 }
+
+@media (max-width: 1000px) {
+  .links a {
+    font-size: 50px;
+  }
+}
+
 .links a:hover {
-  background-color: darkgreen;
+  background-color: black;
+  font-weight: bold;
   color: white;
+}
+.logo {
+  height: 200px;
+  max-width: 200px;
+  flex:1;
+}
+.ct {
+  text-align: center;
 }
 </style>
 
@@ -68,20 +105,29 @@ a { cursor: pointer; }
 </html>
 
 <body>
-  <h3>Good-Weed.co </h3>
-  <h1 style='padding:20px'><%= title %></h1>
-  <div class=links>
-    <a href='#intro'>Intro</a>
-    <a href='#about'>About</a>
-    <a href='#solution'>Solution</a>
-    <a href='#team'>Team</a>
-    <a href='#contact'>Contact</a>
-  </div>
-  <div class='about_section aa'>
+  <!-- <h3>    Good-Weed.co  </h3> -->
+  <div style='text-align: center'>
     
+  </div>
 
-    <p> Here at good-weed.co <b>we are building the world's best multi-brand online cannabis marketplace</b>, and we'd like to supply a multi-brand enterprise with the tools it needs to scale e-commerce for its brands.</p>
+
+  
+  <div class=links_container>
+    <img src='/img/landing_page/logo1.jpeg' class=logo />
+
+    <div class='links' style='flex:1'>
+      <!-- <a href='#intro'>Intro</a> -->
+      <a href='#about'>About</a>
+      <a href='#solution'>Solution</a>
+      <a href='#team'>Team</a>
+      <a href='#contact'>Contact</a>
+    </div>
+  </div>
+  <h1 style='padding-left: 40px;'><%= title %></h1>
+  <div class='about_section aa'>
     <h3 id=intro></h3>
+    <p> July 2021: We are building <b>the world's best multi-brand online cannabis marketplace</b>, and we'd like to build it for you: a multi-brand enterprise with the tools it needs to scale e-commerce for its brands.</p>
+    
   </div>
 
   <div class='about_section b'>
@@ -134,21 +180,26 @@ a { cursor: pointer; }
         <div class='img'>
           <img src='https://i.imgur.com/NQvy8Qy.png' />
         </div>
-        <p class='team-member-name'> Sella Rafaeli, CEO </p>
+        <p class='team-member-name'> 
+          <a target=_blank href='https://sellarafaeli.com'>Sella Rafaeli, CEO </a>
+        </p>
       </div>
 
       <div class='flex1 team-member'>
         <div class='img'>
-          <img class=zrotate90 src='/img/about_us/hadar2.jpeg'/>
+          <img class=zrotate90 src='/img/landing_page/hadar2.jpeg'/>
         </div>
-        <p class='team-member-name'> Hadar Daniel, COO </p>        
+        <p class='team-member-name'> 
+          
+          <a target=_blank href='https://www.linkedin.com/in/hadar-d-64576216a/'>Hadar Daniel, COO </a>
+        </p>        
       </div>
 
       <div class='flex1 team-member'>
         <div class='img'>
           <img src='https://i.imgur.com/6tzwv77.png' />
         </div>
-        <p class='team-member-name'> Daniel Aronovich, VP R&D <i class='fal fa-linkedin'></i></p>
+        <p class='team-member-name'> <a target=_blank href='https://www.linkedin.com/in/daniel-aronovich/'>Daniel Aronovich</a>, <br/>VP R&D</p>
       </div>
 
       
@@ -172,4 +223,5 @@ function contact() {
   }
 }
 </script>
+<link href="https://fonts.googleapis.com/css2?family=Rubik" rel="stylesheet">
 </body>
