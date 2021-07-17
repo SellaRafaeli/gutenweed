@@ -415,7 +415,7 @@ post '/casts/edit/:id' do
 	
 	[:cost_dollars, :hour, :mins, :length].each { |k| data[k] = data[k].to_i if data[k].present? }
 
-	puts data
+	# puts data
 
 	# data[:user_id] = cuid
 
@@ -495,20 +495,17 @@ def show_cast_by_id
 		flash.message = 'Messages cleared.'
 	end
 
+	$stats.add(type: 'product_view', cast_id: cast_id, buyer_id: cu && cu[:_id]) if cuid!=cast[:user_id] 
 	erb :'casts/cast', default_layout
 end
 
-def record_cast_view
-	# $events.add(cast_id: pr[:id], buyer_id: cuid)
-end
+# get '/casts/:_id/analytics' do	
+# 	require_cast_owner(pr[:_id])
+#   cast       = $casts.get(pr[:_id])
+#   views      = $cast_clicks.get_many(cast_id: cast[:_id]).to_a.reverse
 
-get '/casts/:_id/analytics' do	
-	require_cast_owner(pr[:_id])
-  cast       = $casts.get(pr[:_id])
-  views      = $cast_clicks.get_many(cast_id: cast[:_id]).to_a.reverse
-
-	erb :'casts/analytics', default_layout.merge(locals: {views: views, title: cast[:title]}) 
-end
+# 	erb :'casts/analytics', default_layout.merge(locals: {views: views, title: cast[:title]}) 
+# end
 
 get '/casts/:_id' do	
 	record_cast_view	
@@ -527,7 +524,8 @@ get '/@*' do
 
   @hide_header = true if is_pro(user)
 
-	record_view({profile_user_id: user[:_id]})
+  $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id]) if cuid!=user[:_id] 
+	# record_view({profile_user_id: user[:_id]})
 	erb :'users/user', default_layout.merge(locals: {user: user})
 end
 
