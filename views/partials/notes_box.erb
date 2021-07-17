@@ -1,30 +1,36 @@
 <%
   notes = $notes.get_many(item_id: item_id)
+  puts "item_id #{item_id}"
+  puts "notes #{notes}"
 %>
 <div class='notes_box'>
   <div class='notes_list <%=item_id%>'>
     <% notes.each do |note| %>
       <div class='single_note single_list_item'>
+        <%#= note.to_json %>
         <%= nice_datetime(note[:created_at]) %>: <%= note[:text] %>
       </div>
     <% end %>
   </div>
   <div>
-    <form method=post action=/notes onsubmit="submitNote(); return false">
-      <input id=new_note placeholder='add...' /><button> send </button>
+    <form method=post action=/notes onsubmit="return submitNote(this); return false">
+      <input class='new_note' data-item_id='<%=item_id%>' placeholder='add...' /><button> send </button>
     </form>
   </div>
 </div>
 
 <script>
-function submitNote() {
-  var input = $("#new_note");
+function submitNote(elem) {
+
+  var input = $(elem).find('.new_note');
+  var item_id = input.attr('data-item_id');
   var text  = input.val();
   var data  = {text};
-  $.post('/notes',{item_id: '<%=item_id%>', text}).then(res => {
-    var html = `<div class='single_note'>${text}</div>`;
-    $('.notes_list.'+'<%=item_id%>').append(html);
+  $.post('/notes',{item_id: item_id, text}).then(res => {
+    var html = `<div class='single_note single_list_item'>${text}</div>`;
+    $('.notes_list.'+item_id).append(html);
     input.val('');
-  })
+  });
+  return false;
 }
 </script>
