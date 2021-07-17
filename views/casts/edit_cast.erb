@@ -91,6 +91,7 @@ is_forum = is_cast_forum(nc)
 
       <a target=_blank href='<%=cast_link(cast)%>' class='btn nowcast_color' > Product Page <i class='cast_title_icon fa fa-external-link'></i></a>
       
+
       <% if false %>
       <a target=_blank href='/casts/<%=nc[:_id]%>/analytics' class='btn nowcast_color' >Analytics  <i class='cast_title_icon fal fa-analytics'></i> </a>
       <% end %>
@@ -101,6 +102,11 @@ is_forum = is_cast_forum(nc)
   <%#= nc.to_json %>
   <% end %>
   <form id=edit_cast_form method=post action='/casts/edit/<%=id%>'>
+    <div>
+      <button class='btn btn-raised btn-info'>Update</button>    
+      <br/>
+      <br/>
+    </div>
     <div class='nc_box ct'>
 
       <div class=''>
@@ -142,8 +148,7 @@ is_forum = is_cast_forum(nc)
       </div>
 
       <br/>
-      <!-- <br/>       -->
-      
+      <!-- <br/>       -->      
 
       <% if !is_special && false %>   
       <div>
@@ -511,11 +516,10 @@ is_forum = is_cast_forum(nc)
 
     <% end %> <!-- end !is_website -->
     </div> <!-- end nc box -->
-    <br/>
-    <button class='btn btn-raised btn-info'>Update</button>    
+    <br/>    
     
     <br/>
-    
+    <div><button class='btn btn-raised btn-info'>Update</button>    </div>
   </form>
 
   

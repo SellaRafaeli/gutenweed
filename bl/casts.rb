@@ -508,14 +508,17 @@ end
 # end
 
 get '/casts/:_id' do	
-	record_cast_view	
+#	record_cast_view	
 	show_cast_by_id
 end
 
 get '/@*/:_id/:cast_title' do
-	record_cast_view
+#	record_cast_view
 	# @hide_header = true
 	show_cast_by_id
+end
+
+def record_cast_view
 end
 
 get '/@*' do	
