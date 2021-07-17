@@ -5,7 +5,7 @@ is_new = id == 'new'
 cast   = nc = {}
 cast   = nc = $casts.get(id) || {recurrence: RECURRENCE_ON_DEMAND}
 
-min_cast_cost = 10 
+min_cast_cost = 1 
 nc[:cost_dollars] = min_cast_cost if nc[:cost_dollars].to_i < min_cast_cost
 
 cast[:type] ||= pr[:type]
