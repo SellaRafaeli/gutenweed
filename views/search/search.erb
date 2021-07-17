@@ -48,6 +48,7 @@
   display: inline-block;
   width: 80%;
   padding: 5px 10px;
+  /*display: inline-flex;*/
 }
 .single_brand_search_link.selected {
   background-color: lightblue;
@@ -67,6 +68,7 @@
 .single_brand_img {
   height: 40px;
   width: 40px;
+  border-radius: 50%;
 }
 </style>
 <!-- <h1> Search </h1> -->
@@ -87,7 +89,8 @@
           <div>            
             <a class='single_brand_search_link <%=pr[:brand] == brand ? "selected" : "" %>' onclick='rerunSearch({brand: "<%=brand%>"})' <%="selected" if pr[:brand] == brand %>> 
               <img class='single_brand_img' src='<%=brand_user[:img_url]%>' />
-              <%= brand %></a>  
+              <span><%= brand %></span>
+            </a>  
           </div>
         <% end %>
       </div>
