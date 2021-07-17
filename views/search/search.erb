@@ -1,7 +1,7 @@
 <%
 
   cast_owners = $casts.all.mapo(:user_id).uniq
-  all_brands  = $users.all.select {|u| u[:type] == 'seller'}.select {|u| u[:_id].in?(cast_owners)}.mapo(:handle)
+  all_brands  = $users.all.select {|u| u[:type] == 'seller'}.select {|u| u[:_id].in?(cast_owners)}
 
   if pr[:brand] || pr[:city] || pr[:product_type]
     casts = $casts.all
@@ -64,7 +64,10 @@
   overflow-y: scroll;
 }
 .selectorBox.closed .single_brand_search_link { display: none; }
-
+.single_brand_img {
+  height: 40px;
+  width: 40px;
+}
 </style>
 <!-- <h1> Search </h1> -->
 <div style='height: 100%; zmax-width: 1000px; margin: 0 auto'>
@@ -77,19 +80,24 @@
       </h5>
       <% if true %>
       <div class='selector_options_list'>
-        <% all_brands.sort.each do |brand| %>
-          <div>
-            <a class='single_brand_search_link <%=pr[:brand] == brand ? "selected" : "" %>' onclick='rerunSearch({brand: "<%=brand%>"})' <%="selected" if pr[:brand] == brand %>> <%= brand %></a>  
+        <% all_brands.sort_by {|b| b[:handle]}.each do |brand_user| %>
+          <% 
+            brand = brand_user[:handle]
+          %>
+          <div>            
+            <a class='single_brand_search_link <%=pr[:brand] == brand ? "selected" : "" %>' onclick='rerunSearch({brand: "<%=brand%>"})' <%="selected" if pr[:brand] == brand %>> 
+              <img class='single_brand_img' src='<%=brand_user[:img_url]%>' />
+              <%= brand %></a>  
           </div>
         <% end %>
       </div>
       <% else %>
-      <select id='selectBrand' onchange='rerunSearch()'>
+      <!-- <select id='selectBrand' onchange='rerunSearch()'>
         <option value=""> Any </option>
         <% all_brands.each do |brand| %>
           <option value="<%=brand%>" <%="selected" if pr[:brand] == brand %>> <%= brand %> </option>
         <% end %>
-      </select>
+      </select> -->
       <% end %>
     </div>
     
