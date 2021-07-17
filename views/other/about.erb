@@ -29,7 +29,10 @@ body {
 }
 a { cursor: pointer;}
 
-.about_section { border-bottom:10px solid green; }
+.about_section, .center_text { 
+  max-width: 900px;
+  margin: auto;  
+}
 <% if false %>
 .about_section.aa { background-color: #BFCBA8; }
 .about_section.b { background-color: #5B8A72; }
@@ -47,10 +50,13 @@ a { cursor: pointer;}
 .about_section.c { background-color: white; }
 .about_section.d { background-color: #C2D3D1; color: white;} 
 .about_section.d { background: linear-gradient(#C2D3D1, black); }
-.about_section.e { background-color: white; } 
+.about_section.e { background-color: white; border-bottom: none} 
 <% end %>
 
 .about_section {
+  border-bottom:10px solid green; 
+  padding-top: 20px;
+
   zbackground-color: blue;
   padding: 40px;
   color: black;
@@ -123,34 +129,34 @@ a { cursor: pointer;}
       <a href='#contact'>Contact</a>
     </div>
   </div>
-  <h1 style='padding-left: 40px;'><%= title %></h1>
+  <h1 class='ct center_text' style='padding-top: 30px;'><%= title %></h1>
   <div class='about_section aa'>
     <h3 id=intro></h3>
-    <p> July 2021: We are building <b>the world's best multi-brand online cannabis marketplace</b>, and we'd like to build it for you: a multi-brand enterprise with the tools it needs to scale e-commerce for its brands.</p>
-    
+    <p> Good-Weed is a holistic e-commerce management and sales system for your cannabis brands - <b> the world's best multi-brand online cannabis marketplace</b> - supplying a multi-brand cannabis enterprise with the tools it needs to scale e-commerce for its brands and their market. </p>    
   </div>
 
   <div class='about_section b'>
     <h3 id=about> About </h3>
     
-    <p> Our product is an online, multi-brand cannabis marketplace which allows a cannabis enterprise to sell multiple self-managed brands. Our marketplace supplies each seller with robust tools to manage customers, products, stores, stock, orders, payments, and reviews, and each buyer with reviews, search tools, and every kind of support available to create the best online shopping experience for cannabis products and accessories. </p>
+    <p>Good-Weed is a cannabis-oriented tech startup that aspires to make good weed accessible for everyone.</p>
 
-    <p>We are looking to join <b>an ambitious cannabis enterprise</b> and supply the technical platform to facilitate a multi-brand, national and international marketplace for home-grown and third-party cannabis brands, to position ourselves as the go-to marketplace for cannabis products. </p>
+    <p> Our product is an online, multi-brand cannabis marketplace which allows a cannabis enterprise to sell multiple self-managed brands. Our marketplace supplies each seller with robust tools holistically to manage the e-commerce world: customers, products, stores, stock, orders, payments, and reviews.</p>
+
+    <p> For your customers, we provide the best e-commerce experience: reviews to find good weed for them, search tools, and every kind of support available to create the best online shopping experience for cannabis products and accessories.</p>
+
+    <p>We are looking to join an ambitious cannabis enterprise and supply the technical platform to facilitate a multi-brand, national and international marketplace for home-grown and third-party cannabis brands, to position ourselves as the go-to marketplace for cannabis products.</p>
   </div>
 
   <div class='about_section c'>
     <h3 id=solution>Solution</h3>
     
-    <p>
-      Our marketplace allows a multiple cannabis brands (each "seller") to open an online store via which they can manage their customers, products, stock, physical locations, as well as accept and manage order life-cycle, payments, and reviews. The marketplace further allows buyers to search for brands and products, leave reviews, and communicate with sellers and among themselves. 
-    </p>
+    <p>Our marketplace allows a multiple cannabis brands (each "seller") to open an online store via which they can manage their customers, products, stock, physical locations, as well as accept and manage order life-cycle, payments, reviews and communicate with sellers and among themselves.</p>
 
-    <p>
-      As of July 2021, we are actively developing additional features to improve the e-commerce life for both buyers and sellers and for the administering enterprise - <b>that's you.</b> 
-    </p>
+    <p> As for their customers - the marketplace is designed so that each customer can find the good weed suitable for them by searching for brands and products, locations and more, while enjoying an advanced review system.</p>
 
-    <p>
-      If your enterprise is looking to scale its e-commerce to lead the online cannabis marketplace, please <a onclick=contact()>contact us</a> today to schedule a demo. 
+    <p> As of July 2021, we are actively developing additional features to improve the e-commerce life for both buyers and sellers and for the administering enterprise - that's you.</p>
+
+    <p> If your enterprise is looking to scale its e-commerce to lead the online cannabis marketplace, <a onclick=contact()>contact us</a> today to schedule a demo. 
     </p>
   </div>
 
