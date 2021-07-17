@@ -117,7 +117,7 @@
     <% if casts.any? %>
       <%= erb :'casts/casts_list', locals: {casts: casts} %>
     <% else %>
-      <%= erb :'search/brands_list' %>
+      <%= erb :'search/brands_list', locals: {brands: all_brands} %>
       <!-- <h3 style='padding:100px; background-color: lightblue; margin: 100px'> No Results Found :\ </h3> -->
     <% end %>
   </div>

@@ -156,9 +156,14 @@ get '/fullstack' do
 	erb :'home/home', default_layout
 end
 
-get '/' do	
+get '/about' do	
 	erb :'other/landing_page'
 	# erb :'search/search', default_layout
+end
+
+get '/' do	
+	# erb :'other/landing_page'
+	erb :'search/search', default_layout
 end
 
 get '/app' do 
