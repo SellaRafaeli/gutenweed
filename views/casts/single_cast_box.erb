@@ -9,6 +9,20 @@
   user_pic = cast_pic unless user_pic.present? && CGI.unescape_html(user_pic)!=DEFAULT_PIC   
 %>
 
+<style>
+.single_product_stat {
+  font-size: 12px;
+  background-color: whitesmoke;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  display: inline-block;
+  border-radius: 5px;
+  color: black !important;
+  font-weight: normal !important;
+  margin-left: 0 !important;
+}
+</style>
+
 <span class='cast_box single_type_box'>          
   <div class='cast_img_and_logistics'>
     <a class='single_type_box_image_link_container' href='<%=cast_link(cast)%>'>
@@ -53,6 +67,7 @@
         </div> -->
         <% end %>
       </div>
+
       <a class='cast_box_text_title' href='<%=cast_link(cast)%>'>
         <h4 class='cast_box_title'><%= cast[:title] %>
         <!-- <div class='cast_box_desc'><%= cast[:desc] %></div> -->
@@ -62,6 +77,10 @@
           <% end %>
         </h4>
       </a>
+      <div class='product_stats'>
+        <span class='single_product_stat'> <%= rand(30) %>% THC </span> 
+        <span class='single_product_stat'> <%= ['sativa', 'indica', 'hybrid'].sample %> </span> 
+      </div>
     </div>
   </div>
 </span>

@@ -71,6 +71,10 @@
   border-radius: 50%;
   object-fit: contain;
 }
+.brand_text {
+  font-size: 14px;
+  margin-left: 10px;
+}
 </style>
 <!-- <h1> Search </h1> -->
 <div style='height: 100%; zmax-width: 1000px; margin: 0 auto'>
@@ -90,7 +94,7 @@
           <div>            
             <a class='single_brand_search_link <%=pr[:brand] == brand ? "selected" : "" %>' onclick='rerunSearch({brand: "<%=brand%>"})' <%="selected" if pr[:brand] == brand %>> 
               <img class='single_brand_img' src='<%=brand_user[:img_url]%>' />
-              <span><%= brand %></span>
+              <span class='brand_text'><%= brand %></span>
             </a>  
           </div>
         <% end %>
