@@ -13,9 +13,10 @@
     
     <div class='<%="container" unless @no_container || _req.path=='z/' || _req.path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
       <%= yield %> 
+      <div style='padding-bottom: 300px'></div>
     </div>
 
-    <div style='zpadding-bottom: 100px'></div>
+    
     
     <%= erb :"layout/footer" %>           
   <link rel="stylesheet" href="/css/fonts/RobotoFonts.css">

@@ -68,7 +68,7 @@
 
   <hr/>
 
-<h2> Location Stock </h2>
+<h3> Location Stock </h3>
   <div class='all_location_items'>    
     <% items.each do |item| %>
       <div class='single_location_item_list'>
@@ -90,7 +90,9 @@
     <br/>
     <button class='btn btn-raised btn-primary' onclick=updateLocationItems();> Save Location Items </button>
     <button class='btn btn-primary' onclick=copyLastLocationItem()> + Add Item </button>
-  
+
+<h3> Updates </h3>  
+<%= erb :'/partials/notes_box', locals: {item_id: loc[:_id]} %>
 
   <script>
     function copyLastLocationItem() {
