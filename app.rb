@@ -44,7 +44,7 @@ post '/ping' do
 end
 
 post '/contact' do 
-	
+
 end
 
 get '/login_as/?:handle?' do 
@@ -157,7 +157,7 @@ get '/fullstack' do
 end
 
 get '/' do	
-	erb :'other/about'
+	erb :'other/landing_page'
 	# erb :'search/search', default_layout
 end
 
