@@ -17,6 +17,8 @@
 
   subtitle = user[:subtitle]
   subtitle = "" #"You can find me here on nowcast." unless subtitle.present?
+
+  allow_admin_login = ENV['ALLOW_ADMIN_LOGIN'] == 'yes'
 %>
 
 <!-- https://github.com/muaz-khan/WebRTC-Experiment/tree/master/one-to-many-video-broadcasting -->
@@ -149,7 +151,7 @@
 <div class='user_page container1300'>
 
   <div class='user_top_half display_flex_wrap'>
-    <% if true %>
+    <% if allow_admin_login %>
     <a style='position: absolute; left: 10px' class='btn btn-raised btn-danger' href='/protected/login_as?email=<%=user[:email]%>'>admin login</a>
     <% end %>
 
