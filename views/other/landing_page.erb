@@ -36,8 +36,8 @@ h3 {
 a { cursor: pointer; text-decoration: none}
 
 .about_section, .center_text { 
-  max-width: 900px;
-  margin: auto;  
+  zmax-width: 900px;
+  margin: auto;    
 }
 <% if false %>
 .about_section.aa { background-color: #BFCBA8; }
@@ -48,7 +48,7 @@ a { cursor: pointer; text-decoration: none}
 <% else %>
 .about_section a {
   ztext-decoration: underline;
-  color: #1F5151;
+  color: #C2D3D1;
   text-decoration: none;
 }
 .about_section a:hover {
@@ -56,11 +56,13 @@ a { cursor: pointer; text-decoration: none}
 }
 .about_section.aa { background-color: white; padding-top: 0; }
 .about_section.b { background-color: #1F5151; color: white; }
-.about_section.b { background: linear-gradient(#1F5151, black); }
+.about_section.b { zbackground: linear-gradient(#1F5151, black); }
 
 .about_section.c { background-color: white; }
 .about_section.d { background-color: #C2D3D1; color: white;} 
-.about_section.d { background: linear-gradient(#C2D3D1, black); }
+.about_section.d { background-color: #1F5151; color: white;} 
+
+.about_section.d { zbackground: linear-gradient(#C2D3D1, black); }
 .about_section.e { background-color: white; border-bottom: none} 
 <% end %>
 
@@ -69,13 +71,15 @@ a { cursor: pointer; text-decoration: none}
   padding-top: 20px;
 
   zbackground-color: blue;
-  padding: 40px;
+  padding: 40px 200px 40px 200px;
   color: black;
 }
 .links {
   zdisplay: flex;
   zheight: 100%;
   zmax-width: 50%;
+  background-color: black;
+  padding: 10px;
 }
 .links_container {
   zdisplay: inline-flex;
@@ -144,17 +148,18 @@ body {
 
   
   <div class=links_container>
-    <img src='/img/landing_page/logo1.jpeg' class=logo />
+    <!-- <img src='/img/landing_page/logo1.jpeg' class=logo />
     <h1 class='ct center_text' style='padding-bottom: 30px;'>
       The Cannabis Marketplace
       <%#= title %>        
     </h1>
     <h2 style='margin: 0 0 20px 0'>
       For your cannabis enterprise's brands / July 21st, 2021
-    </h2>
+    </h2> -->
 
     <div class='links' style='flex:1'>
       <!-- <a href='#intro'>Intro</a> -->
+      <a href='#'>Goodweed </a>
       <a href='#about'>About</a>
       <a href='#solution'>Solution</a>
       <a href='#team'>Team</a>
@@ -220,7 +225,7 @@ body {
         font-size: 100%;
       }
     </style>
-    <h3 id=team> Leadership </h3>
+    <h3 id=team> Team </h3>
     <br/>
     <div style='display: flex; justify-content: space-around;' id=team-list>
       <div class='flex1 team-member'>
