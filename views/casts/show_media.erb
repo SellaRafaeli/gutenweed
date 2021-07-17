@@ -24,7 +24,7 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  object-fit: <%= item[:media_object_fit]%> ;
+  object-fit: <%= item[:media_object_fit] || 'cover' %> ;
   padding: 3px solid white;
 }
 
