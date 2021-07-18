@@ -3,7 +3,7 @@
   if buys.any? 
 %>
   <div class='my_tickets'>
-    <h3 class=ct> I purchased: </h3>
+    <h5> My purchases </h5>
     <%= erb :'orders/orders_list', locals: {orders: buys} %>    
   </div>
   <% end %>
@@ -13,7 +13,7 @@
   if orders.any? 
 %>
   <div class='my_tickets'>
-    <h3 class=ct> I sold: </h3>
+    <h5> My sales </h5>
     <%= erb :'orders/orders_list', locals: {orders: orders, is_seller: true} %>
   </div>
 <% end %>

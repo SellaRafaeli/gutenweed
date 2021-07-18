@@ -1,7 +1,7 @@
 # enrollment is like an "order"
 $enrolls = $enrollment = $mongo.collection('enrollment')
 
-ENROLL_ACTIVE   = 'active'
+ENROLL_ACTIVE   = 'new'
 ENROLL_CANCELED = 'canceled'
 
 # user_id - enrolling user

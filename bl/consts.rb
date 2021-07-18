@@ -291,3 +291,6 @@ CAST_TYPES_SINGLE = ['Class', 'Course', 'Lecture', 'Webinar']
 
 REFERRAL_PCT    = 10
 REFERRAL_MONTHS = 6
+
+
+ORDER_STATUSES = ['new', 'in progress', 'shipped', 'received', 'reviewed']

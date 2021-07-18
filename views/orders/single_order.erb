@@ -23,6 +23,10 @@
   height: 50px;
   width: 50px;
 }
+.order_right {
+  display: flex;
+  align-items: center;
+}
 
 </style>
 
@@ -48,23 +52,27 @@
         </a>
       </div>
 
-      <div class=flex2>
-        <div><b> amount: <%= o[:amount].to_f/100 %> </b> </div>
-        <div>time: <%= o[:created_at] %></div>
-          <div>
-            <b> status </b>
+      <div class='flex2'>
+        <b> $<%= o[:amount].to_f/100 %> </b> 
+        <div><%= nice_datetime(o[:created_at]) %></div>
+      </div>
+
+      <div class='flex5 order_right'>
+
+        <div class=flex3>  
             <% if is_seller %>
               <select onchange="updateOrderStatus($(this).val(), '<%=o[:_id]%>')">
-                <% ['active', 'received', 'delivered', 'reviewed'].each do |status| %>
+                <% ORDER_STATUSES.each do |status| %>
                   <option <%="selected" if o[:status]==status %> ><%=status%></option>
                 <% end %>
               </select>        
             <% else %>
               <%= o[:status] %>
             <% end %>
-          </div>
+        </div>
       </div>
     </div>
+    <br/>
     <%= erb :'/partials/notes_box', locals: {item_id: o[:_id]} %>
   </div>  
 

@@ -1,7 +1,27 @@
 <%
   is_seller ||= false
+  orders = orders.reverse if !$prod
+  selected_order_status = pr[:order_status_type] || 'Any'
+  if (selected_order_status!='Any')
+    orders = orders.select {|o| o[:status] == selected_order_status}
+  end
 %>
-<h2> Orders List </h2>
+<style>
+.orders_top_list {
+  zborder:1px solid red;
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+}
+</style>
+<h2 class='orders_top_list'> 
+  <span>Orders </span>
+<select onchange='filterOrders(this)'>
+  <% (['Any'] + ORDER_STATUSES).each do |status| %>
+    <option <%='selected' if selected_order_status == status %>><%= status %></option>
+  <% end %>  
+</select>
+</h2>
 <% if is_seller %>
 <div>
   <button class='btn btn-raised btn-primary' type=button onclick=addOrder()>+ Add Order</button>
@@ -29,4 +49,10 @@ function addOrder() {
 function updateOrderStatus(val, orderId) {
   $.post('/enrolls/'+orderId, {status: val}).then(()=>alert('updated'));
 } 
+
+function filterOrders(sel) {
+  var val = $(sel).val();
+  console.log(val);
+  document.location = document.location+'&order_status_type='+val;
+}
 </script>
