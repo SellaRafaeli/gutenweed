@@ -3,7 +3,7 @@
   cast_owners = $casts.all.mapo(:user_id).uniq
   all_brands  = $users.all.select {|u| u[:type] == 'seller'}.select {|u| u[:_id].in?(cast_owners)}
 
-  if pr[:brand] || pr[:city] || pr[:product_type]
+  if true || pr[:brand] || pr[:city] || pr[:product_type]
     casts = $casts.all
   else 
     casts = []

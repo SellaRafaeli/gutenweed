@@ -143,6 +143,7 @@
 
 <%
   logo = '/favicon.ico'
+  logo = '/img/landing_page/logo6.png'
   is_post_page = _req.path.to_s.starts_with?('/posts/')
   is_main_page = _req.path.to_s == '/'
 %>
@@ -157,7 +158,7 @@
 
   <div class='top-nav'>
     <% if _req.path!='/z' %>
-    <!-- <a class='logo' href='/'> <img src='<%=logo%>' style='height:30px'/></a> -->
+    <a class='logo' href='/'> <img src='<%=logo%>' style='height:30px'/></a>
     <% end %>       
 
 
@@ -175,7 +176,7 @@
     <% unless @hide_header %>
     
     <a class='nowcast_color' href='/' style='color: #00b140'>
-      Good-Weed
+      <!-- Good-Weed -->
     </a>    
     <% if cu %>
       <a class='' href='/me'>
