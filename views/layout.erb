@@ -3,15 +3,17 @@
 <%# flash.message = 'test' %>
 <%
 # record_pageview
+path = _req.path rescue 'error-path'
+
 @brand = get_brand
 %>
 <%= erb :'layout/doc_head' %>
 <body>  
-    <%= erb :"layout/flash" %>        
+    <%= erb :"layout/flash" rescue '' %>        
     
     <%= erb :"header/links" %>
     
-    <div class='<%="container" unless @no_container || _req.path=='z/' || _req.path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
+    <div class='<%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
       <%= yield %> 
       <div style='padding-bottom: 300px'></div>
     </div>
@@ -89,8 +91,10 @@ function layoutOnLoad() {
 
 $(document).ready(layoutOnLoad);
 </script>
-
-<%= erb :'layout/cookies_banner' if !session[:cookies_accepted].present? %>
+<%
+  cookies_accepted = session[:cookies_accepted].present? rescue false
+%>
+<%= erb :'layout/cookies_banner' if !cookies_accepted %>
 
 <script>
 window.filestackAPIkey = 'AHuQo4ciRwufvk1mRbnaNz';

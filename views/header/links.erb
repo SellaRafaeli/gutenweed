@@ -143,13 +143,14 @@
 </style>
 
 <%
+  path = _req.path rescue ''
   logo = '/favicon.ico'
   logo = '/img/landing_page/logo6.png'
-  is_post_page = _req.path.to_s.starts_with?('/posts/')
-  is_main_page = _req.path.to_s == '/'
+  is_post_page = path.to_s.starts_with?('/posts/') rescue false
+  is_main_page = path.to_s == '/' rescue false
 %>
 
-<% if _req.path.starts_with?('/admin') %>
+<% if path.starts_with?('/admin') %>
   <div style='padding:10px'><b>Admin</b>
     <a class='btn' href='/'>Homepage</a>
     <a target=_blank class='btn btn-info' href='/admin/daily_report'>Daily Report</a>
@@ -158,7 +159,7 @@
 <% else %>
 
   <div class='top-nav'>
-    <% if _req.path!='/z' %>
+    <% if path!='/z' %>
     <a class='logo' href='/'> <img src='<%=logo%>' style='height:30px'/></a>
     <% end %>       
 
