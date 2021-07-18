@@ -3,10 +3,14 @@
   cast_owners = $casts.all.mapo(:user_id).uniq
   all_brands  = $users.all.select {|u| u[:type] == 'seller'}.select {|u| u[:_id].in?(cast_owners)}
 
-  if true || pr[:brand] || pr[:city] || pr[:product_type]
-    casts = $casts.all
+  good_cast_ids = ['YNQqYcWAL', 'gPr6BRfRg', 'nRNwuBinl', 'c1kH9iX8Z', 'GQIkhxgXs', 'Ajx4sVD6E', 'eijAbrxpv', 'yZjuY33su', 'arJPs9izu', '5cvGxmNtF', 'scVXlGnrw', 'Lo2q6PP8i', 'gF7RiIkjQ', 'LE4tPWzTd', 'G5hUIACvj', 'WTiplOilp', 'eY3rmgMkU']
+  # good_cast_ids = ['s5pICJJUb']
+  if $prod 
+    casts = $casts.all(_id: {'$in': good_cast_ids })
   else 
-    casts = []
+    # good_cast_ids = ['s5pICJJUb']
+    # casts = $casts.all(_id: {'$in': good_cast_ids })
+    casts = $casts.all 
   end
 
   brand = pr[:brand] 

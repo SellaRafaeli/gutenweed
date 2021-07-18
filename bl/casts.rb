@@ -429,7 +429,7 @@ post '/casts/edit/:id' do
 		{msg: 'ok'}
 	else 
 		flash.message = 'Updated.'
-		redirect "/casts/edit/#{id}"
+		redirect "/me?sec=by_me"
 	end
 end	
 
