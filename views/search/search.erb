@@ -13,6 +13,8 @@
     casts = $casts.all 
   end
 
+  casts = casts.shuffle 
+
   brand = pr[:brand] 
   if brand
     user = $users.get(handle: brand)
@@ -125,8 +127,9 @@
     <% if casts.any? %>
       <%= erb :'casts/casts_list', locals: {casts: casts} %>
     <% else %>
+      
+      <h5 style='padding:20px; background-color: lightblue; margin: 20px'> No Results Found. Check out some of our leading brands. </h5>
       <%= erb :'search/brands_list', locals: {brands: all_brands} %>
-      <!-- <h3 style='padding:100px; background-color: lightblue; margin: 100px'> No Results Found :\ </h3> -->
     <% end %>
   </div>
 </div>
