@@ -12,11 +12,11 @@
   #casts    = casts.select { |cast| cast['title'] == 'my awesome class' }
   casts    = casts.select {|cast| !cast[:support_cast]}
   casts    = add_user_to_casts(casts)
-  casts    = casts.sort_by {|cast|     
-    date = cast_next_date_utc(cast) 
-    # puts cast['title'] + date.to_s.red
-    date
-  } #singles + series
+  # casts    = casts.sort_by {|cast|     
+  #   date = cast_next_date_utc(cast) 
+  #   # puts cast['title'] + date.to_s.red
+  #   date
+  # } #singles + series
 %>  
 
 <style>
