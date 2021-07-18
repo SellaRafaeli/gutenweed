@@ -82,9 +82,9 @@ get '/invest' do
 	erb :'other/invest', default_layout
 end
 
-get '/about' do
-	erb :'other/about', default_layout
-end
+# get '/about' do
+# 	erb :'other/about', default_layout
+# end
 
 get '/what_is_a_nowcast' do
 	erb :'other/what_is_a_nowcast', default_layout
