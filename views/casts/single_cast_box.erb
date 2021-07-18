@@ -68,10 +68,17 @@
       </a>      
     </div>
   </div>
-  <div class='product_stats' style='padding:0 5px'>
+  <div class='product_stats' style='padding:0 5px; text-align: center;'>
     <% if !$prod; cast[:thc]     ||= rand(30); cast[:strain]  ||= 'sativa' end %>
     <% if cast[:thc].to_i > 0 %> <span class='single_product_stat'> <%= cast[:thc] %>% THC,  <%= cast[:strain] %> </span><% end %>
-    <span class='single_product_stat'> 3.5 <i class='fal fa-star'></i> </span> 
-    <span class='single_product_stat'> 7 <i class='fal fa-comment-alt'></i> </span> 
+    <% avg_rating = rand(50).to_f/10 %>
+    <% num_reviews = rand(10) %>
+
+    <% color='brown'  %>
+    <% color='green' if avg_rating >= 3 %>
+    <% color='goldenrod' if avg_rating >= 4 %>
+
+    <span class='' style='font-size: 11px; color: <%=color%>'> <%= avg_rating %> <i class='fas fa-star'></i> </span> 
+    <span class='single_product_stat'> <%= num_reviews %> <i class='fal fa-comment-alt'></i> </span> 
   </div>
 </span>

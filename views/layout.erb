@@ -15,7 +15,7 @@ path = _req.path rescue 'error-path'
     
     <div class='<%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
       <%= yield %> 
-      <div style='padding-bottom: 300px'></div>
+      <div style='padding-bottom: 300px; background-color: whitesmoke'></div>
     </div>
 
     
