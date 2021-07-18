@@ -27,7 +27,15 @@ scheduler.cron EVERY_DAY_AT_11_PM do
 end
 
 scheduler.cron EVERY_DAY_AT_1_AM do
-	# send_emails_about_unread_msgs
+	send_daily_report
+end
+
+def send_daily_report
+	emails = ['sella@good-weed.co', 'hadar@good-weed.co']
+	html   = erb :'admin/daily_report' 
+	emails.each { |email|
+	 send_email(email, 'Good-Weed Daily Report - '+Time.now.to_s, html) 
+	}
 end
 
 

@@ -26,6 +26,10 @@ get '/admin/stats' do
   erb :'admin/stats', layout: :layout
 end
 
+get '/admin/daily_report' do 
+  erb :'admin/daily_report', default_layout
+end 
+
 get '/protected/login_as' do
   user = $users.get(email: pr[:email])
   

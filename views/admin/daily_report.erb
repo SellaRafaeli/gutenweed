@@ -1,0 +1,52 @@
+<%
+  now       = Time.now
+  requests  = $requests.get_many({created_at: {'$gt': now - 24.hours}})
+  new_users = $users.get_many({created_at: {'$gt': now - 24.hours}})
+  new_products = $casts.get_many({created_at: {'$gt': now - 24.hours}})
+  orders    = $enrolls.get_many({created_at: {'$gt': now - 24.hours}})
+%>
+
+<style>
+</style>
+
+<div class='container'>
+  <h1> Good-Weed Daily Report: Last 24 Hours: <%= now %>  </h1>
+
+  <%
+    sections = [
+      {items: requests, title: 'Requests', data: {ips: requests.mapo(:ip).hash_of_num_occurrences}},
+      {items: new_products, title: 'New Products'},      
+      {items: orders, title: 'New Orders'},
+      {items: new_users, title: 'New Users'},
+    ]
+  %>
+
+  <% sections.each do |section| %>
+  
+  <% items = section[:items] %>
+
+  <%
+
+  %>
+    <div> 
+      <%= section[:title] %>: <%= items.count %> in last 24 hours;
+
+      <span> last 10: </span>
+        <% items.sample(10).each do |item| %>
+        <% data = item.just(:ip, :title, :email, :cast_id) %>
+          <div class='single_list_item' style='display: inline-block;'>
+            <%= data.to_json %>
+          </div>
+        <% end %>
+    </div>
+    <% if section[:data] %>
+      <h5> Data </h5>
+      <div class='single_list_item' style='display: inline-block;'>
+        <%= section[:data].to_json %>
+      </div>
+    <% end %>
+    <hr/>
+  <% end %>
+  
+  
+</div>
