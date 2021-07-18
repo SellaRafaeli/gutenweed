@@ -65,11 +65,13 @@
           <div><small> <%= rating  %>⭐, <%= reviews.size %> reviews </small></div>
           <% end %>
         </h4>
-      </a>
-      <div class='product_stats'>
-        <% if cast[:thc].to_i > 0 %><span class='single_product_stat'> <%= cast[:thc] %>% THC </span> <% end %>
-        <% if cast[:strain] %> <span class='single_product_stat'> <%= cast[:strain] %> </span> <% end %>
-      </div>
+      </a>      
     </div>
+  </div>
+  <div class='product_stats' style='padding:0 5px'>
+    <% if !$prod; cast[:thc]     ||= rand(30); cast[:strain]  ||= 'sativa' end %>
+    <% if cast[:thc].to_i > 0 %> <span class='single_product_stat'> <%= cast[:thc] %>% THC,  <%= cast[:strain] %> </span><% end %>
+    <span class='single_product_stat'> 3.5 <i class='fal fa-star'></i> </span> 
+    <span class='single_product_stat'> 7 <i class='fal fa-comment-alt'></i> </span> 
   </div>
 </span>

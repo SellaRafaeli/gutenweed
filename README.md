@@ -10,6 +10,10 @@ TODOs:
 - make products/brands show all options, and be vertical accordions 
 
 
+Next Steps:
+* change "description" to "tags" 
+* use AI to cluster items 
+
 Shops 
 * https://cannabiscity.us/shop-online/?
 * https://www.marleynaturalshop.com/
