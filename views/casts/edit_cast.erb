@@ -342,13 +342,33 @@ is_forum = is_cast_forum(nc)
           </div>
         </div>
 
-      <% if false %>
+      <% if true %>
       <div style='text-align: left'>
-        <h4 style='margin-bottom: 40px'><span type=button class='zbtn' zonclick='$(".more_options").toggleClass("noDisplay")'>Advanced Options </span> </h4>  
+        <h4 style='margin-bottom: 40px'><span type=button class='zbtn' zonclick='$(".more_options").toggleClass("noDisplay")'>Extra Options </span> </h4>  
       </div>
 
       <div class="more_options" >
 
+        <div class='display_flex'>
+          <label> Strain </label>
+            <select name=strain style='margin-right: 0px; margin-left: 0; margin-top:0px'>
+              <option value="" <%="selected" if !nc[:lang].present? %> >
+              <% [{val: 'hybrid', label: 'Hybrid'}, {val: 'sativa', label: 'Sativa'}, {val: 'indica', label: 'Indica'}].each do |strain| %>
+                <option value="<%=strain[:val]%>" <%="selected" if nc[:strain]==strain[:val]%> >
+                  <%=strain[:label]%>
+                </option>
+              <% end %>
+            </select>
+            <!-- <span> </span> -->
+        </div>
+        <br/>
+        <div class='display_flex'>
+          <label style='vertical-align: top;'>THC % </label>
+          <span style='position: relative; bottom: -7px;'>%</span><input class='cost_input' value="<%= nc[:thc].to_i %>" name=thc type=number min=0 max=100 />
+        </div>
+
+      <% end %>
+      <% if false %>
         <div class='display_flex'>
         <label> Language </label>
           <select name=lang style='margin-right: 0px; margin-left: 0; margin-top:0px'>

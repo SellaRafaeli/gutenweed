@@ -63,7 +63,9 @@ CAST_FIELDS = [
 	'media_object_fit',
 	'privacy',
 	'location',
-	'product_type'
+	'product_type',
+	'strain',
+	'thc'
 ] + CAST_AMENITIES_NAMES + CAST_AMENITIES_DETAILS
 
 MIN_VARIABLE_AMOUNT = 5
