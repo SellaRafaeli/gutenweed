@@ -1,12 +1,12 @@
 <%
   is_seller ||= false
-
-
 %>
 <h2> Orders List </h2>
+<% if is_seller %>
 <div>
-    <button class='btn btn-raised btn-primary' type=button onclick=addOrder()>+ Add Order</button>
-  </div>
+  <button class='btn btn-raised btn-primary' type=button onclick=addOrder()>+ Add Order</button>
+</div>
+<% end %>
 
 <div class='orders_list'>
 <% orders.reverse.each do |o| %>  

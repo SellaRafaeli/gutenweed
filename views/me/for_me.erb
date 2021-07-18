@@ -16,5 +16,18 @@
     <h3 class=ct> I sold: </h3>
     <%= erb :'orders/orders_list', locals: {orders: orders, is_seller: true} %>
   </div>
+<% end %>
 
+<style>
+.no_orders_yet {
+  padding: 20px;
+  background-color: green;
+  color: white;
+}
+</style>
+
+<% if !buys.any? && !orders.any? %>
+<div class='no_orders_yet'>
+  You have no orders yet. 
+</div>
 <% end %>
