@@ -195,9 +195,9 @@ US_STATES_CITIES = {
   }
 
 PRODUCT_TYPES = {
-    'Edibles': ['Gummies', 'Chocolates', 'Brownies', 'Mints'].sort,
-    'Flower': ['Alaska', 'Purple Haze', 'Lemon Kush'].sort,    
-    'Tinctures': ['CBD Oil', 'THC Oil'].sort,
+    'Edibles': ['Edibles', 'Gummies', 'Chocolates', 'Brownies', 'Mints'].sort,
+    'Flower': ['Flower', 'Alaska', 'Purple Haze', 'Lemon Kush'].sort,    
+    'Tinctures': ['Tinctures', 'CBD Oil', 'THC Oil'].sort,
     'Other': ['Other'].sort,
   }
 
