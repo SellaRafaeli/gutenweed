@@ -2,6 +2,7 @@
 
   cast_owners = $casts.all.mapo(:user_id).uniq
   all_brands  = $users.all.select {|u| u[:type] == 'seller'}.select {|u| u[:_id].in?(cast_owners)}
+  brands      = all_brands.clone
 
   good_cast_ids = ['YNQqYcWAL', 'gPr6BRfRg', 'nRNwuBinl', 'c1kH9iX8Z', 'GQIkhxgXs', 'Ajx4sVD6E', 'eijAbrxpv', 'yZjuY33su', 'arJPs9izu', '5cvGxmNtF', 'scVXlGnrw', 'Lo2q6PP8i', 'gF7RiIkjQ', 'LE4tPWzTd', 'G5hUIACvj', 'WTiplOilp', 'eY3rmgMkU'].shuffle
   # good_cast_ids = ['s5pICJJUb']
@@ -26,7 +27,7 @@
     user_ids_with_that_location = $locations.all.select {|loc| loc[:city] == pr[:city] }.mapo(:user_id)
     
     casts = casts.select {|c| c[:user_id].in?(user_ids_with_that_location) }
-    all_brands.select!{|user| user[:_id].to_s.in?(user_ids_with_that_location) }
+    brands.select!{|user| user[:_id].to_s.in?(user_ids_with_that_location) }
   end
 
   if pr[:product_type] 
@@ -131,7 +132,7 @@
       <%= erb :'casts/casts_list', locals: {casts: casts} %>
     <% else %>
       
-      <h5 style='padding:20px; background-color: lightblue; margin: 20px'> No Results Found. Check out some of our leading brands. </h5>
+      <h5 style='padding:20px; background-color: lightblue; margin: 20px'> No Results Found. </h5>
       <%= erb :'search/brands_list', locals: {brands: all_brands} %>
     <% end %>
   </div>
