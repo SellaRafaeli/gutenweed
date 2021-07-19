@@ -26,6 +26,7 @@
     user_ids_with_that_location = $locations.all.select {|loc| loc[:city] == pr[:city] }.mapo(:user_id)
     
     casts = casts.select {|c| c[:user_id].in?(user_ids_with_that_location) }
+    all_brands.select!{|user| user[:_id].to_s.in?(user_ids_with_that_location) }
   end
 
   if pr[:product_type] 
