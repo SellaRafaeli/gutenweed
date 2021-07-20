@@ -2,7 +2,7 @@
   locals[:city] ||= pr[:city]
 %>
 
-<select id=city_selector name=city <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %>>
+<select class='input1' style='margin:0; margin-left:10px' id=city_selector name=city <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %>>
   <option value="">Any</option>
   <% US_STATES_CITIES.each do |state,cities| %>
     <optgroup label="<%=state%>">
