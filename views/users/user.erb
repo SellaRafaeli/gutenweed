@@ -18,6 +18,8 @@
   subtitle = user[:subtitle]
   subtitle = "" #"You can find me here on nowcast." unless subtitle.present?
 
+  user_locations = $locations.get_many(user_id: user_id)
+
   allow_admin_login = !$prod || (ENV['ALLOW_ADMIN_LOGIN'] == 'yes')
 %>
 
@@ -171,8 +173,9 @@
     
     <div class='user_top_right flex1'>
       <h1 id=about class='ct title'><%= title %></h1>
-      
+
       <div class='ct' style='width: 100%'>
+
         <div class='zflex1 center_contents'>
           <% if location.present? %><div class='user_location'><i class='fa fa-globe'></i> <%= location %></div><% end %>
         </div>
@@ -199,7 +202,6 @@
   <div class='user_bottom_half container1000'>
     <div class='subsubtitle user_desc'><%= user[:desc] %></div>      
     <br/>
-
     
     <div class='buttons ct'>
       <!-- <a href='#about' class='btn user_profile_btn'>
@@ -222,6 +224,20 @@
       <%= erb :'casts/casts_list', locals: {casts: user_casts} %>
     </div>
   <% end %>
+
+  <% if user_locations.any? %>
+  <h3> locations </h3>
+      <% user_locations.to_a.each do |loc| %>
+      <div class='single_user_loc single_list_item'>
+        <div class=''><%= loc[:name] %></div>
+        <div class=''><%= [loc[:address],loc[:phone],loc[:hours]].compact.join(',') %></div>
+        <div class=''><%= loc[:details] %></div>
+        <%#= loc.to_json %>
+      </div>
+  <% end %>
+  <% end %>
+
+    
 
   <% if user[:license_numbers] %>
   <div class='ct license_numbers'>

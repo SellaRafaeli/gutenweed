@@ -7,7 +7,7 @@
       <%# owner view of enrolled %>
       <% if is_owner %>
       <div class='cast_enrolled_users'>
-      <% users = users_enrolled_in_cast(cast) %>
+      <% users = [] #users_enrolled_in_cast(cast) %>
         <% if users.any? %>
           <% users.each do |user| %>
             <% next unless user && user[:name] %>
