@@ -1,0 +1,43 @@
+<%
+
+%>
+
+<style>
+.weed_categories {
+  display: flex;
+}
+.single_category {
+  height: 100px;
+  width: 100px;
+  box-shadow: 1;
+  padding: 20px;
+  background-color: white;
+  margin-right: 10px;
+  text-align: center;
+  border-radius: 10%;
+  color: #150000;
+}
+.single_category:hover {
+  zcolor: grey;
+  cursor: pointer;
+  box-shadow: 2px 2px #cccccc;;
+}
+.single_category_img_container {
+
+}
+.single_category_img_container img {
+      height: 80px;
+    width: 80px;
+    border-radius: 10%;
+}
+</style>
+<div class='weed_categories'>  
+  <% PRODUCT_TYPES.each do |type, subtypes| %>
+    <div class='single_category' onclick='rerunSearch({product_type: "<%=type%>"})'>
+      <div class='single_category_img_container'>
+        <img src='/img/search/<%=type%>.jpeg' />
+      </div>
+      <div class='single_category_title'><%= type %></div>
+    </div>
+  <% end %>
+</div>
