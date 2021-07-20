@@ -198,8 +198,10 @@ US_STATES_CITIES = {
   }
 
 PRODUCT_TYPES = {
-    'Edibles': ['Edibles', 'Gummies', 'Chocolates', 'Brownies', 'Mints'].sort,
-    'Flower': ['Flower', 'Alaska', 'Purple Haze', 'Lemon Kush'].sort,    
+    'Flower': ['Edibles', 'Gummies', 'Chocolates', 'Brownies', 'Mints'].sort,
+    'Prerolls': ['Edibles', 'Gummies', 'Chocolates', 'Brownies', 'Mints'].sort,
+    'Vapes': ['Flower', 'Alaska', 'Purple Haze', 'Lemon Kush'].sort,    
+    'Edibles': ['Edibles', 'Gummies', 'Chocolates', 'Brownies', 'Mints'].sort,    
     'Tinctures': ['Tinctures', 'CBD Oil', 'THC Oil'].sort,
     'Other': ['Other'].sort,
   }

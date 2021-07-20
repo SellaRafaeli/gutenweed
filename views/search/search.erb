@@ -121,19 +121,17 @@
       </select> -->
       <% end %>
     </div>
-    
-    <% if false %>
-    <div class='selectorBox product_type_selector'>
-      <h5> Product Type </h5>
-      <%= erb :'/partials/select_product_type', locals: {searchOnChange: true} %>      
-    </div>
-    <% end %>
   </div>
   <div class='flex9 main_search_area' style='background-color: whitesmoke; padding-bottom: 300px'>  
     <div class='' style='text-align: left'>  
       <%= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
     </div>
     <% if casts.any? %>
+      <% if pr[:product_type] %>
+        <h3> <%= pr[:product_type] %></h3>
+      <% else %>
+        <%= erb :'casts/weed_categories' %>
+      <% end %>
       <%= erb :'casts/casts_list', locals: {casts: casts} %>
     <% else %>
       
