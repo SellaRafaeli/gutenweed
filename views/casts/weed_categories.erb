@@ -35,7 +35,7 @@
   <% PRODUCT_TYPES.each do |type, subtypes| %>
     <div class='single_category' onclick='rerunSearch({product_type: "<%=type%>"})'>
       <div class='single_category_img_container'>
-        <img src='/img/search/<%=type%>.jpeg' />
+        <img src='/img/search/<%=type.to_s.downcase%>.jpeg' />
       </div>
       <div class='single_category_title'><%= type %></div>
     </div>
