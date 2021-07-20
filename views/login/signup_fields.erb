@@ -48,6 +48,27 @@
       <label class='w200'> New Password </label>
       <input class='input1' value="<%=pr[:password]%>" placeholder='Secret Password' name='password' type=password style='margin-right: 5px'/>
     </div>
+
+    <% end %>
+
+    <% if pr[:type]=='seller' %>
+    <div>
+      <label class='w200'> I am/We are a </label>
+      <select class=input1 name=subtype>
+        <option> Dispensary </option>
+        <option> Distributor </option>
+        <option> Other </option>
+      </select>
+      <!-- <input class=input1 required list="browsers" name="type" id="user_types">
+
+      <datalist id="browsers">
+        <option value="Dispensary">
+        <option value="Distributor">
+        <option value="Cultivator">
+        <option value="Other">
+      </datalist> -->
+    </div>
+    <% else %>
     <% end %>
     
     <% if pr[:enable_token] %>

@@ -46,7 +46,7 @@
 
 
   
-
+  allow_buying = false
 %>
 
 <style>
@@ -198,7 +198,9 @@
       <% if cast[:strain] %> <span class='single_product_stat'> <%= cast[:strain] %> </span> <% end %>
     </div>
     
+    <% if allow_buying %>
     <button onclick='$("#cast_enrollment").fadeIn();' style='margin-top: 10px' class='btn btn-primary btn-lg btn-raised'> Order Now </button>
+    <% end %>
   </div>
   
   <br/>

@@ -18,16 +18,8 @@
   </div>
 <% end %>
 
-<style>
-.no_orders_yet {
-  padding: 20px;
-  background-color: green;
-  color: white;
-}
-</style>
-
 <% if !buys.any? && !orders.any? %>
-<div class='no_orders_yet'>
+<div class='no_data_yet'>
   You have no orders yet. 
 </div>
 <% end %>
