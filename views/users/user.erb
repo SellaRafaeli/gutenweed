@@ -48,6 +48,9 @@
   cursor: auto;
 }
 
+.user_page {
+  padding-bottom: 300px;
+}
 .user_page .contact_form label {
   display: inline-block;
   margin-bottom: 10px;
@@ -218,6 +221,12 @@
     <div class=user_section>
       <%= erb :'casts/casts_list', locals: {casts: user_casts} %>
     </div>
+  <% end %>
+
+  <% if user[:license_numbers] %>
+  <div class='ct license_numbers'>
+    <small> License Number(s): <%= user[:license_numbers] %></small>
+  </div>
   <% end %>
 
   <div class='user_section noDisplay'>

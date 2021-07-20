@@ -5,7 +5,7 @@ $users.indexes.create_one({email: 1}, unique: true) rescue nil
 USER_KEYS = ["email",  "name", "handle", "img_url", "timezone", 
 	"contact_me", "title", "subtitle", "desc", "lang", "country",
 	 "location", "my_theme", "media", "payout_info", "tags", 
-	 "media_object_fit", "license_url", "license_filename"] + SOCIAL_NETWORKS
+	 "media_object_fit", "license_url", "license_filename", 'license_numbers'] + SOCIAL_NETWORKS
 
 #DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
 DEFAULT_IMG = DEFAULT_PIC = '/img/leaf.svg'

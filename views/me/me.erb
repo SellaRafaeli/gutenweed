@@ -34,9 +34,15 @@ form .user_img:hover {
   margin-top: 30px;
 }
 #me_form {
-  max-width: 900px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+@media (min-width: 1200px) {
+  #me_form {
+    margin-left: 300px;
+    margin-right: 200px;
+  }
 }
 
 #me_form .display_flex label, #me_form .display_flex span, #me_form .display_flex input, #me_form .display_flex img {
@@ -99,7 +105,7 @@ form .user_img:hover {
 
     <form id=me_form action='update_me' method='post' class='form1'>      
 
-    <div style='max-width: 800px; margin-left:auto; margin-right: auto;'>
+    <div style='zmax-width: 800px; margin-left:auto; margin-right: auto;'>
       <% ['dashboard','account', 'customers', 'profile', 'by_me', 'for_me', 'locations', 'stats'].each do |part_sec| %>
         <div class='me_sec <%=part_sec%> <%="noDisplay" unless sec == part_sec%>'>    
           <% puts "#{part_sec} #{(Time.now - start)/1000.to_f}" %>

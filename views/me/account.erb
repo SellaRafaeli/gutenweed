@@ -9,23 +9,7 @@
 
   <br/>
 
-  <div class='display_flex' style='margin-top:20px'>
-    <%#= user.to_json %>
-    <label> Cannabis License </label>
-    <input name=license_url      class=license_url value="<%=user['license_url']%>" hidden />    
-    <input name=license_filename class=license_filename value="<%=user['license_filename']%>" hidden /> 
-    
-    <div>
-      <button type=button class='btn btn-raised btn-primary' onclick=submitLicense()> Click to upload</button>
-      <a class='simple_link license_url' href='<%=user['license_url']%>' target=_blank><%=user['license_filename']%></a>
-
-    </div>
-    
-    
-  </div>
-
-  <br/>
-
+  
   <div class='display_flex'>                  
     <label> Username <div></div></label>
     <input class='input1' placeholder='' value="<%=user['name']%>" name='name' style='margin-right: 5px; margin-left: 0'/>
