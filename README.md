@@ -1,6 +1,14 @@
 https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 
 
+- get in touch with leading cultivators / manufacturers / dispensers in each country
+	- list them?
+	- 
+
+
+reddit: 
+- get all the dispensaries 
+- 
 
 TODOs:
 - in search, if no results, show list of brands (user cards - make new erb for this, showing mostly image and below it the name) - the list of brands is users with "verified". 
@@ -11,7 +19,7 @@ TODOs:
 
 
 Next Steps:
-* change "description" to "tags" 
+
 * use AI to cluster items 
 
 Shops 

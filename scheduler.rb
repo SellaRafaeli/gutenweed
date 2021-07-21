@@ -30,9 +30,13 @@ scheduler.cron EVERY_DAY_AT_1_AM do
 	send_daily_report
 end
 
+def pr; {}; end 
+def session; {}; end 
+def cu; nil; end
+
 def send_daily_report
 	emails = ['sella@good-weed.co', 'hadar@good-weed.co']
-	html   = erb :'admin/daily_report', default_layout
+	html   = zerb :'admin/daily_report', default_layout
 	emails.each { |email|
 	 send_email(email, 'Good-Weed Daily Report - '+Time.now.to_s, html) 
 	}

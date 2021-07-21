@@ -220,8 +220,8 @@
     </div>
     
   <% if user_casts.any? %>    
-    <div class=user_section>
-      <%= erb :'casts/casts_list', locals: {casts: user_casts} %>
+    <div class=user_section>      
+      <%= erb :'casts/casts_list', locals: {casts: user_casts, show_product_categories: true} %>
     </div>
   <% end %>
 
