@@ -526,7 +526,7 @@ end
 
 get '/@*' do	
   handle = pr['splat'].split('/')[0][0]
-  user   = $users.get(handle: handle)
+  user   = $users.get(handle: handle) || {}
 
   @hide_header = true if is_pro(user)
 
