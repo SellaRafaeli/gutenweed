@@ -1,7 +1,7 @@
 <%
   user_ids = casts.mapo(:user_id).uniq
-  locations = $locations.get_many(user_id: {'$in': user_ids}).select {|loc| loc[:lat] && loc[:lng]  }
-
+  locations = $locations.get_many(user_id: {'$in': user_ids}).select {|loc| loc[:lat].present? && loc[:lng].present?  }
+  locations = $locations.all.select {|loc| loc[:lat].present? && loc[:lng].present?  }
   x=1
 %>
 <style>
@@ -115,8 +115,10 @@ function initMap() {
 }
 
 function initAutocomplete() {
+  var center= {lat: 32.0853, lng: 34.7818};
+  console.log('center',center)
   const map = new google.maps.Map(document.getElementById("map"), {
-    center: {lat: 32.0853, lng: 34.7818},
+    center: center,
     //center: { lat: -33.8688, lng: 151.2195 },
     zoom: 13,
     mapTypeId: "roadmap",
@@ -178,15 +180,15 @@ function initAutocomplete() {
   });
 
   <% locations.each do |location| %>
-    var myLatLng = { lat: <%= location[:lat].to_i %>, lng: <%=location[:lng].to_i %> };
-    
+    var myLatLng = { lat: <%= location[:lat].to_f %>, lng: <%=location[:lng].to_f %> };
+    console.log('myLatLng',myLatLng)
     var marker = new google.maps.Marker({
       position: myLatLng,
       map,
       title: "Hello World!",
     });
     marker.setMap(map);
-    console.log('adding marker',marker)
+    console.log('adding marker',marker,marker.position.lat(),marker.position.lng())
   <% end %>
 }
 
