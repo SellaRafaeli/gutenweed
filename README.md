@@ -1,6 +1,38 @@
 https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 
 
+reddit: throwaway-weed-biz-123
+
+Presentation
+- Good-Weed - the First Intl Cannabis Marketplace
+1. Cannabis legalization -> overnight market explosion
+
+2. Existing players:	
+	- distributors 
+	- dispensers 	
+	- SaaS 
+		- dutchie  
+		- weedmaps   
+		- leaflink
+		- leafy
+		- iheartjane 
+		
+		- all US-only, 
+			- no dominant winner, volatile market due to changing regulations 
+				- emerging pattern: 'seed to sale' vertical integrators, led by largest players, manufacturers
+					- 
+		
+		- manufacturers  
+			- canopy growth corporation
+			- tilray + aphria 
+			- 
+		
+
+3. No Intl Marketplace
+Market Efficiency -> Value 
+	- connect buyers and sellers 
+
+
 - get in touch with leading cultivators / manufacturers / dispensers in each country
 	- list them?
 	- 

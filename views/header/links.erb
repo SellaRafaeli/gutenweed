@@ -140,12 +140,21 @@
   padding: 0;
   border-radius: 50%;
 }
+.client_logo {
+  background-color: #324167;
+  padding: 10px;
+  border-radius: 10px;
+}
 </style>
 
 <%
   path = _req.path rescue ''
   logo = '/favicon.ico'
   logo = '/img/landing_page/logo6.png'
+  use_client_logo = true
+  if use_client_logo 
+    logo = 'https://images.squarespace-cdn.com/content/v1/5488a9e6e4b0563d5788db1a/12d1da8f-17e9-4462-a4df-d58a3e7c0f27/Tilray+Logo+-+Header.png?format=1500w'
+  end
   is_post_page = path.to_s.starts_with?('/posts/') rescue false
   is_main_page = path.to_s == '/' rescue false
 %>
@@ -160,7 +169,13 @@
 
   <div class='top-nav'>
     <% if path!='/z' %>
-    <a class='logo' href='/'> <img src='<%=logo%>' style='height:30px'/></a>
+    <a class='logo <%=use_client_logo ? 'client_logo' : ''%> href='/'> 
+      <img src='<%=logo%>' style='height:30px'/>
+      
+    </a>
+    <% if use_client_logo %>
+    <!-- <div>A world of well-being</div> -->
+    <% end %>
     <% end %>       
 
 
@@ -182,8 +197,7 @@
     </a>    
     <% if cu %>
       <a class='' href='/me'>
-        <%= cu_logo %> 
-
+        <%= cu_logo %>         
          <b><%= cu[:name] %> </b><%= "<b class='nowcast_color'>(pro)</b>" if is_pro(cu) %>
        </a>       
       <!-- <a class='' target=_blank href='/@<%=cu['handle']%>'>
