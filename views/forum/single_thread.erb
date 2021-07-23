@@ -1,7 +1,7 @@
 <%
   thread_id =pr[:thread_id]
   thread = $threads.get(thread_id)
-  msgs   = $forum_msgs.get_many(thread_id: thread_id)
+  msgs   = $forum_msgs.get_many(thread_id: thread_id).reverse
 %>
 
 
@@ -46,7 +46,7 @@
 
   <form method=post action='/forum/<%=thread[:_id]%>/msgs'>
     <h3> Add Message </h3>
-    <input name=text class=input1 placeholder='Your msg'>
+    <input name=text class=input1 placeholder='Your msg' />    
     <button class='btn btn-primary btn-raised'> Post Message </button>
   </form>
 

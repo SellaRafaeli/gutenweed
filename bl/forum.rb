@@ -13,7 +13,7 @@ post '/forum/threads' do
 	require_user
 	title = pr[:title] 
 	halt unless title.present? 
-	$threads.add(title: title, user_id: cuid)
+	$threads.add(title: title, user_id: cuid, city: pr[:city])
 	flash.message = 'Thanks!'
 	redirect back
 end
