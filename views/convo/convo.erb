@@ -1,7 +1,7 @@
 <%
   target   = pr[:user_id]
   user_ids = [target,cuid].sort
-  msgs = $msgs.get_many(user_ids: user_ids)
+  msgs = $convo_msgs.get_many(user_ids: user_ids)
 %>
 
 <style>
@@ -42,8 +42,8 @@
   <div class='single_convo_msg'>
     <a target=_blank class='btn btn-primary' style='padding:10px' href='/@<%=sender_user[:handle]%>'>
       <span class='convo_sender'>
-      <img src="<%=sender_user[:img_url]%>" />
-      <%= sender_user[:handle] %>
+        <img src="<%=sender_user[:img_url]%>" />
+        <%= sender_user[:handle] %>
       </span> 
     </a>
     <div><span class='convo_text'><%= msg[:text] %></span></div>

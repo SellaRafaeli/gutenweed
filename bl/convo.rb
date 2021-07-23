@@ -1,4 +1,4 @@
-$msgs = $mongo.collection('msgs')
+$convo_msgs = $mongo.collection('msgs')
 
 get '/convo/:user_id' do 	
 	erb :'/convo/convo', default_layout
@@ -7,7 +7,7 @@ end
 post '/convo/msgs' do 
 	user_ids    = [pr[:target],cuid].sort
 	target_user = $users.get(pr[:target])
-	$msgs.add(user_ids: user_ids, text: pr[:text], sender: cuid)
+	$convo_msgs.add(user_ids: user_ids, text: pr[:text], sender: cuid)
 
 	html = "New Message from #{cu[:email]}. See it here: #{$root_url}/convo/#{cuid}"
 
@@ -15,3 +15,4 @@ post '/convo/msgs' do
 	flash.message = 'added.'
 	redirect back
 end
+

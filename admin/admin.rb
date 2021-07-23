@@ -1,4 +1,4 @@
-MANAGEABLE_COLLECTIONS = ['casts', 'users', 'locations', 'enrolls', 'stripe_customers', 'stripe_notifs', 'single_payments', 'stripe_subscriptions', 'subs', 'analytics', 'errors', 'emails_sent']
+MANAGEABLE_COLLECTIONS = ['casts', 'users', 'enrolls', 'locations', 'stripe_customers', 'stripe_notifs', 'single_payments', 'stripe_subscriptions', 'subs', 'analytics', 'errors', 'emails_sent']
 
 MANAGEABLE_COLLECTIONS.map! {|n| $mongo.collection(n) }
 

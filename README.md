@@ -1,6 +1,8 @@
 https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 
 
+Accelerator "the bridge"
+
 reddit: throwaway-weed-biz-123
 
 Presentation
