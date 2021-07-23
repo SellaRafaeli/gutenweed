@@ -82,12 +82,38 @@
 #target {
   width: 345px;
 }
+
+.single_loc_on_map {
+  zborder:1px solid red;
+}
+.single_loc_on_map:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.map_loc_img img {
+  height: 20px; width: 20px; border-radius: 50%;
+}
+.map_loc_title {
+  font-size: 16px;
+  font-weight: bold;
+  zborder:1px solid blue;
+}
+.map_loc_name {
+  font-weight: bold;
+}
+.map_loc_subtitle {
+  font-size:14px;
+}
+.map_loc_details {
+  zborder:1px solid blue;
+}
 </style>
 
-
-<input id="pac-input"class="controls"type="text"placeholder="Search Box"/>
-<div id='map'></div>
-
+<!-- <input id="pac-input"class="controls"type="text"placeholder="Search Box"/> -->
+<div class='map_container noDisplay'>
+  <div id='map'></div>
+</div>
 
 
   <!-- <iframe
@@ -114,85 +140,82 @@ function initMap() {
   console.log('added locations')
 }
 
+var markers = [];
 function initAutocomplete() {
   var center= {lat: 32.0853, lng: 34.7818};
   console.log('center',center)
-  const map = new google.maps.Map(document.getElementById("map"), {
+  var map = new google.maps.Map(document.getElementById("map"), {
     center: center,
     //center: { lat: -33.8688, lng: 151.2195 },
     zoom: 13,
     mapTypeId: "roadmap",
   });
-  // Create the search box and link it to the UI element.
-  const input = document.getElementById("pac-input");
-  const searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-  // Bias the SearchBox results towards current map's viewport.
-  map.addListener("bounds_changed", () => {
-    searchBox.setBounds(map.getBounds());
-  });
-  let markers = [];
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
-  searchBox.addListener("places_changed", () => {
-    const places = searchBox.getPlaces();
 
-    if (places.length == 0) {
-      return;
+  var geocoder = new google.maps.Geocoder();
+
+  geocoder.geocode({'address': "<%=pr[:city] || 'Tel Aviv'%>"}, function(results, status) {
+    if (status === 'OK') {
+      map.setCenter(results[0].geometry.location);
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
     }
-    // Clear out the old markers.
-    markers.forEach((marker) => {
-      marker.setMap(null);
-    });
-    markers = [];
-    // For each place, get the icon, name and location.
-    const bounds = new google.maps.LatLngBounds();
-    places.forEach((place) => {
-      if (!place.geometry || !place.geometry.location) {
-        console.log("Returned place contains no geometry");
-        return;
-      }
-      const icon = {
-        url: place.icon,
-        size: new google.maps.Size(71, 71),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25),
-      };
-      // Create a marker for each place.
-      markers.push(
-        new google.maps.Marker({
-          map,
-          icon,
-          title: place.name,
-          position: place.geometry.location,
-        })
-      );
-
-      if (place.geometry.viewport) {
-        // Only geocodes have viewport.
-        bounds.union(place.geometry.viewport);
-      } else {
-        bounds.extend(place.geometry.location);
-      }
-    });
-    map.fitBounds(bounds);
   });
 
-  <% locations.each do |location| %>
-    var myLatLng = { lat: <%= location[:lat].to_f %>, lng: <%=location[:lng].to_f %> };
-    console.log('myLatLng',myLatLng)
-    var marker = new google.maps.Marker({
-      position: myLatLng,
-      map,
-      title: "Hello World!",
-    });
-    marker.setMap(map);
-    console.log('adding marker',marker,marker.position.lat(),marker.position.lng())
-  <% end %>
+  <% locations.each do |loc| %>
+    <% loc[:user] = user = $users.get(loc[:user_id]) %>
+     var contentString = `<div class='single_loc_on_map' onclick="onLocationClick('${"<%=user[:handle]%>"}')">
+        <div class='map_loc_title'>
+          <span class=map_loc_img><img src='${"<%= user[:img_url]%>"}'/></span>
+          <span class=map_loc_name>${"<%=user[:handle]%>"}</span>
+        </div>
+        <div class='map_loc_subtitle>
+          ${"<%=loc[:name]%>"}
+        </div>
+        <div class='map_loc_details>${'<%=loc[:address]%>'}, ${'<%=loc[:phone]%>'}, ${'<%=loc[:hours]%>'}</div>
+        <div class='map_loc_items></div>
+     </div>
+     `;
+   <% end %>
+    var locations = window.locations = <%=locations.to_json%>
+
+    locations.forEach(loc => {
+      console.log('adding loc',loc)
+      //var user = {name: 'temp'};
+      var contentString = `<div class='single_loc_on_map' onclick="onLocationClick('${loc.user['handle']}')">
+        <div class='map_loc_title'>
+          <span class=map_loc_img><img src='${loc.user['img_url']}'/></span>
+          <span class=map_loc_name>${loc.user['handle']}</span>
+        </div>
+        <div class='map_loc_subtitle>
+          ${loc['name']}
+        </div>
+        <div class='map_loc_details>${loc['address']}, ${loc['phone']}, ${loc['hours']}</div>
+        <div class='map_loc_items></div>
+     </div>`
+      var myLatLng = { lat: parseFloat(loc['lat']) || 0, lng: parseFloat(loc['lng'])||0 };
+      console.log('myLatLng',myLatLng)
+      var marker = new google.maps.Marker({position: myLatLng,map,});
+      
+      markers.push(marker);
+      marker.setMap(map);
+
+      marker.infoWindow = new google.maps.InfoWindow({content: contentString, });
+      
+      marker.addListener("click", () => {
+        marker.infoWindow.open({anchor: marker, map, shouldFocus: false,});
+        google.maps.event.addListener(map, "click", function(event) {
+            marker.infoWindow.close();
+        });
+      });
+
+      console.log('adding marker',marker,marker.position.lat(),marker.position.lng())
+    })
 }
 
 //https://developers.google.com/maps/documentation/javascript/examples/places-searchbox
 initAutocomplete();
 //initMap();
+function onLocationClick(user_handle) {
+  window.open('/@'+user_handle,'_blank');
+}
 </script>
