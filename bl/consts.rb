@@ -194,7 +194,8 @@ US_STATES_CITIES = {
     'New York': ['New York City'].sort,
     'New Jersey': ['New Jersey'].sort,
     'Oregon': ['Portland', 'Eugene', 'Bend'].sort,
-    'Washington': ['Seattle', 'Olympia', 'Spokane'].sort
+    'Washington': ['Seattle', 'Olympia', 'Spokane'].sort,
+    'Israel': ['Tel Aviv']
   }
 
 PRODUCT_TYPES = {
