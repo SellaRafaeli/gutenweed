@@ -42,11 +42,10 @@
     <% threads.reverse.each do |thread| %>
       <% sender_user = $users.get(thread[:user_id]) %>      
       <% num_msgs    = $forum_msgs.count(thread_id: thread[:_id]) %>      
-      <div class='single_thread <%=thread[:city].gsub(' ','-')%>'>        
-        <%= thread[:city] %>
+      <div class='single_thread <%=thread[:city].gsub(' ','-')%>'>              
         <img src="<%=sender_user[:img_url]%>" />
         <span><%= sender_user[:handle] %></span>                
-        <span class='forum_msg_created_at'>/ <%= nice_datetime thread[:created_at] %></span>
+        <span class='forum_msg_created_at'>/ <%= thread[:city] %> / <%= nice_datetime thread[:created_at] %></span>
         <div class='forum_title'>
           <a href='/forum/<%=thread[:_id]%>/<%=thread[:title]%>' class='simple_link'><%= thread[:title] %></a>
           <% if num_msgs > 0 %> <span class='num_msgs'>
@@ -59,7 +58,7 @@
   <form method=post action='/forum/threads' onsubmit=getForumCity()>
     <h3> Create New Thread </h3>
     <input name=title class=input1 placeholder='Title' required>
-    <input name=city class='forum_city_input input1' />
+    <input hidden name=city class='forum_city_input input1' />
     <button class='btn btn-primary btn-raised'> Create New Thread </button>
   </form>
 </div>
