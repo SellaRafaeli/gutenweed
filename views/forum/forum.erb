@@ -44,7 +44,7 @@
       <% num_msgs    = $forum_msgs.count(thread_id: thread[:_id]) %>      
       <div class='single_thread <%=thread[:city].gsub(' ','-')%>'>              
         <img src="<%=sender_user[:img_url]%>" />
-        <span><%= sender_user[:handle] %></span>                
+        <span><a class=simple_link href='/@<%=sender_user[:handle]%>'> <%= sender_user[:handle] %></a></span>                
         <span class='forum_msg_created_at'>/ <%= thread[:city] %> / <%= nice_datetime thread[:created_at] %></span>
         <div class='forum_title'>
           <a href='/forum/<%=thread[:_id]%>/<%=thread[:title]%>' class='simple_link'><%= thread[:title] %></a>

@@ -1,0 +1,33 @@
+<%
+  # user_id is passed in
+  vouches = $vouches.all(for: user_id)
+  user    = $users.get(user_id)
+  i_vouched = $vouches.get(for: user_id, by: cuid)
+%> 
+
+<div class='vouches_container ct'>
+  <h5> vouches </h5>
+  <div class='vouches_box'>
+    <div class='vouches_title'>
+      <%= user[:handle] %> has <%= vouches.count %> vouches.
+    </div>
+    <div class='vouches_list'>
+      <% vouches.each do |vouch| %>
+        <% by = $users.get(vouch[:by]) %>
+        <div class='single_vouch'>
+          <%= erb :'users/user_box', locals: {user: by} %>
+        </div>
+      <% end %>
+
+      <% if i_vouched %>
+        <div><b> You vouched for <%= user[:handle] %>.</b></div>
+      <% else %>
+      <div>
+        <form method=post action='/vouches/<%=user_id%>'>
+          <button class='btn btn-primary btn-raised'> Vouch for <%= user[:handle] %>?</b></div>
+          </button>
+        </form>
+      <% end %>
+    </div>
+  </div>
+</div>

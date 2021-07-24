@@ -176,6 +176,9 @@
       <div class='ct'>
         <a class='btn btn-info' href='/convo/<%=user[:_id]%>'>send message</a>
       </div>
+
+      <%= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>
+
       <div class='ct' style='width: 100%'>
 
         <div class='zflex1 center_contents'>
