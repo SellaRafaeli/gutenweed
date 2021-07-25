@@ -219,7 +219,9 @@
   </div>
 
   <div class='user_bottom_half container1000'>
-    <div class='subsubtitle user_desc'><%= user[:desc] %></div>      
+    <% if user[:desc].present? %>
+      <div class='subsubtitle user_desc'><%= user[:desc] %></div>      
+    <% end %>
     <br/>
     
     <div class='buttons ct'>
