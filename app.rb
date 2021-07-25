@@ -126,6 +126,10 @@ get '/careers' do
 	erb :'other/careers', default_layout
 end
 
+get '/contact' do
+	erb :'other/contact', default_layout
+end
+
 get '/search' do 
 	erb :'search/search', default_layout
 end
