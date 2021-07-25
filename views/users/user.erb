@@ -21,6 +21,8 @@
   user_locations = $locations.get_many(user_id: user_id)
 
   allow_admin_login = !$prod || (ENV['ALLOW_ADMIN_LOGIN'] == 'yes')
+
+   num_views = $stats.count(type: 'store_view', user_id: user_id)
 %>
 
 <!-- https://github.com/muaz-khan/WebRTC-Experiment/tree/master/one-to-many-video-broadcasting -->
@@ -28,6 +30,10 @@
 <!-- <script src="https://www.webrtc-experiment.com/one-to-many-video-broadcasting/meeting.js"></script> -->
 
 <style>
+.num_views {
+  font-size: 14px; color: grey; text-align: center;
+}
+}
 .user_desc {
   font-size: 22px;
   margin: 10px auto;
@@ -177,6 +183,7 @@
         <a class='btn btn-info' href='/convo/<%=user[:_id]%>'>send message</a>
       </div>
 
+      <div class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </div>
       <%= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>
 
       <div class='ct' style='width: 100%'>

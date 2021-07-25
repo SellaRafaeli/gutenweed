@@ -1,7 +1,7 @@
 <style>
 .cast_box.single_type_box:hover {
-  border:1px solid grey;
-
+  zborder:1px solid grey;
+  box-shadow: 1px 1px #cccccc;
 }
 .single_type_box {
   display: inline-block;
@@ -59,11 +59,11 @@
 .cast_box_text {
   flex: 7;
   text-align: left;
-  margin-left: 22px;
-  font-size: 14px;
+  margin-left: 13px;
+  font-size: 13px;
   position: relative;
 }
-.cast_box_text:hover {
+.cast_box_title:hover, .cast_box_user:hover {
   text-decoration: underline;
 }
 .cast_box_text_title {
@@ -96,7 +96,8 @@
   text-decoration: none !important;
 }
 .cast_box_user a {
-  zcolor: grey;
+  position: relative;
+  top: 2px;
 }
 .cast_box_user a:hover {
   color: black;
