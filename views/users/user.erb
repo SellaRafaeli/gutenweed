@@ -22,7 +22,7 @@
 
   allow_admin_login = !$prod || (ENV['ALLOW_ADMIN_LOGIN'] == 'yes')
 
-   num_views = $stats.count(type: 'store_view', user_id: user_id)
+   num_views = $stats.count(type: 'store_view', seller_id: user_id)
 %>
 
 <!-- https://github.com/muaz-khan/WebRTC-Experiment/tree/master/one-to-many-video-broadcasting -->
@@ -158,6 +158,21 @@
 .linkified {
   text-decoration: underline;
 }
+
+.single_user_loc_name {
+  font-weight: bold;
+}
+.single_user_loc_address {
+  font-size: 90%;
+}
+.single_user_loc_details {
+  background-color: #c2d3d1;
+  padding: 20px;
+  border-radius: 4px;
+  margin-top: 10px;
+  display: inline-block;
+  color: #150000;
+}
 </style>
 
 <%= erb :"users/themes/#{user[:my_theme].to_s.downcase}.css" if user[:my_theme].present? %>
@@ -250,9 +265,11 @@
   <h3> locations </h3>
       <% user_locations.to_a.each do |loc| %>
       <div class='single_user_loc single_list_item'>
-        <div class=''><%= loc[:name] %></div>
-        <div class=''><%= [loc[:address],loc[:phone],loc[:hours]].compact.join(',') %></div>
-        <div class=''><%= loc[:details] %></div>
+        <div class='single_user_loc_name'><%= loc[:name] %></div>
+        <div class='single_user_loc_address'><%= [loc[:address],loc[:phone],loc[:hours]].compact.join(',') %></div>
+        <% if loc[:details].present? %>
+          <div class='single_user_loc_details'><%= loc[:details] %></div>
+        <% end %>
 
         <% items_in_stock = loc[:items].to_a.select {|item| item[:quantity].to_i > 0} %>
         <% if items_in_stock.any? %>
