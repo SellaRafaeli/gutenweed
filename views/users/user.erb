@@ -291,7 +291,7 @@
 
   <% if user[:license_numbers] %>
   <div class='ct license_numbers'>
-    <small> License Number(s): <%= user[:license_numbers] %></small>
+    <a class='simple_link' href='<%=user[:license_url]%>'><small> License Number(s): <%= user[:license_numbers] %></small></a>
   </div>
   <% end %>
 
