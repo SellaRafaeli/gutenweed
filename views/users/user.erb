@@ -33,10 +33,12 @@
 .num_views {
   font-size: 14px; color: grey; text-align: center;
 }
-}
+
 .user_desc {
   font-size: 22px;
   margin: 10px auto;
+  background-color: whitesmoke;
+  padding: 20px;
 }
 .analytics_btn {
   margin-right: 10px;
@@ -113,6 +115,7 @@
   font-size: 50px;
   font-weight: bold;
   margin: 0;
+  display: inline-block;
 }
 
 .user_page .subtitle {
@@ -179,11 +182,11 @@
     
     <div class='user_top_right flex1'>
       <h1 id=about class='ct title'><%= title %></h1>
-      <div class='ct'>
-        <a class='btn btn-info' href='/convo/<%=user[:_id]%>'>send message</a>
-      </div>
+      
+      <a class='btn btn-info' href='/convo/<%=user[:_id]%>'>send message</a>
+      
 
-      <div class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </div>
+      <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>
       <%= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>
 
       <div class='ct' style='width: 100%'>
@@ -199,14 +202,18 @@
       </div>      
 
       <div class='subtitle'><%= subtitle %></div>
+
+      <% if user[:media].to_a.any? %>
       <div class='user_sub_imgs'>
         <br/>
         <%= erb :'casts/show_media', locals: {item: user} %>
         <br/>
       </div>
+      <br/>    
+      <% end %>
 
       
-      <br/>      
+        
       
     </div>
   </div>
@@ -244,7 +251,19 @@
         <div class=''><%= loc[:name] %></div>
         <div class=''><%= [loc[:address],loc[:phone],loc[:hours]].compact.join(',') %></div>
         <div class=''><%= loc[:details] %></div>
-        <%#= loc.to_json %>
+
+        <% items_in_stock = loc[:items].to_a.select {|item| item[:quantity].to_i > 0} %>
+        <% if items_in_stock.any? %>
+          <h5> Items in Stock </h5>
+          <div style='display: flex'>
+            <% items_in_stock.each do |item|  %>
+              <%= erb :'casts/single_cast_box', locals: {cast: item} %>                        
+            <% end %>
+          </div>
+        <% else %>
+        <% end %>
+        
+        <!-- <%#= loc.to_json %> -->
       </div>
   <% end %>
   <% end %>

@@ -1,5 +1,6 @@
 $locations = $mongo.collection('locations')
-
+# each location has an 'items' array 
+# {items: [{product_id: ..., quantity: ...., notes: ....}, {product_id: ..., quantity: ...., notes: ....}]}
 LOCATION_FIELDS = ['']
 
 post '/locations' do
