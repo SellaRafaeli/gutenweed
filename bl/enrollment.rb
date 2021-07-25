@@ -7,6 +7,8 @@ ENROLL_CANCELED = 'canceled'
 # user_id - enrolling user
 # cast_id - enrolled cast
 
+ENROLL_FIELDS = ['user_id', 'cast_id', 'status']
+
 def enroll_user(user_id, cast_id, data = {})
 	buyer_id       = user_id
 	data[:user_id] = user_id
@@ -135,13 +137,13 @@ end
 post '/enrolls/:id' do 
 	require_user
 	
-	halt unless pr[:status]
+	# halt unless pr[:status]
 	enroll = $enrolls.get(pr[:id])
 	cast   = $casts.get(enroll[:cast_id])
 	owner  = cast[:user_id]
 	halt unless owner == cuid
 
-	enroll = $enrolls.update_id(pr[:id], status: pr[:status])
+	enroll = $enrolls.update_id(pr[:id], pr)
 end
 
 post '/joinFree' do 

@@ -15,6 +15,10 @@ nicePrompt = function(title,cb) {
   });
 }
 
+screenToast = function(val) {
+  alert(val);
+}
+
 $.fn.serializeObject = function()
 {
     var o = {};

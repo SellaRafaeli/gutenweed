@@ -1,3 +1,10 @@
+<style> 
+.new_note {
+  padding: 10px;
+  color: #150000;
+}
+</style>
+
 <%
   notes = $notes.get_many(item_id: item_id)
   puts "item_id #{item_id}"
@@ -27,7 +34,7 @@ function submitNote(elem) {
   var text  = input.val();
   var data  = {text};
   $.post('/notes',{item_id: item_id, text}).then(res => {
-    var html = `<div class='single_note single_list_item'>${text}</div>`;
+    var html = `<div class='single_note single_list_item'>(just now): </div>`;
     $('.notes_list.'+item_id).append(html);
     input.val('');
   });

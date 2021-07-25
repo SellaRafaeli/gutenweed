@@ -1,6 +1,6 @@
 <% 
   buys = my_buys(user_id)   
-  if buys.any? 
+  if is_buyer 
 %>
   <div class='my_tickets'>
     <h5> My purchases </h5>
@@ -10,7 +10,7 @@
 
 <% 
   orders = my_sales(user_id) 
-  if orders.any? 
+  if is_seller
 %>
   <div class='my_tickets'>
     <h5> My sales </h5>
@@ -18,14 +18,9 @@
   </div>
 <% end %>
 
-<% if is_seller %>
-<div>
-  <button class='btn btn-raised btn-primary' type=button onclick=addOrder()>+ Add Order</button>
-</div>
+<% if false && !buys.any? && !orders.any? %>
+<br/>
+<div class='no_data_yet'> You have no orders yet. </div>
 <% end %>
 
-<% if !buys.any? && !orders.any? %>
-<div class='no_data_yet'>
-  You have no orders yet. 
-</div>
-<% end %>
+

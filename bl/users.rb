@@ -14,6 +14,10 @@ def is_seller
 	cu[:type] == 'seller'
 end
 
+def is_buyer 
+	!is_seller
+end
+
 get '/me' do
 	redirect_unless_user
 
