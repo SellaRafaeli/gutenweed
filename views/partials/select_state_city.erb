@@ -3,7 +3,7 @@
 %>
 
 <select class='input1' style='margin:0; margin-left:10px' id=city_selector name=city <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %>>
-  <option value="">Any</option>
+  <option value="">Any City</option>
   <% US_STATES_CITIES.each_with_index do |state_cities, state_idx| %>
   <%
     state = state_cities[0]
