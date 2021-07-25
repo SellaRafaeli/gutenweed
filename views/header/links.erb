@@ -28,6 +28,13 @@
 }
 
 @media screen and (min-width: 1000px) {
+  .logo {
+    width: 300px;
+    zborder:1px solid red;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+  }
   .search_go_btn {
     /*display: none;*/
   }
@@ -145,6 +152,13 @@
   padding: 10px;
   border-radius: 10px;
 }
+.sub_logo_msg {
+  font-size: 14px; 
+  color:#1F5151; 
+  left: 6px;
+  position: absolute;
+  top: 26px;
+}
 </style>
 
 <%
@@ -169,10 +183,12 @@
 
   <div class='top-nav'>
     <% if path!='/z' %>
-    <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
-      <img src='<%=logo%>' style='height:30px'/>
-      
-    </a>
+    <span>
+      <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
+        <img src='<%=logo%>' style='height:30px'/>
+        <div class='sub_logo_msg'>the cannabis marketplace</div>
+      </a>
+    </span>
     <% if use_client_logo %>
     <!-- <div>A world of well-being</div> -->
     <% end %>
@@ -192,9 +208,9 @@
     
     <% unless @hide_header %>
     
-    <a class='nowcast_color' href='/' style='color: #00b140'>
-      <!-- Good-Weed -->
-    </a>    
+    <!-- <a class='nowcast_color' href='/' style='color: #00b140'>
+      Good-Weed
+    </a>     -->
     <% if cu %>
       <a class='' href='/me'>
         <%= cu_logo %>         
@@ -245,9 +261,7 @@
       <a class='' href='/logout' onclick="return confirm('Are you sure you wish to log out?')"><i class='fal fa-times-circle' ></i></a>
     <% end %>    
 
-    <a class='btn btn-raised btn-primary noDisplay' href='/?submit=1'>
-      <%= !heb ? 'submit anonymous recommendation <i class="fa fa-leaf" style="margin-left:5px"></i>' : 'השאר ביקורת אנונימית' %>      
-    </a>
+    
     <% end %>
 
     <%= erb :'header/hamburger' %>
