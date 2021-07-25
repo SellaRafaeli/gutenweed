@@ -18,6 +18,12 @@
   </div>
 <% end %>
 
+<% if is_seller %>
+<div>
+  <button class='btn btn-raised btn-primary' type=button onclick=addOrder()>+ Add Order</button>
+</div>
+<% end %>
+
 <% if !buys.any? && !orders.any? %>
 <div class='no_data_yet'>
   You have no orders yet. 
