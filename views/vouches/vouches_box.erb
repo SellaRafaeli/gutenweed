@@ -1,7 +1,7 @@
 <%
   # user_id is passed in
   vouches = $vouches.all(for: user_id)
-  user    = $users.get(user_id)
+  user    = $users.get(user_id) || {handle: 'error'}
   i_vouched = $vouches.get(for: user_id, by: cuid)
 %> 
 
