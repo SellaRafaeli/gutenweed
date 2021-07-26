@@ -177,7 +177,7 @@ def add_user
 end
 
 def user_link(user)
-	"/@#{user[:handle]}"
+	URI("/@#{user[:handle]}").to_s
 end
 
 def user_location_for_header(user)
