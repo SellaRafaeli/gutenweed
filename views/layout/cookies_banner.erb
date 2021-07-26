@@ -1,8 +1,6 @@
-<div class="cookies_banner noDisplay" id="cookies_banner">
+<div class="cookies_banner znoDisplay" id="cookies_banner">
   <div>
-  To offer you a better experience, this site uses profile cookies, even from third parties. <br/>
-  By continuing to use this website you consent to the use of cookies. <br/>
-  For more information or to select your preferences consult our Privacy Policy.
+  We use cookies. By continuing to use this website you accept the terms of service and consent to the use of cookies to track your behaviour.<br/>
   </div>
   <div class='accept_cookies_btn'>
     <small>      
@@ -13,7 +11,7 @@
           $.ajax({
             url: "/accept_cookies",
             success: function() {$("#cookies_banner")[0].hidden = true}})'>
-        Accept Cookies
+        OK, Accept Terms of Use and Cookies
       </a>
     </small>
   </div>

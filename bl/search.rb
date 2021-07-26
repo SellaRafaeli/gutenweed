@@ -7,3 +7,14 @@ def cleanup_search(src)
 
 	src
 end
+
+get '/search/autocomplete' do 
+	users = $users.all.map {|u| 
+		{name: u[:handle].to_s, url: user_link(u), img_url: u[:img_url] || DEFAULT_IMG}
+	}
+
+	res = [{"name": "foo-afghanistan"}, {"name": "ALBANIA"}, {"name": "ALGERIA"}, {"name": "AMERICAN SAMOA"}, {"name": "ANDORRA"} ]
+	
+	res = users
+	{res: res}
+end

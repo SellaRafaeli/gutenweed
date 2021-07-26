@@ -34,6 +34,39 @@
   }
 }
 
+
+/*easy autocomplete code*/
+.easy-autocomplete-container ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+}
+.easy-autocomplete-container li {
+  background-color: white;
+  padding: 20px;
+}
+.easy-autocomplete-container li.selected {
+  background-color: lightgreen;
+}
+.easy-autocomplete{
+  width: 230px !important;
+  display: inline-block; 
+  position: relative;
+  z-index: 99999999; 
+}
+
+.easy-autocomplete-container {
+  position: absolute;
+}
+.easy-autocomplete input{
+  width: auto;
+}
+.eac-search-res-img img {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+  border-radius: 4px;
+}
 </style>
 <div class='search_inputs_row'>
   <form class='search_input_form' method=get action='/search' <% if locals[:searchOnChange] %> onsubmit='rerunSearch(); return false' <% end %>>
@@ -140,3 +173,40 @@
     </div>
   </form>
 </div>
+
+<script> 
+//http://easyautocomplete.com/
+//setTimeout(()=>{
+  var options = {
+    url: q => '/search/autocomplete?q='+q,
+    zdata: {res: [
+    {"name": "AFGHANISTAN"}, {"name": "ALBANIA"}, {"name": "ALGERIA"}, {"name": "AMERICAN SAMOA"}, {"name": "ANDORRA"}
+  ]},
+    listLocation: 'res',
+    getValue: "name",
+    theme: 'dark',
+    list: {
+      match: {enabled: true},
+      maxNumberOfElements: 10,
+      onChooseEvent: function(z) {
+        event.stopPropagation();
+        console.log("Click !",z);
+      },
+    },
+    
+
+    template: {
+      type: "custom",
+      method: function(value, item) {
+        return `<span class='eac-search-res-img'><img src=${item.img_url} /></span><span class='search-res-text'>${value}</span>`;
+      },
+      fields: {link: "url"}
+    },
+
+    theme: "round"
+  };
+
+  $("input.search_input").easyAutocomplete(options);
+  console.log('set up autocomplete')
+//},0)
+</script>
