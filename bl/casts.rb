@@ -296,7 +296,6 @@ end
 	
 # $done = false
 def show_logistics_overlay(cast)
-	# bp if !$done
 	# $done = true
 	
 	return false if is_on_demand(cast)
@@ -408,13 +407,14 @@ post '/casts/edit/:id' do
 		require_cast_owner(id)
 	end
 
+	
 	pr[:media] = []
 	pr[:media_img].to_a.each_with_index { |url, idx| pr[:media].push({type: pr[:media_types][idx], url: url}) }
 
 	data = pr.just_keys(CAST_FIELDS)
 	
 	data.delete(:tags) unless is_admin
-	
+
 	[:cost_dollars, :hour, :mins, :length].each { |k| data[k] = data[k].to_i if data[k].present? }
 
 	# puts data
@@ -429,7 +429,7 @@ post '/casts/edit/:id' do
 		{msg: 'ok'}
 	else 
 		flash.message = 'Updated.'
-		redirect back
+		redirect '/casts/'+id
 		 #redirect "/me?sec=by_me"
 	end
 end	
