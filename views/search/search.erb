@@ -41,6 +41,8 @@
   if pr[:q]
     casts = casts.select {|c| c.to_json.to_s.downcase.include?(pr[:q])}
   end
+
+  return redirect user_link(user) if user = $users.get(handle: pr[:q]) 
 %>
 
 <style>
