@@ -43,7 +43,7 @@
   end
 
   if pr[:q].present? && (user_matching = $users.get(handle: pr[:q]))
-    return redirect user_link(user_matching) 
+    return redirect to user_link(user_matching) 
   end
 %>
 
