@@ -277,7 +277,10 @@
           <h5> Items in Stock </h5>
           <div style='display: flex'>
             <% items_in_stock.each do |item|  %>
-              <%= erb :'casts/single_cast_box', locals: {cast: item} %>                        
+            <%
+              cast = $casts.get(item[:product_id]) || {}
+            %>
+              <%= erb :'casts/single_cast_box', locals: {cast: cast} %>                        
             <% end %>
           </div>
         <% else %>
