@@ -13,7 +13,7 @@
   # user_casts.each { |cast| cast[:reviews] = cast_reviews(cast[:_id]); any_reviews = true if cast[:reviews].any?  }
 
   title = user[:title]
-  title = "#{user[:name]}." unless title.present?
+  title = "#{user[:name]}" unless title.present?
 
   subtitle = user[:subtitle]
   subtitle = "" #"You can find me here on nowcast." unless subtitle.present?
