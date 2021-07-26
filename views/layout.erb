@@ -8,12 +8,13 @@ path = _req.path rescue 'error-path'
 @brand = get_brand
 %>
 <%= erb :'layout/doc_head' %>
+
 <body>  
     <%= erb :"layout/flash" rescue '' %>        
     
     <%= erb :"header/links" %>
     
-    <div class='<%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>' style='padding-bottom: 300px'>
+    <div class='<%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
       <%= yield %> 
       <div style='zpadding-bottom: 300px; background-color: whitesmoke'></div>
     </div>

@@ -28,9 +28,13 @@
   /*margin: 20px;*/
   max-width: 300px;
 }
-@media screen and (max-width: 601px) {
+@media screen and (max-width: 801px) {
   .search_inputs_row .flex1 a {
     display: block;
+  }
+  .search_inputs_container {
+    flex-direction: column;
+    text-align: center;
   }
 }
 
@@ -75,7 +79,7 @@
   <form class='search_input_form' method=get action='/search' <% if locals[:searchOnChange] %> onsubmit='rerunSearch(); return false' <% end %>>
     <div class='first_row display_flex'>
       
-      <div class='flex1' style='display: flex; zalign-items: baseline'>
+      <div class='flex1 search_inputs_container' style='display: flex; zalign-items: baseline'>
         <!-- <a class='search_input_expand_gear' onclick='$(this).toggleClass("clicked"); $("#extra_search_inputs").toggleClass("noDisplayImportant")'>
           <i class='fa fa-gear'></i>
         </a> -->
