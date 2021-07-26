@@ -177,8 +177,9 @@ def add_user
 end
 
 def user_link(user)
-	#URI("/@#{user[:handle]}".gsub(' ','%20')).to_s	
-	"/@#{user[:handle]}"
+	#bp
+	URI.escape ("/@#{user[:handle]}").to_s	
+	#{}"/@#{user[:handle]}"
 end
 
 def user_location_for_header(user)
