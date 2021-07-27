@@ -110,9 +110,19 @@ h1 {
   font-weight: 900; 
   /*color: #209CEE;*/
 }
+
 @media screen and (min-width: 1000px) {
   .container {
     padding-bottom: 300px;
+  }  
+}
+
+.only-on-mobile-inline-block {
+  display: none;
+}
+@media screen and (max-width: 1000px) {
+  .only-on-mobile-inline-block {
+    display: inline-block;
   }
 }
 

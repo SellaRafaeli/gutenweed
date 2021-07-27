@@ -97,21 +97,24 @@
   }
   .search_screen_container {
     flex-direction: column;
-    
+  }
+  .brandSelectorContainer {
+    max-height: 30%;
   }
 }
 .selector_options_list {
   text-align: center;
 }
+
 </style>
 <!-- <h1> Search </h1> -->
 <div class='displayFlex search_screen_container' style='zheight: 100%; zmax-width: 1000px; margin: 0 auto; height: 100%'>
-  <div class='flex3' style='background-color: whitesmoke; padding-left: 20px; display: flex; flex-direction: column; padding-right: 20px'>    
+  <div class='flex3 brandSelectorContainer' style='background-color: whitesmoke; padding-left: 20px; display: flex; flex-direction: column; padding-right: 20px'>    
     <div class='selectorBox brandSelector open'>
-      <h5> House Brands </h5>
+      <h5> Recommended <i class='only-on-mobile-inline-block fal fa-close' onclick="$(this).closest('.brandSelectorContainer').css('display','none')"></i></h5>
       <!-- <h5 onclick='$(this).parent().toggleClass("open").toggleClass("closed")'> Brand</h5> -->
       <% if true %>
-      <div class='selector_options_list'>
+      <div class='selector_options_list'>        
         <% all_brands.sort_by {|b| b[:handle]}.each do |brand_user| %>
           <% 
             brand = brand_user[:handle]
@@ -140,6 +143,7 @@
     </div>
   </div>
   <div class='flex9 main_search_area' style='background-color: whitesmoke; padding-bottom: 300px'>  
+    <h5 class='ct only-on-mobile-inline-block' style='padding: 10px 20%'> Search Good-Weed </h5>
     <div class='' style='text-align: left'>  
       <%= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
 
