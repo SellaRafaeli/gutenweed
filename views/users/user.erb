@@ -90,6 +90,7 @@
 
 .user_top_half {
   margin-bottom: 20px;
+  padding:0 50px;
 }
 
 .user_top_left {      
@@ -203,11 +204,13 @@
     <div class='user_top_right flex1'>
       <h1 id=about class='ct title'><%= title %></h1>
 
-      <% if cu %>      
-      <a class='btn btn-primary' href='/convo/<%=user[:_id]%>'>send message</a>
-      <% else %>
-      <a class='btn btn-primary' href='/signup?type=buyer'>sign up to message <%=user[:handle]%></a>
-      <% end %>
+      <div>
+        <% if cu %>      
+        <a class='btn btn-primary' href='/convo/<%=user[:_id]%>'>send message</a>
+        <% else %>
+        <a class='btn btn-primary' href='/signup?type=buyer'>sign up to message <%=user[:handle]%></a>
+        <% end %>
+      </div>
       
 
       <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>
