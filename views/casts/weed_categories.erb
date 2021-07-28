@@ -49,8 +49,34 @@
   border-radius: 10%;
   object-fit: cover;
 }
+
+.articles_links_list {
+  margin-bottom: 10px;
+}
+.single_article_link {
+  background-color: white;
+  border:1px solid whitesmoke;
+  padding: 5px 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
 </style>
-<div class='weed_categories'>  
+
+<%
+  articles = [
+    {url: '/posts/about-cannabis', title: 'About Cannabis'},
+    {url: '/posts/starting-cannabis', title: 'Getting Started with Cannabis'},
+    {url: '/posts/the-is_cannabis-right-for-you', title: 'The/Is Cannabis Right For You'}
+  ]
+%>
+
+<div class='articles_links_list'>
+    <% articles.each do |article| %>
+      <a href="<%=article[:url]%>" class='simple_link single_article_link'> <%=article[:title] %> </a>
+    <% end %>
+  </div>
+
+<div class='weed_categories'>    
   <% PRODUCT_TYPES.each do |type, subtypes| %>
     <div class='single_category' onclick='filterCategory(this, "<%=type%>")'>
       <div class='single_category_img_container'>
