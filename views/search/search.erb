@@ -62,11 +62,11 @@
   display: flex;
   color: #1F5151;
   align-items: baseline;
-  /*display: inline-flex;*/
+  display: inline-flex;
+  text-transform: uppercase;
 }
 .single_brand_search_link.selected {
-  background-color: lightblue;
-  color: white;
+  border:1px solid #028b25;
 }
 .single_brand_search_link:hover {
   zfont-weight: bold;
@@ -104,14 +104,28 @@
 }
 .selector_options_list {
   text-align: center;
+  padding-top: 1px;
 }
-
+.brandSelectorLabel {
+  background-color: #008b24;
+  color: white;
+  font-size: 20px;
+  margin: 20px;
+  padding: 9px;
+  text-transform: uppercase;
+}
+.recommended_date {
+  font-size: 14px;
+}
 </style>
 <!-- <h1> Search </h1> -->
 <div class='displayFlex search_screen_container' style='zheight: 100%; zmax-width: 1000px; margin: 0 auto; height: 100%'>
   <div class='flex3 brandSelectorContainer' style='background-color: whitesmoke; padding-left: 20px; display: flex; flex-direction: column; padding-right: 20px'>    
     <div class='selectorBox brandSelector open'>
-      <h5> Recommended <i class='only-on-mobile-inline-block fal fa-close' onclick="$(this).closest('.brandSelectorContainer').css('display','none')"></i></h5>
+      <div class='brandSelectorLabel'>
+        Recommended 
+        <span class='recommended_date'><%= Date.today.strftime("%B") %> 2021 </span><i class='noDisplay zonly-on-mobile-inline-block fal fa-close' zonclick="$(this).closest('.brandSelectorContainer').css('display','none')"></i>
+      </div>     
       <!-- <h5 onclick='$(this).parent().toggleClass("open").toggleClass("closed")'> Brand</h5> -->
       <% if true %>
       <div class='selector_options_list'>        

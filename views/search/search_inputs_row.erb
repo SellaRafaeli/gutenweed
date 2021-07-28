@@ -66,6 +66,7 @@
 
 .easy-autocomplete input{
   width: auto;
+  width: 260px;
 }
 .eac-search-res-img img {
   height: 20px;
@@ -114,8 +115,8 @@
           </select>
         </div>
         
-        <div class='flex5'>
-          <input class='search_input' name=q autofocus placeholder='Search' value="<%=pr[:q]%>" <%="zautofocus" if !search_input_on_top %> />
+        <div class='flex6'>
+          <input class='search_input' name=q autofocus placeholder='Search Products, Brands, Stores...' value="<%=pr[:q]%>" <%="zautofocus" if !search_input_on_top %> />
           <button class='search_go_btn btn2' type=submit style='margin-left:20px'><i class='fal fa-search' style='margin-right:5px'></i> Go </button>
         </div>
             
