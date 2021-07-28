@@ -204,11 +204,11 @@
     <div class='user_top_right flex1'>
       <h1 id=about class='ct title'><%= title %></h1>
 
-      <div>
+      <div style='margin:10px 0'>
         <% if cu %>      
-        <a class='btn btn-primary' href='/convo/<%=user[:_id]%>'>send message</a>
+        <a class='btn btn-primary btn-raised' href='/convo/<%=user[:_id]%>'>send message</a>
         <% else %>
-        <a class='btn btn-primary' href='/signup?type=buyer'>sign up to message <%=user[:handle]%></a>
+        <a class='btn btn-primary btn-raised' href='/signup?type=buyer'>sign up to message <%=user[:handle]%></a>
         <% end %>
       </div>
       
