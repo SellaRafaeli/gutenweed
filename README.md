@@ -1,9 +1,40 @@
 https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 
 
+- my convos 
+
+
+list of clients 
+- canndoc's dispensaries in america and in israel. do they have a list? 
+- 
+
+
+
+assume nobody will do anything 
+build something cool to show people
+videos of attractive women smoking weed.
+weed advertisements 
+weed reviews 
+instagram meets weedmaps 
+
+10-60 seconds-long reviews of cannabis in your area by attractive people. 
+
+list of user-posted video reviews 
+	- each review has a city, location?, seller, product, price?, video?
+	- each review has a city and video 
+	- each review is a video 
+	- list of videos 
+
+Community
+Tel Aviv ->
+	-> reviews
+		-> title 
+		-> 
+
+
+
+
 * move convo into user page
-
-
 
 Accelerator "the bridge"
 
