@@ -12,7 +12,7 @@ path = _req.path rescue 'error-path'
 <body>  
     <%= erb :"layout/flash" rescue '' %>        
     
-    <%= erb :"header/links" %>
+    <%= erb :"header/links" unless @hide_links %>
     
     <div class='<%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
       <%= yield %> 

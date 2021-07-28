@@ -2,7 +2,7 @@
   # user_id is passed in
   vouches = $vouches.all(for: user_id)
   user    = $users.get(user_id) || {handle: 'error'}
-  i_vouched = $vouches.get(for: user_id, by: cuid)
+  i_vouched = cu && $vouches.get(for: user_id, by: cuid)
 %> 
 
 <style>
@@ -36,10 +36,14 @@
         <div><b> You vouched for <%= user[:handle] %>.</b></div>
       <% else %>
       <div>
+        <% if cu %>
         <form method=post action='/vouches/<%=user_id%>'>
           <button class='btn btn-primary btn-raised'> Vouch for <%= user[:handle] %>?</b></div>
           </button>
         </form>
+        <% else %>
+
+        <% end %>
       <% end %>
     </div>
   </div>

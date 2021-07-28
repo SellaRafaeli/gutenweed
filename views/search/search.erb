@@ -16,8 +16,8 @@
 
   casts = casts.shuffle 
 
-  brand = pr[:brand] 
-  if brand
+  selected_brand = brand = pr[:brand] 
+  if selected_brand
     user = $users.get(handle: brand)
     casts = casts.select {|c| c[:user_id] == user[:_id] }
   end 
@@ -158,21 +158,28 @@
   </div>
   <div class='flex9 main_search_area' style='background-color: whitesmoke; padding-bottom: 300px'>  
     <h5 class='ct only-on-mobile-inline-block' style='padding: 10px 20%'> Search Good-Weed </h5>
-    <div class='' style='text-align: left'>  
-      <%= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
+      <% if selected_brand %>
+        <% 
+          $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id]) if cuid!=user[:_id] 
+        %>
+        <%= erb :'users/user', locals: {user: user} %>
+      <% else %>
+        <div class='' style='text-align: left'>  
+          <%= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
 
-      <div class='map_wrapper'>
-        <%= erb :'map/map', locals: {casts: casts} %>
+          <div class='map_wrapper'>
+            <%= erb :'map/map', locals: {casts: casts} %>
+          </div>
+        </div>
+        <% if casts.any? %>      
+          <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: true} %>
+        <% else %>
+          
+          <h5 style='padding:20px; background-color: lightblue; zmargin: 20px'> No Results Found. </h5>
+          <%= erb :'search/brands_list', locals: {brands: all_brands} %>
+        <% end %>
       </div>
-    </div>
-    <% if casts.any? %>      
-      <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: true} %>
-    <% else %>
-      
-      <h5 style='padding:20px; background-color: lightblue; zmargin: 20px'> No Results Found. </h5>
-      <%= erb :'search/brands_list', locals: {brands: all_brands} %>
-    <% end %>
-  </div>
+      <% end %>
 </div>
 
 <script>

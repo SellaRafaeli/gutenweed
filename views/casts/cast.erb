@@ -192,7 +192,7 @@
   <div class='cast_desc_and_time' style='text-align: center'>
     <div class='cast_desc'><%= cast[:desc] %></div>
     <div class='cast_schedule'><%= cast[:custom_time] %></div>
-    <div class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </div>
+    <div class='num_views' style='display: none'><i class='fal fa-eye'></i> <%= num_views %> views </div>
 
     <div class='product_stats'>      
       <% if cast[:thc].to_i > 0 %><span class='single_product_stat'> <%= cast[:thc] %>% THC </span> <% end %>

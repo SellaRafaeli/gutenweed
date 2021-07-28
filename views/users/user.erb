@@ -33,6 +33,7 @@
 .num_views {
   font-size: 14px; color: grey; text-align: center;
   display: block;
+  display: none;
 }
 
 .user_desc {
@@ -198,8 +199,12 @@
     
     <div class='user_top_right flex1'>
       <h1 id=about class='ct title'><%= title %></h1>
-      
-      <a class='btn btn-info' href='/convo/<%=user[:_id]%>'>send message</a>
+
+      <% if cu %>      
+      <a class='btn btn-primary' href='/convo/<%=user[:_id]%>'>send message</a>
+      <% else %>
+      <a class='btn btn-primary' href='/signup?type=buyer'>sign up to message <%=user[:handle]%></a>
+      <% end %>
       
 
       <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>
