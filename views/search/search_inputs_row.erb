@@ -120,7 +120,7 @@
         </div>
         
         <div class='flex6'>
-          <input class='search_input' name=q autofocus placeholder='Search Products, Brands, Stores...' value="<%=pr[:q]%>" <%="zautofocus" if !search_input_on_top %> />
+          <input class='search_input' name=q autofocus placeholder='Search Products and Brands...' value="<%=pr[:q]%>" <%="zautofocus" if !search_input_on_top %> />
           <button class='search_go_btn btn2' type=submit style='margin-left:20px'><i class='fal fa-search' style='margin-right:5px'></i> Go </button>
         </div>
             
@@ -132,7 +132,10 @@
 
         </div>
         <div class='flex3'>
-          <button type=button class='btn btn-sm btn-primary' onclick='$(this).toggleClass("btn-raised"); $(".map_container").toggleClass("noDisplay")' style='margin-top:5px'>map</button>
+          <button type=button class='btn btn-sm btn-primary' onclick='$(this).toggleClass("btn-raised"); $(".map_container").toggleClass("noDisplay")' style='margin-top:5px'>
+            <i class='fal fa-globe-americas'></i> 
+            map
+          </button>
           <!-- <div class=''>
             <div style='font-size: 12px;padding-left: 12px;'> Pickup/Delivery </div>
             <select class='input1' style='margin:0; margin-left:10px'>

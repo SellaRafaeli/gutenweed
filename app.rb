@@ -170,6 +170,16 @@ get '/' do
 	erb :'search/search', default_layout
 end
 
+cities = US_STATES_CITIES.values.flatten
+cities.each do |city|
+	city_route_name = city.gsub(' ','-').downcase 
+
+	get "/#{city_route_name}" do 
+		pr[:city]             = city
+		erb :'search/search', default_layout
+	end
+end
+
 get '/app' do 
 	erb :'search/search', default_layout
 end

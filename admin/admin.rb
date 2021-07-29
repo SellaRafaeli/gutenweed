@@ -1,7 +1,9 @@
-MANAGEABLE_COLLECTIONS = ['casts', 'users', 'enrolls', 'locations', 'stripe_customers', 'stripe_notifs', 'single_payments', 'stripe_subscriptions', 'subs', 'analytics', 'errors', 'emails_sent']
+manageable_collections = ['stats', 'casts', 'users', 'enrolls', 'locations', 'stripe_customers', 'stripe_notifs', 'single_payments', 'stripe_subscriptions', 'subs', 'analytics', 'errors', 'emails_sent']
+#manageable_collections += $mongo.collection_names
+manageable_collections.uniq!
+manageable_collections.map! {|n| $mongo.collection(n) }
 
-MANAGEABLE_COLLECTIONS.map! {|n| $mongo.collection(n) }
-
+MANAGEABLE_COLLECTIONS = manageable_collections
 get '/admin/talent' do
   erb :'admin/talent', layout: :layout
 end

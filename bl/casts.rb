@@ -498,7 +498,7 @@ def show_cast_by_id
 		flash.message = 'Messages cleared.'
 	end
 
-	$stats.add(type: 'product_view', cast_id: cast_id, buyer_id: cu && cu[:_id]) if cuid!=cast[:user_id] 
+	$stats.add(type: 'product_view', cast_id: cast_id, buyer_id: cu && cu[:_id], path: _req.path) if cuid!=cast[:user_id] 
 	erb :'casts/cast', default_layout
 end
 
@@ -530,7 +530,7 @@ get '/@*' do
 
   @hide_header = true if is_pro(user)
 
-  $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id]) if cuid!=user[:_id] 
+  $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id], path: _req.path) if cuid!=user[:_id] 
 	# record_view({profile_user_id: user[:_id]})
 	erb :'users/user', default_layout.merge(locals: {user: user})
 end

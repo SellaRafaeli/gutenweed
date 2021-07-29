@@ -114,8 +114,18 @@
   padding: 9px;
   text-transform: uppercase;
 }
+.recommended_city {
+  font-size: 14px;
+  display: block;
+}
 .recommended_date {
   font-size: 14px;
+}
+.date_and_city {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 10px !important;
+  margin-left: 10px;
 }
 </style>
 <!-- <h1> Search </h1> -->
@@ -123,8 +133,13 @@
   <div class='flex3 brandSelectorContainer' style='background-color: whitesmoke; padding-left: 20px; display: flex; flex-direction: column; padding-right: 20px'>    
     <div class='selectorBox brandSelector open'>
       <div class='brandSelectorLabel'>
-        Recommended 
-        <span class='recommended_date'><%= Date.today.strftime("%B") %> 2021 </span><i class='noDisplay zonly-on-mobile-inline-block fal fa-close' zonclick="$(this).closest('.brandSelectorContainer').css('display','none')"></i>
+        Recommended
+        <div class='date_and_city'> 
+          <% if pr[:city] %>
+          <span class='recommended_city'><%= pr[:city] %></span>
+          <% end %>
+          <span class='recommended_date'><%= Date.today.strftime("%B") %> 2021 </span><i class='noDisplay zonly-on-mobile-inline-block fal fa-close' zonclick="$(this).closest('.brandSelectorContainer').css('display','none')"></i>          
+        </div>
       </div>     
       <!-- <h5 onclick='$(this).parent().toggleClass("open").toggleClass("closed")'> Brand</h5> -->
       <% if true %>
@@ -160,7 +175,7 @@
     <!-- <h5 class='ct only-on-mobile-inline-block' style='padding: 10px 20%'> Search Good-Weed </h5> -->
       <% if selected_brand %>
         <% 
-          $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id]) if cuid!=user[:_id] 
+          $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id], path: _req.path) if cuid!=user[:_id] 
         %>
         <%= erb :'users/user', locals: {user: user} %>
       <% else %>
@@ -186,6 +201,7 @@
 function rerunSearch(opts = {}) {
   var brand        = opts.brand || $('#selectBrand').val();
   var city         = $('#city_selector').val();
+
   var product_type = opts.product_type || $('#product_type_selector').val();
   var q            = $('.search_input').val();
   var loc   = '/search?p=1';
@@ -194,7 +210,13 @@ function rerunSearch(opts = {}) {
   if (product_type)  loc+='&product_type='+product_type;
   if (q)             loc+='&q='+q;
   
-  document.location=loc;
+  //document.location=loc;
+  
+  var cityRoute = replaceAll(city,' ','-').toLowerCase();
+
+  document.location = cityRoute;
+  
+
   
 }
 </script>
