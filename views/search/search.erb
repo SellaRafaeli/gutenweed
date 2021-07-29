@@ -212,6 +212,7 @@
         <div class='article_body_container'>
           <%= erb :"/articles/#{pr[:article_id]}" %>
         </div>
+        
       <% elsif selected_brand %>
         <% 
           $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id], path: _req.path) if cuid!=user[:_id] 

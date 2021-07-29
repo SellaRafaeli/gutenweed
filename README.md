@@ -1,11 +1,42 @@
 https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 
 
+
+
+
+Hello. I need research about the most popular "dispensaries" - stores that sell cannabis and related products - in New York City. I need this research to be uploaded to my site, good-weed.co, which is a site about such dispensaries (cannabis stores).
+
+I need a list of the top 10 dispensaries in New York City, Seattle, San Francisco, Los Angeles (40 dispensaries total). 
+
+For each dispensary, I need the following fields:
+- name, phone number, 
+- physical location(s), website. 
+- 
+
+
+Next steps:
+* Content in 5 cities 
+* PR 
+
+manage this shit 
+vectors 
+> product (CPO)
+> tech (CTO)
+> marketing (CMO)
+> sales (CSO)
+> operations (COO)
+> finances (CFO)
+
+> tel aviv: find 10 dispensaries 
+> new york: find 10 dispensaries 
+> 
+
+
 - my convos 
 
 
-- fill with content 
-- 
+
+
 
 list of clients 
 - canndoc's dispensaries in america and in israel. do they have a list? 

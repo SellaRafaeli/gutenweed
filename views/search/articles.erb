@@ -41,7 +41,7 @@
 %>
 
 <div class='articles_links_list'>
-  <a class='articles_link' href='/articles'><b> articles: </b></span>
+  <a class='articles_link' href='/articles'><b> articles</b></a>
   <% articles.each do |article| %>
     <a href="<%=article[:url]%>" class='simple_link <%="selected" if article[:url].to_s.include?(pr[:article_id].to_s)%> single_article_link'> <%=article[:title] %> </a>
   <% end %>
