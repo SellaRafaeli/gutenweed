@@ -4,11 +4,12 @@ https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 - my convos 
 
 
+- fill with content 
+- 
+
 list of clients 
 - canndoc's dispensaries in america and in israel. do they have a list? 
 - 
-
-
 
 assume nobody will do anything 
 build something cool to show people
