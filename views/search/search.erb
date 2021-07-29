@@ -149,7 +149,7 @@
             brand = brand_user[:handle]
           %>
           <div>            
-            <a class='single_brand_search_link <%=pr[:brand] == brand ? "selected" : "" %>' onclick='rerunSearch({brand: "<%=brand%>"})' <%="selected" if pr[:brand] == brand %>> 
+            <a href='<%=user_link(brand_user)%>' class='single_brand_search_link <%=pr[:brand] == brand ? "selected" : "" %>' zonclick='rerunSearch({brand: "<%=brand%>"})' <%="selected" if pr[:brand] == brand %>> 
               <div class=ct>
                 <img class='single_brand_img' src='<%=brand_user[:img_url]%>' />
               </div>

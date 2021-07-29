@@ -188,13 +188,13 @@ US_STATES = [
 ]
 
 US_STATES_CITIES = {
-    'California': ['San Francisco', 'San Jose', 'Sacramento', 'Los Angeles', 'San Diego'].sort,        
+    'California': ['San Francisco', 'San Jose', 'Los Angeles', 'San Diego'].sort,        
     'Massachusetts': ['Boston'].sort,
-    'Nevada': ['Reno', 'Las Vegas', 'Carson City'].sort,
+    #'Nevada': ['Reno', 'Las Vegas', 'Carson City'].sort,
     'New York': ['New York City'].sort,
-    'New Jersey': ['New Jersey'].sort,
-    'Oregon': ['Portland', 'Eugene', 'Bend'].sort,
-    'Washington': ['Seattle', 'Olympia', 'Spokane'].sort,
+    # 'New Jersey': ['New Jersey'].sort,
+    'Oregon': ['Portland', 'Bend'].sort,
+    'Washington': ['Seattle'].sort,
     'Israel': ['Tel Aviv']
   }
 
