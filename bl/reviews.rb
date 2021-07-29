@@ -1,6 +1,6 @@
 $reviews = $mongo.collection('reviews')
 
-REVIEW_FIELDS = ['_id', 'buyer_id', 'seller_id', 'text', 'seller_name']
+REVIEW_FIELDS = ['_id', 'buyer_id', 'seller_id', 'text', 'seller_name', 'video_url']
 
 def seller_reviews(seller_id)
 	$reviews.get_many(seller_id: seller_id)
@@ -41,7 +41,7 @@ get '/recommend' do
 end
 
 post '/reviews/new' do 
-	data = pr.just(:cast_id, :text, :rating)
+	data = pr.just(:cast_id, :text, :rating, :video_url)
 	data[:buyer_id]   = cuid 
 	
 	# data[:rating]        = pr[:rating].to_i 

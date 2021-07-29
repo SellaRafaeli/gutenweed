@@ -41,14 +41,39 @@
       <% if true %>
       <select name=rating required>
         <option value=""> Rating</option>
-        <option value=1>1 star  (terrible)</option>
-        <option value=2>2 stars (bad)</option>
-        <option value=3>3 stars (decent)</option>
-        <option value=4>4 stars (great)</option>
         <option value=5>5 stars (amazing)</option>
+        <option value=4>4 stars (great)</option>
+        <option value=3>3 stars (decent)</option>
+        <option value=2>2 stars (bad)</option>
+        <option value=1>1 star  (terrible)</option>
+        
       </select>
+      <button type=button id=profile_pic_uploader onclick=uploadReviewVideo() > Attach video review </button>
       <% end %>
       
+      
+      
+      <input name=video_url id=review_video_url style='display: none' value="" />
+      <video id=review_upload_img_container width="320" height="240" controls class=noDisplay >
+        <source id=review_upload_video src="" type="video/mp4">
+      </video>
+      
+      <script>
+        function uploadReviewVideo() {
+          filestackUpload(res => {
+            $("#review_upload_video").attr('src',res.url);      
+            
+            var vidPlayer = $("#review_upload_img_container")
+            vidPlayer.removeClass('noDisplay');
+            vidPlayer.get(0).load(); //necessary to refresh the video
+
+            $("input#review_video_url").val(res.url);            
+            console.log('upload video res',res)
+          });
+        }
+      </script>
+
+      <br/>
       <button class='btn btn-raised btn-primary btn-sm'> submit </button>
     </form>
   </div>

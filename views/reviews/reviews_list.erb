@@ -71,8 +71,18 @@
             <div><% review[:rating].to_i.times { %> ⭐ <% } %></div>
             <br/>
             <div><%= review[:text] %> </div>
+
+            <% if review[:video_url] %>
+              <div class='review_video'>
+                <video width="320" height="240" controls>
+                  <source src="<%= review[:video_url] %>" type="video/mp4">
+                </video>
+                
+              </div>
+            <% end %>
           </div>
             
+          
 
           <% if reviewer[:_id] %>
             <% if can_delete_review(review) %>

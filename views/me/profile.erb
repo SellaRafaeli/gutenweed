@@ -13,8 +13,19 @@
       
       <label class='pic_label'> Profile Pic </label>
       <div><br/></div>
+      
       <div><button type=button id=profile_pic_uploader onclick=uploadProfilePic() > Upload Profile Pic</button></div>
       <input name=img_url id=img_url style='display: none' value="<%=user[:img_url]%>"/>
+      <script>
+        function uploadProfilePic() {
+          filestackUpload(res => {
+            $("#user_profile_input_img").attr('src',res.url);      
+            $("input#img_url").val(res.url);
+            $("#submitMeForm").click();
+          });
+        }
+      </script>
+
     </div>
     <div class='ct flex1'>
       <img style='cursor: pointer' id=user_profile_input_img onclick=$("#img_uploader").click() class=user_img_fullsize src="<%=user[:img_url]%>" />
@@ -204,15 +215,3 @@
       <div class=ct>
         <button id=submitMeForm onclick='$("#me_form").submit()' class='btn btn-raised btn-info'>Save</button>
       </div>
-
-
-
-<script>
-  function uploadProfilePic() {
-    filestackUpload(res => {
-      $("#user_profile_input_img").attr('src',res.url);      
-      $("input#img_url").val(res.url);
-      $("#submitMeForm").click();
-    });
-  }
-</script>
