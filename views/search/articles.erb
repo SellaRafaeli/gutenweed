@@ -1,0 +1,27 @@
+<style>
+.articles_links_list {
+  margin-bottom: 10px;
+}
+.single_article_link {
+  background-color: white;
+  border:1px solid whitesmoke;
+  padding: 5px 10px;
+  font-size: 14px;
+  text-transform: lowercase;
+  border-radius: 5px;
+}
+</style>
+<%
+  articles = [
+    {url: '/posts/about-cannabis', title: 'about cannabis'},
+    {url: '/posts/starting-cannabis', title: 'Getting Started with cannabis'},
+    {url: '/posts/is-cannabis-right-for-you', title: 'Is Cannabis Right For You?'},
+    {url: '/posts/the-is_cannabis-right-for-you', title: 'Resources for enhancing stimuli'}
+  ]
+%>
+
+<div class='articles_links_list'>
+    <% articles.each do |article| %>
+      <a href="<%=article[:url]%>" class='simple_link single_article_link'> <%=article[:title] %> </a>
+    <% end %>
+  </div>

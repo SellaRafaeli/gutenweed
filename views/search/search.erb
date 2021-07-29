@@ -186,6 +186,9 @@
             <%= erb :'map/map', locals: {casts: casts} %>
           </div>
         </div>
+
+        <%= erb :'/search/articles' %>
+
         <% if casts.any? %>      
           <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: true} %>
         <% else %>
