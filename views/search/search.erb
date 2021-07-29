@@ -91,6 +91,9 @@
   font-size: 14px;
   margin-left: 10px;
 }
+.search_screen_container {
+  min-height: 700px;
+}
 @media (max-width: 1000px) {
   .main_search_area {
     overflow-y: scroll;
@@ -128,9 +131,22 @@
   margin-left: 10px;
 }
 .top_img {
-  height: 200px;
+  height: 100px;
   width: 100%;
   object-fit: cover;
+}
+.city_overlay_name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #150000;
+  color: white;
+  padding: 10px;
+  /* width: 100px; */
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%);
+  background-color: #008b24;
 }
 </style>
 <!-- <h1> Search </h1> -->
@@ -139,8 +155,9 @@
   
   url = CITY_IMAGES[pr[:city_route_name]] 
 %>
-<div>
+<div style='position: relative;'>
   <img class='top_img' src='<%=url%>'/>
+  <div class='city_overlay_name'>Good Weed in <%= pr[:city] %></div>
 </div>
 <% end %>
 
@@ -188,7 +205,14 @@
   </div>
   <div class='flex9 main_search_area' style='background-color: whitesmoke; padding-bottom: 300px'>  
     <!-- <h5 class='ct only-on-mobile-inline-block' style='padding: 10px 20%'> Search Good-Weed </h5> -->
-      <% if selected_brand %>
+
+      <% if pr[:article_id] %>
+        <br/>
+        <%= erb :'/search/articles' %>
+        <div class='article_body_container'>
+          <%= erb :"/articles/#{pr[:article_id]}" %>
+        </div>
+      <% elsif selected_brand %>
         <% 
           $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id], path: _req.path) if cuid!=user[:_id] 
         %>
@@ -203,7 +227,6 @@
         </div>
 
         <%= erb :'/search/articles' %>
-
         <% if casts.any? %>      
           <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: true} %>
         <% else %>

@@ -36,9 +36,9 @@ def cu; nil; end
 
 def send_daily_report
 	emails = ['sella@good-weed.co', 'hadar@good-weed.co']
-	html   = zerb :'admin/daily_report', default_layout
+	html   = zerb :'admin/admin_stats', default_layout
 	emails.each { |email|
-	 send_email(email, 'Good-Weed Daily Report - '+Time.now.to_s, html) 
+	 send_email(email, 'Good-Weed Admin Stats - '+Time.now.to_s, html) 
 	}
 end
 

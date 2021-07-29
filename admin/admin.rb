@@ -28,8 +28,8 @@ get '/admin/stats' do
   erb :'admin/stats', layout: :layout
 end
 
-get '/admin/daily_report' do 
-  erb :'admin/daily_report', default_layout
+get '/admin/admin_stats' do 
+  erb :'admin/admin_stats', default_layout
 end 
 
 get '/protected/login_as' do
