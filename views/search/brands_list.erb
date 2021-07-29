@@ -1,4 +1,6 @@
 <%
+  msg = 'Explore Top Cannabis Brands'
+  msg = "Top Cannabis Recommendations in #{pr[:city]}" if pr[:city]
 
 %>
 
@@ -24,7 +26,7 @@
 }
 .single_brand .brand_img { height: 100px; }
 </style>
-<h1> Explore Top Cannabis Brands </h1>
+<h1> <%= msg%> </h1>
 <div class='brands_list_container'>
   <div class='brands_list'>
     <% brands.each do |user| %>

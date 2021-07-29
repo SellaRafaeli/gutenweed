@@ -198,6 +198,12 @@ US_STATES_CITIES = {
     'Israel': ['Tel Aviv']
   }
 
+CITY_IMAGES = {
+  'new-york-city': 'https://images.unsplash.com/photo-1587162146766-e06b1189b907?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80',
+  'boston': 'https://images.unsplash.com/photo-1572128023846-8cf5791a1299?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2978&q=80',
+  'los-angeles': 'https://images.unsplash.com/photo-1597982087634-9884f03198ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2865&q=80'
+}.hwia
+
 PRODUCT_TYPES = {
     'Flower': ['Edibles', 'Gummies', 'Chocolates', 'Brownies', 'Mints'].sort,
     'Prerolls': ['Edibles', 'Gummies', 'Chocolates', 'Brownies', 'Mints'].sort,

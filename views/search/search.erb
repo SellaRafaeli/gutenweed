@@ -127,8 +127,23 @@
   font-size: 10px !important;
   margin-left: 10px;
 }
+.top_img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
 </style>
 <!-- <h1> Search </h1> -->
+<% 
+  if pr[:city_route_name]
+  
+  url = CITY_IMAGES[pr[:city_route_name]] 
+%>
+<div>
+  <img class='top_img' src='<%=url%>'/>
+</div>
+<% end %>
+
 <div class='displayFlex search_screen_container' style='zheight: 100%; zmax-width: 1000px; margin: 0 auto;'>
   <div class='flex3 brandSelectorContainer' style='background-color: whitesmoke; padding-left: 20px; display: flex; flex-direction: column; padding-right: 20px'>    
     <div class='selectorBox brandSelector open'>

@@ -167,6 +167,7 @@ end
 
 get '/' do	
 	# erb :'other/landing_page'
+	return redirect '/los-angeles'
 	erb :'search/search', default_layout
 end
 
@@ -176,6 +177,7 @@ cities.each do |city|
 
 	get "/#{city_route_name}" do 
 		pr[:city]             = city
+		pr[:city_route_name]  = city_route_name
 		erb :'search/search', default_layout
 	end
 end
