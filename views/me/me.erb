@@ -71,13 +71,6 @@ form .user_img:hover {
   padding: 10px;
 }
 
-.chosen_me_form_link {
-  font-weight: bold;
-  background-color: whitesmoke;
-  border-bottom: 3px solid green;
-  color: green !important;
-}
-
 </style>
 
 <div>    
@@ -106,7 +99,7 @@ form .user_img:hover {
     <form id=me_form action='update_me' method='post' class='form1'>      
 
     <div style='zmax-width: 800px; margin-left:auto; margin-right: auto;'>
-      <% ['dashboard','account', 'customers', 'profile', 'by_me', 'for_me', 'locations', 'stats'].each do |part_sec| %>
+      <% ['dashboard','account', 'customers', 'convos', 'profile', 'by_me', 'for_me', 'locations', 'stats'].each do |part_sec| %>
         <div class='me_sec <%=part_sec%> <%="noDisplay" unless sec == part_sec%>'>    
           <% puts "#{part_sec} #{(Time.now - start)/1000.to_f}" %>
           <%= erb :"me/#{part_sec}", locals: {user: user, user_id: user_id} %>    

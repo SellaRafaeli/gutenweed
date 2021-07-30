@@ -161,7 +161,8 @@ get '/fullstack' do
 end
 
 get '/about' do	
-	erb :'other/landing_page', default_layout
+	erb :'other/about', default_layout
+	# erb :'other/landing_page', default_layout
 	# erb :'search/search', default_layout
 end
 

@@ -1,7 +1,11 @@
 https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 
 
-
+Next steps:
+> focus on NYC
+> get content 
+> sellers' forum? 
+> PR 
 
 
 Hello. I need research about the most popular "dispensaries" - stores that sell cannabis and related products - in New York City. I need this research to be uploaded to my site, good-weed.co, which is a site about such dispensaries (cannabis stores).

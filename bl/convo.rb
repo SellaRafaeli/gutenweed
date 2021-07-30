@@ -1,8 +1,12 @@
 $convo_msgs = $mongo.collection('msgs')
 
-get '/convo/:user_id' do 	
-	erb :'/convo/convo', default_layout
-end
+# get '/convos/:user_id' do 	
+# 	erb :'/convo/convo', default_layout
+# end
+
+# get '/convos' do 	
+# 	erb :'/convo/convo', default_layout
+# end
 
 post '/convo/msgs' do 
 	user_ids    = [pr[:target],cuid].sort

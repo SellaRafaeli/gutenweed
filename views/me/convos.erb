@@ -1,0 +1,92 @@
+<%
+  if target    = pr[:user_id]
+    user_id     = target
+    target_user = $users.get(target)
+    user_ids  = [target,cuid].sort
+    msgs      = $convo_msgs.get_many(user_ids: user_ids)
+  else 
+
+  end
+  bp
+  my_convos_user_ids = $convo_msgs.all(user_ids: cuid).mapo(:user_ids).flatten.uniq - [cuid]
+%>
+
+<style>
+.convo_container {
+  max-width: 800px;
+  margin:auto;
+}
+.single_convo_msg {
+  border:2px solid lightgrey;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  display: block;
+}
+.convo_sender img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.convo_sender {
+  font-size: 15px;
+}
+.convo_text {
+  font-size: 16px;
+  padding:20px 10px;
+  display: inline-block;
+}
+.convo_time {
+  font-size: 10px;
+  color: grey;
+}
+
+.single_convo_user {
+  display: block;
+}
+</style>
+
+<div class='convo_container display_flex'>
+
+  <div class='flex1' style='margin-right: 120px'>
+    <h4> conversations </h4>
+    <div class='convos_users_list'>
+      <% my_convos_user_ids.each do |cur_user_id| %>
+      <% user = $users.get(cur_user_id) %>
+        <a class='simple_link single_convo_user single_list_item <%="selected" if target==cur_user_id%>' href='/me?sec=convos&user_id=<%=cur_user_id%>' >          
+          <%= user[:handle] %>
+        </a>
+      <% end %>
+    </div>
+  </div>
+
+  <div class='flex5'>
+    <% if target %>
+    <h1> Convo with <%= target_user[:handle] %> </h1>
+    <% msgs.each do |msg| %>
+      <% sender_user = $users.get(msg[:sender]) %>
+      <div class='single_convo_msg'>
+        <a target=_blank class='simple_link' style='padding:10px' href='/@<%=sender_user[:handle]%>'>
+          <span class='convo_sender'>
+            <img src="<%=sender_user[:img_url]%>" />
+            <%= sender_user[:handle] %>
+          </span> 
+        </a>
+        <div><span class='convo_text'><%= msg[:text] %></span></div>
+        <div><span class='convo_time'> <%=msg[:created_at]%></span></div>
+
+      </div>
+    <% end %>
+    <br/>
+    <form method=post action=/convo/msgs>
+      <input hidden name=target value="<%=target%>" />
+      <input class=input1 placeholder='Say something...' name=text />
+      <button class='btn btn-primary btn-raised'> Submit </button>
+    </form>
+    <% else %>
+      <h1> Please choose a convo. </h1>
+    <% end %>
+  </div>
+
+</div>
