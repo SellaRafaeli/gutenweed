@@ -23,6 +23,12 @@
   margin: 10px;
   display: block;
 }
+.single_convo_msg {
+  background-color: lightgreen;
+}
+.single_convo_msg.my_msg {
+  background-color: lightblue;
+}
 .convo_sender img {
   height: 40px;
   width: 40px;
@@ -61,34 +67,42 @@
     </div>
   </div>
 
-  <div class='flex5' style='background-color: whitesmoke; padding: 10px;'>
+  <div class='flex5' style='background-color: whitesmoke; margin: 10px;'>
     <% if target %>
-    <h1> Convo with <%= target_user[:handle] %> </h1>
+    <h4 style='margin:10px'> Convo with <%= target_user[:handle] %> </h4>
     <br/>
-    <form method=post action=/convo/msgs>
-      <input hidden name=target value="<%=target%>" />
-      <input class=input1 placeholder='Say something...' name=text />
-      <button class='btn btn-primary btn-raised'> Submit </button>
-    </form>
+      <div class='msgs_list' style='zmax-height: 500px; margin: 10px; zborder:1px solid darkgreen; overflow: scroll'>  
 
-    <% msgs.reverse.each do |msg| %>
-      <% sender_user = $users.get(msg[:sender]) %>
-      <div class='single_convo_msg'>
-        <a target=_blank class='simple_link' style='padding:10px; text-align: left' href='/@<%=sender_user[:handle]%>'>
-          <span class='convo_sender'>
-            <img src="<%=sender_user[:img_url]%>" />
-            <%= sender_user[:handle] %>
-          </span> 
-        </a>
-        <div><span class='convo_text'><%= msg[:text] %></span></div>
-        <div><span class='convo_time'> <%=msg[:created_at]%></span></div>
+      <form method=post action=/convo/msgs>
+        <input hidden name=target value="<%=target%>" />
+        <input class=input1 placeholder='Say something...' name=text />
+        <button class='btn btn-primary btn-raised'> Submit </button>
+      </form>
 
-      </div>
-    <% end %>
-    
+      <% msgs.reverse.each do |msg| %>
+        <% sender_user = $users.get(msg[:sender]) %>
+        <div class='single_convo_msg <%="my_msg" if msg[:sender]==cuid %>'>
+          <a target=_blank class='simple_link' style='padding:10px; text-align: left' href='/@<%=sender_user[:handle]%>'>
+            <span class='convo_sender'>
+              <img src="<%=sender_user[:img_url]%>" style='margin: 0'/>
+              <%= sender_user[:handle] %>
+            </span> 
+          </a>
+          <span class='convo_text'><%= msg[:text] %></span>
+          <span class='convo_time'> <%=msg[:created_at]%></span>
+
+        </div>
+        <% end %>
+      </div>    
+      <script>
+        //setTimeout(()=>{$('.msgs_list').get(0).scroll(10000000,10000000); console.log('done scrolling msgs')},100);
+      </script>
+
     <% else %>
       <h1> Please choose a convo. </h1>
     <% end %>
   </div>
 
 </div>
+
+
