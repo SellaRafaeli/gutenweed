@@ -7,7 +7,7 @@
   else 
 
   end
-  bp
+
   my_convos_user_ids = $convo_msgs.all(user_ids: cuid).mapo(:user_ids).flatten.uniq - [cuid]
 %>
 
@@ -49,7 +49,7 @@
 
 <div class='convo_container display_flex'>
 
-  <div class='flex1' style='margin-right: 120px'>
+  <div class='flex1' style='margin-right: 20px'>
     <h4> conversations </h4>
     <div class='convos_users_list'>
       <% my_convos_user_ids.each do |cur_user_id| %>
@@ -61,13 +61,20 @@
     </div>
   </div>
 
-  <div class='flex5'>
+  <div class='flex5' style='background-color: whitesmoke; padding: 10px;'>
     <% if target %>
     <h1> Convo with <%= target_user[:handle] %> </h1>
-    <% msgs.each do |msg| %>
+    <br/>
+    <form method=post action=/convo/msgs>
+      <input hidden name=target value="<%=target%>" />
+      <input class=input1 placeholder='Say something...' name=text />
+      <button class='btn btn-primary btn-raised'> Submit </button>
+    </form>
+
+    <% msgs.reverse.each do |msg| %>
       <% sender_user = $users.get(msg[:sender]) %>
       <div class='single_convo_msg'>
-        <a target=_blank class='simple_link' style='padding:10px' href='/@<%=sender_user[:handle]%>'>
+        <a target=_blank class='simple_link' style='padding:10px; text-align: left' href='/@<%=sender_user[:handle]%>'>
           <span class='convo_sender'>
             <img src="<%=sender_user[:img_url]%>" />
             <%= sender_user[:handle] %>
@@ -78,12 +85,7 @@
 
       </div>
     <% end %>
-    <br/>
-    <form method=post action=/convo/msgs>
-      <input hidden name=target value="<%=target%>" />
-      <input class=input1 placeholder='Say something...' name=text />
-      <button class='btn btn-primary btn-raised'> Submit </button>
-    </form>
+    
     <% else %>
       <h1> Please choose a convo. </h1>
     <% end %>
