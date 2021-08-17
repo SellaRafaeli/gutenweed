@@ -44,6 +44,7 @@
         <a class='single_brand' href='<%=user_link(user)%>'>  
           <img class='brand_img' src='<%=user[:img_url]%>' />
           <span class='brand_handle'><%=user[:handle]%></span>
+          <div><small><%= user[:delivery_area] %></small></div>
         </a>
       <% casts = $casts.get_many(user_id: user[:_id]) %>
       <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>
