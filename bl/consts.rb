@@ -198,6 +198,17 @@ US_STATES_CITIES = {
     'Israel': ['Tel Aviv']
   }
 
+zUS_STATES_CITIES = {
+    'New York City': ['Manhattan', 'Queens', 'Brookyln', 'Bronx', 'Staten Island'],#.sort,        
+    # 'Massachusetts': ['Boston'].sort,
+    # #'Nevada': ['Reno', 'Las Vegas', 'Carson City'].sort,
+    # 'New York': ['New York City'].sort,
+    # # 'New Jersey': ['New Jersey'].sort,
+    # 'Oregon': ['Portland', 'Bend'].sort,
+    # 'Washington': ['Seattle'].sort,
+    # 'Israel': ['Tel Aviv']
+  }
+
 CITY_IMAGES = {
   'new-york-city': 'https://images.unsplash.com/photo-1587162146766-e06b1189b907?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80',
   'boston': 'https://images.unsplash.com/photo-1572128023846-8cf5791a1299?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2978&q=80',

@@ -188,7 +188,7 @@
     <span>
       <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
         <img src='<%=logo%>' style='height:30px'/>
-        <div class='sub_logo_msg'>the marketplace for cannabis</div>
+        <div class='sub_logo_msg'>cannabis delivery</div>
       </a>
     </span>
     <% if use_client_logo %>
@@ -234,7 +234,8 @@
       
       </a>      
     <% end %>
-    <a class='' href='/search'><i class='fa fa-search'></i> <%= 'search' %> </a>
+    <!-- <a class='' href='/search'><i class='fa fa-search'></i> <%= 'search' %> </a> -->
+    <%= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
     <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->
     
       <% ([] || ['usa', 'israel']).each do |country| %>

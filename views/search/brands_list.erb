@@ -18,6 +18,11 @@
   padding: 20px;
   border-radius: 4px;
   font-size: 16px;
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid black;
+  width: 50%;
+  display: inline-block;
 }
 .single_brand:hover {
   border-color: grey;
@@ -25,24 +30,24 @@
   color: black;
 }
 .single_brand .brand_img { 
-  height: 100px; 
+  height: 40px;
   max-width: 100%;
   object-fit: contain;
+  margin-right: 20px;
 }
 </style>
-<h1> <%= msg%> </h1>
+<!-- <h1> <%= msg%> </h1> -->
 <div class='brands_list_container'>
   <div class='brands_list'>
     <% brands.each do |user| %>
-    <a class='single_brand' href='<%=user_link(user)%>'>
-      <div >
-        
+      <div>
+        <a class='single_brand' href='<%=user_link(user)%>'>  
           <img class='brand_img' src='<%=user[:img_url]%>' />
-          <div class='brand_handle'><%=user[:handle]%></div>
-        
-        <%#= user.to_json %>
+          <span class='brand_handle'><%=user[:handle]%></span>
+        </a>
+      <% casts = $casts.get_many(user_id: user[:_id]) %>
+      <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>
       </div>
-    </a>
     <% end %>
   </div>
 </div>

@@ -6,45 +6,48 @@
 
   good_cast_ids = ['YNQqYcWAL', 'gPr6BRfRg', 'nRNwuBinl', 'c1kH9iX8Z', 'GQIkhxgXs', 'Ajx4sVD6E', 'eijAbrxpv', 'yZjuY33su', 'arJPs9izu', '5cvGxmNtF', 'scVXlGnrw', 'Lo2q6PP8i', 'gF7RiIkjQ', 'LE4tPWzTd', 'G5hUIACvj', 'WTiplOilp', 'eY3rmgMkU'].shuffle
   # good_cast_ids = ['s5pICJJUb']
-  if $prod 
+  if $prod && false
     casts = $casts.all(_id: {'$in': good_cast_ids })
   else 
     # good_cast_ids = ['s5pICJJUb']
     # casts = $casts.all(_id: {'$in': good_cast_ids })
-    casts = $casts.all 
+    # casts = $casts.all 
   end
 
-  casts = casts.shuffle 
+  casts = []
+  # casts = casts.shuffle 
 
   selected_brand = brand = pr[:brand] 
-  if selected_brand
-    user = $users.get(handle: brand)
-    casts = casts.select {|c| c[:user_id] == user[:_id] }
-  end 
+  # if selected_brand
+  #   user = $users.get(handle: brand)
+  #   casts = casts.select {|c| c[:user_id] == user[:_id] }
+  # end 
 
   if pr[:city]
 
     user_ids_with_that_location = $locations.all.select {|loc| loc[:city] == pr[:city] }.mapo(:user_id)
     
-    casts = casts.select {|c| c[:user_id].in?(user_ids_with_that_location) }
+    # casts = casts.select {|c| c[:user_id].in?(user_ids_with_that_location) }
+    # casts.get_many(user_id: user_ids_with_that_location)
     brands.select!{|user| user[:_id].to_s.in?(user_ids_with_that_location) }
   end
 
-  if pr[:product_type] 
-    casts = casts.select {|c| c[:product_type] == pr[:product_type] }
-  end
+  # if pr[:product_type] 
+  #   casts = casts.select {|c| c[:product_type] == pr[:product_type] }
+  # end
 
   # if pr[:casts]
   #   casts = 
   # end
 
-  if pr[:q]
-    casts = casts.select {|c| c.to_json.to_s.downcase.include?(pr[:q])}
-  end
+  # if pr[:q]
+  #   casts = casts.select {|c| c.to_json.to_s.downcase.include?(pr[:q])}
+  # end
 
-  if pr[:q].present? && (user_matching = $users.get(handle: pr[:q]))
-    return redirect to user_link(user_matching) 
-  end
+  # if pr[:q].present? && (user_matching = $users.get(handle: pr[:q]))
+  #   return redirect to user_link(user_matching) 
+  # end
+
 %>
 
 <style>
@@ -93,6 +96,10 @@
 }
 .search_screen_container {
   min-height: 700px;
+}
+.main_search_area {
+  background-color: whitesmoke;
+  padding: 0 20px 300px;
 }
 @media (max-width: 1000px) {
   .main_search_area {
@@ -155,14 +162,14 @@
   
   url = CITY_IMAGES[pr[:city_route_name]] 
 %>
-<div style='position: relative;'>
+<div style='position: relative; display: none'>
   <img class='top_img' src='<%=url%>'/>
   <div class='city_overlay_name'>Good Weed in <%= pr[:city] %></div>
 </div>
 <% end %>
 
 <div class='displayFlex search_screen_container' style='zheight: 100%; zmax-width: 1000px; margin: 0 auto;'>
-  <div class='flex3 brandSelectorContainer' style='background-color: whitesmoke; padding-left: 20px; display: flex; flex-direction: column; padding-right: 20px'>    
+  <div class='flex3 brandSelectorContainer' style='background-color: whitesmoke; padding-left: 20px; display: flex; flex-direction: column; padding-right: 20px; display: none'>    
     <div class='selectorBox brandSelector open'>
       <div class='brandSelectorLabel'>
         Recommended
@@ -203,7 +210,8 @@
       <% end %>
     </div>
   </div>
-  <div class='flex9 main_search_area' style='background-color: whitesmoke; padding-bottom: 300px'>  
+
+  <div class='flex9 main_search_area'>  
     <!-- <h5 class='ct only-on-mobile-inline-block' style='padding: 10px 20%'> Search Good-Weed </h5> -->
 
       <% if pr[:article_id] %>
@@ -220,18 +228,19 @@
         <%= erb :'users/user', locals: {user: user} %>
       <% else %>
         <div class='' style='text-align: left'>  
-          <%= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
+          <%#= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
 
           <div class='map_wrapper'>
-            <%= erb :'map/map', locals: {casts: casts} %>
+            <%#= erb :'map/map', locals: {casts: casts} %>
           </div>
         </div>
 
-        <%= erb :'/search/articles' %>
+        <%#= erb :'/search/articles' %>
         <% if casts.any? %>      
-          <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: true} %>
+          <h1> some casts </h1>
+          <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>
         <% else %>
-          
+          <h1> some brands </h1>
           <% if pr[:q] %>
           <h5 style='padding:20px; background-color: lightblue; zmargin: 20px'> No Results Found. </h5>
           <% end %>

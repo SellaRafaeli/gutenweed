@@ -168,7 +168,7 @@ end
 
 get '/' do	
 	# erb :'other/landing_page'
-	return redirect '/new-york-city'
+	# return redirect '/new-york-city'
 	erb :'search/search', default_layout
 end
 
