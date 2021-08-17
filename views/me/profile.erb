@@ -70,17 +70,27 @@
 
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
-    <label class='ztooltip'> Cannabis License Numbers
+    <label class='ztooltip'> Cannabis License 
       <!-- <span class='tooltip_text'>This will change the look and feel of your profile page.</span> -->
     </label>
     
-    <input name=license_numbers value="<%=user[:license_numbers]%>" />
+    <input name=license_text value="<%=user[:license_text]%>" placeholder='What license do you have?' />
   </div>
 
   <br/>
 
   <br/>
 
+
+   <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
+    <label class='ztooltip'> Delivery Area 
+    </label>
+    
+    <input name=delivery_area value="<%=user[:delivery_area]%>" placeholder='In what areas do you deliver?' />
+  </div>
+
+  <br/>
   <% if false %>
   <div class='display_flex'>                  
     <label> Location <div></div></label>

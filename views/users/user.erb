@@ -129,9 +129,9 @@
 }
 
 .user_main_img img {
-  max-height: 400px;
+  height: 100px;
   border:3px solid white;
-  max-width: 600px;
+  width: 100px;
 }
 
 .user_img_white_wrapper {
@@ -202,19 +202,27 @@
     <% end %>
     
     <div class='user_top_right flex1'>
-      <h1 id=about class='ct title'><%= title %></h1>
+      <h1 id=about class='title'><%= title %></h1>
+      <div class=''>Delivery Area: <%= user[:delivery_area] || 'n/a' %></div>
+      <% if user[:license_numbers] %>
+        <div class='license_numbers'>
+          <a class='simple_link' href='<%=user[:license_url]%>'><small> License: <%= user[:license_text] %></small></a>
+        </div>
+      <% end %>
 
-      <div style='margin:10px 0'>
-        <% if cu %>      
-        <a class='btn btn-primary btn-raised' href='/me?sec=convos&user_id=<%=user[:_id]%>'>send message</a>
-        <% else %>
-        <a class='btn btn-primary btn-raised' href='/signup?type=buyer'>sign up to message <%=user[:handle]%></a>
-        <% end %>
-      </div>
       
-
-      <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>
-      <%= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>
+        <div style='margin:10px 0'>
+          <% if cu %>      
+          <a class='btn btn-primary btn-raised' href='/me?sec=convos&user_id=<%=user[:_id]%>'>send message</a>
+          <% else %>
+          <a class='btn btn-primary btn-raised' href='/signup?type=buyer'>sign up to message <%=user[:handle]%></a>
+          <% end %>
+        </div>
+        
+      <% if false %>
+        <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>
+        <%= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>
+      <% end %>
 
       <div class='ct' style='width: 100%'>
 
@@ -269,7 +277,7 @@
     
   <% if user_casts.any? %>    
     <div class=user_section>      
-      <%= erb :'casts/casts_list', locals: {casts: user_casts, show_product_categories: true} %>
+      <%= erb :'casts/casts_list', locals: {casts: user_casts, show_product_categories: false} %>
     </div>
   <% end %>
 
@@ -300,14 +308,6 @@
         <!-- <%#= loc.to_json %> -->
       </div>
   <% end %>
-  <% end %>
-
-    
-
-  <% if user[:license_numbers] %>
-  <div class='ct license_numbers'>
-    <a class='simple_link' href='<%=user[:license_url]%>'><small> License Number(s): <%= user[:license_numbers] %></small></a>
-  </div>
   <% end %>
 
   <div class='user_section noDisplay'>

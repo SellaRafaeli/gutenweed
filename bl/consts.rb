@@ -317,4 +317,5 @@ REFERRAL_PCT    = 10
 REFERRAL_MONTHS = 6
 
 
-ORDER_STATUSES = ['new', 'in progress', 'shipped', 'received', 'reviewed']
+ORDER_STATUSES = ['new', 'seen by a human', 'on its way', 'delivered', 'received', 'reviewed']
+
