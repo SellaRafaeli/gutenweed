@@ -1,10 +1,16 @@
 <%
-  user = cast[:user] || $users.get(cast[:user_id]) || {}  
+  user = cast[:user] || $users.get(cast[:user_id]) || {}
+  
   cast_pic = cast[:img_url]
+  # cast_pic = user[:img_url] unless (cast_pic.present? && CGI.unescape_html(cast_pic)!=DEFAULT_PIC)  
   cast_pic = DEFAULT_PIC unless cast_pic.present?
+  
   user_pic = user[:img_url]
   user_pic = cast_pic unless user_pic.present? && CGI.unescape_html(user_pic)!=DEFAULT_PIC   
 %>
+
+<style>
+</style>
 
 <span class='cast_box single_type_box <%=cast[:product_type]%>' onclick='document.location="<%=cast_link(cast)%>"'>          
   <div class='cast_img_and_logistics'>
@@ -30,7 +36,27 @@
     </span>
   </div> 
   <div class='cast_box_text_and_img display_flex' style='margin-top: 10px; word-break: break-word;'>
+    <div style='flex:1'>
+      <a href='/@<%=user[:handle]%>'>        
+        <img class='cast_box_user_img' src='<%=user[:img_url]%>' />        
+      </a>
+    </div>
     <div class='cast_box_text'>      
+      <div class='cast_box_user'>
+        <a href='/@<%=user[:handle]%>'> 
+          <%= user[:handle] %> 
+          <% if has_tag(user, 'green_check') %>
+            <!-- <i class='check fa fa-check-circle'></i> -->
+            <i class='check fas fa-badge-check'></i>
+          <% end %>
+        </a>
+        <% if locals[:show_user_desc] %>
+        <!-- <div class='cast_box_user_desc'>
+          <%= user[:desc] %>
+        </div> -->
+        <% end %>
+      </div>
+
       <a class='cast_box_text_title' href='<%=cast_link(cast)%>'>
         <h4 class='cast_box_title'><%= cast[:title] %>
         <!-- <div class='cast_box_desc'><%= cast[:desc] %></div> -->
@@ -42,8 +68,6 @@
       </a>      
     </div>
   </div>
-
-  <% if show_product_stats = false %>
   <div class='product_stats' style='padding:0 5px; text-align: center;'>
     <% if !$prod; cast[:thc]     ||= rand(30); cast[:strain]  ||= 'sativa' end %>
     <% if cast[:thc].to_i > 0 %> <span class='single_product_stat'> <%= cast[:thc] %>% THC,  <%= cast[:strain] %> </span><% end %>
@@ -53,9 +77,10 @@
     <% color='brown'  %>
     <% color='green' if avg_rating >= 3 %>
     <% color='goldenrod' if avg_rating >= 4 %>
-    
+
+    <% if show_rating_and_review = false %>
     <span class='' style='font-size: 11px; color: <%=color%>'> <%= avg_rating %> <i class='fas fa-star'></i> </span> 
-    <span class='single_product_stat'> <%= num_reviews %> <i class='fal fa-comment-alt'></i> </span>     
+    <span class='single_product_stat'> <%= num_reviews %> <i class='fal fa-comment-alt'></i> </span> 
+    <% end %>
   </div>
-  <% end %>
 </span>
