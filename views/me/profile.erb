@@ -90,6 +90,18 @@
     <input name=delivery_area value="<%=user[:delivery_area]%>" placeholder='In what areas do you deliver?' />
   </div>
 
+  <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
+    <label class='ztooltip'> Active?  
+    </label>
+    
+    <select name=active>
+      <% ['yes', 'no'].each do |opt| %>
+        <option <%="selected" if user[:active]==opt %>><%=opt%></option>
+      <% end %>
+    </select>
+  </div>
+
   <br/>
   <% if false %>
   <div class='display_flex'>                  
