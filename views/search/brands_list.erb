@@ -1,7 +1,8 @@
 <%
   msg = 'Explore Top Cannabis Brands'
+  city = pr[:city].present? ? "/ #{pr[:city]}" : ""
   msg = "Top Cannabis Recommendations in #{pr[:city]}" if pr[:city]
-
+  msg = "Order Weed Now #{city}"
 %>
 
 <style>
@@ -36,7 +37,7 @@
   margin-right: 20px;
 }
 </style>
-<!-- <h1> <%= msg%> </h1> -->
+<h1> <%= msg%> </h1>
 <div class='brands_list_container'>
   <div class='brands_list'>
     <% brands.each do |user| %>
