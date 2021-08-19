@@ -189,6 +189,7 @@ US_STATES = [
 
 US_STATES_CITIES = {
     'California': ['San Francisco', 'San Jose', 'Los Angeles', 'San Diego'].sort,        
+    'Colorado': ['Boulder', 'Denver'].sort,        
     'Massachusetts': ['Boston'].sort,
     #'Nevada': ['Reno', 'Las Vegas', 'Carson City'].sort,
     'New York': ['New York City'].sort,
