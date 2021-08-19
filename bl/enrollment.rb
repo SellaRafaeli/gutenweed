@@ -7,7 +7,7 @@ ENROLL_CANCELED = 'canceled'
 # user_id - enrolling user
 # cast_id - enrolled cast
 
-ENROLL_FIELDS = ['user_id', 'cast_id', 'status']
+ENROLL_FIELDS = ['user_id', 'cast_id', 'status', 'amount']
 
 def enroll_user(user_id, cast_id, data = {})
 	buyer_id       = user_id
@@ -122,7 +122,7 @@ post '/enrollment/cancel' do
 	end
 end
 
-post '/enrolls' do 
+post '/enrolls' do #create an order out of thin air, by the seller
 	require_user 
 
 	cast   = $casts.get_many(user_id: cuid).sample
@@ -132,6 +132,23 @@ post '/enrolls' do
 	enroll = $enrolls.add(user_id: nil, cast_id: cast_id, status: ENROLL_ACTIVE)	
 	html   = erb :'orders/single_order', locals: {order: enroll, is_seller: true}
 	{enroll: enroll, html: html}
+end
+
+post '/cashless_enroll' do 
+
+	require_user
+	require_fields(['cast_id', 'name', 'address', 'phone'])
+
+	cast = $casts.get(pr[:cast_id])
+	halt unless cast
+	data = pr.just(:cast_id, :name, :address, :phone)
+	data[:user_id] = cuid
+	data[:amount] = cast[:cost_dollars]
+
+	$enrolls.add(data)
+	flash.message = 'Your order has been placed.'
+	#{msg: 'ok'}
+	redirect '/me?sec=for_me'
 end
 
 post '/enrolls/:id' do 

@@ -34,7 +34,7 @@ function submitNote(elem) {
   var text  = input.val();
   var data  = {text};
   $.post('/notes',{item_id: item_id, text}).then(res => {
-    var html = `<div class='single_note single_list_item'>(just now): </div>`;
+    var html = `<div class='single_note single_list_item'>(you just now): ${text}</div>`;
     $('.notes_list.'+item_id).append(html);
     input.val('');
   });

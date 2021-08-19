@@ -35,33 +35,37 @@
     <%#= o.to_json %>        
     <div class='single_order_details <%=o[:_id]%>'>
       <div class=flex3>
-        <!-- <a class=simple_link href='/casts/<%=o[:cast_id]%>'>
+        <a class=simple_link href='/casts/<%=o[:cast_id]%>'>
           <img src='<%=cast[:img_url]%>' class='order_img' />
           <div><%= cast[:title] %></div>
-        </a> -->
-        <div style='font-size: 14px'> Product </div>
-        <select class='input1 order_product' style='width: 100%; margin: 0; margin-top: 5px' onchange="updateOrder('<%=o[:_id]%>',{product_id: $(this).val()})" >
+        </a>
+        <!-- <div style='font-size: 14px'> Product </div> -->
+        <!-- <select class='input1 order_product' style='width: 100%; margin: 0; margin-top: 5px' onchange="updateOrder('<%=o[:_id]%>',{product_id: $(this).val()})" >
           <% casts.each do |product| %>
             <option value="<%=product[:_id]%>" <%="selected" if product[:_id] == o[:product_id] %>>
               <%=product[:title]%> 
             </option>           
           <% end %>
-        </select>
+        </select> -->
       </div>
 
       <div class=flex3>
         <a class=simple_link href='/users/<%=buyer[:_id]%>'>
-          <% if buyer[:img_url] %>
+          <% if buyer[:img_url] && false %>
           <img src='<%=buyer[:img_url]%>' class='order_img' />
-          <div><%= buyer[:name] %></div>
           <% end %>
+          
+          
           <%#= buyer.to_json %>
         </a>
       </div>
 
       <div class='flex3'>
-        <b> $<%= o[:amount].to_f/100 %> </b> 
-        <div><%= nice_datetime(o[:created_at]) %></div>
+        <b> $<%= o[:amount].to_i %> </b> 
+        <div><%= nice_datetime(o[:created_at]) %></div>        
+        <div>address: <%= o[:address] %></div>
+        <div>name: <%= buyer[:name] %></div>
+        <div>phone: <%= o[:phone] %></div>
       </div>
 
       <div class='flex3 order_right'>

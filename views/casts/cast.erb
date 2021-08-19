@@ -182,6 +182,24 @@
 .castpage_v2 h4 {
   color: purple;
 }
+#order_form2 {
+  padding: 20px;
+  border: 3px solid grey;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999999;
+  background-color: white;
+}
+.submit_order_label {
+  width: 300px;
+  display: inline-block;
+  margin-top: 10px;
+}
+.submit_order_title {
+  font-size: 20px;
+}
 </style>
 <div class='castpage_v2'>
   
@@ -193,12 +211,31 @@
   <% if allow_buying %>
   <div class=ct>
     <% if cu %>
-    <button onclick='$("#cast_enrollment").fadeIn();' style='margin-top: 10px' class='btn btn-primary btn-lg btn-raised'> Order Now </button>
+    <button onclick='$("#order_form2").fadeIn();' style='margin-top: 10px' class='btn btn-primary btn-lg btn-raised'> Order Now </button>
     <% else %>
     <a class='btn btn-raised btn-primary' href='/login'>Sign Up to Order Now </a>
     <% end %>
   </div>
   <% end %>
+
+  <div id=order_form2 class=noDisplay>
+    <form method=post action='/cashless_enroll'>
+      <div class='submit_order_title'> Submit Order </div>      
+      <div><b> Order details: </b><label><%= cast[:title]%>, <%= cast_price(cast) %></label></div>
+      <h5> Delivery Details </h5>
+      <input name=cast_id value="<%=cast[:_id]%>" />
+      <div>
+        <label class='submit_order_label'> Name </label>  <input required name='name' placeholder='Your name' /></div>
+      <div>
+        <label class='submit_order_label'> Phone </label> <input required name='phone' placeholder='your phone number' type=number /></div>
+      <div>
+        <label class='submit_order_label'> Delivery Address </label> <input required name='address' placeholder='your address' /></div>      
+
+      <div style='text-align:right'>
+        <button class='btn btn-primary btn-raised'> order </button>
+      </div>
+    </form>
+  </div>
 
   <!-- desc and time  -->
   <div class='cast_desc_and_time ct' style='text-align: center'>
