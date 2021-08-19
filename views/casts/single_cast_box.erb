@@ -6,6 +6,16 @@
   user_pic = cast_pic unless user_pic.present? && CGI.unescape_html(user_pic)!=DEFAULT_PIC   
 %>
 
+<div class='cast_box single_type_box <%=cast[:product_type]%>' onclick='document.location="<%=cast_link(cast)%>"'>          
+  <div class='cast_img_wrapper'>
+    <img src='<%= cast_pic %>' class='single_type_box_image' />
+  </div>
+  <div class='center2' style='width: 100%'><%= cast[:title] %></div>
+  <div class='cast_price center2' style='width: 100px'><%= cast_price(cast) %></div>  
+  
+</div>
+
+<% if false %>
 <span class='cast_box single_type_box <%=cast[:product_type]%>' onclick='document.location="<%=cast_link(cast)%>"'>          
   <div class='cast_img_and_logistics'>
     <a class='single_type_box_image_link_container' href='<%=cast_link(cast)%>'>
@@ -59,3 +69,4 @@
   </div>
   <% end %>
 </span>
+<% end %>
