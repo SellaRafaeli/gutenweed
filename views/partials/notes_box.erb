@@ -3,6 +3,11 @@
   padding: 10px;
   color: #150000;
 }
+.add_note_btn {
+  position: relative;
+  bottom: 7px;
+  display: inline-block;
+}
 </style>
 
 <%
@@ -21,7 +26,8 @@
   </div>
   <div>
     <form method=post action=/notes onsubmit="return submitNote(this); return false">
-      <input class='new_note' data-item_id='<%=item_id%>' placeholder='add...' /><button> send </button>
+      <input class='new_note' data-item_id='<%=item_id%>' placeholder='add...' />
+      <button class='add_note_btn'> send </button>
     </form>
   </div>
 </div>
