@@ -223,7 +223,7 @@
       <div class='submit_order_title'> Submit Order </div>      
       <div><b> Order details: </b><label><%= cast[:title]%>, <%= cast_price(cast) %></label></div>
       <h5> Delivery Details </h5>
-      <input name=cast_id value="<%=cast[:_id]%>" />
+      <input hidden name=cast_id value="<%=cast[:_id]%>" />
       <div>
         <label class='submit_order_label'> Name </label>  <input required name='name' placeholder='Your name' /></div>
       <div>

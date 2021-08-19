@@ -1,8 +1,8 @@
 <%
   is_seller ||= false
-  orders = orders.reverse if !$prod
+  orders = orders#.reverse #if !$prod
 
-  orders.select! {|o| o[:_id ] == pr[:order_id] } if pr[:order_id].present?
+  # orders.select! {|o| o[:_id ] == pr[:order_id] } if pr[:order_id].present?
   selected_order_status = pr[:order_status_type] || 'Any'
   
   if (selected_order_status!='Any')

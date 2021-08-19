@@ -71,6 +71,7 @@
         <div>phone: <%= o[:phone] %></div>
       </div>
 
+      <% if false %>
       <div class='flex3 order_right'>
         <div class=flex3>  
             <% if is_seller %>
@@ -85,10 +86,11 @@
             <% end %>
         </div>
       </div>
+      <% end %>
     </div>
     <br/>
 
-    <% if !pr[:order_id].present? %>
+    <% if true || !pr[:order_id].present? %>
     <h5> Notes </h5>
     <%= erb :'/partials/notes_box', locals: {item_id: o[:_id]} %>
     <% end %>
