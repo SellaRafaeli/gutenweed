@@ -64,8 +64,13 @@
   width: 200px;
   margin-left: 0px;
 }
-
-@media screen and (max-width: 600px) {
+.links_city_selector_container {
+  display: inline-block;
+}
+@media screen and (max-width: 800px) {
+  .links_city_selector_container {
+    margin-left: 40px;
+  }
   .container {
     margin-top:10px;
     position: relative;
@@ -235,7 +240,9 @@
       </a>      
     <% end %>
     <!-- <a class='' href='/search'><i class='fa fa-search'></i> <%= 'search' %> </a> -->
-    <%= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+    <span class='links_city_selector_container'>
+      <%= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+    </span>
     <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->
     
       <% ([] || ['usa', 'israel']).each do |country| %>

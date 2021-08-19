@@ -1,6 +1,8 @@
 https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 
 
+https://trello.com/goodweed2
+
 Next steps:
 > focus on NYC
 > get content 

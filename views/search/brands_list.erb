@@ -1,8 +1,8 @@
 <%
   msg = 'Explore Top Cannabis Brands'
-  city = pr[:city].present? ? "/ #{pr[:city]}" : ""
+  city = pr[:city].present? ? "#{pr[:city]}" : ""
   msg = "Top Cannabis Recommendations in #{pr[:city]}" if pr[:city]
-  msg = "Order Weed Now #{city}"
+  msg = "Order Weed Now - #{city}"
 %>
 
 <style>
@@ -22,7 +22,7 @@
   border-radius: 0;
   border: none;
   border-bottom: 2px solid black;
-  width: 50%;
+  zwidth: 50%;
   display: inline-block;
 }
 .single_brand:hover {
@@ -45,7 +45,7 @@
         <a class='single_brand' href='<%=user_link(user)%>'>  
           <img class='brand_img' src='<%=user[:img_url]%>' />
           <span class='brand_handle'><%=user[:handle]%></span>
-          <div><small><%= user[:delivery_area] %></small></div>
+          <span><small style='color: grey; font-style: italic'> <%= user[:delivery_area] %></small></span>
         </a>
       <% casts = $casts.get_many(user_id: user[:_id]) %>
       <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>
