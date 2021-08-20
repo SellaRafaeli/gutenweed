@@ -36,16 +36,23 @@
   object-fit: contain;
   margin-right: 20px;
 }
+.single_brand_container {
+  /*background: linear-gradient(184deg, rgba(255,255,255,1) 0%, rgb(80 173 83) 35%);*/
+  border:1px solid darkgreen;
+  padding: 20px;
+  border-radius: 0px;
+  margin-bottom: 20px;
+}
 </style>
 <h1> <%= msg%> </h1>
 <div class='brands_list_container'>
   <div class='brands_list'>
     <% brands.each do |user| %>
-      <div>
+      <div class='single_brand_container'>
         <a class='single_brand' href='<%=user_link(user)%>'>  
           <img class='brand_img' src='<%=user[:img_url]%>' />
           <span class='brand_handle'><%=user[:handle]%></span>
-          <span><small style='color: grey; font-style: italic'> <%= user[:delivery_area] %></small></span>
+          <span><small style='color: black; font-style: italic'> <%= user[:delivery_area] %></small></span>
         </a>
       <% casts = $casts.get_many(user_id: user[:_id]) %>
       <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>

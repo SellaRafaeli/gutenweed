@@ -50,10 +50,19 @@
 
   <div class='display_flex'>
     <label> Description </label>
-    <textarea name=desc placeholder="Who you are including website, phone number, telegram, email" value=""><%=user['desc']%></textarea> 
+    <textarea name=desc placeholder="Describe yourself." value=""><%=user['desc']%></textarea> 
     <!-- <span>Use #hashtags like #actor or #dance_teacher</span> -->
   </div>
   <br/>
+
+
+ <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
+    <label class='ztooltip'> Delivery Area 
+    </label>
+    
+    <input name=delivery_area value="<%=user[:delivery_area]%>" placeholder='In what areas do you deliver?' />
+  </div>
 
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
@@ -81,18 +90,9 @@
 
   <br/>
 
-
-   <div class='display_flex' style='margin-top:20px'>
-    <%#= user.to_json %>
-    <label class='ztooltip'> Delivery Area 
-    </label>
-    
-    <input name=delivery_area value="<%=user[:delivery_area]%>" placeholder='In what areas do you deliver?' />
-  </div>
-
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
-    <label class='ztooltip'> Active?  
+    <label class='ztooltip'> Show Your Profile?  
     </label>
     
     <select name=active>
