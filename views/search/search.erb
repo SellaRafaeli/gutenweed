@@ -1,8 +1,11 @@
 <%
 
   cast_owners = $casts.all.mapo(:user_id).uniq
-  all_brands  = $users.all.select {|u| u[:type] == 'seller'}.select {|u| u[:_id].in?(cast_owners)}
+  all_brands  = $users.all.select {|u| u[:type] == 'seller'} #.select {|u| u[:_id].in?(cast_owners)}
+  
+  city = pr[:city]
   all_brands  = all_brands.select {|u| u[:active]!= 'no' }
+  all_brands  = all_brands.select {|u| city && u[:city] == city }
   brands      = all_brands.clone
 
   good_cast_ids = ['YNQqYcWAL', 'gPr6BRfRg', 'nRNwuBinl', 'c1kH9iX8Z', 'GQIkhxgXs', 'Ajx4sVD6E', 'eijAbrxpv', 'yZjuY33su', 'arJPs9izu', '5cvGxmNtF', 'scVXlGnrw', 'Lo2q6PP8i', 'gF7RiIkjQ', 'LE4tPWzTd', 'G5hUIACvj', 'WTiplOilp', 'eY3rmgMkU'].shuffle

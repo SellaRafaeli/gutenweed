@@ -55,6 +55,13 @@
   </div>
   <br/>
 
+  <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
+    <label class='ztooltip'> City
+    </label>
+    <%= erb :'/partials/select_state_city', locals: {city: user[:city]} %>      
+  </div>
+
 
  <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
@@ -66,7 +73,18 @@
 
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
-    <label> Cannabis License </label>
+    <label class='ztooltip'> Contact Number / Link </label>
+    
+    <input name=contact value="<%=user[:contact]%>" placeholder='Phone number or link' />
+  </div>
+
+  <br/>
+  <hr/>
+  <br/>
+
+  <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
+    <label> Cannabis License File </label>
     <input name=license_url      class=license_url value="<%=user['license_url']%>" hidden />    
     <input name=license_filename class=license_filename value="<%=user['license_filename']%>" hidden /> 
     
@@ -79,11 +97,11 @@
 
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
-    <label class='ztooltip'> Cannabis License 
+    <label class='ztooltip'> Cannabis License Text
       <!-- <span class='tooltip_text'>This will change the look and feel of your profile page.</span> -->
     </label>
     
-    <input name=license_text value="<%=user[:license_text]%>" placeholder='What license do you have?' />
+    <input name=license_text value="<%=user[:license_text]%>" placeholder='Enter license type and number' />
   </div>
 
   <br/>
