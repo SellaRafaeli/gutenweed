@@ -49,7 +49,9 @@
   font-weight: bold;
 }
 </style>
-<h1> <%= msg%> </h1>
+<h1> <%= msg%> <span class='links_city_selector_container'>
+      <%= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+    </span></h1>
 <div class='brands_list_container'>
   <div class='brands_list'>
   <% if brands.any? %>
