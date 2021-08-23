@@ -3,6 +3,47 @@ https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 
 https://trello.com/goodweed2
 
+Management Dashboard: 
+https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/edit?usp=sharing
+
+Sella:
+-> create content: 30 articles 
+	1. Sex and Cannabis 
+	2. Cannabis Delivery: Solving the UX 
+	3. Good Weed: What Makes Cannabis "Good"? 
+	4. Chasing the High: The benefits of a weed addiction
+	5. The Best Weed in America
+	6. Cannabis: Buy Local, Buy Green, Support the Planet 
+	7. Cannabis: The Best of All Drugs? 
+	8. The Big Weed Survey: What Do People Want?
+	9. Cannabis: The Good, the Bad, and the Ugly
+	10. Men vs Women on Weed
+	11. Weed is bad for teenagers; safe for adults only, says study  
+	12. Marijuana vs Weed vs Cannabis: Why so many names? 
+	13. Edibles vs Joints 
+	14. The history of the cannabis industry
+	15. The future of the cannabis industry 
+	16. Cannabis e-commerce: a review 
+	17. When will weed be federally legal?
+	18. Is weed a psychedelic? 
+	19. Medical literature review on cannabis 
+	20.
+
+-> post content in forums. List of forums below; on day X of the month post article X in each forum. 
+	1.
+	2.
+	3.
+	4.
+-> make a list of delivery services in each city 
+	(yuval)
+
+
+1. scrape Leafly for delivery services in NYC 
+2. 
+
+3. post ads in social media 
+
+
 Next steps:
 > focus on NYC
 > get content 

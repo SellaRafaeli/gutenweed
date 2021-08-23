@@ -78,7 +78,7 @@ get '/admin/earnings/?:earn_id?' do
   erb :'stripe/all_earnings', default_layout
 end
 
-ADMIN_EMAILS = ['abelyael@gmail.com', 'tzlilberlin11@gmail.com', 'sella.rafaeli@gmail.com', 'galweinstock@icloud.com']
+ADMIN_EMAILS = ['abelyael@gmail.com', 'tzlilberlin11@gmail.com', 'sella.rafaeli@gmail.com', 'galweinstock@icloud.com', 'tifrah2008@gmail.com']
 ADMIN_IDS    = ['8FNGN', 'kOdWD', 'XS0xK', 'GMf07', 'grTIU']
 
 def is_admin(user = cu)
