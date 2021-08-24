@@ -130,9 +130,7 @@ get '/contact' do
 	erb :'other/contact', default_layout
 end
 
-get '/articles' do
-	erb :'other/articles', default_layout
-end
+# get '/articles' # see articles.rb 
 
 get '/values' do
 	erb :'other/values', default_layout

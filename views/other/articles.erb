@@ -1,0 +1,15 @@
+<%
+  articles = Dir['./views/articles/*']
+%>
+
+<h1> Articles </h1>
+
+<%
+  articles.each do |path|
+    name = path[17..path.size-5]
+    link = path[8..path.size-5]
+%>
+  <div>
+    <a href='<%=link%>'> <%= name %> </a>
+  </div>
+<% end %>

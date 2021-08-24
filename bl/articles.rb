@@ -1,4 +1,7 @@
-get '/articles/:article_id' do 
-	# erb :"/articles/#{pr[:id]}", default_layout
-	erb :'search/search', default_layout
+get '/articles' do
+	erb :'other/articles', default_layout
+end
+
+get '/articles/:title' do
+	erb :"articles/#{pr[:title]}", default_layout
 end
