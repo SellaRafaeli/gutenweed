@@ -219,7 +219,11 @@
           <% end %>
         </div>
       
+
+      
+      <% if is_seller %>
       <%= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>  
+      <% end %>
       <% if false %>
         <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>      
       <% end %>
