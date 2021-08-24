@@ -143,7 +143,6 @@ def verify_signup_data
 end
 
 def add_user
-	bp
 	email    = pr[:email].to_s.downcase	
 	password = pr[:password].to_s.downcase
 	name     = pr[:name].to_s.downcase

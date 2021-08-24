@@ -218,10 +218,10 @@
           <a class='btn btn-primary btn-raised' href='/signup?type=buyer'>sign up to message <%=user[:handle]%></a>
           <% end %>
         </div>
-        
+      
+      <%= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>  
       <% if false %>
-        <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>
-        <%= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>
+        <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>      
       <% end %>
 
       <div class='ct' style='width: 100%'>

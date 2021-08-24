@@ -22,19 +22,19 @@
  <!--  <h5> vouches </h5> -->
   <div class='vouches_box'>
     <div class='vouches_title'>
-      <%= user[:handle] %> has <%= vouches.count %> vouches.
+      <%= user[:handle] %> has <%= vouches.count %> recommendations. 
+      <% if i_vouched %><div><b> You recommended <%= user[:handle] %>.</b></div><% end %>
     </div>
     <div class='vouches_list'>
       <% vouches.each do |vouch| %>
         <% by = $users.get(vouch[:by]) %>
         <div class='single_vouch'>
-          <%= erb :'users/user_box', locals: {user: by} %>
+          <%= erb :'users/user_box', locals: {user: by, no_name: true} %>
         </div>
       <% end %>
 
-      <% if i_vouched %>
-        <div><b> You vouched for <%= user[:handle] %>.</b></div>
-      <% else %>
+      
+      <% if !i_vouched %>
       <div>
         <% if cu %>
         <form method=post action='/vouches/<%=user_id%>'>

@@ -20,7 +20,9 @@
   <div>
     <a href='/@<%=user[:handle]%>'>
       <img class='user_img' src='<%=user[:img_url]%>'>
+      <% unless locals[:no_name] %>
       <span><%= user[:handle] %></span>
+      <% end %>
     </a>
   </div>
 </div>

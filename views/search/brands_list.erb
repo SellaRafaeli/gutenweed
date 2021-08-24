@@ -59,6 +59,9 @@
   <br/>
 <!-- </h1> -->
 <div class='brands_list_container'>
+  <a href='/signup?type=seller&city=<%=city%>&state=<%=state%>&shipping=<%=shipping%>' class='btn btn-raised btn-primary'>List Your Cannabis Service.</a>
+  <br/>
+  <br/>
   <div class='brands_list'>
   <% if brands.any? %>
     <% brands.each do |user| %>
@@ -95,10 +98,9 @@
     <% end %>
   <% else %>
     <div class='no_brands_found'>
-      Nothing listed yet in <%=city%>, <%=state%>. 
+      Nothing listed yet in <%=city%>, <%=state%>. Be the first!
       <br/>
-      <br/>
-      Be the first to <a href='/signup?type=seller&city=<%=city%>&state=<%=state%>&shipping=<%=shipping%>' class='btn btn-raised btn-primary'>List Your Cannabis Service.</a>
+      <br/>      
     </div>  
   <% end %>
   </div>

@@ -183,6 +183,9 @@ label {
     background-color: #b4f5a8;
 }
 
+.btn {
+    white-space: nowrap;
+}
 .btn_green:hover {
     background-color: #cef3c8 !important;
 }
