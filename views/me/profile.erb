@@ -50,7 +50,7 @@
 
   <div class='display_flex'>
     <label> Description </label>
-    <textarea name=desc placeholder="Describe yourself." value=""><%=user['desc']%></textarea> 
+    <textarea name=desc placeholder="Describe yourself, what you sell, and any information relevant to the buyer." value=""><%=user['desc']%></textarea> 
     <!-- <span>Use #hashtags like #actor or #dance_teacher</span> -->
   </div>
   <br/>
@@ -59,7 +59,9 @@
     <%#= user.to_json %>
     <label class='ztooltip'> City
     </label>
-    <%= erb :'/partials/select_state_city', locals: {city: user[:city]} %>      
+
+    <%= erb :'/partials/select_area2', locals: {pr: {city: user[:city], state: user[:state], shipping: user[:shipping]}} %>      
+    <%#= erb :'/partials/select_state_city', locals: {city: user[:city]} %>          
   </div>
 
 
@@ -68,7 +70,7 @@
     <label class='ztooltip'> Delivery Area 
     </label>
     
-    <input name=delivery_area value="<%=user[:delivery_area]%>" placeholder='In what areas do you deliver?' />
+    <input name=delivery_area value="<%=user[:delivery_area]%>" placeholder='In what areas of the city do you deliver?' />
   </div>
 
   <div class='display_flex' style='margin-top:20px'>

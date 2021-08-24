@@ -67,6 +67,7 @@
 .links_city_selector_container {
   display: inline-block;
   vertical-align: super;
+  margin-bottom: 20px;
 }
 @media screen and (max-width: 800px) {
   .links_city_selector_container {
@@ -194,7 +195,7 @@
     <span>
       <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
         <img src='<%=logo%>' style='height:30px'/>
-        <div class='sub_logo_msg'>local dealers. we deliver.</div>
+        <!-- <div class='sub_logo_msg'>local dealers. we deliver.</div> -->
       </a>
     </span>
     <% if use_client_logo %>
@@ -228,17 +229,19 @@
         <i class='fa fa-external-link' style='margin-right: 5px'></i> View @<%=cu['handle']%>         
       </a>     -->
     <% else %>      
+      
       <a class='' href='/login'>
       <%= !heb ? 'Login' : 'כניסה' %>
       </a>    
-      <a class='btn btn-primary btn-raised' href='/signup?type=buyer'>
+      <a class='btn zbtn-raised' href='/signup?type=buyer'>
       <%= !heb ? 'Sign Up To Buy' : 'הרשמה' %>
       
       </a>      
       <a class='btn btn-info btn-raised' href='/signup?type=seller'>
-      <%= !heb ? 'Sign Up To Sell' : 'הרשמה' %>
+      <%= !heb ? 'List Your Cannabis Service' : 'הרשמה' %>
       
       </a>      
+      
     <% end %>
     <a class='' href='/search'><i class='fa fa-search'></i> <%= 'search' %> </a>
     

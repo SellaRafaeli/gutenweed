@@ -10,7 +10,18 @@
 }
 </style>
 
+<style>
+.concierge_msg {
+  max-width: 450px;
+  margin-left: 40px;
+  line-height: 30px;
+  font-size: 15px;
+}
+</style>
     <% if true %>
+        <!-- <div class='concierge_msg'>For concierge support, please email hi@good-weed.com. </div>
+        <br/> -->
+
     <div>
       <label class='w200'> 
       <%= is_heb ? 'שם' : 'Name' %> 
@@ -107,6 +118,9 @@
     </div>
     <% end %>
 
+    <br/>
+    <%= erb :'/partials/select_area2' %> 
+    <br/>
 
     <% if pr[:ztype]=="event" %>
     <div>
@@ -117,6 +131,7 @@
     <% end %>
 
     <br/>
+
     <label>
       <input required type=checkbox <%="checked" if !$prod %> /> 
       <span class='tos_prompt'>
@@ -142,8 +157,7 @@
       <span style='margin-left:10px'>I would like one of nowcast's humans to contact me to help me start selling. </span>
     </label>    
     <% end %>
-
-    
+     
     <% if false %>
     <br/>
     <label>
@@ -151,6 +165,8 @@
       <span style='margin-left:10px'>I understand NowCast is still in alpha and I agree to waive any damage, financial or otherwise, that will be caused to me by using this platform.</span>
     </label>
     <% end %>
+
+    
 
     <% if locals[:only_signup] %>    
     <br />

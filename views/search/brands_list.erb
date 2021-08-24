@@ -1,6 +1,8 @@
 <%
   msg = 'Explore Top Cannabis Brands'
   city = pr[:city].present? ? "#{pr[:city]}" : ""
+  state = pr[:state].present? ? "#{pr[:state]}" : ""
+  shipping = pr[:shipping]
   msg = "Top Cannabis Recommendations in #{pr[:city]}" if pr[:city]
   msg = "Order Weed Now #{city}"
   msg = "Cannabis Delivery"
@@ -49,9 +51,13 @@
   font-weight: bold;
 }
 </style>
-<h1> <%= "Cannabis Delivery Services"%> in <span class='links_city_selector_container'>
-      <%= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
-    </span></h1>
+<!-- <h1> --> <%#= "Cannabis Delivery Services"%> 
+  <div class='links_city_selector_container'>
+    <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+    <%= erb :'/partials/select_area2', locals: {searchOnChange: true} %>
+  </div>
+  <br/>
+<!-- </h1> -->
 <div class='brands_list_container'>
   <div class='brands_list'>
   <% if brands.any? %>
@@ -89,10 +95,10 @@
     <% end %>
   <% else %>
     <div class='no_brands_found'>
-      No delivery services registered yet in <%=city%>. 
+      Nothing listed yet in <%=city%>, <%=state%>. 
       <br/>
       <br/>
-      Be the first: <a href='/signup?type=seller' class='btn btn-raised btn-primary'>Sign up</a>
+      Be the first to <a href='/signup?type=seller&city=<%=city%>&state=<%=state%>&shipping=<%=shipping%>' class='btn btn-raised btn-primary'>List Yourself.</a>
     </div>  
   <% end %>
   </div>

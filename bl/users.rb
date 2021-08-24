@@ -6,7 +6,7 @@ USER_KEYS = ["email",  "name", "handle", "img_url", "timezone",
 	"contact_me", "title", "subtitle", "desc", "lang", "country",
 	 "location", "my_theme", "media", "payout_info", "tags", 
 	 "media_object_fit", "license_url", "license_filename", 'license_numbers', 
-	 'license_text', 'delivery_area', 'active', 'contact','city'] + SOCIAL_NETWORKS
+	 'license_text', 'delivery_area', 'active', 'contact','city', 'state', 'shipping'] + SOCIAL_NETWORKS
 
 #DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
 DEFAULT_IMG = DEFAULT_PIC = '/img/leaf.svg'
@@ -143,6 +143,7 @@ def verify_signup_data
 end
 
 def add_user
+	bp
 	email    = pr[:email].to_s.downcase	
 	password = pr[:password].to_s.downcase
 	name     = pr[:name].to_s.downcase
@@ -157,7 +158,9 @@ def add_user
 	data[:referrer]   = session[EXTERNAL_REFERER] if session[EXTERNAL_REFERER]
 	data[:contact_me] = pr[:contact_me].to_s == 'on'
 	data[:referrer_id]= pr[:referrer_id] 
-	
+	data[:city]     = pr[:city]
+	data[:state]    = pr[:state]
+	data[:shipping] = pr[:shipping]
 	u = user = $users.add(data)
 
 

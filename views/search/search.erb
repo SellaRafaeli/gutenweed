@@ -259,22 +259,22 @@
 function rerunSearch(opts = {}) {
   var brand        = opts.brand || $('#selectBrand').val();
   var city         = $('#city_selector').val();
+  var state        = $('#state_selector').val();
+  var shipping     = $('#shipping_selector').val();
 
   var product_type = opts.product_type || $('#product_type_selector').val();
   var q            = $('.search_input').val();
   var loc   = '/search?p=1';
   if (brand)         loc+='&brand='+brand;
   if (city)          loc+='&city='+city;
+  if (state)         loc+='&state='+state;
+  if (shipping)      loc+='&shipping='+shipping;
   if (product_type)  loc+='&product_type='+product_type;
   if (q)             loc+='&q='+q;
-  
+  //debugger
   //document.location=loc;
-  
-  var cityRoute = replaceAll(city,' ','-').toLowerCase();
+  //var cityRoute = replaceAll(city,' ','-').toLowerCase();
 
-  document.location = cityRoute;
-  
-
-  
+  document.location = loc;
 }
 </script>

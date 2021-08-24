@@ -6,6 +6,15 @@ GDOCS ||= {
     },
   }.hwia
 
+# HOW TO:
+# https://www.freecodecamp.org/news/cjn-google-sheets-as-json-endpoint/
+# Endpoint: https://spreadsheets.google.com/feeds/cells/YOURGOOGLESHEETCODE/SHEETPAGENUMBER/public/full?alt=json
+
+# https://spreadsheets.google.com/feeds/cells/1_wpkZvVMfoGYklLMVFFSdXU2mhKNePNtJfItkrBmI7w/1/public/full?alt=json
+# https://docs.google.com/spreadsheets/d/1_wpkZvVMfoGYklLMVFFSdXU2mhKNePNtJfItkrBmI7w/edit#gid=821779876
+
+
+
 get '/admin/pull_gdoc' do
   #return {msg: "ok"}
   require_fields(['uri','col'])

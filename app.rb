@@ -130,6 +130,14 @@ get '/contact' do
 	erb :'other/contact', default_layout
 end
 
+get '/articles' do
+	erb :'other/articles', default_layout
+end
+
+get '/values' do
+	erb :'other/values', default_layout
+end
+
 get '/search' do 
 	erb :'search/search', default_layout
 end
