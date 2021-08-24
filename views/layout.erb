@@ -14,7 +14,10 @@ path = _req.path rescue 'error-path'
     
     <%= erb :"header/links" unless @hide_links %>
     
-    <div class='container800 <%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
+    <%
+      container800 = 'container800' unless path.to_s.start_with?('/me')
+    %>
+    <div class='<%=container800%> <%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
       <%= yield %> 
       <div style='zpadding-bottom: 300px; background-color: whitesmoke'></div>
     </div>

@@ -30,6 +30,7 @@
   </select>
 </div>
 
+<% if pr[:type] == 'seller' %>
 <div class='selector_container'>
   <div class='selector_label'> Delivery/Pickup </div>
   <select class='input1' style='margin:0;' id=shipping_selector name=shipping <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %> >
@@ -38,3 +39,4 @@
     <% end %>
   </select>
 </div>
+<% end %>
