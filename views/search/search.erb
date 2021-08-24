@@ -3,9 +3,10 @@
   cast_owners = $casts.all.mapo(:user_id).uniq
   all_brands  = $users.all.select {|u| u[:type] == 'seller'} #.select {|u| u[:_id].in?(cast_owners)}
   
-  city = pr[:city]
+  city  = pr[:city]
+  state = pr[:state]
   all_brands  = all_brands.select {|u| u[:active]!= 'no' }
-  all_brands  = all_brands.select {|u| city && u[:city] == city }
+  all_brands  = all_brands.select {|u| city && u[:city] == city && u[:state] == state}
   brands      = all_brands.clone
 
 
