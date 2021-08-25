@@ -10,18 +10,20 @@ marketing_links = get_articles_list
 
 def build_title
 	prompts = ['Interested in','researching','Looking into', 'Looking for feedback on', 
-		'Looking for sellers on','Do you use', 'Have you used','Recommendation:','Field report:','User report:',
-		'New online service:','New cannabis directory:','Directory of local cannabis sellers','Index of cannabis sellers',
+		'Looking for sellers on','Do you use', 'Have you used','Recommendation','Field report','User report',
+		'New online service','New cannabis directory','Directory of local cannabis sellers','Index of cannabis sellers',
 		'Sell your weed on','You can list your cannabis business','You can sell cannabis and paraphernalia on',
-		'good-weed.com - the new directory for cannabis sellers',
-		'good-weed.com - an index cannabis sellers',
-		"How do I find GOOD weed? good-weed.com?",
-		"Where do I find the best weed? good-weed.com?",
+		'good-weed - the new directory for cannabis sellers',
+		'good-weed - an index cannabis sellers',
+		"How do I find GOOD weed? good-weed?",
+		"Where do I find the best weed? good-weed?",
 		"Is good-weed.com the best place to find the best cannabis?",
-		"Is there a way to promote my profile on good-weed.com?",
-		"How do I optimize my good-weed.com account?",
-		"Can I get some traction on my good-weed.com account?",		
+		"Is there a way to promote my profile on good-weed?",
+		"How do I optimize my good-weed account?",
+		"Can I get some traction on my good-weed account?",		
 	]
+
+	prompts.sample + ' (good-weed.com)'
 end
 
 def build_text
@@ -38,7 +40,8 @@ def build_text
 		"How does good-weed.com compare to other such services?",
 		"Should I list my legal cannabis business on good-weed.com?",
 		"I'm really impressed by good-weed.com. What do you guys think of it?",
-		"Is good-weed.com a game-changer for licensed indie cannabis sellers?"
+		"Is good-weed.com a game-changer for licensed indie cannabis sellers?",
+		"What do you guys think of this? ",
 	]
 
 	hi_texts.sample+', '+audience.sample+'; '+story.sample
@@ -61,10 +64,10 @@ get '/marketing' do
 		name: name,
 		email: email,
 		profile_pic: profile_pic,
-		weed_pic: weed_pic,
-		link: link,		
-		title: title,
+		weed_pic: weed_pic,		
+		title: build_title,
 		text: text,
+		link: link,		
 		# all_links: links,	
 	}
 end
