@@ -85,9 +85,9 @@
           <span class='brand_contact btn btn-raised btn-primary'>
           <i class='fal fa-link' style='margin-right: 10px; color: black'></i>
               <% if !contact.to_s.starts_with?('http') %>
-                <a style='color: #150000' href="sms://+<%=contact%>?body=I%27m%20interested%20in%20your%20product.%20Please%20contact%20me."><%=user[:contact]%></a>
+                <a style='color: white' href="sms://+<%=contact%>?body=I%27m%20interested%20in%20your%20product.%20Please%20contact%20me."><%=user[:contact]%></a>
               <% else %>
-                <a style='color: #150000' target=_blank href='<%=user[:contact]%>'> <%=user[:contact]%></a>            
+                <a style='color: white' target=_blank href='<%=user[:contact]%>'> <%=user[:contact]%></a>            
             <% end %>
           <% end %>
           </span>

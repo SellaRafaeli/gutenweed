@@ -1,8 +1,9 @@
 <%
   articles = get_articles_list.shuffle
   articles.each do |a|    
+    name = a[:name].gsub('-',' ').titleize
 %>
-  <div>
-    <a href='/<%=a[:link]%>'> <%= a[:name] %> </a>
+  <div style='margin-bottom: 10px'>
+    <a class='simple_link' style='text-decoration: none' href='/<%=a[:link]%>'>⦾ <%= name %> </a>    
   </div>
 <% end %>
