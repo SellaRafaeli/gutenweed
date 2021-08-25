@@ -60,7 +60,8 @@ body {
 
 <% end %>
 
-<% if cuid %> window.cuid ="<%=cuid%>";<% end %>
+
+<% if cuid %> <script> window.cuid ="<%=cuid%>"; </script><% end %>
 <%= erb :'/partials/analytics_scripts' %>
   
 <script>
