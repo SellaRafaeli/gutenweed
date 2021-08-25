@@ -50,6 +50,9 @@
   font-size: 14px;
   font-weight: bold;
 }
+.idx_num {
+  font-size: 20px;
+}
 </style>
 <!-- <h1> --> <%#= "Cannabis Delivery Services"%> 
   <div class='links_city_selector_container'>
@@ -60,13 +63,14 @@
 <!-- </h1> -->
 <div class='brands_list_container'>
   <!-- <a href='/signup?type=seller&city=<%=city%>&state=<%=state%>&shipping=<%=shipping%>' class='btn btn-raised btn-primary'>List Your Cannabis Service.</a> -->
-  <br/>
-  <br/>
+  <!-- <br/>
+  <br/> -->
   <div class='brands_list'>
   <% if brands.any? %>
-    <% brands.each do |user| %>
+    <% brands.each_with_index do |user, idx| %>
       <div class='single_brand_container'>
         <a class='single_brand' href='<%=user_link(user)%>'>  
+          <span class='idx_num'><%= idx+1 %>) </span>
           <img class='brand_img' src='<%=user[:img_url]%>' />
           <span class='simple_link brand_handle'><%=user[:handle]%></span>          
           <span><small style='color: black; font-style: italic'> <%= user[:delivery_area] %></small></span>     

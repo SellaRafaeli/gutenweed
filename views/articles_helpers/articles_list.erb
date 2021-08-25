@@ -1,0 +1,8 @@
+<%
+  articles = get_articles_list.shuffle
+  articles.each do |a|    
+%>
+  <div>
+    <a href='/<%=a[:link]%>'> <%= a[:name] %> </a>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 def get_articles_list
-	articles = Dir['./views/articles/*']
+	articles = Dir['./views/articles/*'].sort
 	res = articles.map {|path|
 		name = path[17..path.size-5]
     link = path[8..path.size-5]
