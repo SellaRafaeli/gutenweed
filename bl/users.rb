@@ -12,7 +12,7 @@ USER_KEYS = ["email",  "name", "handle", "img_url", "timezone",
 DEFAULT_IMG = DEFAULT_PIC = '/img/leaf.svg'
 
 def is_seller
-	cu[:type] == 'seller'
+	cu && cu[:type] == 'seller'
 end
 
 def is_buyer 
