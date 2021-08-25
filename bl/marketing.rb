@@ -21,6 +21,7 @@ def build_title
 		"Is there a way to promote my profile on good-weed?",
 		"How do I optimize my good-weed account?",
 		"Can I get some traction on my good-weed account?",		
+		"Tips for indie licensed cannabis seller on good-weed?",		
 	]
 
 	prompts.sample + ' (good-weed.com)'
