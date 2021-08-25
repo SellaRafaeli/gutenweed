@@ -15,7 +15,8 @@ path = _req.path rescue 'error-path'
     <%= erb :"header/links" unless @hide_links %>
     
     <%
-      container800 = 'container800' unless path.to_s.start_with?('/me')
+      show_wide = path.to_s.start_with?('/me') || path.to_s.starts_with?("/admin")
+      container800 = 'container800' unless show_wide
     %>
     <div class='<%=container800%> <%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
       <%= yield %> 
