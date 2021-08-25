@@ -71,4 +71,14 @@ get '/marketing' do
 		link: link,		
 		# all_links: links,	
 	}
+	res = "
+	name: #{name} <br/>
+	email: #{email} <br/>
+	profile_pic: #{profile_pic} <br/>
+	title: #{build_title} <br/>
+	text: #{text} <br/>
+	link: #{link} <br/>
+
+	"
+	res
 end
