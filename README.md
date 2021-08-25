@@ -6,7 +6,10 @@ https://trello.com/goodweed2
 Management Dashboard: 
 https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/edit?usp=sharing
 
-
+Invoices:
+sella.rafaeli+invoices@gmail.com
+sella@dokka.co.il
+invoices@good-weed.com
 
 
 Hello. I need research about the most popular "dispensaries" - stores that sell cannabis and related products - in New York City. I need this research to be uploaded to my site, good-weed.co, which is a site about such dispensaries (cannabis stores).

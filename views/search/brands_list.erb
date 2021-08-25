@@ -6,6 +6,8 @@
   msg = "Top Cannabis Recommendations in #{pr[:city]}" if pr[:city]
   msg = "Order Weed Now #{city}"
   msg = "Cannabis Delivery"
+
+  brands = build_fake_brands(city) if !brands.any? 
 %>
 
 <style>
@@ -77,9 +79,6 @@
           <!-- <div><%= user[:desc] %></div>      -->
         </a>
         
-        
-          
-
         <% contact = user[:contact] %>
           <% if contact.present? %>
           <span class='brand_contact btn btn-raised btn-primary'>
