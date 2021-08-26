@@ -71,7 +71,9 @@
       <div class='single_brand_container'>
         <a class='single_brand' href='<%=user_link(user)%>'>  
           <span class='idx_num'><%= idx+1 %>) </span>
-          <img class='brand_img' src='<%=user[:img_url]%>' />
+          <% if user[:img_url].present? %>
+            <img class='brand_img' src='<%=user[:img_url]%>' />
+          <% end %>
           <span class='simple_link brand_handle'><%=user[:handle]%></span>          
           <span><small style='color: black; font-style: italic'> <%= user[:delivery_area] %></small></span>     
           <!-- <div><%= user[:desc] %></div>      -->

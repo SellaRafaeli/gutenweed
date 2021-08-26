@@ -1,22 +1,47 @@
-
-
-def build_single_fake_brand(city,idx)
-	handle = $last_names.sample+' '+city
-	res = {
-		_id: city.to_s+rand.to_s,
-		handle: handle,#.gsub(' ','_').dasherize,
-		desc: 'some desc',
-		contact: '212-123-5555'
-	}
+def build_phone_num_area_code(state)
+	return ['212', '845', '718', '646', '914', '917', '929'].sample if state.downcase == 'ny'
+	return ['209', '707', '415', '510', '949','805','916'].sample if state.downcase == 'ca'	
+	return ['970','720','719'].sample if state.downcase == 'co'	
+	return rand(900).to_i+100
 end
 
-def build_fake_brands(city)
-	[
-		build_single_fake_brand(city,0),
-		build_single_fake_brand(city,1),
-		build_single_fake_brand(city,2),
-		build_single_fake_brand(city,3)
-	]
+def build_fake_desc
+	''
+end
+
+def build_fake_img
+
+end
+
+
+def build_single_fake_brand(state, city)
+	type   = ['cannabis', 'weed', 'bud', 'ganja', 'med', 'bros', 'medical', 'relief', 'recreational', 'products', 'green', 'haze', 'fam', 'gringos']	
+	name   = $last_names.sample.capitalize
+	handle = name+' '+type.sample.capitalize
+	domain = ['gmail',name.to_s.downcase,'aol','yahoo']
+	email  = name + rand(100).to_s + '@' + domain.sample + '.com'
+	res = {
+		_id: city.to_s+rand.to_s,
+		name: name + ' ' +type.sample.capitalize,
+		email: email,
+		seed_brand: true,
+		handle: handle,#.gsub(' ','_').dasherize,
+		desc: build_fake_desc,
+		contact: build_phone_num_area_code(state)+'-'+(rand(900)+100).to_s+'-'+(rand(9999)+1000).to_s,
+		state: state,	
+		city: city,
+		img: build_fake_img,
+		type: 'seller'
+		
+	}
+
+	$users.add(res)
+end
+
+def build_fake_brands(state, city)
+	# $users.delete_many(seed_brand: true)
+	5.times { build_single_fake_brand(state, city) }
+	x=1
 end
 
 

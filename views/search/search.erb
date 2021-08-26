@@ -1,18 +1,20 @@
 <%
-
-  cast_owners = $casts.all.mapo(:user_id).uniq
-  all_brands  = $users.all.select {|u| u[:type] == 'seller'} #.select {|u| u[:_id].in?(cast_owners)}
-  
   pr[:city] = pr[:city] || 'New York City'
   pr[:state] = pr[:state] || 'NY'
   city  = pr[:city] 
   state = pr[:state] 
+
+  cast_owners = $casts.all.mapo(:user_id).uniq
+  all_brands  = $users.all.select {|u| u[:type] == 'seller'} #.select {|u| u[:_id].in?(cast_owners)}  
   all_brands  = all_brands.select {|u| u[:active]!= 'no' }
   all_brands  = all_brands.select {|u| city && u[:city] == city && u[:state] == state}
 
 
-  if !brands.any? 
-    # brands = build_fake_brands(city) 
+  if !all_brands.any? 
+    build_fake_brands(state, city) 
+    all_brands  = $users.all.select {|u| u[:type] == 'seller'} #.select {|u| u[:_id].in?(cast_owners)}  
+    all_brands  = all_brands.select {|u| u[:active]!= 'no' }
+    all_brands  = all_brands.select {|u| city && u[:city] == city && u[:state] == state}
   end
 
   brands      = all_brands.clone
