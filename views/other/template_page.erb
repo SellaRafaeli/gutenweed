@@ -10,9 +10,12 @@
 .template_row_content {
   font-size: 18px;
   text-align: justify;
-  margin-left: auto;
+  margin-left: 0;
   margin-right: auto;
   max-width: 700px;
+}
+.w3-padding-64 {
+  padding:10px 20px !important;
 }
 
 .template_page .fa {
@@ -48,19 +51,27 @@
   font-size: 24px;
   color: black;
 }
+.template_section_title {
+  font-weight: bold;
+  text-align: left;
+}
 </style>
 
 <div class='tpage template_page'>
 <!-- Header -->
-<header class="w3-container nowcast_color w3-center" >
-  <h1><%= title %></h1>
+<br/>
+<header class="w3-container zw3-center" >
+  <h3 style='text-decoration: underline;'><%= title %></h3>
+  <% if false %>
+  
   <p class="subtitle"><%= subtitle %></p>
 
   <% top_buttons.each_with_index do |button, idx| %>
     <a href="<%=button[:link]%>" style='text-decoration: none'><button class="btn btn-raised <%= idx == 0 ? 'btn-primary' : 'btn-info' %>" style='border-radius: 3px'><%= button[:text] %></button></a>
   <% end %>
 
-  <div class='contact_us_msg'>Ping us at hi@good-weed.co for anything. ❤️</div>
+  <div class='contact_us_msg'>Ping us at hi@good-weed.com for anything. ❤️</div>
+  <% end %>
 </header>
 
 
@@ -79,12 +90,12 @@
 <!-- First Grid -->
 <% rows.each_with_index do |row, idx| %>
   <% 
-    color       = string_color(row[:title]) 
+    color       = '' #string_color(row[:title]) 
     color_class = "nowcast_#{color}"
   %>
   <% if idx%2===0 %>
     
-    <div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-row-padding w3-container">
 
       <div class="display_flex">
         <% if row[:fa_icon].present? %>
@@ -94,7 +105,7 @@
         <% end %>
 
         <div class="flex1 ct">
-          <h1 class="nowcast <%=color_class%>"><%= row[:title] %></h1>      
+          <h4 class="template_section_title nowcast <%=color_class%>"><%= row[:title] %></h4>      
           <p class="template_row_content"><%= row[:content] %></p>
         </div>
       </div>
@@ -109,7 +120,7 @@
       </div>
       <% end %>
       <div class="flex1 ct">
-        <h1 class="<%=color_class%>"><%= row[:title]%> </h1>
+        <h4 class="template_section_title <%=color_class%>"><%= row[:title]%> </h4>
         <p class="template_row_content"><%=row[:content]%></p>
       </div>
     </div>
@@ -117,13 +128,21 @@
   <% end %>
 
 <% end %>
+<% if false %>
   <div class="w3-container ct">
-    <div class='contact_us_msg'> Contact us now at hi@good-weed.co to get started if you need any help. </div>
+    <!-- <div class='contact_us_msg'> Contact us now at hi@good-weed.com to get started if you need any help. </div> -->
     <h3> <%= bottom_msg %> </h3>
     <% top_buttons.each_with_index do |button, idx| %>
       <a href="<%=button[:link]%>" style='text-decoration: none'><button class="btn btn-raised <%= idx == 0 ? 'btn-primary' : 'btn-info' %>" style='border-radius: 3px'><%= button[:text] %></button></a>
     <% end %>
   </div>
+  <% end %>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
 </div> <!-- end about page -->
 
 <%= erb :'layout/footer' %>  
