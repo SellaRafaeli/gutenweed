@@ -9,6 +9,12 @@
   state = pr[:state] 
   all_brands  = all_brands.select {|u| u[:active]!= 'no' }
   all_brands  = all_brands.select {|u| city && u[:city] == city && u[:state] == state}
+
+
+  if !brands.any? 
+    # brands = build_fake_brands(city) 
+  end
+
   brands      = all_brands.clone
 
 
