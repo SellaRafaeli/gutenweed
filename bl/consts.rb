@@ -209,6 +209,7 @@ $users = $mongo.collection('users')
 cities_from_data = $users.all.mapo(:city).uniq.compact
 
 SELECT_CITIES_LIST = (SELECT_CA_CITIES + SELECT_CO_CITIES + SELECT_NY_CITIES + cities_from_data).uniq.compact.sort
+# SELECT_CITIES_LIST = (cities_from_data).uniq.compact.sort
 SELECT_CITIES_LIST_DOWNCASE = SELECT_CITIES_LIST.map(&:downcase)
 
 zUS_STATES_CITIES = {

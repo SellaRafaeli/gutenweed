@@ -70,6 +70,7 @@
     <% brands.each_with_index do |user, idx| %>
       <div class='single_brand_container'>
         <a class='single_brand' href='<%=user_link(user)%>'>  
+          <%#= user.to_json %>
           <span class='idx_num'><%= idx+1 %>) </span>
           <% if user[:img_url].present? %>
             <img class='brand_img' src='<%=user[:img_url]%>' />
@@ -94,14 +95,13 @@
             <%= user[:desc] %>
           </div>
 
-        
       <% casts = $casts.get_many(user_id: user[:_id]) %>
       <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>
       </div>
     <% end %>
   <% else %>
     <div class='no_brands_found'>
-      Nothing listed yet in <%=city%>, <%=state%>. Be the first!
+      Nothing listed yet in <%=city%>. Be the first!
       <br/>
       <br/>      
     </div>  
