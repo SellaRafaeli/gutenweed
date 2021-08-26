@@ -11,15 +11,22 @@
 }
 </style>
 
+<% if locals[:show_text] %>
+<div style='display: block; text-align: left'>
+  good weed in
+</div>
+<% end %>
 
 <div class='selector_container'>
-  <div class='selector_label'> City </div>
+  <!-- <div class='selector_label'> City </div> -->
   <select class='input1' style='margin:0;' id=city_selector name=city <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %> >
     <% SELECT_CITIES_LIST.each_with_index do |city| %>
       <option value="<%=city%>" <%="selected" if pr[:city] == city %>><%=city%></option>
     <% end %>
   </select>
 </div>
+
+<% if false %>
 
 <div class='selector_container'>
   <div class='selector_label'> State </div>
@@ -29,8 +36,10 @@
     <% end %>
   </select>
 </div>
+<% end %>
 
-<% if pr[:type] == 'seller' %>
+
+<% if false && pr[:type] == 'seller' %>
 <div class='selector_container'>
   <div class='selector_label'> Delivery/Pickup </div>
   <select class='input1' style='margin:0;' id=shipping_selector name=shipping <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %> >

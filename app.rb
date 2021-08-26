@@ -178,6 +178,12 @@ get '/' do
 	erb :'search/search', default_layout
 end
 
+get '/:city' do	
+	# erb :'other/landing_page'
+	# return redirect '/new-york-city'
+	erb :'search/search', default_layout
+end
+
 cities = US_STATES_CITIES.values.flatten
 cities.each do |city|
 	city_route_name = city.gsub(' ','-').downcase 
