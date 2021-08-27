@@ -179,6 +179,7 @@ get '/' do
 end
 
 get '/sitemap' do	
+	headers['Content-Type'] = 'text/plain'
 	erb :'other/sitemap'
 end
 

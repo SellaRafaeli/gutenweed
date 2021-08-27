@@ -181,7 +181,7 @@ end
 
 def user_link(user)
 	#bp
-	URI.escape ("/@#{user[:handle]}").to_s	
+	URI.escape ("/@#{user[:handle]}").to_s.downcase
 	#{}"/@#{user[:handle]}"
 end
 
