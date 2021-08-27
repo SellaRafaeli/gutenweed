@@ -179,10 +179,7 @@ get '/' do
 end
 
 get '/sitemap' do	
-	# erb :'other/landing_page'
-	z = erb :'other/sitemap'
-	z.to_s
-	"hello"
+	erb :'other/sitemap'
 end
 
 get '/delivery/:city' do 
