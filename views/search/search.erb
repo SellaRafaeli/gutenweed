@@ -288,7 +288,7 @@
           <h5 style='padding:20px; background-color: lightblue; zmargin: 20px'> No Results Found. </h5>
           <% end %>
           
-          <%= erb :'search/brands_list', locals: {brands: all_brands} %>
+          <%= erb :'search/brands_list', locals: {brands: all_brands, state: chosen_state_short} %>
         <% end %>
       </div>
       <% end %>

@@ -191,8 +191,13 @@ get '/sitemap.txt' do
 	# https://www.google.com/ping?sitemap=https://good-weed.com/sitemap.txt 
 	headers['Content-Type'] = 'text/plain'
 	z = Tempfile.new('sitemap.txt')
-	z.write(erb :'other/sitemap')
+	# z.write(erb :'other/sitemap')
+	File.open(z, 'w') { |file| file.write(erb :'other/sitemap') }
+
+	# z.write('hi')
+	# z.close
 	send_file(z)
+	# {a:1}
 end
 
 # get '/state/:state' do 

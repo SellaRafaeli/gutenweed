@@ -1,8 +1,11 @@
 $users     = $mongo.collection('users')
 cities_from_data = $users.all.mapo(:city).uniq.compact
 
-def areas_get_existing_cities(state)
-	users  = $users.all.select {|u| u[:state].to_s.downcase == state.downcase }
+def areas_get_existing_cities(full_name)
+	puts "fetching cities for "+full_name
+	# users  = $users.all.select {|u| u[:state].to_s.downcase == full_name.downcase }
+	users  = $users.all(state: full_name)
+	puts "fetched "+users.count.to_s
 	cities = users.mapo(:city).uniq.sort
 	cities
 end
