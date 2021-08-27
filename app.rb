@@ -174,7 +174,8 @@ end
 
 get '/' do	
 	# erb :'other/landing_page'
-	return redirect '/delivery/New York'
+	pr[:state] = 'New York'
+	pr[:city]  = 'New York'
 	erb :'search/search', default_layout
 end
 
