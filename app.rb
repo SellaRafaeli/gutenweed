@@ -178,6 +178,13 @@ get '/' do
 	erb :'search/search', default_layout
 end
 
+get '/sitemap' do	
+	# erb :'other/landing_page'
+	z = erb :'other/sitemap'
+	z.to_s
+	"hello"
+end
+
 get '/delivery/:city' do 
 	erb :'search/search', default_layout
 end
