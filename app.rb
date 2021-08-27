@@ -178,9 +178,13 @@ get '/' do
 	erb :'search/search', default_layout
 end
 
+get '/delivery/:city' do 
+	erb :'search/search', default_layout
+end
+
 get '/:city' do	
 	# erb :'other/landing_page'
-	# return redirect '/new-york-city'
+	return redirect "/delivery/#{pr[:city]}"
 	erb :'search/search', default_layout
 end
 

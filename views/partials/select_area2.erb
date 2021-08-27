@@ -15,33 +15,25 @@
 }
 </style>
 
-<% if locals[:show_text] %>
-<div style='display: block; text-align: left'>
-  good weed in
-</div>
-<% end %>
-
 <div class='selector_container'>
-  <!-- <div class='selector_label'> City </div> -->  
+  <div class='selector_label'> City </div>  
   <select class='input1' style='margin:0;' id=city_selector name=city <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %> >
+    <option> Any </option>
     <% SELECT_CITIES_LIST.each_with_index do |city| %>
       <option value="<%=city%>" <%="selected" if pr[:city].to_s.downcase == city.to_s.downcase %>><%=city%></option>
     <% end %>
   </select>
 </div>
 
-<% if false %>
-
 <div class='selector_container'>
   <div class='selector_label'> State </div>
   <select class='input1' style='margin:0;' id=state_selector name=state <% if locals[:searchOnChange] %> onchange='rerunSearch()' <% end %> >
+    <option> Any </option>
     <% SELECT_STATES_LIST.sort.each_with_index do |state| %>
       <option value="<%=state%>" <%="selected" if pr[:state]==state %>><%=state%></option>
     <% end %>
   </select>
 </div>
-<% end %>
-
 
 <% if false && pr[:type] == 'seller' %>
 <div class='selector_container'>

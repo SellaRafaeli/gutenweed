@@ -53,15 +53,19 @@
 .idx_num {
   font-size: 20px;
 }
+.main_h1 {
+  display: block; text-align: center; margin: 0; font-size: 18px; font-weight: normal; margin-bottom: 20px;
+}
 </style>
-<!--   <h1> <%= "good weed in: "%> </h1> -->
   <div class='links_city_selector_container'>
     <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
-    <%= erb :'/partials/select_area2', locals: {searchOnChange: true, show_text: true} %>
+    <%= erb :'/partials/select_area2', locals: {searchOnChange: true} %>
   </div>
   <br/>
+
 <!-- </h1> -->
 <div class='brands_list_container'>
+  <h1 class='main_h1'> good weed in <%= pr[:city] %></h1> 
   <!-- <a href='/signup?type=seller&city=<%=city%>&state=<%=state%>&shipping=<%=shipping%>' class='btn btn-raised btn-primary'>List Your Cannabis Service.</a> -->
   <!-- <br/>
   <br/> -->

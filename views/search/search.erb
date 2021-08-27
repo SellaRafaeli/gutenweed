@@ -1,9 +1,10 @@
 <%
-  pr[:city] = pr[:city] || 'New York City'  
-  pr[:city] = pr[:city].gsub('-',' ')
-  city      = pr[:city] 
+  # pr[:city] = pr[:city] || 'New York City'  
+  # pr[:city] = pr[:city].gsub('-',' ')
+  
 
-  pr[:state] = pr[:state] || 'NY'
+  # pr[:state] = pr[:state] || 'NY'
+  city      = pr[:city] 
   state = pr[:state] 
 
   cast_owners = $casts.all.mapo(:user_id).uniq
@@ -178,15 +179,13 @@ x=1
   background-color: #008b24;
 }
 </style>
-<!-- <h1> Search </h1> -->
 <% 
   if pr[:city_route_name]
   
   url = CITY_IMAGES[pr[:city_route_name]] 
 %>
 <div style='position: relative; display: none'>
-  <img class='top_img' src='<%=url%>'/>
-  <div class='city_overlay_name'>Good Weed in <%= pr[:city] %></div>
+  <img class='top_img' src='<%=url%>'/>  
 </div>
 <% end %>
 
