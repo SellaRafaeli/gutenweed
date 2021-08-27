@@ -178,9 +178,13 @@ get '/' do
 	erb :'search/search', default_layout
 end
 
-get '/sitemap' do	
+get '/sitemap.txt' do	
+	# ping google to let them know sitemap has updated: 
+	# https://www.google.com/ping?sitemap=https://good-weed.com/sitemap.txt 
 	headers['Content-Type'] = 'text/plain'
-	erb :'other/sitemap'
+	z = Tempfile.new('sitemap.txt')
+	z.write(erb :'other/sitemap')
+	send_file(z)
 end
 
 get '/delivery/:city' do 
