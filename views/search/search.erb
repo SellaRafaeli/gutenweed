@@ -4,26 +4,49 @@
   
 
   # pr[:state] = pr[:state] || 'NY'
-  city      = pr[:city] 
-  state = pr[:state] 
+  city  = pr[:city] 
+  state = pr[:state].titleize
+  state = 'Idaho' unless AREAS[state] 
+
+  chosen_state       = state
+  chosen_state_short = AREAS.hwia[chosen_state][:short]
+  chosen_state_short ||= 'NY'
+
+  cities = []
+  
+  if (chosen_state) 
+    cities = areas_get_existing_cities(chosen_state_short)
+    # cities = ['N/A'] if !cities.any?
+    if !pr[:city].present? && cities.any?
+      pr[:city] = cities[0]
+    end
+
+
+    chosen_city = pr[:city]
+    # pr[:city]   = chosen_city
+  end
+
+  @cities             = cities
+  @chosen_city        = chosen_city
+  @chosen_state       = chosen_state
+  @chosen_state_short = chosen_state_short
 
   cast_owners = $casts.all.mapo(:user_id).uniq
   # all_brands  = $users.all.select {|u| u[:type] == 'seller'} #.select {|u| u[:_id].in?(cast_owners)}  
   # all_brands  = all_brands.select {|u| u[:active]!= 'no' }
   # all_brands  = all_brands.select {|u| city && u[:city] == city } #&& u[:state] == state}
 
-  all_brands = $users.get_many(city: city, active: {'$ne': 'no'}, type: 'seller')  
-#bp
-x=1
+  # all_brands = $users.get_many(city: city, active: {'$ne': 'no'}, type: 'seller')  
 
-  if !all_brands.any? && false 
-    build_fake_brands(state, city) 
-    all_brands  = $users.all.select {|u| u[:type] == 'seller'} #.select {|u| u[:_id].in?(cast_owners)}  
-    all_brands  = all_brands.select {|u| u[:active]!= 'no' }
-    all_brands  = all_brands.select {|u| city && u[:city] == city } # && u[:state] == state}
-  end
+  # if !all_brands.any? && false 
+  #   build_fake_brands(state, city) 
+  #   all_brands  = $users.all.select {|u| u[:type] == 'seller'} #.select {|u| u[:_id].in?(cast_owners)}  
+  #   all_brands  = all_brands.select {|u| u[:active]!= 'no' }
+  #   all_brands  = all_brands.select {|u| city && u[:city] == city } # && u[:state] == state}
+  # end
 
 
+  all_brands  = []
   brands      = all_brands.clone
 
 

@@ -57,11 +57,20 @@
 
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
-    <label class='ztooltip'> City
+    <label class='ztooltip'> State
     </label>
 
-    <%= erb :'/partials/select_area2', locals: {pr: {city: user[:city], state: user[:state], shipping: user[:shipping]}} %>      
+    <%
+      @chosen_state_short = user[:state]
+    %>
+    <%= erb :'/partials/select_area2', locals: {no_city: true, state_value: 'short', pr: {city: user[:city], state: (user[:state]), shipping: user[:shipping]}} %>      
     <%#= erb :'/partials/select_state_city', locals: {city: user[:city]} %>          
+  </div>
+
+  <div class='display_flex' style='margin-top:20px'>
+    <label class='ztooltip'> City</label>
+
+    <input class='input1' placeholder='In what city do you deliver?' value="<%=user['city']%>" name='city' style='margin-right: 0px; margin-left: 0'/>
   </div>
 
 

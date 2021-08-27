@@ -174,9 +174,17 @@ end
 
 get '/' do	
 	# erb :'other/landing_page'
-	return redirect '/new-york-city'
+	return redirect '/delivery/New York'
 	erb :'search/search', default_layout
 end
+
+get '/delivery/:state/?:city?' do
+#	bp
+	x=1
+	redirect '/delivery/New York' unless AREAS[pr[:state].titleize]
+	erb :'search/search', default_layout
+end
+
 
 get '/sitemap.txt' do	
 	# ping google to let them know sitemap has updated: 
@@ -187,15 +195,24 @@ get '/sitemap.txt' do
 	send_file(z)
 end
 
-get '/delivery/:city' do 
-	erb :'search/search', default_layout
-end
+# get '/state/:state' do 
+# 	chosen_state_short = AREAS.hwia[pr[:state].titleize][:short]
+# 	cities = areas_get_existing_cities(chosen_state_short)
+# 	bp
+#   if !cities.any?
+#   	redirect '/delivery/bixby' 
+#   end
 
-get '/:city' do	
-	# erb :'other/landing_page'
-	return redirect "/delivery/#{pr[:city]}"
-	erb :'search/search', default_layout
-end
+#   redirect '/delivery/'+cities[0]+'?state='+pr[:state]
+# 	# erb :'search/search', default_layout
+# end
+
+
+# get '/:city' do	
+# 	# erb :'other/landing_page'
+# 	return redirect "/delivery/#{pr[:city]}"
+# 	erb :'search/search', default_layout
+# end
 
 cities = US_STATES_CITIES.values.flatten
 cities.each do |city|

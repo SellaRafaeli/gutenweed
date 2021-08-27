@@ -1,11 +1,18 @@
 <%
   msg = 'Explore Top Cannabis Brands'
-  city = pr[:city].present? ? "#{pr[:city]}" : SELECT_CITIES_LIST[0]
+  city = pr[:city] || @cities[0]
   state = pr[:state].present? ? "#{pr[:state]}" : SELECT_STATES_LIST[0]
   shipping = pr[:shipping]
   msg = "Top Cannabis Recommendations in #{pr[:city]}" if pr[:city]
   msg = "Order Weed Now #{city}"
   msg = "Cannabis Delivery"  
+
+  if city.present?
+    brands = $users.all(city: city)
+  else 
+    brands = []
+  end
+
 %>
 
 <style>
@@ -64,13 +71,13 @@
   <br/>
 
 <!-- </h1> -->
-<div class='brands_list_container'>
-  <h1 class='main_h1'> good weed in <%= pr[:city] %></h1> 
+<div class='brands_list_container'>  
   <!-- <a href='/signup?type=seller&city=<%=city%>&state=<%=state%>&shipping=<%=shipping%>' class='btn btn-raised btn-primary'>List Your Cannabis Service.</a> -->
   <!-- <br/>
   <br/> -->
   <div class='brands_list'>
   <% if brands.any? %>
+  <h1 class='main_h1'> good weed in <%= pr[:city] %>, <%= @chosen_state %></h1> 
     <% brands.each_with_index do |user, idx| %>
       <div class='single_brand_container'>
         <a class='single_brand' href='<%=user_link(user)%>'>  
@@ -81,6 +88,10 @@
           <% end %>
           <span class='simple_link brand_handle'><%=user[:handle]%></span>          
           <span><small style='color: black; font-style: italic'> <%= user[:delivery_area] %></small></span>     
+
+          <div><small style='color: black; font-style: italic'> <%= user[:city] %>, <%= user[:state] %></small></div>
+          <div><small style='color: black; font-style: italic'> <%= user[:address] %> </small></div>
+
           <!-- <div><%= user[:desc] %></div>      -->
         </a>
         
@@ -105,7 +116,7 @@
     <% end %>
   <% else %>
     <div class='no_brands_found'>
-      Nothing listed yet in <%=city%>. Be the first!
+      Nothing results found. Be the first!
       <br/>
       <br/>      
     </div>  

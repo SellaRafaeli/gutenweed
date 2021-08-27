@@ -146,7 +146,7 @@ def add_user
 	email    = pr[:email].to_s.downcase	
 	password = pr[:password].to_s.downcase
 	name     = pr[:name].to_s.downcase
-
+	# state    = pr[:state] || 'NY'
 	timezone = (pr[:timezone] || 0).to_i
 	
 	handle   = $users.available_field('handle', name.split(/@/).first).to_s.strip.downcase
