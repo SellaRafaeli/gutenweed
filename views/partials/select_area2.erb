@@ -6,9 +6,17 @@
 %>
 
 <style>
-.selector_container {
-  display: inline-block;
-  margin-right: 20px;
+@media (min-width: 1000px) {
+  .selector_container {
+    display: inline-block;
+    margin-right: 20px;
+  }
+}
+@media (max-width: 1000px) {
+  .selector_container {
+    display: inline-block;
+    width: 45%;
+  }
 }
 #me_form .selector_container .input1 {
   width: 100%;
