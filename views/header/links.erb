@@ -186,7 +186,12 @@
     <a class='btn' href='/'>Homepage</a>
     <a href='/admin'><b>Admin</b></a>
     <a target=_blank class='btn btn-info' href='/admin/admin_stats'>Admin Stats</a>
-    <a target=_blank class='btn btn-info' href='/admin/talent'>Talent</a>
+    <a target=_blank class='btn btn-info' href='/admin/sellers'>Sellers Notes</a>
+    
+    <form method=post action="/admin/upload_gdoc_sellers" style='display: inline-block;' enctype="multipart/form-data">
+      <label class='btn btn-warning btn-raised'> upload new gdoc of sellers </label>
+      <input name=file size=50 type="file" onchange="if (confirm('confirm submission of this file?')) form.submit()" />
+    </form>
   </div>
 <% else %>
 

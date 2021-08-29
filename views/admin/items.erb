@@ -103,10 +103,10 @@ thead {
 <% end %>
 
 <div class='row ltr' style="padding: 20px;">
-  
-  <div class='col-md-12' >  
+  <div class='col-md-12' > 
+
     <% MANAGEABLE_COLLECTIONS.each_with_index do |coll, idx| %>
-      <a href="/admin/manage/<%=coll.name%>"><button class='<%= (coll.name == pr[:coll]) ? "btn btn-raised btn-info": ""%>'><%=coll.name%></button></a>
+      <a href="/admin/manage/<%=coll.name%>"><button class='<%= (coll.name == pr[:coll]) ? "btn btn-raised btn-info": ""%>'><%=coll.name%> <%="(products)" if coll.name=='casts'%></button></a>
     <% end %> 
 <!--     <a class='btn btn-info' href='/admin/manage/users?filter=sad'>sad users</a> -->
   </div>

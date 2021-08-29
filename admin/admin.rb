@@ -4,7 +4,7 @@ manageable_collections.uniq!
 manageable_collections.map! {|n| $mongo.collection(n) }
 
 MANAGEABLE_COLLECTIONS = manageable_collections
-get '/admin/talent' do
+get '/admin/sellers' do
   erb :'admin/talent', layout: :layout
 end
 
@@ -18,6 +18,13 @@ post '/admin/update_talent' do
   $users.update_id(pr[:user_id], data)
   redirect '/admin/talent'
 end
+
+post '/admin/upload_gdoc_sellers' do 
+  path = pr[:file][:tempfile].path
+  Thread.new { upsert_users_from_csv(path) }
+  flash.message = 'Uploading users, please check for results in a few moments.'
+  redirect back
+end 
 
 get '/admin/user_page' do
   user = $users.get(_id: pr[:_id])
