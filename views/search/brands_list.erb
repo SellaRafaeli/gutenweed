@@ -13,6 +13,8 @@
     brands = []
   end
 
+  #bp
+  x=1
 %>
 
 <style>
@@ -41,17 +43,18 @@
   color: black;
 }
 .single_brand .brand_img { 
-  height: 40px;
-  max-width: 100%;
+  width: 30%;
+  height: auto;
+  
   object-fit: contain;
   margin-right: 20px;
 }
 .single_brand_container {
   /*background: linear-gradient(184deg, rgba(255,255,255,1) 0%, rgb(80 173 83) 35%);*/
-  border:1px solid darkgreen;
-  padding: 20px;
+  border-top:1px solid darkgrey;
+  padding: 10px 16px;
   border-radius: 0px;
-  margin-bottom: 20px;
+  
 }
 .brand_contact {
   font-size: 14px;
@@ -82,10 +85,31 @@
       <div class='single_brand_container'>
         <a class='single_brand' href='<%=user_link(user)%>'>  
           <%#= user.to_json %>
-          <span class='idx_num'><%= idx+1 %>) </span>
-          <% if user[:img_url].present? %>
-            <img class='brand_img' src='<%=user[:img_url]%>' />
-          <% end %>
+          <!-- <span class='idx_num'><%= idx+1 %>) </span> -->
+          
+          <div class='brand_row first_brand_row'>
+            <span class='left_part'>
+              <% user[:img_url] ||= DEFAULT_IMG %>
+              <% if user[:img_url].present? %>
+                <img class='brand_img' src='<%=user[:img_url]%>' />
+              <% end %>
+            </span>
+
+            <span class='right_part'>
+
+            </span>
+          </div>
+
+          <div class='brand_row second_brand_row'>
+            <span class='left_part'>
+
+            </span>
+
+            <span class='right_part'>
+
+            </span>
+          </div>
+          
           <span class='simple_link brand_handle'><%=user[:handle]%></span>          
           <span><small style='color: black; font-style: italic'> <%= user[:delivery_area] %></small></span>     
 
