@@ -298,8 +298,8 @@
 
         <% items_in_stock = loc[:items].to_a.select {|item| item[:quantity].to_i > 0} %>
         <% if items_in_stock.any? %>
-          <h5> Items in Stock </h5>
-          <div style='display: flex'>
+        <!--   <h5> Items in Stock </h5> -->
+          <div style='display: flex; flex-wrap: wrap'>
             <% items_in_stock.each do |item|  %>
             <%
               cast = $casts.get(item[:product_id]) || {}
