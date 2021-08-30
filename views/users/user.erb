@@ -204,7 +204,7 @@
     
     <div class='user_top_right flex1'>
       <h1 id=about class='title'><%= title %></h1>
-      <div class=''>Delivery Area: <%= user[:delivery_area] || 'n/a' %></div>
+      <!-- <div class=''>Delivery Area: <%= user[:delivery_area] || 'n/a' %></div> -->
       <% if user[:license_numbers] %>
         <div class='license_numbers'>
           <a class='simple_link' href='<%=user[:license_url]%>'><small> License: <%= user[:license_text] %></small></a>
@@ -229,7 +229,17 @@
         <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>      
       <% end %>
 
-      <div class='ct' style='width: 100%'>
+      <div class='zct' style='width: 100%'>
+
+        <div>
+          <small style='color: black; font-style: italic'> <%= user[:address] %> </small>
+        </div>
+        <div>
+          <small style='color: black; font-style: italic'> <%= user[:city] %>, <%= user[:state] %></small>
+        </div>
+        <div>
+          <small style='color: black; font-style: italic'> <%= user[:email] %>, <%= user[:phone] %></small>
+        </div>
 
         <div class='zflex1 center_contents'>
           <% if location.present? %><div class='user_location'><i class='fa fa-globe'></i> <%= location %></div><% end %>
