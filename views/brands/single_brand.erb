@@ -1,6 +1,12 @@
 <%
 all_tags = ['women-owned', 'lgbt-owned', 'sativa', 'edibles', '60-min-delivery', '90-min-delivery', 'money-back-guarantee', '$', '$$', '$$$', '$$$$']
 
+
+facets = FACETS.select{|f| user[f[:key]]=='on' }.mapo(:label)
+facets = all_tags.sample(rand(5)) if !facets.any?
+tags   = user[:tags].split(',')
+
+x=1
 %>
 
 <% if !@brand_styles %>
@@ -61,6 +67,8 @@ all_tags = ['women-owned', 'lgbt-owned', 'sativa', 'edibles', '60-min-delivery',
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 10px;
+  display: inline-block;
+  margin-bottom: 5px;
 }
 .brand_tags {
   margin: 5px 0;
@@ -89,9 +97,8 @@ all_tags = ['women-owned', 'lgbt-owned', 'sativa', 'edibles', '60-min-delivery',
         <% end %>
         <span style='color: grey; font-size: 12px'><%= rand(100) %> reviews </span>
       </div>
-      <div class='brand_tags'>
-        <% tags = all_tags.sample(rand(5)) %>
-        <% tags.each do |tag| %>
+      <div class='brand_tags'>        
+        <% (tags + facets).each do |tag| %>
           <span class='single_brand_tag'><%= tag %></span>
         <% end %>
       </div>

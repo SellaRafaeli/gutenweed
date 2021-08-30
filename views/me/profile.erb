@@ -1,4 +1,19 @@
 
+<style>
+.facet_label {
+  cursor: pointer;
+  display: block;
+  width: 100% !important;
+  margin-bottom: 5px;
+}
+</style>
+
+
+<%
+  facets = FACETS
+%>
+
+
 <% if false %>
 <div style='text-align: right'>
   <a class='btn' href='/me/analytics'><i class='fal fa-analytics'></i> Profile Analytics </a>
@@ -90,6 +105,31 @@
   </div>
 
   <br/>
+
+  <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
+    <label class='ztooltip'> Facets </label>
+    
+    <div style='flex:1'>
+      <% facets.each do |facet| %>
+        <label class='facet_label'>
+          <input name="<%=facet[:key]%>" type=checkbox <%="checked" if user[facet[:key]]=='on' %>  /> <i class='fas faz-<%=facet[:icon]%>'></i> <%= facet[:label] %> 
+        </label>
+      <% end %>
+      
+    </div>    
+  </div>
+
+  <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
+    <label class='ztooltip'> Tags </label>
+    
+    <div style='flex:1'>
+      <input style='width:100%' name=tags placeholder='tag1, tag2, tag3-multiple-words, tag4' value="<%=user[:tags]%>" />
+    </div>    
+  </div>
+
+
   <hr/>
   <br/>
 
@@ -119,7 +159,7 @@
 
   <br/>
 
-  <div class='display_flex' style='margin-top:20px'>
+  <div class='display_flex' style='margin-top:20px; display: none'>
     <%#= user.to_json %>
     <label class='ztooltip'> Show Your Profile?  
     </label>

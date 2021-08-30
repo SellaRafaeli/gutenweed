@@ -2,11 +2,21 @@ $users = $mongo.collection('users')
 
 $users.indexes.create_one({email: 1}, unique: true) rescue nil
 
+FACETS    = [
+    {icon: 'star', key: 'minority', label: 'Minority-owned'},
+    {icon: 'star', key: 'blm', label: 'BlackLivesMatter'},
+    {icon: 'star', key: 'lgbt', label: 'LGBT+'},
+    {icon: 'star', key: 'delivery', label: 'Delivery'},
+    {icon: 'star', key: '60_min_delivery', label: '60-min-delivery'},
+    {icon: 'star', key: 'same_day_delivery', label: 'same-day-delivery'},
+    {icon: 'star', key: 'edibles', label: 'edibles'},
+    {icon: 'star', key: 'oils', label: 'oils'},
+  ]
 USER_KEYS = ["email",  "name", "handle", "img_url", "timezone", 
 	"contact_me", "title", "subtitle", "desc", "lang", "country",
 	 "location", "my_theme", "media", "payout_info", "tags", 
 	 "media_object_fit", "license_url", "license_filename", 'license_numbers', 
-	 'license_text', 'delivery_area', 'active', 'contact','city', 'state', 'shipping'] + SOCIAL_NETWORKS
+	 'license_text', 'delivery_area', 'active', 'contact','city', 'state', 'shipping'] + SOCIAL_NETWORKS + FACETS.mapo(:key)
 
 #DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
 DEFAULT_IMG = DEFAULT_PIC = '/img/leaf.svg'
@@ -44,6 +54,8 @@ get '/my_programs' do
 end
 
 post '/update_me' do
+
+	FACETS.mapo(:key).each {|key| pr[key] ||= 'off' } # reset facets because only "on" are sent 
 	redirect_unless_user
 
 	# gather media input into single array of objects
