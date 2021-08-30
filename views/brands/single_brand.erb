@@ -81,7 +81,7 @@ all_tags = ['women-owned', 'lgbt-owned', 'sativa', 'edibles', '60-min-delivery',
     </div>
 
     <div class='right_column'>
-      <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%></a>          
+      <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%> <%= "<b class='nowcast_color'>(pro)</b>" if is_pro(cu) %></a>          
       <div>
         <% [1,2,3,4,5].sample.times do |i|  %>
         <span>
