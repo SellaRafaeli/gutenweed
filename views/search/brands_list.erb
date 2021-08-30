@@ -22,47 +22,6 @@
   zdisplay: flex;
   flex-wrap: wrap;
 }
-.single_brand {  
-  flex: 25%;
-  margin: 0 10px 10px 0px;
-  ztext-align: center;
-  border:1px solid lightgrey;
-  zbackground-color: white;
-  padding: 10px 0;
-  border-radius: 4px;
-  font-size: 16px;
-  border-radius: 0;
-  border: none;
-  border-bottom: 2px solid black;
-  zwidth: 50%;
-  display: inline-block;
-}
-.single_brand:hover {
-  border-color: grey;
-  font-weight: bold;
-  color: black;
-}
-.single_brand .brand_img { 
-  width: 30%;
-  height: auto;
-  
-  object-fit: contain;
-  margin-right: 20px;
-}
-.single_brand_container {
-  /*background: linear-gradient(184deg, rgba(255,255,255,1) 0%, rgb(80 173 83) 35%);*/
-  border-top:1px solid darkgrey;
-  padding: 10px 16px;
-  border-radius: 0px;
-  
-}
-.brand_contact {
-  font-size: 14px;
-  font-weight: bold;
-}
-.idx_num {
-  font-size: 20px;
-}
 .main_h1 {
   display: block; text-align: center; margin: 0; font-size: 18px; font-weight: normal; margin-bottom: 20px;
 }
@@ -82,61 +41,7 @@
   <% if brands.any? %>
   <h1 class='main_h1'> good weed in <%= pr[:city] %>, <%= @chosen_state %></h1> 
     <% brands.each_with_index do |user, idx| %>
-      <div class='single_brand_container'>
-        <a class='single_brand' href='<%=user_link(user)%>'>  
-          <%#= user.to_json %>
-          <!-- <span class='idx_num'><%= idx+1 %>) </span> -->
-          
-          <div class='brand_row first_brand_row'>
-            <span class='left_part'>
-              <% user[:img_url] ||= DEFAULT_IMG %>
-              <% if user[:img_url].present? %>
-                <img class='brand_img' src='<%=user[:img_url]%>' />
-              <% end %>
-            </span>
-
-            <span class='right_part'>
-
-            </span>
-          </div>
-
-          <div class='brand_row second_brand_row'>
-            <span class='left_part'>
-
-            </span>
-
-            <span class='right_part'>
-
-            </span>
-          </div>
-          
-          <span class='simple_link brand_handle'><%=user[:handle]%></span>          
-          <span><small style='color: black; font-style: italic'> <%= user[:delivery_area] %></small></span>     
-
-          <div><small style='color: black; font-style: italic'> <%= user[:city] %>, <%= user[:state] %></small></div>
-          <div><small style='color: black; font-style: italic'> <%= user[:address] %> </small></div>
-
-          <!-- <div><%= user[:desc] %></div>      -->
-        </a>
-        
-        <% contact = user[:contact] %>
-          <% if contact.present? %>
-          <span class='brand_contact btn btn-raised btn-primary'>
-          <i class='fal fa-link' style='margin-right: 10px; color: black'></i>
-              <% if !contact.to_s.starts_with?('http') %>
-                <a style='color: white' href="sms://+<%=contact%>?body=I%27m%20interested%20in%20your%20product.%20Please%20contact%20me."><%=user[:contact]%></a>
-              <% else %>
-                <a style='color: white' target=_blank href='<%=user[:contact]%>'> <%=user[:contact]%></a>            
-            <% end %>
-          <% end %>
-          </span>
-          <div style='margin-left: 20px; font-size: 16px;'>
-            <%= user[:desc] %>
-          </div>
-
-      <% casts = $casts.get_many(user_id: user[:_id]) %>
-      <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>
-      </div>
+      <%= erb :'/brands/single_brand', locals: {user: user, idx: idx} %>
     <% end %>
   <% else %>
     <div class='no_brands_found'>

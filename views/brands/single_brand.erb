@@ -1,0 +1,96 @@
+<% if !@brand_styles %>
+<% @brand_styles = 'done' %>
+<style>
+.single_brand {  
+  zflex: 25%;
+  margin: 0 10px 10px 0px;
+  ztext-align: center;
+  border:1px solid lightgrey;
+  zbackground-color: white;
+  padding: 10px 0;
+  border-radius: 4px;
+  font-size: 16px;
+  border-radius: 0;
+  border: none;
+  zborder-bottom: 2px solid black;
+  zwidth: 50%;
+  display: flex;
+}
+.single_brand:hover {
+  border-color: grey;
+  font-weight: bold;
+  color: black;
+}
+.single_brand .brand_img { 
+  width: 100%;
+  height: auto;
+  
+  object-fit: contain;
+  margin-right: 20px;
+}
+.single_brand_container {
+  /*background: linear-gradient(184deg, rgba(255,255,255,1) 0%, rgb(80 173 83) 35%);*/
+  border-bottom:1px solid darkgrey;
+  padding: 10px 16px;
+  border-radius: 0px;
+  
+}
+.brand_contact {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 20px;
+  display: inline-block;
+}
+.idx_num {
+  font-size: 20px;
+}
+.left_column {
+  flex: 1;
+}
+.right_column {
+  flex: 3;
+  margin-left: 20px;
+}
+</style>
+<% end %>
+
+<div class='single_brand_container'>
+  <div class='single_brand'>  
+    <%#= user.to_json %>
+    <!-- <span class='idx_num'><%= idx+1 %>) </span> -->
+    
+    <div class='left_column'>
+      <% user[:img_url] ||= DEFAULT_IMG %>
+      <% if user[:img_url].present? %>
+        <img class='brand_img' src='<%=user[:img_url]%>' />
+      <% end %>
+    </div>
+
+    <div class='right_column'>
+      <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%></a>          
+      <span><small style='color: black; font-style: italic'> <%= user[:delivery_area] %></small></span>     
+
+      <div><small style='color: black; font-style: italic'> <%= user[:city] %>, <%= user[:state] %></small></div>
+      <div><small style='color: black; font-style: italic'> <%= user[:address] %> </small></div>
+
+      <% contact = user[:contact] %>
+      <% if contact.present? %>
+      <span class='brand_contact btn btn-raised btn-primary'>
+      <i class='fal fa-link' style='margin-right: 10px; color: black'></i>
+          <% if !contact.to_s.starts_with?('http') %>
+            <a style='color: white' href="sms://+<%=contact%>?body=I%27m%20interested%20in%20your%20product.%20Please%20contact%20me."><%=user[:contact]%></a>
+          <% else %>
+            <a style='color: white' target=_blank href='<%=user[:contact]%>'> <%=user[:contact]%></a>            
+        <% end %>
+      <% end %>
+      </span>
+      <div style='margin-left: 20px; font-size: 16px;'>
+        <%= user[:desc] %>
+      </div>
+    </div>  
+
+  </div>
+
+  <% casts = $casts.get_many(user_id: user[:_id]) %>
+  <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>
+</div>
