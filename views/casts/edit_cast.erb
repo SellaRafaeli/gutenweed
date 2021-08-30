@@ -275,9 +275,9 @@ is_forum = is_cast_forum(nc)
       <% end %>
 
 
-        <% if false #|| is_admin %>
-        <div style='zbackground-color: goldenrod'>
-        <label> Search Tags </label>
+        <% if is_admin %>
+        <div style='background-color: goldenrod'>
+        <label> Tags (Admin) </label>
           <span style="width: 40%; display: inline-block; text-align: right">
             <input style='width: 100%' value="<%=nc[:tags]%>" name=tags placeholder='sativa, relaxation'/>
           </span>       

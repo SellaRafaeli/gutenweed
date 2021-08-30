@@ -345,12 +345,21 @@ def require_cast_owner(cast_id)
 	halt({err: 'cast permissions denied'}) unless (cuid == user_id) || is_admin
 end
 
+def is_pro_cast(cast)
+	cast[:tags].to_s.include?(NOWCAST_PRO)
+end
+
 def is_cast_owner(cast)
 	cuid == cast[:user_id] rescue false
 end
 
 def casts_by_dow_and_hour(casts, dow, hour)
 	casts.select { |c| (get_cast_dow(c) == dow) && (get_cast_hour(c) == hour) }
+end
+
+get '/pro' do 
+	pr[:_id] = ENV['PRO_CAST_ID']
+	show_cast_by_id
 end
 
 get '/random' do
@@ -528,7 +537,7 @@ get '/@*' do
   handle = pr['splat'].split('/')[0][0]
   user   = $users.get(handle: handle) || {}
 
-  @hide_header = true if is_pro(user)
+  # @hide_header = true if is_pro(user)
 
   $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id], path: _req.path) if cuid!=user[:_id] 
 	# record_view({profile_user_id: user[:_id]})

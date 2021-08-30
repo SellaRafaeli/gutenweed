@@ -21,7 +21,8 @@ def enroll_user(user_id, cast_id, data = {})
 		$enrolls.add(data)
 	end	
 	
-	$users.update_id(user_id, nowcast_pro: Time.now) if $casts.get(cast_id)[:tags].to_s.include?(NOWCAST_PRO)
+	bp
+	$users.update_id(user_id, NOWCAST_PRO: Time.now) if $casts.get(cast_id)[:tags].to_s.include?(NOWCAST_PRO)
 
 	send_enrollment_emails(user_id, cast_id)
 
