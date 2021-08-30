@@ -1,3 +1,8 @@
+<%
+all_tags = ['women-owned', 'lgbt-owned', 'sativa', 'edibles', '60-min-delivery', '90-min-delivery', 'money-back-guarantee', '$', '$$', '$$$', '$$$$']
+
+%>
+
 <% if !@brand_styles %>
 <% @brand_styles = 'done' %>
 <style>
@@ -18,7 +23,7 @@
 }
 .single_brand:hover {
   border-color: grey;
-  font-weight: bold;
+  zfont-weight: bold;
   color: black;
 }
 .single_brand .brand_img { 
@@ -51,6 +56,15 @@
   flex: 3;
   margin-left: 20px;
 }
+.single_brand_tag {
+  background-color: lightgrey;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 10px;
+}
+.brand_tags {
+  margin: 5px 0;
+}
 </style>
 <% end %>
 
@@ -68,6 +82,19 @@
 
     <div class='right_column'>
       <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%></a>          
+      <div>
+        <% [1,2,3,4,5].sample.times do |i|  %>
+        <span>
+          <i style='color: gold' class='fas fa-star'></i></span>           
+        <% end %>
+        <span style='color: grey; font-size: 12px'><%= rand(100) %> reviews </span>
+      </div>
+      <div class='brand_tags'>
+        <% tags = all_tags.sample(rand(5)) %>
+        <% tags.each do |tag| %>
+          <span class='single_brand_tag'><%= tag %></span>
+        <% end %>
+      </div>
       <span><small style='color: black; font-style: italic'> <%= user[:delivery_area] %></small></span>     
 
       <div><small style='color: black; font-style: italic'> <%= user[:city] %>, <%= user[:state] %></small></div>
