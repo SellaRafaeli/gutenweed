@@ -12,10 +12,10 @@
 
     og_img   = "https://good-weed.com/img/landing_page/logo6.png"
     # og_img   = "/img/nowcast_logo_pause.png"
-
+    og_video = ''
     if @og_cast
       # og_img   = @og_cast['img_url']
-      # og_video = @og_cast['public_video_url']
+      og_video = @og_cast['public_video_url']
       # og_title = @og_cast['title']
       # og_desc  = "Live #{cast_time1(@og_cast, only_content: true)}: #{@og_cast['desc']}"
     end
