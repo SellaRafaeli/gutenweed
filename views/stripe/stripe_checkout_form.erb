@@ -6,6 +6,7 @@
   is_billing = is_series(cast)
   is_single  = !is_billing
   is_trial ||= false
+  
   # https://dashboard.stripe.com/test/apikeys
   api_key = ENV['STRIPE_PUBLISHABLE_KEY']   
   api_key = ENV['STRIPE_PUBLISHABLE_STAGING_KEY'] if is_test_buy(cast)  
@@ -109,7 +110,7 @@
           <% end %>
         </div>
       <% else %>
-        <div class='total_amount'>מחיר: $<%=cast[:cost_dollars]%> <%="per month" if is_billing %></div>
+        <div class='total_amount'>cost: $<%=cast[:cost_dollars]%> <%="per month" if is_billing %></div>
       <% end %>
 
       <br/>

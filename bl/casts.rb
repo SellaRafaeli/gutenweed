@@ -223,6 +223,7 @@ def is_on_demand(cast)
 end
 
 def is_series(cast)
+	return true if is_pro_cast(cast)
 	cast[:recurrence].to_s == RECURRENCE_MULTI
 end
 
@@ -346,7 +347,7 @@ def require_cast_owner(cast_id)
 end
 
 def is_pro_cast(cast)
-	cast[:tags].to_s.include?(NOWCAST_PRO)
+	cast[:tags].to_s.downcase.include?(NOWCAST_PRO.downcase)
 end
 
 def is_cast_owner(cast)
