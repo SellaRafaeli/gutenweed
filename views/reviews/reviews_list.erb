@@ -1,6 +1,6 @@
 <%
   is_owner = false #||= locals[:is_owner] ||= false
-  seller = $users.get(cast[:user_id])
+  seller = locals[:user] || $users.get(cast[:user_id])
 %>
 
 <style>
@@ -39,10 +39,12 @@
 <h4> Reviews </h4>
 <% end %>
 
-<% if can_leave_review(cu, cast) %>
+<% if true || can_leave_review(cu, cast) %>
   <% unless locals[:skip_submit] %>
-
-  <%= erb :'reviews/submit_review_form', locals: {seller: seller, cast: cast} %>
+  <button class='btn btn-raised btn-sm' onclick='$(".submit_review_form_wrapper").removeClass("noDisplay")'> + Add Review </button>
+  <div class='submit_review_form_wrapper noDisplay'>
+    <%= erb :'reviews/submit_review_form', locals: {seller: seller, user: user} %>
+  </div>
 <% end %>
 <% end %>
 

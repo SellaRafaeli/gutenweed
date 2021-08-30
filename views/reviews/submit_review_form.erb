@@ -19,8 +19,9 @@
 
     <form method=post action='/reviews/new' class="<%= rtl_if_heb %> <%= text_align_right_if_heb %> ">
       <h5 style='margin:0'> <%= title1 %></h5>
+      <input name=seller_id value="<%=user[:_id]%>" hidden />
       <% if locals[:seller] %>
-      <input name=cast_id value="<%=cast[:_id]%>" hidden />
+      <input name=user_id value="<%=user[:_id]%>" hidden />
       <% text = "What was your experience buying from #{seller[:name]}?" %>
       <% else %>
       <br/>

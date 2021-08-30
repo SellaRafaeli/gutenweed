@@ -41,7 +41,7 @@ get '/recommend' do
 end
 
 post '/reviews/new' do 
-	data = pr.just(:cast_id, :text, :rating, :video_url)
+	data = pr.just(:cast_id, :seller_id, :text, :rating, :video_url)
 	data[:buyer_id]   = cuid 
 	
 	# data[:rating]        = pr[:rating].to_i 
