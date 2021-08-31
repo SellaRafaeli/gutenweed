@@ -361,7 +361,3 @@ def get_random_cannabis_img
 	'https://i.imgur.com/EDao6BIb.jpg']
 	pics.sample
 end
-
-def generate_review 
-
-end
