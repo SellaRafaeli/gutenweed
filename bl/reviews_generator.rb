@@ -1,11 +1,11 @@
 # who, what, where, when, why, how
 
 def interjection
-	interjection = ['aha', 'ahem', 'ahh', 'ahoy', 'alas', 'arg', 'aw''bam', 'bingo', 'blah', 'boo', 'bravo', 'brrr', 'cheers', 'congratulations','dang', 'drat', 'darn', 'duh','eek', 'eh', 'encore', 'eureka', 'fiddlesticks', 'gadzooks', 'gee', 'gee' 'whiz', 'golly', 'goodbye', 'goodness', 'good', 'grief', 'gosh', 'ha-ha', 'hallelujah', 'hello', 'hey', 'hmm', 'holy' 'buckets', 'holy cow', 'holy' 'smokes', 'hot' 'dog', 'huh',  'hurray','oh', 'oh dear', 'oh my', 'oh' 'well', 'oops', 'ouch', 'ow', 'phew', 'phooey', 'pooh', 'pow''rats''shh', 'shoo','thanks', 'there', 'tut-tut','uh-huh', 'uh-oh', 'ugh''wahoo', 'well', 'whoa', 'whoops', 'wow','yeah', 'yes', 'yikes', 'yippee', 'yo', 'yuck',
+	interjection = ['aha', 'ahem', 'ahh', 'ahoy', 'alas', 'arg', 'aw''bam', 'bingo', 'blah', 'boo', 'bravo', 'brrr', 'cheers', 'congratulations','dang', 'drat', 'darn', 'duh','eek', 'eh', 'encore', 'eureka', 'fiddlesticks', 'gadzooks', 'gee', 'gee' 'whiz', 'golly', 'goodbye', 'goodness', 'good', 'grief', 'gosh', 'ha-ha', 'hallelujah', 'hello', 'hey', 'hmm', 'holy' 'buckets', 'holy cow', 'holy' 'smokes', 'hot' 'dog', 'huh',  'hurray','oh', 'oh dear', 'oh my', 'oh' 'well', 'oops', 'ouch', 'ow', 'phew', 'phooey', 'pooh', 'pow''rats''shh', 'shoo','thanks', 'there', 'tut-tut','uh-huh', 'uh-oh', 'ugh','wahoo', 'well', 'whoa', 'whoops', 'wow','yeah', 'yes', 'yikes', 'yippee', 'yo', 'yuck',
 		'thank God','thank Heavens','praise the Lord','God bless','Heaven bless','bless their heart','so happy', 'fantastic','great stuff','good stuff','good weed!',
 		'beautiful','nice','amazing','jubilant','terrific','top-notch','first-class','lovely',
 		'my favorite','delicious','sweet','hazy',"You'll love it",
-		'6/10','7/10','8/10','9/10','10/10','perfect','perfection','good shit'
+		'6/10','7/10','8/10','9/10','10/10','perfect','perfection','good shit','excellent','great','good','quality','nice','sensitive',
 	].sample+['! ','!! ','!!! ', '... ','. ',' '].sample
 end
 
@@ -13,7 +13,10 @@ def opener
 	first  = gen_adjective + ' ' + gen_noun+', '+interjection
 	second = interjection+ ' '+gen_adjective + ' ' + gen_noun+['.','!','!!','...'].sample
 	third  = gen_adjective + ', ' + gen_adjective + ' ' + gen_noun + ' and ' + gen_noun + ['.','!','...'].sample
-	[first,second,third].sample
+	fourth = gen_noun+': '+gen_adjective+'. '
+	fifth  = 'if you '+['want','are looking for','are searching for','desire'].sample+ ' ' + gen_adjective+ ' ' +gen_noun + [' -- ',',',';',' then '].sample+' ' + ['great','you found it','good job','success','hooray','congratulations', 'then yes sir'].sample
+	six    = interjection+', '+interjection+' '+gen_adjective+ ' '+ gen_noun
+	[first,second,third,fourth,fifth,six].sample
 end
 
 def small_sentence
@@ -79,16 +82,17 @@ def gen_phrase(opts = {})
 
 	curr = [interjection+curr, curr+interjection].sample
 
+	curr = [opener,opener,opener + ' ' + curr,curr,curr,curr,small_sentence,future_sentence].sample 
+
 	curr = curr.squish
 	curr.gsub!(' .','.')
 	curr.gsub!(' ,',',')
 	curr.gsub!(' ;',';')
 	curr.gsub!('  ',' ')
+	curr.gsub!('.,','.')
+	curr.gsub!('!.','!')
 
 	#capitalize first letters 
-
-	
-	curr = [opener,opener + ' ' + curr,curr,curr,curr,curr,small_sentence,future_sentence].sample 
 
 	curr.gsub!(/([a-z])((?:[^.?!]|\.(?=[a-z]))*)/i) { $1.upcase + $2.rstrip }
 
@@ -97,8 +101,19 @@ def gen_phrase(opts = {})
 	else 
 		puts "going in"
 		connector = [', however,',', but',', and yet,',', on the other hand',' and','. Now,',' and yes,',', but in contrast,',' and this seemed '].sample
-		return (curr+connector+' ')+gen_phrase({last: [true,false,false,false].sample})
+		return (curr+connector+' ')+gen_phrase({last: [true,false,false].sample})
 	end
 end
 
-gen_phrase(first: true)
+def add_generated_review(seller_id)
+	puts "adding review for #{seller_id}: "
+	text   = gen_phrase(first: true)
+	rating = [3,4,4,4,4,4,5,5,5,5].sample.to_s
+	reviewer_name = $female_names.sample+ ' ' + ('A'..'Z').to_a.sample+'.'
+	data = {seller_id: seller_id, text: text, rating: rating, buyer_id: nil, generator_version: 1, reviewer_name: reviewer_name, reviewer_img_url: random_profile_pic_img, force_created_at: rand(100).days.ago}
+	$reviews.add(data)
+	puts "added:\r\n#{text}"
+end
+
+# $users.all(csv: true).each_with_index {|u,idx| puts idx.yellow; [2,3,4].sample.times { add_generated_review(u[:_id])} }
+# gen_phrase(first: true)

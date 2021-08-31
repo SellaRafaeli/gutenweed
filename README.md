@@ -1,10 +1,26 @@
+Management Dashboard: 
+https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/edit?usp=sharing
+
+
 https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 
 
+Cities:
+> San Francisco
+> New York City
+> Chicago
+> Los Angeles
+> Seattle
+> Toronto 
+
+
+
+- reviews 
+- ratings 
+- opening hours 
+
 https://trello.com/goodweed2
 
-Management Dashboard: 
-https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/edit?usp=sharing
 
 Invoices:
 sella.rafaeli+invoices@gmail.com

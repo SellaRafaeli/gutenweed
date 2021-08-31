@@ -78,8 +78,6 @@ def get_channel_casts(channel, opts = {})
 
 	casts = $all_casts.sample(10) if !$prod
 
-	# bp if casts.any? 
-
 	add_user_to_casts(casts)
 end
 

@@ -50,23 +50,30 @@
 
 <ul style='list-style:none; padding-left: 0;'>
 
-<% reviews.to_a.reverse.each do |review| %>
+<% reviews.to_a.sort_by{|r| r[:created_at] }.reverse.each do |review| %>
   <% 
     id     = review[:_id] 
     reviewer_handle = ''
     buyer_id        = review[:buyer_id]
     reviewer        = $users.get(buyer_id) || {}
-    reviewer_name   = reviewer[:name] ? "#{reviewer[:name]}, " : 'anonymous'
+    reviewer_name   = reviewer[:name] ? "#{reviewer[:name]}, " : 'anonymous' 
+    reviewer_name   = review[:reviewer_name] if review[:reviewer_name]
+    img_url = nil 
+    if reviewer[:_id] 
+      img_url = reviewer[:img_url]
+    elsif review[:reviewer_img_url]
+      img_url = review[:reviewer_img_url]
+    end
   %>  
     <li class='review_box_li <%=review[:_id]%>'>
       <div>
         <div style='background-color: whitesmoke; display: flex'>
           
           <small style='padding: 15px; text-align: center; flex: 1'>            
-            <% if reviewer[:_id] %>
-            <img class='user_img' src='<%=reviewer[:img_url]%>' />
+            <% if img_url %>
+              <img class='user_img' src='<%=img_url%>' />            
             <% end %>  
-            <a href='<%=user_link(reviewer)%>' style='display: block; margin-top:10px'><%= reviewer_name %> <%= nice_date(review[:created_at]) %></a>
+            <a href='<%=reviewer.any? ? user_link(reviewer) : '#'%>' style='display: block; margin-top:10px'><%= reviewer_name %> <%= nice_date(review[:created_at]) %></a>
           </small>
           
           <div class='review_rating'>

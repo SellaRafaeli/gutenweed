@@ -192,7 +192,6 @@ get '/zip/:code' do
 end
 
 get '/delivery/:state/?:city?' do
-#	bp
 	x=1
 	redirect '/delivery/New York' unless AREAS[pr[:state].titleize]
 	erb :'search/search', default_layout
@@ -216,7 +215,6 @@ end
 # get '/state/:state' do 
 # 	chosen_state_short = AREAS.hwia[pr[:state].titleize][:short]
 # 	cities = areas_get_existing_cities(chosen_state_short)
-# 	bp
 #   if !cities.any?
 #   	redirect '/delivery/bixby' 
 #   end

@@ -6,7 +6,7 @@ post '/quick_contact' do
 	$quick_contact.add(pr)		
 	subj = "User quick-contact request: #{pr[:contact]}"
 	html = pr.to_json
-bp
+
 	send_email('sella@good-weed.co', subj, html)
 	# send_email('yael@nowcast.co', subj, html) if $prod
 	

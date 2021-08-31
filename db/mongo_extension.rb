@@ -72,6 +72,7 @@ class Mongo::Collection
     doc_id = nice_id(self)
     doc[:_id] ||= doc_id
     doc[:created_at] = Time.now
+    doc[:created_at] = doc[:force_created_at] if doc[:force_created_at]
     self.insert_one(doc)
     doc.hwia
   end

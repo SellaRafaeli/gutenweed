@@ -32,14 +32,14 @@
   <meta property="og:image:height" content=100 />
   <meta property="og:image"        content="<%=og_img%>" />
   <meta property="og:video"        content="<%=og_video%>" />
-
+  
   <meta name="google-site-verification" content="1buCwz9xrcfCpxLSZmiqyBG3BGysWPJqV5xJNiM4omE" />
   <meta name="Description" content="good-weed.com: the best weed delivery in <%=pr[:city]%>">
   <meta name="keywords" content="weed, cannabis, marijuana, delivery, recreational, dispensaries <%=pr[:city]%>, <%=pr[:state]%>">
 
   <% favicon_url = $prod ? 'favicon.ico' : 'favicon_dev_large_blue_2.ico' %>
   <link rel='shortcut icon' type='image/x-icon' href='/<%= favicon_url %>' />
-  
+  <link rel="canonical" href="https://good-weed.com/" />
 
   <%= erb :"layout/css_files" %>    
   <%= erb :'layout/js_scripts'%>  
