@@ -5,7 +5,7 @@ all_tags = ['women-owned', 'lgbt-owned', 'sativa', 'edibles', '60-min-delivery',
 facets = FACETS.select{|f| user[f[:key]]=='on' }.mapo(:label)
 facets = all_tags.sample(rand(5)) if !facets.any?
 tags   = user[:tags].to_s.split(',')
-
+brand_tags = facets + tags
 x=1
 %>
 
@@ -66,17 +66,20 @@ x=1
   background-color: lightgrey;
   padding: 5px 10px;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 12px;
   display: inline-block;
   margin-bottom: 5px;
 }
 .brand_tags {
   margin: 5px 0;
 }
+.highlight-tag {
+  background-color: lightgreen;
+}
 </style>
 <% end %>
 
-<div class='single_brand_container'>
+<div class='single_brand_container <%= brand_tags.join(' ')%>'>
   <div class='single_brand'>  
     <%#= user.to_json %>
     <!-- <span class='idx_num'><%= idx+1 %>) </span> -->
@@ -98,8 +101,8 @@ x=1
         <span style='color: grey; font-size: 12px'><%= rand(100) %> reviews </span>
       </div>
       <div class='brand_tags'>        
-        <% (tags + facets).each do |tag| %>
-          <span class='single_brand_tag'><%= tag %></span>
+        <% brand_tags.each do |tag| %>
+          <span class='single_brand_tag <%=tag%>'><%= tag %></span>
         <% end %>
       </div>
       <span><small style='color: black; font-style: italic'> <%= user[:delivery_area] %></small></span>     

@@ -5,7 +5,7 @@ $users.indexes.create_one({email: 1}, unique: true) rescue nil
 FACETS    = [
     {icon: 'star', key: 'minority', label: 'Minority-owned'},
     {icon: 'star', key: 'blm', label: 'BlackLivesMatter'},
-    {icon: 'star', key: 'lgbt', label: 'LGBT+'},
+    {icon: 'star', key: 'lgbt', label: 'LGBT'},
     {icon: 'star', key: 'delivery', label: 'Delivery'},
     {icon: 'star', key: '60_min_delivery', label: '60-min-delivery'},
     {icon: 'star', key: 'same_day_delivery', label: 'same-day-delivery'},

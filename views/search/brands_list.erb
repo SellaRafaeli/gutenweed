@@ -40,6 +40,7 @@
   <div class='brands_list'>
   <% if brands.any? %>
   <h1 class='main_h1'> good weed in <%= pr[:city] %>, <%= @chosen_state %></h1> 
+    <%= erb :'/brands/facet_filter', locals: {brands: brands} %>
     <% brands.each_with_index do |user, idx| %>
       <%= erb :'/brands/single_brand', locals: {user: user, idx: idx} %>
     <% end %>
