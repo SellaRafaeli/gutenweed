@@ -7,6 +7,7 @@ facets = all_tags.sample(rand(5)) if !facets.any?
 tags   = user[:tags].to_s.split(',')
 brand_tags = facets + tags
 x=1
+user[:img_url] ||= get_random_cannabis_img 
 %>
 
 <% if !@brand_styles %>
@@ -38,6 +39,7 @@ x=1
   
   object-fit: contain;
   margin-right: 20px;
+  border-radius: 50%;
 }
 .single_brand_container {
   /*background: linear-gradient(184deg, rgba(255,255,255,1) 0%, rgb(80 173 83) 35%);*/
@@ -85,7 +87,6 @@ x=1
     <!-- <span class='idx_num'><%= idx+1 %>) </span> -->
     
     <div class='left_column'>
-      <% user[:img_url] ||= DEFAULT_IMG %>
       <% if user[:img_url].present? %>
         <img class='brand_img' src='<%=user[:img_url]%>' />
       <% end %>
