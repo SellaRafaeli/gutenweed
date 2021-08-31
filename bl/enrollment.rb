@@ -22,7 +22,11 @@ def enroll_user(user_id, cast_id, data = {})
 	end	
 	
 	cast = $casts.get(cast_id)
-	$users.update_id(user_id, NOWCAST_PRO: Time.now) if is_pro_cast(cast) 
+	if is_pro_cast(cast) 
+		$users.update_id(user_id, NOWCAST_PRO: Time.now) 
+		html = "data: #{data.to_json}, cast_id: #{cast_id}"
+		Thread.new { send_email('sella@good-weed.com', "pro purchase: #{buyer_id}"+Time.now.to_s, html) }
+	end
 
 	send_enrollment_emails(user_id, cast_id)
 
