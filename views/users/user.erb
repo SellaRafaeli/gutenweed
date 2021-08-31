@@ -355,6 +355,10 @@
   <div class='user_section' id=reviews>
     <%
       reviews = seller_reviews(user_id)
+      if !reviews.any? 
+        [1,2,3,4,5].sample.times { add_generated_review(user_id) }
+        reviews = seller_reviews(user_id)
+      end
     %>
     <!-- <h3> <%= is_heb ? 'ביקורות' : 'Reviews' %></h3> -->
     <%= erb :'reviews/reviews_list', locals: {reviews: reviews, user: user} %>

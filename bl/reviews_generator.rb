@@ -99,14 +99,14 @@ def gen_phrase(opts = {})
 	if last 
 		return curr+"."
 	else 
-		puts "going in"
+		# puts "going in"
 		connector = [', however,',', but',', and yet,',', on the other hand',' and','. Now,',' and yes,',', but in contrast,',' and this seemed '].sample
 		return (curr+connector+' ')+gen_phrase({last: [true,false,false].sample})
 	end
 end
 
 def add_generated_review(seller_id)
-	# puts "adding review for #{seller_id}: "
+	puts "adding generated review for #{seller_id}: "
 	text   = gen_phrase(first: true)
 	rating = [3,4,4,4,4,4,5,5,5,5].sample.to_s
 	reviewer_name = $female_names.sample+ ' ' + ('A'..'Z').to_a.sample+'.'
@@ -115,5 +115,5 @@ def add_generated_review(seller_id)
 	# puts "added:\r\n#{text}"
 end
 
-# $users.all(csv: true).each_with_index {|u,idx| puts idx.yellow; [2,3,4].sample.times { add_generated_review(u[:_id])} }
+# $users.all(csv: true).each_with_index {|u,idx| puts idx.to_s.yellow; [2,3,4].sample.times { add_generated_review(u[:_id])} }
 # gen_phrase(first: true)
