@@ -85,10 +85,17 @@
   <div class='display_flex' style='margin-top:20px'>
     <label class='ztooltip'> City</label>
 
-    <input class='input1' placeholder='In what city do you deliver?' value="<%=user['city']%>" name='city' style='margin-right: 0px; margin-left: 0'/>
+    <input class='input1' placeholder='Your city' value="<%=user['city']%>" name='city' style='margin-right: 0px; margin-left: 0'/>
+  </div>
+
+  <div class='display_flex' style='margin-top:20px'>
+    <label class='ztooltip'> Zip Code </label>
+
+    <input class='input1' placeholder='Your zip code' value="<%=user['zipcode']%>" name='zipcode' style='margin-right: 0px; margin-left: 0'/>
   </div>
 
 
+  <% if false %>
  <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
     <label class='ztooltip'> Delivery Area 
@@ -96,12 +103,13 @@
     
     <input name=delivery_area value="<%=user[:delivery_area]%>" placeholder='In what areas of the city do you deliver?' />
   </div>
+  <% end %>
 
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
     <label class='ztooltip'> Phone Number </label>
     
-    <input name=contact value="<%=user[:contact]%>" placeholder='Phone number or link' />
+    <input name=contact value="<%=user[:contact]%>" placeholder='Phone number' />
   </div>
 
   <br/>

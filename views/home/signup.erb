@@ -1,7 +1,7 @@
 <% 
 %>
 <h3 id=signup> 
-<%= is_heb ? 'ברוכים הבאים.' : "List Your Cannabis-Related Service:" %>
+<%= is_heb ? 'ברוכים הבאים.' : "List Your Cannabis Service:" %>
 </h3>
 <form action='/signup' method='post'>
   <%= erb :'login/signup_fields', locals: {only_signup: true} %>
