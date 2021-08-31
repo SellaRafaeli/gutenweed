@@ -179,6 +179,18 @@ get '/' do
 	erb :'search/search', default_layout
 end
 
+get '/zip/:code' do 
+	code = pr[:code]
+	data = ZipCodes.identify(code)
+	if data
+		url  = "/delivery/#{data[:state_name]}/#{data[:city]}?zipcode=#{code}"
+	else 
+		flash.message = 'No results found for zip code '+code
+		redirect back
+	end
+	redirect url #'/delivery/'+data[:state_name]+'/'+data[:city]+'?zipcode='+pr[:code]
+end
+
 get '/delivery/:state/?:city?' do
 #	bp
 	x=1

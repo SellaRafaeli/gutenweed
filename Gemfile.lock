@@ -137,6 +137,7 @@ GEM
     unf_ext (0.0.7.7)
     wirb (2.2.2)
       paint (>= 0.9, < 3.0)
+    zip-codes (0.2.1)
 
 PLATFORMS
   x86_64-darwin-18
@@ -172,6 +173,7 @@ DEPENDENCIES
   stripe
   tux
   twilio-ruby
+  zip-codes
 
 RUBY VERSION
    ruby 2.7.1p83

@@ -17,6 +17,13 @@
     display: inline-block;
     width: 45%;
   }
+
+  .zipcode_container {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
 }
 #me_form .selector_container .input1 {
   width: 100%;
@@ -24,6 +31,7 @@
 .selector_label {
   font-size: 14px;
 }
+
 </style>
 
 <% unless locals[:no_city] %>
@@ -50,6 +58,13 @@
   </select>
 </div>
 
+<% if true %>
+<div class='selector_container zipcode_container'>
+  <div class='selector_label'> Zip Code </div>
+  <input style='margin-left: 0; border: 1px solid #209CEE; color: #209CEE;' id=zipcode_input class='input1' placeholder='Enter Zip Code...' onkeyup=searchZip() value="<%=pr[:zipcode]%>" />
+</div>
+<% end %>
+
 <% if false && pr[:type] == 'seller' %>
 <div class='selector_container'>
   <div class='selector_label'> Delivery/Pickup </div>
@@ -60,3 +75,13 @@
   </select>
 </div>
 <% end %>
+
+<script>
+function searchZip() {
+  var code = $("#zipcode_input").val();
+  if (code.length==5) {
+    document.location='/zip/'+code;
+    //alert('Searching! Click to view results.');
+  }
+}
+</script>

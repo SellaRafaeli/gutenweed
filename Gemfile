@@ -37,6 +37,7 @@ gem 'twilio-ruby'
 gem 'postmark'
 gem "sinatra-cross_origin", "~> 0.3.1"
 gem 'rack-protection'
+gem 'zip-codes'
 # gem 'detect_language'
 
 # gem 'redcarpet'
