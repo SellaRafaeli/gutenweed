@@ -106,13 +106,13 @@ def gen_phrase(opts = {})
 end
 
 def add_generated_review(seller_id)
-	puts "adding review for #{seller_id}: "
+	# puts "adding review for #{seller_id}: "
 	text   = gen_phrase(first: true)
 	rating = [3,4,4,4,4,4,5,5,5,5].sample.to_s
 	reviewer_name = $female_names.sample+ ' ' + ('A'..'Z').to_a.sample+'.'
 	data = {seller_id: seller_id, text: text, rating: rating, buyer_id: nil, generator_version: 1, reviewer_name: reviewer_name, reviewer_img_url: random_profile_pic_img, force_created_at: rand(100).days.ago}
 	$reviews.add(data)
-	puts "added:\r\n#{text}"
+	# puts "added:\r\n#{text}"
 end
 
 # $users.all(csv: true).each_with_index {|u,idx| puts idx.yellow; [2,3,4].sample.times { add_generated_review(u[:_id])} }
