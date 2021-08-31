@@ -29,7 +29,7 @@
 
 @media screen and (min-width: 1000px) {
   .logo {
-    width: 300px;
+    width: 160px;
     zborder:1px solid red;
     display: inline-block;
     vertical-align: top;
@@ -250,7 +250,12 @@
       
     <% end %>
     <a class='' href='/search'><i class='fa fa-search'></i> <%= 'search' %> </a>
-    <a class='' href='/pro'><i class='fa fa-plus'></i> <%= 'pro' %> </a>
+    <% if cu && !is_pro(cu) %>
+      <a class='' href='/pro'><i class='fa fa-plus'></i> <%= 'pro' %> </a>
+    <% end %>
+    <a class='' href='/about'>about</a>
+    <a class='' href='/contact'>contact</a>
+    <a class='' href='/articles'>blog</a>
     
     <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->
     
