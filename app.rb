@@ -183,7 +183,7 @@ get '/zip/:code' do
 	code = pr[:code]
 	data = ZipCodes.identify(code)
 	if data
-		url  = "/delivery/#{data[:state_name]}/#{data[:city]}?zipcode=#{code}"
+		url  = URI.escape "/delivery/#{data[:state_name]}/#{data[:city]}?zipcode=#{code}"
 	else 
 		flash.message = 'No results found for zip code '+code
 		redirect back
