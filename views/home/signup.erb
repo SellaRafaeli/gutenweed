@@ -1,7 +1,11 @@
 <% 
 %>
 <h3 id=signup> 
-<%= is_heb ? 'ברוכים הבאים.' : "List Your Cannabis Service:" %>
+<% if pr[:type] == 'seller' %>
+<%= is_heb ? 'ברוכים הבאים.' : "List Your Dispensary:" %>
+<% elsif pr[:type] == 'buyer' %>
+<%= is_heb ? 'ברוכים הבאים.' : "Get Local Offers on Discounts and Coupons for Cannabis:" %>
+<% end %>
 </h3>
 <form action='/signup' method='post'>
   <%= erb :'login/signup_fields', locals: {only_signup: true} %>

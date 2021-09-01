@@ -1,6 +1,38 @@
 Management Dashboard: 
 https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/edit?usp=sharing
 
+TODOs
+- remove duplicates 
+
+
+Expenses 
+Developers 
+Traffic Stats
+Chairs 
+5pm - cleaner 
+
+Marketing 
+> Reddit 
+> Twitter
+> LinkedIn
+> Instagram
+> TikTok
+> Telegram groups
+
+function getImages(string) {
+  const imgRex = /<img.*?src="(.*?)"[^>]+>/g;
+  const images = [];
+    let img;
+    while ((img = imgRex.exec(string))) {
+     	images.push(img[1]);
+    }
+  return images;
+}
+
+z = getImages($('body').innerHTML)
+for (var i=0; i<z.length; i++) console.log(z[i])
+
+
 
 https://drive.google.com/drive/u/0/folders/1O1IqWuz-QyDFeiOKGY-MiIdjD7KUjWty
 ^ - Hadar's folder: 

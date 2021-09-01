@@ -172,6 +172,7 @@ def add_user
 	data[:city]     = pr[:city]
 	data[:state]    = pr[:state]
 	data[:shipping] = pr[:shipping]
+	data[:zipcode]  = pr[:zipcode]
 	u = user = $users.add(data)
 
 

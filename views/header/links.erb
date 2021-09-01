@@ -201,7 +201,7 @@
     <span>
       <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
         <img src='<%=logo%>' style='height:30px'/>
-        <div class='sub_logo_msg'>quality cannabis</div>
+        <div class='sub_logo_msg'>the best cannabis marketplace</div>
       </a>
     </span>
     <% if use_client_logo %>
@@ -239,14 +239,11 @@
       <a class='' href='/login'>
       <%= !heb ? 'Login' : 'כניסה' %>
       </a>    
-      <!-- <a class='btn zbtn-raised' href='/signup?type=buyer'>
-      <%= !heb ? 'Sign Up To Buy' : 'הרשמה' %>
+      <a class='btn btn-raised btn-primary' href='/signup?type=buyer'>
+      <!-- https://fontawesome.com/v5.15/icons?d=gallery&p=2&q=dollar -->
+      <i class='fal fa-search-dollar' style='margin-right: 10px'></i> <%= !heb ? 'Get Local Discounts and Coupons' : 'הרשמה' %>
       
-      </a>       -->
-      <a class='btn btn-primary btn-raised' href='/signup?type=seller'>
-      <%= !heb ? 'List Your Cannabis Service' : 'הרשמה' %>
-      
-      </a>      
+      </a>            
       
     <% end %>
     <a class='' href='/search'><i class='fa fa-search'></i> <%= 'search' %> </a>
@@ -256,7 +253,8 @@
     <a class='' href='/about'>about</a>
     <a class='' href='/contact'>contact</a>
     <a class='' href='/articles'>blog</a>
-    
+    <a class='btn btn-primary btn-raised' href='/signup?type=seller'>
+      <i class='fas fa-store' style='margin-right: 10px'></i> <%= !heb ? 'List Your Dispensary' : 'הרשמה' %></a>      
     <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->
     
       <% ([] || ['usa', 'israel']).each do |country| %>

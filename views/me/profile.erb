@@ -114,6 +114,7 @@
 
   <br/>
 
+<% if is_seller %>
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
     <label class='ztooltip'> Facets </label>
@@ -209,7 +210,7 @@
   <h4 style='margin-left: 20px; margin-bottom: 40px'> Images </h4>      
 
   <%= erb :'/me/upload_media', locals: locals.merge(item: user) %>
-  
+<% end %>
   <% if false %>
   <h4 style='margin-left: 20px; margin-bottom: 40px'> My Social Media </h4>      
   <% 

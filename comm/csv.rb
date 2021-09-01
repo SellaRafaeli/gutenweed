@@ -33,6 +33,7 @@ def upsert_users_from_csv(path)
 		
 		puts "#{idx}: #{email}, #{city}"
 		begin 
+			bp unless $go = true
 			if (user = $users.get(email: email))
 				$users.update_id(user[:_id], data)
 			else
