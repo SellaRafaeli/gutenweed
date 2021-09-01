@@ -250,11 +250,14 @@
     <% if cu && !is_pro(cu) %>
       <a class='' href='/pro'><i class='fa fa-plus'></i> <%= 'pro' %> </a>
     <% end %>
-    <a class='' href='/about'>about</a>
+    <!-- <a class='' href='/about'>about</a>
     <a class='' href='/contact'>contact</a>
-    <a class='' href='/articles'>blog</a>
+    <a class='' href='/articles'>blog</a> -->
+
+    <% if !cu %>
     <a class='btn btn-primary btn-raised' href='/signup?type=seller'>
-      <i class='fas fa-store' style='margin-right: 10px'></i> <%= !heb ? 'List Your Dispensary' : 'הרשמה' %></a>      
+      <i class='fas fa-store' style='margin-right: 10px'></i> <%= !heb ? 'List Your Dispensary' : 'הרשמה' %></a>  
+    <% end %>    
     <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->
     
       <% ([] || ['usa', 'israel']).each do |country| %>
