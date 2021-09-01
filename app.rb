@@ -250,6 +250,10 @@ get '/teach' do
 	erb :'home/home', default_layout
 end
 
+get '/influencers' do 
+	erb :'influencers/influencers', default_layout
+end
+
 # if $prod
 # 	get '/:channel' do
 # 		@channel = pr[:channel]	

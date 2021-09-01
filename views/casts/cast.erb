@@ -254,35 +254,28 @@
   
   <br/>
   
-  <!-- <div class='user_social_media'>
-    my social media
-  </div> -->
   <div class='buttons ct' style='margin-bottom: 20px'>
-
     <% if false && cast_amenities(cast).any? %>
     <a class=btn href='#amenities' data-turbolinks=false><i class='fal fa-clipboard-user'></i> Amenities</a>
-    <% end %>
-    
+    <% end %>    
     <% if false && cast_faqs(cast).any? %>
     <a class=btn href='#faqs' data-turbolinks=false><i class='fal fa-question-circle'></i> FAQ </a>
     <% end %>
-
-    
 
     <% if false %>
     <a class=btn href='#cast_enrollment' data-turbolinks=false><i class='fal fa-envelope-open-text'></i> Book Meeting </a>
     
     <a class=btn href='#cast_messages' data-turbolinks=false><i class='fal fa-comment'></i> Messages</a>
     <a class=btn href='#cast_reviews' data-turbolinks=false><i class='fal fa-comment-alt-check'></i> Reviews</a>
-    <% end %>
-    
-
-    
+    <% end %>    
   </div>
 
 
+  <% if is_pro_cast(cast) %>
+    <%= erb :'casts/pro_cast_business_case' %>
+  <% end %>
 
-  <div id=cast_enrollment class=noDisplay>
+  <div id=cast_enrollment class="<%='noDisplay' unless is_pro_cast(cast)%>">
     <%= erb :'casts/cast_enrollment', locals: {cast: cast, is_owner: is_owner, local_data: local_data} %>
   </div>
 
