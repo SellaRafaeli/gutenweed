@@ -16,9 +16,9 @@ path = _req.path rescue 'error-path'
     
     <%
       show_wide = path.to_s.start_with?('/me') || path.to_s.starts_with?("/admin")
-      container800 = 'container800' unless show_wide
+      containerClass = 'container1000' unless show_wide
     %>
-    <div class='<%=%> <%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
+    <div class='<%=containerClass%> <%="container" unless @no_container || path=='z/' || path.to_s.starts_with?("/admin") %> <%=@custom_container_class%>'>
       <%= yield %> 
       <div style='zpadding-bottom: 300px; background-color: whitesmoke'></div>
     </div>

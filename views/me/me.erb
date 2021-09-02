@@ -96,7 +96,7 @@ form .user_img:hover {
       });
     </script>
 
-    <form id=me_form action='update_me' method='post' class='form1'>      
+    <form id=me_form action='update_me' method='post' class='form1' onsubmit='if (!$("input[name=zipcode]").val()) { alert("Please enter Zip Code."); return false; }'>      
 
     <div style='zmax-width: 800px; margin-left:auto; margin-right: auto;'>
       <% ['dashboard','account', 'customers', 'convos', 'profile', 'by_me', 'for_me', 'locations', 'stats'].each do |part_sec| %>

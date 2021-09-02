@@ -54,7 +54,6 @@ get '/my_programs' do
 end
 
 post '/update_me' do
-
 	FACETS.mapo(:key).each {|key| pr[key] ||= 'off' } # reset facets because only "on" are sent 
 	redirect_unless_user
 
