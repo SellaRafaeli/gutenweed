@@ -1,5 +1,7 @@
 $users     = $mongo.collection('users')
+$users.delete_many(city: '5 Cities')
 cities_from_data = $users.all.mapo(:city).uniq.compact
+cities_from_data-=['5 Cities']
 
 def areas_get_existing_cities(full_name)
 	puts "fetching cities for "+full_name
@@ -227,5 +229,5 @@ AREAS = {
 #SELECT_CITIES_LIST = (SELECT_CA_CITIES + SELECT_CO_CITIES + SELECT_NY_CITIES + cities_from_data).uniq.compact.sort
 ALL_STATES         = AREAS.keys
 ALL_STATES_SHORT   = AREAS.map {|k,v| v[:short] } 
-SELECT_CITIES_LIST = (cities_from_data).uniq.compact.sort
+SELECT_CITIES_LIST = (cities_from_data).uniq.compact.sort - ['5 Cities']
 NO_CITY = 'no_city'

@@ -1,7 +1,10 @@
 <%
   articles = get_articles_list.shuffle
   articles.each do |a|    
-    name = a[:name].gsub('-',' ').titleize
+  name = a[:name].gsub('-',' ').titleize
+  if pr[:city]
+    name+=' in '+pr[:city]
+  end
 %>
   <div style='margin-bottom: 10px'>
     <a class='simple_link' style='text-decoration: none' href='/<%=a[:link]%>'>⦾ <%= name %> </a>    
