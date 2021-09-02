@@ -159,6 +159,9 @@
   .brandSelectorContainer {
     max-height: 30%;
   }
+  .right_of_results {
+    display: none;
+  }
 }
 .selector_options_list {
   text-align: center;
@@ -202,6 +205,9 @@
   bottom: 0;
   transform: translate(-50%, -50%);
   background-color: #008b24;
+}
+.right_of_results {
+  background-color: grey;
 }
 </style>
 <% 
@@ -257,7 +263,7 @@
     </div>
   </div>
 
-  <div class='flex9 main_search_area'>  
+  <div class='flex7 main_search_area'>  
     <!-- <h5 class='ct only-on-mobile-inline-block' style='padding: 10px 20%'> Search Good-Weed </h5> -->
 
       <% if pr[:article_id] %>
@@ -291,9 +297,12 @@
           <% end %>
           
           <%= erb :'search/brands_list', locals: {brands: all_brands, state: chosen_state_short} %>
-        <% end %>
-      </div>
+        <% end %>      
       <% end %>
+    </div>
+    <div class='right_of_results flex3'>
+      <%= erb :'other/articles' %>
+    </div>
 </div>
 
 <script>
