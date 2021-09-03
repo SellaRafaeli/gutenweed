@@ -3,38 +3,6 @@
   seller = locals[:user] || $users.get(cast[:user_id])
 %>
 
-<style>
-.review_box_li {
-  border: 1px solid whitesmoke;
-  max-width: 800px;
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.review_box_li blockquote {
-  margin-left: 0;
-  display: inline-block;
-  width: 400px;
-  padding: 10px;
-  margin-top: 5px;  
-}
-.review_box_li small {
-/*  margin-left: 10px;*/
-  display: inline-block;
-}
-.delete_review_btn {
-  cursor: pointer;
-}
-.delete_review_btn:hover {
-  color: grey;
-}
-.review_rating {
-  padding: 10px;
-  display: inline-block;
-  flex: 8;
-}
-</style>
-
 <% if reviews.any? %>
 <h4> Reviews </h4>
 <% end %>
@@ -48,65 +16,12 @@
 <% end %>
 <% end %>
 
-<ul style='list-style:none; padding-left: 0;'>
+<ul style='padding-left: 0;'>
 
 <% reviews.to_a.sort_by{|r| r[:created_at] }.reverse.each do |review| %>
-  <% 
-    id     = review[:_id] 
-    reviewer_handle = ''
-    buyer_id        = review[:buyer_id]
-    reviewer        = $users.get(buyer_id) || {}
-    reviewer_name   = reviewer[:name] ? "#{reviewer[:name]}, " : 'anonymous' 
-    reviewer_name   = review[:reviewer_name] if review[:reviewer_name]
-    img_url = nil 
-    if reviewer[:_id] 
-      img_url = reviewer[:img_url]
-    elsif review[:reviewer_img_url]
-      img_url = review[:reviewer_img_url]
-    end
-  %>  
-    <li class='review_box_li <%=review[:_id]%>'>
-      <div>
-        <div style='background-color: whitesmoke; display: flex'>
-          
-          <small style='padding: 15px; text-align: center; flex: 1'>            
-            <% if img_url %>
-              <img class='user_img' src='<%=img_url%>' />            
-            <% end %>  
-            <a href='<%=reviewer.any? ? user_link(reviewer) : '#'%>' style='display: block; margin-top:10px'><%= reviewer_name %> <%= nice_date(review[:created_at]) %></a>
-          </small>
-          
-          <div class='review_rating'>
-            <div><% review[:rating].to_i.times { %> ⭐ <% } %></div>
-            <br/>
-            <div><%= review[:text] %> </div>
-
-            <% if review[:video_url] %>
-              <div class='review_video'>
-                <video width="320" height="240" controls>
-                  <source src="<%= review[:video_url] %>" type="video/mp4">
-                </video>
-                
-              </div>
-            <% end %>
-          </div>
-            
-          
-
-          <% if reviewer[:_id] %>
-            <% if can_delete_review(review) %>
-              <form method=post action='/reviews/<%=review[:_id]%>/delete' 
-                onsubmit='if (!confirm("Are you sure? This is irreversible.")) return false;'
-                style='margin-left:10px; display: inline-block;'
-                >
-                <button style='border: transparent; background-color: transparent;'><i class='delete_review_btn fa fa-trash'></i></button>
-              </form>
-            <% end %>
-          <% end %>
-        </div>
-         
-        
-      </div>
-    </li>  
+  <%= erb :'/reviews/single_review', locals: {review: review} %>  
+  <br/>
+  <hr/>
+  <br/>
 <% end %>
 </ul>

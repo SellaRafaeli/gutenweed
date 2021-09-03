@@ -9,7 +9,6 @@ Expenses
 Developers 
 Traffic Stats
 Chairs 
-5pm - cleaner 
 
 Marketing 
 > Reddit 

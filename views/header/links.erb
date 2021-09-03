@@ -77,7 +77,7 @@
     margin:10px 0;
     padding:10px 0;
     position: relative;
-    top: 30px;
+    /*top: 30px;*/
   }
   .search_input {
     width: 300px;
@@ -106,7 +106,13 @@
   }
 
   .top-nav a.logo {
-    display: none;
+    display: block;
+    text-align: center;
+  }
+  .top-nav a .sub_logo_msg {
+    display: block;
+    text-align: center;
+    width: 100%;
   }
   .hamburger {
     display: block;
@@ -241,7 +247,7 @@
       </a>    
       <a class='btn btn-raised btn-primary' href='/signup?type=buyer'>
       <!-- https://fontawesome.com/v5.15/icons?d=gallery&p=2&q=dollar -->
-      <i class='fal fa-search-dollar' style='margin-right: 10px'></i> <%= !heb ? 'Get Local Discounts and Coupons' : 'הרשמה' %>
+      <i class='fal fa-search-dollar' style='margin-right: 10px'></i> <%= !heb ? 'Sign Up As Reviewer' : 'הרשמה' %>
       
       </a>            
       

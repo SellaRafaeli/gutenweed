@@ -4,7 +4,7 @@
 <% if pr[:type] == 'seller' %>
 <%= is_heb ? 'ברוכים הבאים.' : "List Your Dispensary:" %>
 <% elsif pr[:type] == 'buyer' %>
-<%= is_heb ? 'ברוכים הבאים.' : "Get Local Offers on Discounts and Coupons for Cannabis:" %>
+<%= is_heb ? 'ברוכים הבאים.' : "Sign Up as a Dispensary Reviewer:" %>
 <% end %>
 </h3>
 <form action='/signup' method='post'>
