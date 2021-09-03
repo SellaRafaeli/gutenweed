@@ -100,7 +100,7 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
 
 .place_ribbon {
   height: auto;
-  width: 50px;
+  width: 40px;
   display: inline-block;
 }
 </style>
@@ -123,10 +123,11 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
       
 
       <div class='single_brand_column_b'>
-        <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%> <%= "<b class='nowcast_color'>(pro)</b>" if is_pro(user) %></a>          
         <% if locals[:idx] && locals[:idx] < 3 %>
           <img class='place_ribbon' src='/img/search/num<%=idx+1%>.png' />
         <% end %>
+        <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%> <%= "<b class='nowcast_color'>(pro)</b>" if is_pro(user) %></a>          
+        
         <div>
           
 

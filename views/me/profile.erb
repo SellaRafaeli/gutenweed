@@ -142,8 +142,10 @@
   <hr/>
   <br/>
 
+  <% if false %>
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
+
     <label> Cannabis License File </label>
     <input name=license_url      class=license_url value="<%=user['license_url']%>" hidden />    
     <input name=license_filename class=license_filename value="<%=user['license_filename']%>" hidden /> 
@@ -154,6 +156,7 @@
 
     </div>    
   </div>
+  <% end %>
 
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>

@@ -155,12 +155,14 @@
       </span>
     </label>
 
+    <% if false %>
     <label>
       <input required type=checkbox <%="checked" if !$prod %> /> 
       <span class='tos_prompt'>
         I agree to receive emails with offers. 
       </span>
     </label>
+    <% end %>
 
     <% if locals[:only_signup] && false %>
     <br/>
