@@ -67,7 +67,7 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
   /*border:1px solid green;*/
 }
 .single_brand_column_b {
-  flex: 3;
+  flex: 4;
   /*border:1px solid red;*/
 }
 .single_brand_column_c {
@@ -97,6 +97,12 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
     flex-wrap: wrap;
   }
 }
+
+.place_ribbon {
+  height: auto;
+  width: 50px;
+  display: inline-block;
+}
 </style>
 <% end %>
 
@@ -118,6 +124,9 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
 
       <div class='single_brand_column_b'>
         <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%> <%= "<b class='nowcast_color'>(pro)</b>" if is_pro(user) %></a>          
+        <% if locals[:idx] && locals[:idx] < 3 %>
+          <img class='place_ribbon' src='/img/search/num<%=idx+1%>.png' />
+        <% end %>
         <div>
           
 
