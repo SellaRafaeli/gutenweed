@@ -126,7 +126,7 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
         <% if locals[:idx] && locals[:idx] < 3 %>
           <img class='place_ribbon' src='/img/search/num<%=idx+1%>.png' />
         <% end %>
-        <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%> <%= "<b class='nowcast_color'>(pro)</b>" if is_pro(user) %></a>          
+        <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%> <%= "<b class='nowcast_color'><i class='fas fa-badge-check'></i> (pro)</b>" if is_pro(user) %></a>          
         
         <div>
           
@@ -147,7 +147,13 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
           <% end %>
         </div>
                     
-        <div><small style='color: black; font-style: italic'> <%= user[:address] %>, <%= user[:city] %>, <%= user[:state] %></small></div>
+        <div>
+          <small style='color: black; font-style: italic'> 
+          <%= user[:address] ? user[:address]+"," : '' %>
+          <%= user[:city] %>, 
+          <%= user[:state] %>            
+          </small>
+        </div>
         
 
         <% contact = user[:contact] %>
@@ -161,7 +167,7 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
           <% end %>
         <% end %>
         </span>
-        <div style='margin-left: 20px; font-size: 16px;'>
+        <div style='margin-top: 20px; font-size: 14px;'>
           <%= user[:desc] %>
         </div>
       </div>  

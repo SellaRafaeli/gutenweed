@@ -183,20 +183,32 @@ get '/zip/:code' do
 	code = pr[:code]
 	data = ZipCodes.identify(code)
 	if data
-		url  = URI.escape "/delivery/#{data[:state_name]}/#{data[:city]}?zipcode=#{code}"
+		url  = URI.escape "/dispensaries/#{data[:state_name]}/#{data[:city]}?zipcode=#{code}"
 	else 
 		flash.message = 'No results found for zip code '+code
 		redirect back
 	end
-	redirect url #'/delivery/'+data[:state_name]+'/'+data[:city]+'?zipcode='+pr[:code]
 end
 
-get '/delivery/:state/?:city?' do
-	x=1
-	redirect '/delivery/New York' unless AREAS[pr[:state].titleize]
+get '/dispensaries/:state/?:city?' do
+	redirect '/dispensaries/New York' unless AREAS[pr[:state].titleize]
 	erb :'search/search', default_layout
 end
 
+get '/delivery/:state/?:city?' do
+	redirect "/dispensaries/#{pr[:state]}/#{pr[:city]}"
+	# redirect '/delivery/New York' unless AREAS[pr[:state].titleize]
+	# erb :'search/search', default_layout
+end
+
+
+get '/sitemap.xml' do	
+	redirect '/sitemap.txt'
+end
+
+get '/sitemap' do	
+	redirect '/sitemap.txt'
+end
 
 get '/sitemap.txt' do	
 	# ping google to let them know sitemap has updated: 
@@ -211,24 +223,6 @@ get '/sitemap.txt' do
 	send_file(z)
 	# {a:1}
 end
-
-# get '/state/:state' do 
-# 	chosen_state_short = AREAS.hwia[pr[:state].titleize][:short]
-# 	cities = areas_get_existing_cities(chosen_state_short)
-#   if !cities.any?
-#   	redirect '/delivery/bixby' 
-#   end
-
-#   redirect '/delivery/'+cities[0]+'?state='+pr[:state]
-# 	# erb :'search/search', default_layout
-# end
-
-
-# get '/:city' do	
-# 	# erb :'other/landing_page'
-# 	return redirect "/delivery/#{pr[:city]}"
-# 	erb :'search/search', default_layout
-# end
 
 cities = US_STATES_CITIES.values.flatten
 cities.each do |city|

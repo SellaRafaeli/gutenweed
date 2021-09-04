@@ -264,7 +264,7 @@
     <a class='btn btn-primary btn-raised' href='/signup?type=seller'>
       <i class='fas fa-store' style='margin-right: 10px'></i> <%= !heb ? 'List Your Dispensary' : 'הרשמה' %></a>  
     <% end %>    
-    <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->
+    <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a>
     
       <% ([] || ['usa', 'israel']).each do |country| %>
         <a style='padding: 0' class='country_icon_container' href='/?country=<%=country%>'><img class='country_icon' src='/img/icons/<%=country%>.png' /></a>

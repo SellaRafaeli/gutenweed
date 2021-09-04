@@ -8,5 +8,6 @@ end
 
 def is_pro(user = cu)
 	#return false
+	#return true if !$prod
 	user && user[NOWCAST_PRO]
 end

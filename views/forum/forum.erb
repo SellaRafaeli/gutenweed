@@ -35,7 +35,7 @@
 }
 </style>
 <div class='forum_page'>
-  <h1> Good-Weed Forum <%= erb :'/partials/select_state_city', locals: {choose_first: true} %></h1>
+  <h1> good-weed forum <%#= erb :'/partials/select_state_city', locals: {choose_first: true} %></h1>
 
 
   <div class='threads_list'>
@@ -65,8 +65,8 @@
 
 <script>
 function filterThreads(city) {
-  $('.single_thread').hide();
-  $('.single_thread.'+city).show();
+  //$('.single_thread').hide();
+  //$('.single_thread.'+city).show();
 }
 
 function updateCityInput() {  
@@ -76,6 +76,6 @@ function updateCityInput() {
   filterThreads(city);
 }
 
-$('#city_selector').on('change', updateCityInput);
-setTimeout(updateCityInput,0);
+//$('#city_selector').on('change', updateCityInput);
+//setTimeout(updateCityInput,0);
 </script>

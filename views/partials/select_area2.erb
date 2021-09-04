@@ -37,7 +37,7 @@
 <% unless locals[:no_city] %>
 <div class='selector_container'>
   <div class='selector_label'> City </div>  
-  <select class='input1' style='margin:0;' id=city_selector name=city <% if locals[:searchOnChange] %> onchange='var loc="/delivery/"+$("#state_selector").val()+"/"+$(this).val(); document.location=loc' <% end %> >    
+  <select class='input1' style='margin:0;' id=city_selector name=city <% if locals[:searchOnChange] %> onchange='var loc="/dispensaries/"+$("#state_selector").val()+"/"+$(this).val(); document.location=loc' <% end %> >    
     <% cities.each_with_index do |city| %>
       <option value="<%=city%>" <%="selected" if chosen_city.to_s.downcase == city.to_s.downcase %>><%=city%></option>
     <% end %>
@@ -47,7 +47,7 @@
 
 <div class='selector_container'>
   <div class='selector_label'> State </div>
-  <select class='input1' style='margin:0;' id=state_selector name=state <% if locals[:searchOnChange] %> onchange='document.location="/delivery/"+$(this).val()' <% end %> >
+  <select class='input1' style='margin:0;' id=state_selector name=state <% if locals[:searchOnChange] %> onchange='document.location="/dispensaries/"+$(this).val()' <% end %> >
     <% ALL_STATES.sort.each_with_index do |state| %>
       <% state_short = AREAS[state][:short] %>
       <% state_value = state
