@@ -245,6 +245,10 @@ get '/teach' do
 end
 
 get '/influencers' do 
+	redirect '/ambassadors'	
+end
+
+get '/ambassadors' do 
 	erb :'influencers/influencers', default_layout
 end
 
