@@ -114,6 +114,15 @@
 
   <br/>
 
+  <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
+    <label class='ztooltip'> Brand Ambassador </label>
+    
+    <input name=ambassador value="<%=user[:ambassador]%>" placeholder='@good-weed.com' />
+  </div>
+
+  <br/>
+
 <% if is_seller %>
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>

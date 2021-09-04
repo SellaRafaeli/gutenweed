@@ -7,7 +7,7 @@ def seller_reviews(seller_id)
 end
 
 def buyer_reviews(buyer_id)
-	$reviews.get_many(seller_id: seller_id)
+	$reviews.get_many(buyer_id: seller_id)
 end
 
 

@@ -1,10 +1,13 @@
 <%
   is_owner = false #||= locals[:is_owner] ||= false
   seller = locals[:user] || $users.get(cast[:user_id])
+  title = 'Reviews '
+  title += 'of me' if is_seller(user)
+  title += 'by me' if is_buyer(user)
 %>
 
 <% if reviews.any? %>
-<h4> Reviews </h4>
+<h4>  </h4>
 <% end %>
 
 <% if true || can_leave_review(cu, cast) %>
