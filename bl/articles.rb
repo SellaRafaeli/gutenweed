@@ -2,14 +2,19 @@ $weed_pics    = ["https://unsplash.com/photos/qcCPIhhdgTw", "https://unsplash.co
 $weed_pics    = ['https://imgur.com/fR6gWEV.png']
 
 def get_articles_list
-	articles = Dir['./views/articles/*'].sort
+	articles = Dir['./views/articles/**/*.erb'].sort
 	res = articles.map {|path|
-		name = path[17..path.size-5]
-    link = path[8..path.size-5]
-    {name: name, link: link}
+		articles_folder = path.index('/articles/')
+		link  = path[articles_folder..-5]
+		topic = link.gsub('/articles/','').split('/')[0]
+		link_folder = link.rindex('/')+1
+		name = link[link_folder..]    
+
+    {name: name, link: link, topic: topic}
 	}
 	return res
 end
+get_articles_list
 
 def article_random_weed_pic_html
 	"<span class='article_weed_pic'>
@@ -21,7 +26,7 @@ get '/articles' do
 	erb :'other/articles', default_layout
 end
 
-get '/articles/:title' do
-	html          = erb :"articles/#{pr[:title]}"
+get '/articles/:topic/:title' do
+	html          = erb :"articles/#{pr[:topic]}/#{pr[:title]}"
 	erb :"other/article_container", default_layout.merge(locals: {html: html})
 end
