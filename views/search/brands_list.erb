@@ -25,6 +25,10 @@
 .main_h1 {
   display: block; text-align: center; margin: 0; font-size: 18px; font-weight: normal; margin-bottom: 20px;
 }
+.main_h2 {
+  font-size: 14px;
+  text-align: center;
+}
 </style>
   <div class='links_city_selector_container'>
     <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
@@ -40,6 +44,7 @@
   <div class='brands_list'>
   <% if brands.any? %>
   <h1 class='main_h1'> good weed in <%= pr[:city] %>, <%= @chosen_state %></h1> 
+  <h2 class='main_h2'> Cannabis delivery and dispensaries </h2>
     <%= erb :'/brands/facet_filter', locals: {brands: brands} %>
     <% brands.each_with_index do |user, idx| %>
       <%= erb :'/brands/single_brand', locals: {user: user, idx: idx} %>
