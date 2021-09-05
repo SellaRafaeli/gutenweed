@@ -184,6 +184,7 @@ get '/zip/:code' do
 	data = ZipCodes.identify(code)
 	if data
 		url  = URI.escape "/dispensaries/#{data[:state_name]}/#{data[:city]}?zipcode=#{code}"
+		redirect url
 	else 
 		flash.message = 'No results found for zip code '+code
 		redirect back
