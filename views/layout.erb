@@ -104,7 +104,7 @@ function filestackUpload(cb, opts = {}) {
     bar: 'true',
     yes: 'foo'
   };
-  const options = {
+  var options = {
     onFileUploadFinished: cb,
     fromSources: ['local_file_system','webcam','video'],
     onFileSelected: file => {
@@ -115,7 +115,7 @@ function filestackUpload(cb, opts = {}) {
         }
       }
   };
-
+  options = Object.assign(options,opts);
   window.filestackClient.picker(options).open();
 }
 </script>

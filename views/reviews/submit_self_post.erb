@@ -11,13 +11,13 @@
 </style>
 <div class='submit_review_form_container'>
   <div class='submit_review_form'>    
+    <h5> Post video review of cannabis dispensary / brand / product </h5>
+    <form style='font-size: 14px' method=post action='/reviews/new' class="" onsubmit='if(!$("#review_video_url").val()) { alert("bla"); return false; }'>
+      <label> Who is the review of? </label><textarea style='font-size: 14px' required name=seller_info placeholder="The details of who and what you are reviewing."></textarea>
 
-    <form method=post action='/reviews/new' class="" onsubmit='if(!$("#review_video_url").val()) { alert("bla"); return false; }'>
-      <label> Who is the review of? </label><textarea required name=seller_details placeholder="The details of dispensary / brand / product you are reviewing."></textarea>
-
-      <input name=is_self_post value=true />
-      <button type=button id=profile_pic_uploader onclick=uploadReviewVideo() > Add video </button>
-      
+      <input name=is_self_post value=true hidden />
+      <button class='btn btn-info btn-raised' type=button id=profile_pic_uploader onclick=uploadReviewVideo() > Add video </button>
+      <button class='btn btn-raised btn-primary btn-sm'> submit </button>
       <input name=video_url id=review_video_url style='display: none' value="" />
       <video id=review_upload_img_container width="320" height="240" controls class=noDisplay >
         <source id=review_upload_video src="" type="video/mp4">
@@ -34,12 +34,12 @@
 
             $("input#review_video_url").val(res.url);            
             console.log('upload video res',res)
-          });
+          },{accept: ["video/*"]});
         }
       </script>
 
       <br/>
-      <button class='btn btn-raised btn-primary btn-sm'> submit </button>
+      
     </form>
   </div>
 </div>
