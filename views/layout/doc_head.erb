@@ -39,7 +39,7 @@
 
   <% favicon_url = $prod ? 'favicon.ico' : 'favicon_dev_large_blue_2.ico' %>
   <link rel='shortcut icon' type='image/x-icon' href='/<%= favicon_url %>' />
-  <link rel="canonical" href="https://good-weed.com/" />
+  <% if false %> <link rel="canonical" href="https://good-weed.com/" /> <% end %>
 
   <%= erb :"layout/css_files" %>    
   <%= erb :'layout/js_scripts'%>  
