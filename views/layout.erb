@@ -99,7 +99,7 @@ window.filestackAPIkey = 'AHuQo4ciRwufvk1mRbnaNz';
 window.filestackClient = filestack.init(filestackAPIkey);
 
 
-function filestackUpload(cb) {
+function filestackUpload(cb, opts = {}) {
   const foo = {
     bar: 'true',
     yes: 'foo'

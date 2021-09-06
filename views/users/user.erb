@@ -211,7 +211,7 @@
         </div>
       <% end %>
 
-      
+        <% if false %>
         <div style='margin:10px 0'>
           <% if cu %>      
           <a class='btn btn-primary btn-raised' href='/me?sec=convos&user_id=<%=user[:_id]%>'>send message</a>
@@ -219,6 +219,7 @@
           <a class='simple_link zbtn zbtn-primary zbtn-raised' href='/signup?type=buyer'>sign up to message <%=user[:handle]%></a>
           <% end %>
         </div>
+        <% end %>
       
 
       
@@ -361,7 +362,6 @@
   <% if true %>
   <div class='user_section' id=reviews>
     <%
-      
       if is_seller(user)
         reviews = seller_reviews(user_id)
         if !reviews.any? 
@@ -369,13 +369,14 @@
           reviews = seller_reviews(user_id)
         end
       elsif is_buyer(user)
+
         reviews = buyer_reviews(user_id)
       else 
         reviews = []
       end
     %>
     <!-- <h3> <%= is_heb ? 'ביקורות' : 'Reviews' %></h3> -->
-    <% if reviews.any? %>
+    <% if is_seller(user) && reviews.any? %>
     <h4> Reviews </h4>
     <% end %>
     <%= erb :'reviews/reviews_list', locals: {reviews: reviews, user: user} %>

@@ -1,13 +1,13 @@
 $reviews = $mongo.collection('reviews')
 
-REVIEW_FIELDS = ['_id', 'buyer_id', 'seller_id', 'text', 'seller_name', 'video_url']
+REVIEW_FIELDS = ['_id', 'buyer_id', 'seller_id', 'text', 'seller_name', 'video_url', 'is_self_post']
 
 def seller_reviews(seller_id)
 	$reviews.get_many(seller_id: seller_id)
 end
 
 def buyer_reviews(buyer_id)
-	$reviews.get_many(buyer_id: seller_id)
+	$reviews.get_many(buyer_id: buyer_id)
 end
 
 
@@ -33,7 +33,7 @@ end
 
 def can_delete_review(review) 
 	return false unless review 
-	(review[:buyer_id] == cuid) || is_admin
+	(review[:buyer_id] == cuid) || ($prod && is_admin)
 end
 
 get '/recommend' do 

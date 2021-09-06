@@ -64,8 +64,8 @@
   <% end %>
 
   <div class='display_flex'>
-    <label> Description </label>
-    <textarea name=desc placeholder="Describe yourself, what you sell, and any information relevant to the buyer." value=""><%=user['desc']%></textarea> 
+    <label> About </label>
+    <textarea name=desc placeholder="Describe yourself." value=""><%=user['desc']%></textarea> 
     <!-- <span>Use #hashtags like #actor or #dance_teacher</span> -->
   </div>
   <br/>
@@ -105,6 +105,7 @@
   </div>
   <% end %>
 
+<% if is_seller %>  
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
     <label class='ztooltip'> Phone Number </label>
@@ -123,7 +124,7 @@
 
   <br/>
 
-<% if is_seller %>
+
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
     <label class='ztooltip'> Facets </label>
@@ -219,7 +220,7 @@
   <br/>
 
 
-  <h4 style='margin-left: 20px; margin-bottom: 40px'> Our Images And Videos </h4>      
+  <h4 style='margin-left: 20px; margin-bottom: 40px'> Images And Videos </h4>      
 
   <%= erb :'/me/upload_media', locals: locals.merge(item: user) %>
 <% end %>

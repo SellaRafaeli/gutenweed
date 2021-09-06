@@ -3,18 +3,21 @@ $users = $mongo.collection('users')
 $users.indexes.create_one({email: 1}, unique: true) rescue nil
 
 FACETS    = [
-    {icon: 'star', key: 'minority_owned', label: 'Minority-owned'},
-    {icon: 'star', key: 'blm', label: 'BlackLivesMatter'},
-    {icon: 'star', key: 'black_owned', label: 'Black-owned'},
-    {icon: 'star', key: 'lgbt', label: 'pro-LGBT'},
-    {icon: 'star', key: 'lgbt_owned', label: 'LGBT-owned'},
-    {icon: 'star', key: 'delivery', label: 'Delivery'},
-    {icon: 'star', key: '60_min_delivery', label: '60-min-delivery'},
-    {icon: 'star', key: 'same_day_delivery', label: 'same-day-delivery'},
-    {icon: 'star', key: 'edibles', label: 'edibles'},
-    {icon: 'star', key: 'oils', label: 'oils'},
-    {icon: 'star', key: 'mints', label: 'mints'},
-    {icon: 'star', key: 'gummies', label: 'gummies'},    
+    # {icon: 'star', key: 'minority_owned', label: 'Minority-owned'},
+    # {icon: 'star', key: 'blm', label: 'BlackLivesMatter'},
+    # {icon: 'star', key: 'black_owned', label: 'Black-owned'},
+    # {icon: 'star', key: 'lgbt', label: 'pro-LGBT'},
+    # {icon: 'star', key: 'lgbt_owned', label: 'LGBT-owned'},
+    # {icon: 'star', key: 'delivery', label: 'Delivery'},
+    # {icon: 'star', key: '60_min_delivery', label: '60-min-delivery'},
+    # {icon: 'star', key: 'same_day_delivery', label: 'same-day-delivery'},
+    # {icon: 'star', key: 'edibles', label: 'edibles'},
+    # {icon: 'star', key: 'oils', label: 'oils'},
+    # {icon: 'star', key: 'mints', label: 'mints'},
+    # {icon: 'star', key: 'gummies', label: 'gummies'},    
+    {icon: 'star', key: 'dispensary', label: 'Dispensary'},
+    {icon: 'star', key: 'brand', label: 'Brand'},
+    {icon: 'star', key: 'black_owned', label: 'Professional'},
   ]
 USER_KEYS = ["email",  "name", "handle", "img_url", "timezone", 
 	"contact_me", "title", "subtitle", "desc", "lang", "country",
@@ -31,7 +34,7 @@ def is_seller(user = cu)
 end
 
 def is_buyer(user = cu) 
-	user && user[:type] == 'buyer'
+	user && user[:type].to_s == 'buyer'
 end
 
 get '/me' do
