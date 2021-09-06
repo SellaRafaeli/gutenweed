@@ -246,11 +246,11 @@ get '/teach' do
 end
 
 get '/influencers' do 
-	redirect '/ambassadors'	
+	erb :'influencers/influencers', default_layout
 end
 
 get '/ambassadors' do 
-	erb :'influencers/influencers', default_layout
+	redirect '/influencers'		
 end
 
 # if $prod
