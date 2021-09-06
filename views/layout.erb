@@ -99,12 +99,12 @@ window.filestackAPIkey = 'AHuQo4ciRwufvk1mRbnaNz';
 window.filestackClient = filestack.init(filestackAPIkey);
 
 
-function filestackUpload(cb) {
+function filestackUpload(cb, opts = {}) {
   const foo = {
     bar: 'true',
     yes: 'foo'
   };
-  const options = {
+  var options = {
     onFileUploadFinished: cb,
     fromSources: ['local_file_system','webcam','video'],
     onFileSelected: file => {
@@ -115,7 +115,7 @@ function filestackUpload(cb) {
         }
       }
   };
-
+  options = Object.assign(options,opts);
   window.filestackClient.picker(options).open();
 }
 </script>
