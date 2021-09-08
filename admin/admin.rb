@@ -85,13 +85,14 @@ get '/admin/earnings/?:earn_id?' do
   erb :'stripe/all_earnings', default_layout
 end
 
-ADMIN_EMAILS = ['abelyael@gmail.com', 'tzlilberlin11@gmail.com', 'sella.rafaeli@gmail.com', 'galweinstock@icloud.com', 'tifrah2008@gmail.com']
+zADMIN_EMAILS = ['abelyael@gmail.com', 'tzlilberlin11@gmail.com', 'sella.rafaeli@gmail.com', 'galweinstock@icloud.com', 'tifrah2008@gmail.com']
+ADMIN_EMAILS = ['sella.rafaeli@gmail.com', 'tifrah2008@gmail.com']
 ADMIN_IDS    = ['8FNGN', 'kOdWD', 'XS0xK', 'GMf07', 'grTIU']
 
 def is_admin(user = cu)
   return true if !$prod #&& cu[:email].to_s=='sella.rafaeli@gmail.com'
 
-  cu[:email].in?(ADMIN_EMAILS) && cuid.in?(ADMIN_IDS) && admin_authorized?
+  cu[:email].in?(ADMIN_EMAILS) #&& cuid.in?(ADMIN_IDS) && admin_authorized?
 rescue 
   false
 end
