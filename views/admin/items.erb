@@ -10,7 +10,7 @@
   end
 
 
-  limit     = params_num(:limit, max: 1000, default: 1000)
+  limit     = params_num(:limit, max: 1000, default: 100)
   sort_field= either(params[:sort_field], :created_at)
   sort_dir  = params[:sort_dir].to_i == 1 ? 1 : -1
   items     = coll.find(crit).limit(limit).sort({sort_field => sort_dir}).to_a 
