@@ -38,11 +38,12 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
   color: black;
 }
 .single_brand .brand_img { 
-  width: 70px;
-  height: auto;
-  
+  width: auto;
+  height: 100px;
+  margin: auto;
   object-fit: contain;
-  margin-right: 20px;
+  display: block;
+  zmargin-right: 20px;
   zborder-radius: 50%;
 }
 .single_brand_container {
@@ -64,6 +65,7 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
 .single_brand_column_a {
   flex: 1;
   text-align: left;
+  display: none;
   /*border:1px solid green;*/
 }
 .single_brand_column_b {
@@ -112,9 +114,7 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
   <div class='single_brand' style='zdisplay: flex'>
     <div class='single_brand_flex_wrapper'>
       <div class='single_brand_column_a'>
-        <% if user[:img_url].present? %>
-          <img class='brand_img' src='<%=user[:img_url]%>' />
-        <% end %>
+        
       </div>
 
       
@@ -123,14 +123,14 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
       
 
       <div class='single_brand_column_b'>
+        <% if user[:img_url].present? %><img class='brand_img' src='<%=user[:img_url]%>' /><% end %>
+
         <% if locals[:idx] && locals[:idx] < 3 %>
           <img class='place_ribbon' src='/img/search/num<%=idx+1%>.png' />
         <% end %>
         <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%> <%= "<b class='nowcast_color'><i class='fas fa-badge-check'></i> (pro)</b>" if is_pro(user) %></a>          
         
         <div>
-          
-
           <% rating.to_i.times do |i|  %>
           <span><i style='color: gold' class='fas fa-star'></i></span>           
           <% end %>

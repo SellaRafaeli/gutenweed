@@ -15,11 +15,16 @@
   cursor: pointer;
   background-color: lightgreen;
 }
+.facets_filter {
+  display: block;
+}
 </style>
 
+<div class='facets_filter'>
 <% tags.each do |tag| %>
   <span class='single_brand_tag clickable_tag' onclick='filterBrands(this, "<%=tag%>")'><%= tag %></span>
 <% end %>
+</div>
 
 <script>
 function filterBrands(el, tag) {

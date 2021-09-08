@@ -21,12 +21,12 @@ end
 # 	$reviews.get_many(cast_id: cast_id).to_a
 # end
 
-def can_leave_review(user, cast)
+def can_leave_review(user)
 	return true # for now! 21.7
-	return false unless user && cast
-	order_exists  = $enrolls.exists?(cast_id: cast[:_id], user_id: user[:_id])
-	review_exists = $reviews.exists?(cast_id: cast[:_id], buyer_id: user[:_id])
-	order_exists && !review_exists
+	return false unless user && cu
+	# order_exists  = $enrolls.exists?(cast_id: cast[:_id], user_id: user[:_id])
+	# review_exists = $reviews.exists?(cast_id: cast[:_id], buyer_id: user[:_id])
+	# order_exists && !review_exists
 rescue => e
 	false
 end
