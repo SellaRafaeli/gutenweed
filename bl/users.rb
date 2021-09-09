@@ -225,7 +225,9 @@ end
 
 post '/signup' do
 	verify_signup_data
-	res = add_user
+	res = add_user	
+	send_email('sella@good-weed.com', 'New user '+res.to_json, 'New user '+res.to_json) rescue nil
+	res
 end
 
 get '/forgot_password' do

@@ -2,7 +2,7 @@ Management Dashboard:
 https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/edit?usp=sharing
 
 TODOs
-- remove duplicates 
+- create XML sitemap
 
 
 Expenses 
