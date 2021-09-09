@@ -115,6 +115,15 @@
 
   <br/>
 
+  <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
+    <label class='ztooltip'> Web Site </label>
+    
+    <input name=website value="<%=user[:website]%>" placeholder='Your site' />
+  </div>
+
+  <br/>
+
   <!-- <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
     <label class='ztooltip'> Brand Ambassador </label>

@@ -24,6 +24,7 @@ USER_KEYS = ["email",  "name", "handle", "img_url", "timezone",
 	 "location", "my_theme", "media", "payout_info", "tags", 
 	 "media_object_fit", "license_url", "license_filename", 'license_numbers', 
 	 'license_text', 'delivery_area', 'active', 'contact','city', 'state', 
+	 'website',
 	 'shipping', 'zipcode', 'ambassador', 'subtype'] + SOCIAL_NETWORKS + FACETS.mapo(:key)
 
 #DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
