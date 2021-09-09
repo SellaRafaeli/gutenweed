@@ -115,7 +115,7 @@
 
   <br/>
 
-  <div class='display_flex' style='margin-top:20px'>
+  <!-- <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
     <label class='ztooltip'> Brand Ambassador </label>
     
@@ -123,8 +123,9 @@
   </div>
 
   <br/>
+ -->
 
-
+  <% if false %>
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
     <label class='ztooltip'> Facets </label>
@@ -138,6 +139,7 @@
       
     </div>    
   </div>
+  <% end %>
 
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
@@ -178,6 +180,21 @@
   </div>
 
   <br/>
+
+
+
+  <% if is_seller(user) %>
+  <div class='display_flex' style='margin-top:20px; zdisplay: none'>
+    <%#= user.to_json %>
+    <label class='ztooltip'> Listing Type
+    </label>
+<%
+%>
+    <%= erb :'partials/subtype_chooser', locals: {user: user} %>        
+  </div>
+
+  <br/>
+  <% end %>
 
   <br/>
 
