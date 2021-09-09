@@ -1,23 +1,33 @@
 <style>
-.subtypes_filter .btn {
+.subtypes_filter .filter_btn {
   font-size: 14px;
   display: inline-block;
-  width: 200px;
+  border: 1px solid black;
+  padding: 5px 10px;
+  cursor: pointer;
 }
-.subtypes_filter .btn.selected {
-  border:2px solid lightgreen;
+.subtypes_filter .filter_btn:hover {
+  zborder:2px solid lightgreen;
+  text-decoration: underline;
+}
+.subtypes_filter .filter_btn.selected {
+  font-weight: bold;
+  background-color: darkgreen;
+  color:white;
 }
 </style>
 
 <div class='subtypes_filter'>
-  <div class='btn btn-raised btn-info' onclick="selectSubtype('brand', this)"> brands </div>
-  <div class='btn btn-raised btn-primary' onclick="selectSubtype('dispensary', this)"> dispensaries </div>
+  <% SUBTYPES.each do |subtype| %>
+    <div class='filter_btn zbtn btn-raised btn-info' onclick="selectSubtype('<%=subtype%>', this)"> <%=subtype %>s</div>  
+  <% end %>
+  
 </div>
 
 <script>
 function selectSubtype(subtype, btn) {
-  $('.subtypes_filter .btn').removeClass('selected');
+  $('.subtypes_filter .filter_btn').removeClass('selected');
   $(btn).addClass('selected');
 }
-selectSubtype($('.subtypes_filter .btn').first())
+selectSubtype($('.subtypes_filter .filter_btn').first())
 </script>

@@ -9,11 +9,19 @@
 
 <style>
 .clickable_tag {
-
+  padding:5px 10px;
+  border:1px solid black;
+  border-radius: 0;
+  font-size: 18px;
 }
-.clickable_tag.selected, .clickable_tag:hover {
-  cursor: pointer;
+.clickable_tag.selected {
+  
   background-color: lightgreen;
+  font-weight: bold;
+}
+.clickable_tag:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 .facets_filter {
   display: block;
@@ -22,7 +30,7 @@
 
 <div class='facets_filter'>
 <% tags.each do |tag| %>
-  <span class='single_brand_tag clickable_tag' onclick='filterBrands(this, "<%=tag%>")'><%= tag %></span>
+  <span class='facet_tag clickable_tag' onclick='filterBrands(this, "<%=tag%>")'><%= tag %></span>
 <% end %>
 </div>
 
@@ -31,14 +39,14 @@ function filterBrands(el, tag) {
   if ($(el).hasClass('selected')) {
     $(el).removeClass('selected');
     $('.single_brand_container').show();
-    $('.single_brand_tag').removeClass('highlight-tag')
+    $('.facet_tag').removeClass('highlight-tag')
   } else {    
     $('.clickable_tag').removeClass('selected');
     $(el).addClass('selected');    
     $('.single_brand_container').hide();
     $('.single_brand_container.'+tag).show();    
-    $('.single_brand_tag').removeClass('highlight-tag');    
-    $('.single_brand_tag.'+tag).addClass('highlight-tag');    
+    $('.facet_tag').removeClass('highlight-tag');    
+    $('.facet_tag.'+tag).addClass('highlight-tag');    
   }
   
 }
