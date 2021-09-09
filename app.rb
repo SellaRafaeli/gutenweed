@@ -211,17 +211,24 @@ get '/sitemap' do
 	redirect '/sitemap.txt'
 end
 
+
+Thread.new {
+	while true 
+		puts "Updating sitemap #{Time.now}"
+		$sitemap = Tempfile.new('sitemap.txt')
+		File.open($sitemap, 'w') { |file| file.write(zerb :'other/sitemap') }	
+		sleep 60
+	end
+}
+
 get '/sitemap.txt' do	
 	# ping google to let them know sitemap has updated: 
 	# https://www.google.com/ping?sitemap=https://good-weed.com/sitemap.txt 
 	headers['Content-Type'] = 'text/plain'
-	z = Tempfile.new('sitemap.txt')
-	# z.write(erb :'other/sitemap')
-	File.open(z, 'w') { |file| file.write(erb :'other/sitemap') }
-
+	
 	# z.write('hi')
 	# z.close
-	send_file(z)
+	send_file($sitemap)
 	# {a:1}
 end
 
