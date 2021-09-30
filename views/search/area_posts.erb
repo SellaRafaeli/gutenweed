@@ -29,6 +29,7 @@
 
 
 <div class='area_posts_container'>
+<h4>Posts: <%= Date::MONTHNAMES[Date.today.month] %> '21 </h4>
 
 <div class='area_posts_list'>
   <% posts.each do |post| %>
@@ -52,7 +53,6 @@
     <form method=post action=/area_posts/submit>
     <% else %>
     <form onsubmit='saySignupFirst(); return false'>
-      <h2> onsubmit </h2>
     <% end %>
       <input name=text style='width: 300px' placeholder='post something...' />
       <input hidden value="<%=city%>" name=city>
