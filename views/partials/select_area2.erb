@@ -34,16 +34,7 @@
 
 </style>
 
-<% unless locals[:no_city] %>
-<div class='selector_container'>
-  <div class='selector_label'> City </div>  
-  <select class='input1' style='margin:0;' id=city_selector name=city <% if locals[:searchOnChange] %> onchange='var loc="/dispensaries/"+$("#state_selector").val()+"/"+$(this).val(); document.location=loc' <% end %> >    
-    <% cities.each_with_index do |city| %>
-      <option value="<%=city%>" <%="selected" if chosen_city.to_s.downcase == city.to_s.downcase %>><%=city%></option>
-    <% end %>
-  </select>
-</div>
-<% end %>
+
 
 <div class='selector_container'>
   <div class='selector_label'> State </div>
@@ -57,6 +48,17 @@
     <% end %>
   </select>
 </div>
+
+<% unless locals[:no_city] %>
+<div class='selector_container'>
+  <div class='selector_label'> City </div>  
+  <select class='input1' style='margin:0;' id=city_selector name=city <% if locals[:searchOnChange] %> onchange='var loc="/dispensaries/"+$("#state_selector").val()+"/"+$(this).val(); document.location=loc' <% end %> >    
+    <% cities.each_with_index do |city| %>
+      <option value="<%=city%>" <%="selected" if chosen_city.to_s.downcase == city.to_s.downcase %>><%=city%></option>
+    <% end %>
+  </select>
+</div>
+<% end %>
 
 <% if locals[:zip_search] %>
 <div class='selector_container zipcode_container'>
