@@ -46,10 +46,13 @@
 
   <div class='brands_list'>
   
-  
-
-  <h1 class='main_h1'> good weed in <%= pr[:city] %>, <%= @chosen_state %>: </h1> 
-  <h2 class='main_h1'> Cannabis delivery, dispensaries, and brands </h2>    
+  <div class=display_flex>
+    <img src='/img/cannabis_delivery.jpg' style='width: 100px; flex: 1' />
+    <div>
+      <h1 class='main_h1'> good weed in <%= pr[:city] %>, <%= @chosen_state %>: </h1> 
+      <h2 class='main_h1'> Cannabis delivery, dispensaries, and brands </h2>    
+    </div>
+  </div>
   <%= erb :'search/area_posts', locals: {state: state, city: city} %>
     <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
   <% if brands.any? %>
