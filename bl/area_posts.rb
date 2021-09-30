@@ -11,3 +11,15 @@ post '/area_posts/submit' do
 	flash.message = 'Thanks'
 	redirect back
 end
+
+post '/area_posts/delete/:id' do 
+	post = $area_posts.get(pr[:id])
+	if (post[:user_id] == cuid) || ($prod && is_admin)
+		$area_posts.delete_one(_id: post[:_id])
+		flash.message = 'Deleted post.'
+		redirect back
+	end
+	
+	flash.message = 'Error deleting post'
+	redirect back	
+end
