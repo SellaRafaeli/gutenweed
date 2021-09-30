@@ -1,0 +1,36 @@
+<%
+
+  posts = $area_posts.all(city: city, state: state).reverse
+%>
+
+<style>
+.area_posts_container {
+  border:1px solid whitesmoke;
+  padding: 10px;
+}
+.area_posts_list {
+  font-size: 14px;
+}
+</style>
+
+<div class='area_posts_container'>
+
+<div class='area_posts_list'>
+  <% posts.each do |post| %>
+  <div class='single_area_post'>
+    <span style='font-size: 80%'><%=nice_date(post[:created_at])%></span> <a class='simple_link single_area_handle' href='/@<%=post[:handle]%>'><%=post[:handle]%></a>: <%= post[:text] %>
+  </div>
+  <% end %>
+</div>
+
+
+  <div class='area_posts_form'>
+    <br/>
+    <form method=post action=/area_posts/submit>
+      <input name=text style='width: 300px' placeholder='post something...' />
+      <input hidden value="<%=city%>" name=city>
+      <input hidden value="<%=state%>" name=state>
+      <button> submit </button>
+    </form>
+  </div>
+</div>
