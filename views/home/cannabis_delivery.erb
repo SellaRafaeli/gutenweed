@@ -1,0 +1,42 @@
+<style>
+.main_delivery_img {
+  flex:1;
+  max-width: 700px;
+  max-height: 500px;
+  border-radius: 0 100px 0 100px;
+}
+.hcd_left {
+  text-align: left;
+  margin-right: 50px;
+}
+.home_cannabis_delivery {
+  display: flex;
+}
+.lp_h1 {
+  font-size: 18px;
+  font-weight: normal;
+  text-align: center;
+}
+.lp_h2 {
+  font-size: 22px;
+  
+  font-weight: bold;
+  width: 100%;
+}
+</style>
+
+<div class='home_cannabis_delivery'>
+  <div class='hcd_left'>
+    <!-- <h1> Cannabis Delivery </h1> -->
+    <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
+    <h1 class='lp_h1'> Cannabis delivery, dispensaries, and top local brands. </h2>    
+  </div>
+  <div class='hcd_right'>
+    <h2 class='lp_h2'> good weed, delivered. </h1> 
+    
+    <div class='links_city_selector_container'>
+    <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+    <%= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true} %>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ cities_from_data-=['5 Cities']
 
 def areas_get_existing_cities(full_name)
 	puts "fetching cities for "+full_name
+	# TODO - build hash of state->cities in background, refresh it every 30 seconds in scheduler, here fetch from memory.
 	# users  = $users.all.select {|u| u[:state].to_s.downcase == full_name.downcase }
 	users  = $users.all(state: full_name)
 	puts "fetched "+users.count.to_s

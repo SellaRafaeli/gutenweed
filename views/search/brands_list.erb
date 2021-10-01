@@ -15,6 +15,8 @@
 
   #bp
   x=1
+  _is_homepage = is_homepage
+  # _is_homepage = false 
 %>
 
 <style>
@@ -45,28 +47,34 @@
   <br/> -->
 
   <div class='brands_list'>
-  
-  <div class=display_flex>
-    <img src='/img/cannabis_delivery.jpg' style='width: 100px; flex: 1' />
-    <div>
-      <h1 class='main_h1'> good weed in <%= pr[:city] %>, <%= @chosen_state %>: </h1> 
-      <h2 class='main_h1'> Cannabis delivery, dispensaries, and brands </h2>    
-    </div>
-  </div>
-  <%= erb :'search/area_posts', locals: {state: state, city: city} %>
-    <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
-  <% if brands.any? %>
-    <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
-    <h4 style='margin-left: 10px'> Recommended </h4>
-    <% brands.each_with_index do |user, idx| %>
-      <%= erb :'/brands/single_brand', locals: {user: user, idx: idx} %>
-    <% end %>
-  <% else %>
-    <div class='no_brands_found'>
-      No results found. Be the first!
-      <br/>
-      <br/>      
-    </div>  
-  <% end %>
+      <div class=display_flex>
+        <img src='/img/cannabis_delivery.jpg' style='width: 100px; flex: 1' />
+        <% if false %>
+          <h1 class='main_h1'> good weed, wherever it's legal. </h1> 
+          <h2 class='main_h1'> Cannabis delivery, dispensaries, and top local brands. </h2>    
+        <% else %>
+          <div>
+            <h1 class='main_h1'> good weed in <%= pr[:city] %>, <%= @chosen_state %>: </h1> 
+            <h2 class='main_h1'> Cannabis delivery, dispensaries, and brands </h2>    
+          </div>
+        <% end %>
+      </div>
+      <% if true %>
+        <%= erb :'search/area_posts', locals: {state: state, city: city} %>
+          <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
+        <% if brands.any? %>
+          <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
+          <h4 style='margin-left: 10px'> Recommended </h4>
+          <% brands.each_with_index do |user, idx| %>
+            <%= erb :'/brands/single_brand', locals: {user: user, idx: idx} %>
+          <% end %>
+        <% else %>
+          <div class='no_brands_found'>
+            No results found. Be the first!
+            <br/>
+            <br/>      
+          </div>  
+        <% end %>    
+      <% end %>
   </div>
 </div>

@@ -265,42 +265,47 @@
     </div>
   </div>
 
-  <div class='flex7 main_search_area'>  
-    <!-- <h5 class='ct only-on-mobile-inline-block' style='padding: 10px 20%'> Search Good-Weed </h5> -->
+<%
+  #bp
+  x=1
+%>
+  
+    <div class='flex7 main_search_area'>  
+      <!-- <h5 class='ct only-on-mobile-inline-block' style='padding: 10px 20%'> Search Good-Weed </h5> -->
 
-      <% if pr[:article_id] %>
-        <br/>
-        <%= erb :'/search/articles' %>
-        <div class='article_body_container'>
-          <%= erb :"/articles/#{pr[:article_id]}" %>
-        </div>
-        
-      <% elsif selected_brand %>
-        <% 
-          $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id], path: _req.path) if cuid!=user[:_id] 
-        %>
-        <%= erb :'users/user', locals: {user: user} %>
-      <% else %>
-        <div class='' style='text-align: left'>  
-          <%#= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
-
-          <div class='map_wrapper'>
-            <%#= erb :'map/map', locals: {casts: casts} %>
+        <% if pr[:article_id] %>
+          <br/>
+          <%= erb :'/search/articles' %>
+          <div class='article_body_container'>
+            <%= erb :"/articles/#{pr[:article_id]}" %>
           </div>
-        </div>
-
-        <%#= erb :'/search/articles' %>
-        <% if casts.any? %>      
-          <h1> some casts </h1>
-          <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>
+          
+        <% elsif selected_brand %>
+          <% 
+            $stats.add(type: 'store_view', seller_id: user[:_id], buyer_id: cu && cu[:_id], path: _req.path) if cuid!=user[:_id] 
+          %>
+          <%= erb :'users/user', locals: {user: user} %>
         <% else %>
-          <% if pr[:q] %>
-          <h5 style='padding:20px; background-color: lightblue; zmargin: 20px'> No Results Found. </h5>
-          <% end %>          
-          <%= erb :'search/brands_list', locals: {brands: all_brands, state: chosen_state_short} %>
-        <% end %>      
-      <% end %>
-    </div>
+          <div class='' style='text-align: left'>  
+            <%#= erb :'/search/search_inputs_row', locals: {searchOnChange: true} %>
+
+            <div class='map_wrapper'>
+              <%#= erb :'map/map', locals: {casts: casts} %>
+            </div>
+          </div>
+
+          <%#= erb :'/search/articles' %>
+          <% if casts.any? %>      
+            <h1> some casts </h1>
+            <%= erb :'casts/casts_list', locals: {casts: casts, show_product_categories: false} %>
+          <% else %>
+            <% if pr[:q] %>
+            <h5 style='padding:20px; background-color: lightblue; zmargin: 20px'> No Results Found. </h5>
+            <% end %>          
+            <%= erb :'search/brands_list', locals: {brands: all_brands, state: chosen_state_short} %>
+          <% end %>      
+        <% end %>
+      </div>
     <% if false %>
     <div class='right_of_results flex2'>
       <%= erb :'other/articles' %>

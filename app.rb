@@ -137,7 +137,8 @@ get '/values' do
 end
 
 get '/search' do 
-	erb :'search/search', default_layout
+	redirect '/'
+	# erb :'search/search', default_layout
 end
 
 get '/accept_cookies' do 
@@ -156,27 +157,12 @@ def search_input_on_top
 	!(is_home || @fullstack)
 end
 
-get '/coding' do	
-	@fullstack = true
-	erb :'home/home', default_layout
-end
-
-get '/fullstack' do	
-	@fullstack = true
-	erb :'home/home', default_layout
-end
-
-get '/about' do	
-	erb :'other/about', default_layout
-	# erb :'other/landing_page', default_layout
-	# erb :'search/search', default_layout
-end
-
 get '/' do	
 	# erb :'other/landing_page'
 	pr[:state] = 'New York'
 	pr[:city]  = 'New York'
-	erb :'search/search', default_layout
+	# erb :'search/search', default_layout
+	erb :'home/cannabis_delivery', default_layout
 end
 
 get '/zip/:code' do 
@@ -212,14 +198,16 @@ get '/sitemap' do
 end
 
 
-Thread.new {
-	while true 
-		puts "Updating sitemap #{Time.now}"
-		$sitemap = Tempfile.new('sitemap.txt')
-		File.open($sitemap, 'w') { |file| file.write(zerb :'other/sitemap') }	
-		sleep 60
-	end
-}
+if $prod 
+	Thread.new {
+		while true 
+			puts "Updating sitemap #{Time.now}"
+			$sitemap = Tempfile.new('sitemap.txt')
+			File.open($sitemap, 'w') { |file| file.write(zerb :'other/sitemap') }	
+			sleep 600
+		end
+	}
+end
 
 get '/sitemap.txt' do	
 	# ping google to let them know sitemap has updated: 

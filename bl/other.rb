@@ -1,3 +1,23 @@
+get '/coding' do	
+	@fullstack = true
+	erb :'home/home', default_layout
+end
+
+get '/fullstack' do	
+	@fullstack = true
+	erb :'home/home', default_layout
+end
+
+get '/about' do	
+	erb :'other/about', default_layout
+	# erb :'other/landing_page', default_layout
+	# erb :'search/search', default_layout
+end
+
+get '/help' do 
+	redirect '/about'
+end
+
 def get_random_cannabis_img
 	pics = ['https://i.imgur.com/uO7U2xrb.jpg',
 	'https://i.imgur.com/MDtn78Qb.jpg',

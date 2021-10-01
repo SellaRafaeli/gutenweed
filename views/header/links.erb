@@ -207,7 +207,7 @@
     <span>
       <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
         <img src='<%=logo%>' style='height:30px'/>
-        <div class='sub_logo_msg'>local cannabis delivery.</div>
+        <div class='sub_logo_msg'>local cannabis deliveries.</div>
       </a>
     </span>
     <% if use_client_logo %>
@@ -245,14 +245,21 @@
       <a class='' href='/login'>
       <%= !heb ? 'Login' : 'כניסה' %>
       </a>    
+      
+      <% if false %>
       <a class='btn btn-raised btn-primary' href='/signup?type=buyer'>
       <!-- https://fontawesome.com/v5.15/icons?d=gallery&p=2&q=dollar -->
       <i class='fal fa-search-dollar' style='margin-right: 10px'></i> <%= !heb ? 'Sign Up To Buy' : 'הרשמה' %>
       
-      </a>            
+      </a>          
+      <% end %>  
       
     <% end %>
+
+    <% if !is_homepage %>
     <a class='' href='/search'><i class='fa fa-search'></i> <%= 'search' %> </a>
+    <% end %>
+
     <% if cu && !is_pro(cu) %>
       <a class='' href='/pro'><i class='fa fa-plus'></i> <%= 'pro' %> </a>
     <% end %>
@@ -262,10 +269,10 @@
 
     <% if !cu %>
     <a class='btn btn-primary btn-raised' href='/signup?type=seller'>
-      <i class='fas fa-store' style='margin-right: 10px'></i> <%= !heb ? 'Sign up to sell' : 'הרשמה' %></a>  
+      <i class='fas fa-store' style='margin-right: 10px'></i> <%= !heb ? 'Sign up' : 'הרשמה' %></a>  
     <% end %>    
     <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->
-    <a class='' href='/contact'><i class='fa fa-question-circle' style='margin-right: 5px'></i> <%= 'support' %> </a>
+    <a class='' href='/help'><i class='fa fa-question-circle' style='margin-right: 5px'></i> <%= 'help' %> </a>
     <!-- <a class='' href='/influencers'><i class='fas fa-user-tie' style='margin-right: 5px'></i> <%= 'influencers' %> </a> -->
     
       <% ([] || ['usa', 'israel']).each do |country| %>

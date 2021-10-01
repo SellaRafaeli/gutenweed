@@ -67,16 +67,18 @@
 
     <% end %>
 
-    <% if pr[:type]=='seller' && false %>
+    <% if true || pr[:type]=='seller' && false %>
     <div>
       <label class='w200'> I am/We are a cannabis </label>
       <select class=input1 name=subtype>        
-        <option> Dispensary </option>
-        <option> Distributor </option>
-        <option> Grower </option>
-        <option> Manufacturer </option>
-        <option> Private Individual </option>
-        <option> Other </option>
+        <option value='seller'> Delivery Service </option>
+        <option value='seller'> Brand </option>
+        <option value='seller'> Dispensary </option>
+        <option value='seller'> Distributor </option>
+        <option value='seller'> Grower </option>
+        <option value='seller'> Manufacturer </option>
+        <option value='buyer'> Private Individual </option>
+        <option value='seller'> Other </option>
       </select>
       <!-- <input class=input1 required list="browsers" name="type" id="user_types">
 

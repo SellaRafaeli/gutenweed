@@ -35,7 +35,7 @@
 </style>
 
 
-
+<% unless locals[:no_state] %>
 <div class='selector_container'>
   <div class='selector_label'> State </div>
   <select class='input1' style='margin:0;' id=state_selector name=state <% if locals[:searchOnChange] %> onchange='document.location="/dispensaries/"+$(this).val()' <% end %> >
@@ -48,6 +48,7 @@
     <% end %>
   </select>
 </div>
+<% end %>
 
 <% unless locals[:no_city] %>
 <div class='selector_container'>

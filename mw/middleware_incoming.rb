@@ -150,6 +150,10 @@ def is_heb
   is_israel
 end
 
+def is_homepage
+  _req.path == '/'
+end
+
 get '/country' do
   {country: session[:country]}
 end
