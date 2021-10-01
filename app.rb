@@ -165,6 +165,10 @@ get '/' do
 	erb :'home/cannabis_delivery', default_layout
 end
 
+get '/zip' do
+	redirect '/zip/'+pr[:zip]
+end
+
 get '/zip/:code' do 
 	code = pr[:code]
 	data = ZipCodes.identify(code)

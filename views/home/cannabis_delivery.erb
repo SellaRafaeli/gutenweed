@@ -54,8 +54,10 @@
     
     <div class='links_city_selector_container'>
     <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
-    <%= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true} %>
-    <button class='btn btn-primary btn-raised' type=button> Let's Go </button>
+    <form method=get action='/zip'>
+      <%= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true} %>    
+      <button class='btn btn-primary btn-raised'> Let's Go </button>
+    </form>
     </div>
   </div>
 </div>
