@@ -47,15 +47,15 @@
   <div class='hcd_left'>
     <!-- <h1> Cannabis Delivery </h1> -->
     <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
-    <h1 class='lp_h1'> Cannabis delivery, dispensaries, and top local brands. </h2>    
+    <h1 class='lp_h1'> cannabis delivery services, dispensaries, and neighborhood brands. </h2>    
   </div>
   <div class='hcd_right'>
-    <h2 class='lp_h2'> good weed, delivered. </h1> 
+    <h2 class='lp_h2'> order good weed now. </h1> 
     
     <div class='links_city_selector_container'>
     <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
     <form method=get action='/zip'>
-      <%= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true} %>    
+      <%= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
       <button class='btn btn-primary btn-raised'> Let's Go </button>
     </form>
     </div>
