@@ -1,6 +1,8 @@
 $users = $mongo.collection('users')
 
 $users.indexes.create_one({email: 1}, unique: true) rescue nil
+$users.indexes.create_one({city: 1}) rescue nil
+$users.indexes.create_one({city: 1, state: 1}) rescue nil
 
 FACETS    = [
     # {icon: 'star', key: 'minority_owned', label: 'Minority-owned'},
