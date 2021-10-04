@@ -15,8 +15,8 @@ def update_each_state_cities
 	}; 
 	puts 'done update_each_state_cities'
 end
-update_each_state_cities
-puts $cities_by_state['CA']
+Thread.new { update_each_state_cities; puts $cities_by_state['CA'] }
+
 
 
 def areas_get_existing_cities(short_name)
