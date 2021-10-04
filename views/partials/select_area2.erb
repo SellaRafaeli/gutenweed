@@ -65,6 +65,7 @@
 <div class='selector_container zipcode_container'>
   <% unless locals[:no_title] %> <div class='selector_label'> Zip Code </div> <% end %>
   <input name=zip style='margin-left: 0; border: 1px solid #209CEE; color: #209CEE;' id=zipcode_input class='input1' placeholder='Enter Zip Code...' onkeyup=searchZip() value="<%=pr[:zipcode]%>" />
+  <span id=zip_loading style='font-size: 80%; margin-left: 10px'></span>
 </div>
 <% end %>
 
@@ -82,8 +83,9 @@
 <script>
 function searchZip() {
   var code = $("#zipcode_input").val();
-  if (code.length==5) {
+  if (code.length==5) {    
     document.location='/zip/'+code;
+    $("#zip_loading").text('Loading...');
     //alert('Searching! Click to view results.');
   }
 }
