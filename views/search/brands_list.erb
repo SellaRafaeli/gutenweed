@@ -8,7 +8,7 @@
   msg = "Cannabis Delivery"  
 
   if city.present?
-    brands = $users.all(city: city, state: state)
+    brands = $users.all({city: city, state: state}, {limit: 10})
   else 
     brands = []
   end
