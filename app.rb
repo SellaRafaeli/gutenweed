@@ -173,9 +173,15 @@ get '/zip/:code' do
 	code = pr[:code]
 	data = ZipCodes.identify(code)
 	if data
-		url  = URI.escape "/dispensaries/#{data[:state_name]}/#{data[:city]}?zipcode=#{code}"
-		redirect url
-	else 
+		if use_redirect_here = false 
+			url  = URI.escape "/dispensaries/#{data[:state_name]}/#{data[:city]}?zipcode=#{code}"
+			redirect url
+		else 
+			pr[:state] = data[:state_name]
+			pr[:city]  = data[:city]
+			return erb :'search/search', default_layout
+		end
+	else 	
 		flash.message = 'No results found for zip code '+code
 		redirect back
 	end
