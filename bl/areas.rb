@@ -1,15 +1,35 @@
 $users     = $mongo.collection('users')
 $users.delete_many(city: '5 Cities')
-cities_from_data = $users.all.mapo(:city).uniq.compact
+$all_users        = $users.all
+cities_from_data = $all_users.mapo(:city).uniq.compact
 cities_from_data-=['5 Cities']
 
+$cities_by_state = {}
+
+def update_each_state_cities
+	$all_users.each {|user| 
+		state = user[:state]
+		city  = user[:city]
+		$cities_by_state[state] ||= []; 
+		$cities_by_state[state].push(city) unless $cities_by_state[state].include?(city)
+	}; 
+	puts 'done update_each_state_cities'
+end
+update_each_state_cities
+puts $cities_by_state['CA']
+
+
 def areas_get_existing_cities(full_name)
+	# full_name is state
 	puts "fetching cities for "+full_name
+	short_name = state_to_short(full_name)
+	
 	# TODO - build hash of state->cities in background, refresh it every 30 seconds in scheduler, here fetch from memory.
 	# users  = $users.all.select {|u| u[:state].to_s.downcase == full_name.downcase }
-	users  = $users.all(state: full_name)
-	puts "fetched "+users.count.to_s
-	cities = users.mapo(:city).uniq.sort
+	# users  = $users.all(state: full_name)
+	# puts "fetched "+users.count.to_s
+	# cities = users.mapo(:city).uniq.sort
+	cities = $cities_by_state[short_name]
 	cities
 end
 
