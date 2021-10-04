@@ -7,7 +7,7 @@ cities_from_data-=['5 Cities']
 $cities_by_state = {}
 
 def update_each_state_cities
-	$all_users.each {|user| 
+	$users.all.each {|user| 
 		state = user[:state]
 		city  = user[:city]
 		$cities_by_state[state] ||= []; 
@@ -19,10 +19,10 @@ update_each_state_cities
 puts $cities_by_state['CA']
 
 
-def areas_get_existing_cities(full_name)
+def areas_get_existing_cities(short_name)
 	# full_name is state
-	puts "fetching cities for "+full_name
-	short_name = state_to_short(full_name)
+	puts "fetching cities for "+short_name
+	# short_name = state_to_short(short_name)
 	
 	# TODO - build hash of state->cities in background, refresh it every 30 seconds in scheduler, here fetch from memory.
 	# users  = $users.all.select {|u| u[:state].to_s.downcase == full_name.downcase }
