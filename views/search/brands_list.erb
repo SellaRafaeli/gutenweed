@@ -16,6 +16,8 @@
     brands = []
   end
 
+  reviews = $reviews.get_many(seller_id: brands)
+
   #bp
   x=1
   _is_homepage = is_homepage
@@ -73,7 +75,8 @@
           <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
           <!-- <h4 style='margin-left: 10px'> Recommended </h4> -->
           <% brands.each_with_index do |user, idx| %>
-            <%= erb :'/brands/single_brand', locals: {user: user, idx: idx} %>
+            <% brand_reviews = reviews.select {|rev| rev[:seller_id] == user[:_id] } %>
+            <%= erb :'/brands/single_brand', locals: {user: user, idx: idx, reviews: brand_reviews} %>
           <% end %>
         <% else %>
           <div class='no_brands_found'>

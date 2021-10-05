@@ -9,8 +9,6 @@ brand_tags = facets + tags
 x=1
 user[:img_url] ||= get_random_cannabis_img 
 
-reviews = $reviews.get_many(seller_id: user[:_id])
-
 rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
 %>
 
