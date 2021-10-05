@@ -46,7 +46,7 @@
   }
 
   .top-nav {
-      
+
     height: 50px;
     /*position: absolute;
     
@@ -117,7 +117,7 @@
   .top-nav a .sub_logo_msg {
     display: block;
     text-align: center;
-    
+
     width: 100%;
   }
   .hamburger {
@@ -173,10 +173,10 @@
   border-radius: 10px;
 }
 .sub_logo_msg {
-  font-size: 12px; 
+  font-size: 12px;
   color:#1F5151; 
   left: 6px;
-  
+
   top: 27px;
   font-weight: 1000;
 }
@@ -260,14 +260,14 @@ text-decoration:none
   <div class='container-fluid justify-content-around p-2 '>
   <div class="row">
     <% if path!='/z' %>
-    
+
       <div class="grid-container col-12 col-sm-7">
       <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
         <img src='<%=logo%>' style='height:30px'/>
         <div class='sub_logo_msg'>discover great cannabis.</div>
       </a>
       </div>
-   
+
     <% if use_client_logo %>
     <!-- <div>A world of well-being</div> -->
     <% end %>
@@ -300,7 +300,7 @@ text-decoration:none
       </a>     -->
     <% else %>      
       
-  
+
       
       <% if false %>
       <a class='btn btn-raised btn-primary' href='/signup?type=buyer'>
@@ -326,16 +326,16 @@ text-decoration:none
     <% if !cu %>
     <div class='col-sm-4 col-12 d-flex align-items-center justify-content-around'>
     <div ><a href="/login" class="login-btn">Login</a></div>
-    
+
     <div>
-    
+
     <a href="/signup?type=seller" class="sign-up-btn "><i class='fa fa-user'></i> Sign Up</a>
     </div>
     </div>
-    
+
     <% end %>    
     <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->
-    
+
     <!-- <a class='' href='/influencers'><i class='fas fa-user-tie' style='margin-right: 5px'></i> <%= 'influencers' %> </a> -->
     
       <% ([] || ['usa', 'israel']).each do |country| %>
@@ -370,4 +370,4 @@ text-decoration:none
     <%= erb :'header/hamburger' %>
   </div>  
   </div>
-<% end %>  
+<% end %>

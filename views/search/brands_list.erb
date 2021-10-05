@@ -7,11 +7,16 @@
   msg = "Order Weed Now #{city}"
   msg = "Cannabis Delivery"  
 
+  #bp
+  brands = $users.all({zipcodes: pr[:zipcode].to_i}, {limit: 10})
   if city.present?
-    brands = $users.all(city: city, state: state)
+    brands += $users.all({city: city, state: state}, {limit: 10})
+    
   else 
     brands = []
   end
+
+  reviews = $reviews.get_many(seller_id: brands)
 
   #bp
   x=1
@@ -25,8 +30,9 @@
   flex-wrap: wrap;
 }
 .main_h1 {
-  display: inline-block; text-align: center; margin: 0; font-size: 18px; font-weight: normal; margin-bottom: 20px;
-  width: 100%;
+  display: inline-block; 
+  text-align: center; margin: 0; font-size: 18px; font-weight: normal; margin-bottom: 20px;
+  zwidth: 100%;
 }
 .main_h2 {
   font-size: 14px;
@@ -34,11 +40,14 @@
   display: inline-block;
 }
 </style>
+  <% if false %>
   <div class='links_city_selector_container'>
     <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
     <%= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true} %>
   </div>
+
   <br/>
+  <% end %>
 
 <!-- </h1> -->
 <div class='brands_list_container'>  
@@ -47,26 +56,27 @@
   <br/> -->
 
   <div class='brands_list'>
-      <div class=display_flex>
-        <img src='/img/cannabis_delivery.jpg' style='width: 100px; flex: 1' />
+      <div class=zdisplay_flex style='margin: auto'>        
         <% if false %>
+          <img src='/img/cannabis_delivery.jpg' style='width: 100px; flex: 1' />
           <h1 class='main_h1'> good weed, wherever it's legal. </h1> 
           <h2 class='main_h1'> Cannabis delivery, dispensaries, and top local brands. </h2>    
         <% else %>
-          <div>
-            <h1 class='main_h1'> good weed in <%= pr[:city] %>, <%= @chosen_state %>: </h1> 
-            <h2 class='main_h1'> Cannabis delivery, dispensaries, and brands </h2>    
+          <div class=ct>
+            <h1 class='main_h1'> the best weed in <%= pr[:city] %>, <%= @chosen_state %>: </h1> 
+            <h2 class='main_h1'> cannabis delivery, dispensaries, and brands </h2>    
           </div>
         <% end %>
       </div>
       <% if true %>
-        <%= erb :'search/area_posts', locals: {state: state, city: city} %>
+        <%#= erb :'search/area_posts', locals: {state: state, city: city} %>
           <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
         <% if brands.any? %>
           <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
-          <h4 style='margin-left: 10px'> Recommended </h4>
+          <!-- <h4 style='margin-left: 10px'> Recommended </h4> -->
           <% brands.each_with_index do |user, idx| %>
-            <%= erb :'/brands/single_brand', locals: {user: user, idx: idx} %>
+            <% brand_reviews = reviews.select {|rev| rev[:seller_id] == user[:_id] } %>
+            <%= erb :'/brands/single_brand', locals: {user: user, idx: idx, reviews: brand_reviews} %>
           <% end %>
         <% else %>
           <div class='no_brands_found'>

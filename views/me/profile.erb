@@ -22,8 +22,17 @@
 
 <!-- <h4 style='margin-left: 20px; margin-bottom: 40px'> My Nowcast Page </h4> -->
 
+  <div class='display_flex'>                  
+      <label> Name  <div></div></label>
+      <input class='input1' placeholder='' value="<%=user['name']%>" name='name' style='margin-right: 5px; margin-left: 0'/>
+      <!-- <span> This is what you'll be known as.</span> -->
+    </div>
+
+  <br/> 
+
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
+    
     <div style='flex:1'>
       
       <label class='pic_label'> Profile Pic </label>
@@ -64,16 +73,17 @@
   <% end %>
 
   <div class='display_flex'>
-    <label> About </label>
+    <label> Description </label>
     <textarea name=desc placeholder="Describe yourself." value=""><%=user['desc']%></textarea> 
     <!-- <span>Use #hashtags like #actor or #dance_teacher</span> -->
   </div>
   <br/>
 
+  <% if false %>
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
-    <label class='ztooltip'> State
-    </label>
+
+    <label class='ztooltip'> State</label>
 
     <%
       @chosen_state_short = user[:state]
@@ -82,16 +92,18 @@
     <%#= erb :'/partials/select_state_city', locals: {city: user[:city]} %>          
   </div>
 
+  
   <div class='display_flex' style='margin-top:20px'>
     <label class='ztooltip'> City</label>
 
     <input class='input1' placeholder='Your city' value="<%=user['city']%>" name='city' style='margin-right: 0px; margin-left: 0'/>
   </div>
+  <% end %>
 
   <div class='display_flex' style='margin-top:20px'>
-    <label class='ztooltip'> Zip Code </label>
+    <label class='ztooltip'> Zip Codes Where You Deliver </label>
 
-    <input class='input1' required placeholder='Your zip code' value="<%=user['zipcode']%>" name='zipcode' style='margin-right: 0px; margin-left: 0'/>
+    <textarea class='input1' required placeholder='12345,12346' value="<%=user['zipcodes'].to_a%>" name='zipcodes' style='margin-right: 0px; margin-left: 0'/><%=user['zipcodes'].to_a.join(',')%></textarea>
   </div>
 
 
@@ -108,10 +120,19 @@
 <% if is_seller %>  
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
+    <label class='ztooltip'> Address </label>
+    
+    <input name=address value="<%=user[:address]%>" placeholder='Address' />
+  </div>
+
+  <div class='display_flex' style='margin-top:20px'>
+    <%#= user.to_json %>
     <label class='ztooltip'> Phone Number </label>
     
     <input name=contact value="<%=user[:contact]%>" placeholder='Phone number' />
   </div>
+
+
 
   <br/>
 
@@ -153,12 +174,8 @@
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
     <label class='ztooltip'> Tags </label>
-    
-    <div style='flex:1'>
-      <input style='width:100%' name=tags placeholder='tag1, tag2, tag3-multiple-words, tag4' value="<%=user[:tags]%>" />
-    </div>    
+    <input style='width:100%' name=tags placeholder='tag1, tag2, tag3-multiple-words, tag4' value="<%=user[:tags]%>" />
   </div>
-
 
   <hr/>
   <br/>
@@ -192,13 +209,10 @@
 
 
 
-  <% if is_seller(user) %>
+  <% if false && is_seller(user) %>
   <div class='display_flex' style='margin-top:20px; zdisplay: none'>
     <%#= user.to_json %>
-    <label class='ztooltip'> Listing Type
-    </label>
-<%
-%>
+    <label class='ztooltip'> Listing Type</label>
     <%= erb :'partials/subtype_chooser', locals: {user: user} %>        
   </div>
 

@@ -9,8 +9,6 @@ brand_tags = facets + tags
 x=1
 user[:img_url] ||= get_random_cannabis_img 
 
-reviews = $reviews.get_many(seller_id: user[:_id])
-
 rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
 %>
 
@@ -39,11 +37,11 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
 }
 .single_brand .brand_img { 
   width: auto;
-  height: 100px;
+  height: 60px;
   margin: auto;
   object-fit: contain;
-  display: block;
-  zmargin-right: 20px;
+  display: inline-block;
+  margin: 20px;
   zborder-radius: 50%;
 }
 .single_brand_container {
@@ -78,12 +76,13 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
   /*border:1px solid blue;*/
 }
 .single_brand_tag {
-  background-color: lightgrey;
+  background-color: #1e5353;
+  color: white;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 12px;
   display: inline-block;
-  margin-bottom: 5px;
+  margin: 5px;
 }
 .brand_tags {
   margin: 5px 0;
@@ -128,7 +127,7 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
         <% if locals[:idx] && locals[:idx] < 3 %>
           <img class='place_ribbon' src='/img/search/num<%=idx+1%>.png' />
         <% end %>
-        <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:handle]%> <%= "<b class='nowcast_color'><i class='fas fa-badge-check'></i> (pro)</b>" if is_pro(user) %></a>          
+        <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:name]%> <%= "<b class='nowcast_color'><i class='fas fa-badge-check'></i> (pro)</b>" if is_pro(user) %></a>          
         
         <div>
           <% rating.to_i.times do |i|  %>
@@ -149,8 +148,8 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
                     
         <div>
           <small style='color: black; font-style: italic'> 
-          <%= user[:address] ? user[:address]+"," : '' %>
-          <%= user[:city] %>, 
+          <%= user[:address] %>
+          <%= user[:city] %>
           <%= user[:state] %>            
           </small>
         </div>

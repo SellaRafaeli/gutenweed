@@ -30,6 +30,8 @@
 </style>
 
  <div class='profile_tabs' style='margin-bottom: 50px; text-align: center; direction: ltr'>
+    <a class='profile_tab btn <%= "chosen_me_form_link" if sec == "profile" %>' href='/me?sec=profile'><i class='fal fa-user'></i> Profile </a>
+
   <% if is_seller %>
     <a style='display: none' class='profile_tab btn <%= "chosen_me_form_link" if sec == "dashboard" %>' href='/me?sec=dashboard'><i class='fal fa-chart-pie'></i> Dashboard </a>
     
@@ -47,7 +49,7 @@
   <% if is_seller %>
     <a class='profile_tab btn <%= "chosen_me_form_link" if sec == "stats" %>' href='/me?sec=stats'><i class='fal fa-chart-line'></i> Stats </a>
   <% end %>
-  <a class='profile_tab btn <%= "chosen_me_form_link" if sec == "profile" %>' href='/me?sec=profile'><i class='fal fa-user'></i> Profile </a>
+  
 
 
   <a class='profile_tab btn <%= "chosen_me_form_link" if sec == "account" %>' href='/me?sec=account'><i class='fal fa-street-view'></i> Account </a>
