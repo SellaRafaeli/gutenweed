@@ -3,7 +3,7 @@
   margin: 0 20px;
   margin: 0;
   <% if !$prod %>
-  border: 1px solid goldenrod;
+  display:inline-flex;
   <% end %>
 
   <% if heb %>
@@ -11,6 +11,12 @@
   <% end %>
 
 }
+
+.grid-container {
+  display: grid;
+  margin:5px;
+}
+
 .footer a {
   margin: 20px;  
   /*color: #209CEE;*/
@@ -40,8 +46,7 @@
   }
 
   .top-nav {
-    margin: 0 20px;
-    padding: 20px 0 10px;    
+      
     height: 50px;
     /*position: absolute;
     
@@ -84,7 +89,7 @@
   }
   .top-nav {
     margin: 10px;
-/*    border-bottom:1px solid whitesmoke;*/
+
     position: relative;
 
   }
@@ -112,6 +117,7 @@
   .top-nav a .sub_logo_msg {
     display: block;
     text-align: center;
+    
     width: 100%;
   }
   .hamburger {
@@ -167,11 +173,60 @@
   border-radius: 10px;
 }
 .sub_logo_msg {
-  font-size: 14px; 
+  font-size: 12px; 
   color:#1F5151; 
   left: 6px;
-  position: absolute;
-  top: 26px;
+  
+  top: 27px;
+  font-weight: 1000;
+}
+
+.sign-up-btn{
+  border:none;
+  font-size:13px;
+  margin-left:3px;
+  background:inherit;
+  color:#2B6356;
+  text-decoration: none;
+}
+
+.sign-up-btn:hover{
+  color:#2B6356;
+}
+
+.login-btn{
+  background:#2B6356;
+  color:white;
+  border:none;
+  font-size:13px;
+  border-radius: 20px;
+  padding:5px;
+  padding-left:30px;
+  padding-right:30px;
+  text-decoration: none;
+}
+
+.login-btn:hover
+{
+  color:white;
+}
+
+.container-fluid a{
+text-decoration:none
+}
+
+@media only screen and (max-width: 500px){
+  login-btn{
+    background:#2B6356;
+    color:white;
+    border:none;
+    font-size:13px;
+    border-radius: 20px;
+    padding:5px;
+    padding-left:20px;
+    padding-right:20px;
+    text-decoration: none;
+  }
 }
 </style>
 
@@ -202,14 +257,17 @@
   </div>
 <% else %>
 
-  <div class='top-nav'>
+  <div class='container-fluid justify-content-around p-2 '>
+  <div class="row">
     <% if path!='/z' %>
-    <span>
+    
+      <div class="grid-container col-12 col-sm-7">
       <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
         <img src='<%=logo%>' style='height:30px'/>
-        <div class='sub_logo_msg'>local cannabis deliveries.</div>
+        <div class='sub_logo_msg'>discover great cannabis.</div>
       </a>
-    </span>
+      </div>
+   
     <% if use_client_logo %>
     <!-- <div>A world of well-being</div> -->
     <% end %>
@@ -242,9 +300,7 @@
       </a>     -->
     <% else %>      
       
-      <a class='' href='/login'>
-      <%= !heb ? 'Login' : 'כניסה' %>
-      </a>    
+  
       
       <% if false %>
       <a class='btn btn-raised btn-primary' href='/signup?type=buyer'>
@@ -268,11 +324,18 @@
     <a class='' href='/articles'>blog</a> -->
 
     <% if !cu %>
-    <a class='btn btn-primary btn-raised' href='/signup?type=seller'>
-      <i class='fas fa-store' style='margin-right: 10px'></i> <%= !heb ? 'Sign up' : 'הרשמה' %></a>  
+    <div class='col-sm-4 col-12 d-flex align-items-center justify-content-around'>
+    <div ><a href="/login" class="login-btn">Login</a></div>
+    
+    <div>
+    
+    <a href="/signup?type=seller" class="sign-up-btn "><i class='fa fa-user'></i> Sign Up</a>
+    </div>
+    </div>
+    
     <% end %>    
     <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->
-    <a class='' href='/help'><i class='fa fa-question-circle' style='margin-right: 5px'></i> <%= 'help' %> </a>
+    
     <!-- <a class='' href='/influencers'><i class='fas fa-user-tie' style='margin-right: 5px'></i> <%= 'influencers' %> </a> -->
     
       <% ([] || ['usa', 'israel']).each do |country| %>
@@ -306,4 +369,5 @@
 
     <%= erb :'header/hamburger' %>
   </div>  
+  </div>
 <% end %>  

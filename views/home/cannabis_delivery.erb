@@ -5,59 +5,296 @@
   max-height: 500px;
   zborder-radius: 0 100px 0 100px;
 }
-.hcd_left {
-  text-align: left;
-  
-  flex: 1;
-}
-.hcd_right {
-  flex: 1;
-  margin-left: 50px;    
-}
-.home_cannabis_delivery {
-  display: flex;
-  max-width: 800px;
-  margin: auto;
-}
-@media (max-width: 8000px) {
-  .home_cannabis_delivery {
-    flex-direction: column-reverse;
-  }
-  .hcd_right {
-    display: block;
-    text-align: center;
-    margin-left: 0px;    
-  }
+
+.display-img-m{
+  width: 100%;
+  height: auto;
 }
 
-.lp_h1 {
-  font-size: 18px;
-  font-weight: normal;
-  text-align: center;
+.display-img-medal{
+  width: 8%;
+  height: auto;
 }
-.lp_h2 {
-  font-size: 22px;
+
+.start_r_img {
   
-  font-weight: bold;
-  width: 100%;
+  width: 50%;
+  height: auto;
+  
 }
+
+.start_r_img-4r{
+  width: 20%;
+  height: auto;
+}
+
+.q_r_img {
+  
+  width: 6%;
+  height: auto;
+  
+}
+
+.photo_r_img {
+  
+  width: 30%;
+  height: auto;
+  
+}
+
+.custom-inp{
+  width:100%;
+  height:75px;
+border-radius:200px;
+
+background:white;
+}
+
+.custom-inp:focus{
+width:75%;
+height:75px;
+border-radius:200px;
+outline: none;
+}
+
+.custom-inp-ins{
+  width:40%;
+height:90%;
+margin:2px;
+border-radius:50px;
+float:right;
+background:#05331D;
+color:white;
+
+outline: none;
+}
+
+
+.cus-inp{
+  width:65%;
+  border:none;
+  outline:none;
+}
+
+.cus-inp:focus{
+  width:65%;
+  border:none;
+  outline:none;
+}
+
+.head-cont{
+font-size:60px;
+font-weight:500;
+color:white;
+}
+
+.head-para{
+  font-size:20px;
+font-weight:500;
+color:white;
+}
+
+.cus-nav{
+  border-left:3px solid whitesmoke;
+  border-right:3px solid whitesmoke;
+  border-bottom:3px solid whitesmoke;
+
+}
+
+.b-bottom{
+  border-bottom:5px solid #2B6356;
+}
+
+.cus-search-m{
+  width:100%;
+  height:70%;
+  outline:none;
+  border:none;
+}
+
+.cus-search-m:focus{
+  outline:none;
+}
+
+.cus-search{
+  width:100%;
+  height:70%;
+  border:3px solid whitesmoke;;
+  outline:none;
+  border-radius:50px;
+}
+
+.c-content-p{
+  font-size:12px;
+
+}
+
+.h-fit-con{
+  height:fit-content;
+}
+
+.login-btn-chat{
+  background:#2B6356;
+  border:1px solid #2B6356;
+  border-radius:50px;
+  height:50px;
+  width:40%;
+}
+
+
+.login-btn-call{
+  background:white;
+  border:3px solid #2B6356;
+  border-radius:50px;
+  height:50px;
+  width:40%;
+}
+
+.btn-card-small{
+  background:inherit;
+  border:2px solid #2B6356;
+  border-radius:30px;
+  height:20px;
+  width:22%;
+  font-size:10px;
+}
+
+@media screen only and (min-width: 100px) and (max-width: 600px){
+  .custom-inp{
+  width:auto;
+height:auto;
+}
+}
+
 </style>
 
-<div class='home_cannabis_delivery'>
-  <div class='hcd_left'>
-    <!-- <h1> Cannabis Delivery </h1> -->
-    <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
-    <h1 class='lp_h1'> Cannabis delivery, dispensaries, and top local brands. </h2>    
-  </div>
-  <div class='hcd_right'>
-    <h2 class='lp_h2'> good weed, delivered. </h1> 
-    
-    <div class='links_city_selector_container'>
-    <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
-    <form method=get action='/zip'>
-      <%= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true} %>    
-      <button class='btn btn-primary btn-raised'> Let's Go </button>
-    </form>
-    </div>
-  </div>
+<div class="row p-3 "  style="background:#2B6356">
+<div class="row justify-content-around mt-1" style="background:#2B6356">
+<div class="col-md-auto mt-3">
+<div class="mt-3">
+<h3 class="head-cont">Your favorite cannabis,</h3>
+<h3 class="head-cont">delivered</h3>
+<p class="head-para">cannabis delivery, dispensaries, and brands </p>
 </div>
+</div>
+</div>
+<div class="row " style="background:#2B6356">
+<div class="col-12 col-sm-12 col-lg-5" style="background:#2B6356">
+<img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
+</div>
+<div class="col-12 col-sm-12 col-lg-4 d-flex justify-content-start mt-5 pt-3"  style="background:#2B6356">
+<form class="custom-inp d-flex align-items-center justify-content-start" action="/zip" method="get">
+<img src='/img/Search Icon Cannabis.svg' class='main_delivery_img'>
+<input name="zip" class="cus-inp" placeholder="Enter Your ZipCode"></input>
+<button type="submit" class="custom-inp-ins">Find cannabis</button></form>
+<script>
+function searchZip() {
+  var code = $("#zipcode_input").val();
+  if (code.length==5) {
+    document.location='/zip/'+code;
+    //alert('Searching! Click to view results.');
+  }
+}
+</script>
+
+</div>
+</div>
+</div>
+
+
+<div class="container">
+<div class="row align-items-center justify-content-center shadow-sm ">
+<div class="col-12 col-lg-4 p-5 align-items-center justify-content-center b-bottom">
+<a>Dispensaries</a>
+
+</div>
+<div class="col-12 col-lg-4 p-5">
+<a>Brand</a>
+</div>
+<div class="col-12 col-lg-4 p-5">
+<a>Feelings</a>
+</div>
+</div>
+
+<div class="row align-items-center justify-content-start mt-5">
+
+<div class="cus-search col-12 col-lg-6 d-flex align-items-center justify-content-start p-2 mt-2" >
+<img src='/img/Normal Search Icon.svg' class='main_delivery_img'>
+<input class="cus-search-m" placeholder="Search"> </input>
+</div>
+
+<div class="col-1 col-sm-1">
+</div>
+
+<div class="cus-search col-12 col-lg-2 d-flex align-items-center justify-content-start p-2 mt-2">
+<input class="cus-search-m ms-2" placeholder="Filter" type="dropdown" > </input>
+<img src='/img/Icon - down-solid.svg' class='main_delivery_img'>
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="row mt-5">
+
+<div class="col-lg-4 card  border-0 ">
+<img src='/img/search/other.jpeg' class='display-img-m'>
+
+<div class="d-flex justify-content-around mt-2">
+<img src='/img/No 1 CUP Illustration.svg' class='display-img-medal'>
+<p style="font-size:14px">distance fromzip.</p>
+ <a>12KM</a>
+</div>
+
+<div class="d-flex justify-content-start mt-2">
+ <a style="font-size:16px">Vireo Delivery Upper Manhattan</a>
+</div>
+
+<div class="d-flex justify-content-start">
+<img src='/img/Vireo Stars Icons.svg' class='start_r_img-4r me-4'>
+<p class="mt-3" style="font-size:14px">New York, New York, New York, NY</p>
+</div>
+
+<div class="d-flex justify-content-start">
+ <a style="font-size:12px">4.4,  5 reviews</a>
+</div>
+
+<div class="d-flex justify-content-around mt-1">
+ <button class="btn-card-small">Sativa</button>
+ <button class="btn-card-small">Indica</button>
+ <button class="btn-card-small">60 min delivery</button>
+ <button class="btn-card-small">Depeds</button>
+ 
+</div>
+
+</div>
+
+
+<div class="col-6 col-lg-2 card border-0 shadow-lg h-fit-con p-1 mt-4" style="background:#7fffff">
+<p class="mt-1 ms-1" style="font-size:12px">top</p>
+<a class="ms-1">Grace G</a>
+<img src='/img/no-image Icone.svg'  class='photo_r_img mt-2 ms-4'>
+<p class="mt-2 ms-1" style="font-size:12px">9/7</p>
+</div>
+
+<div class="col-6 col-lg-2 card border-0 shadow-lg h-fit-con p-1 mt-4">
+<img src='/img/Stars Rating.svg'  class='start_r_img mt-4 ms-5'>
+<img src='/img/noun_Quotation.svg'  class='q_r_img mt-2'>
+
+ <p class="c-content-p mt-2 justify-content-left ms-2">Yeah! Today my familydiscovered the high; wasblushing, joyous. Now,Ahoy. Yesterday weunbearably enjoyed theherb-and it was real,holybuckets kind.</p>
+</div>
+
+
+<div class="col-12 col-lg-4 card border-0 mb-2">
+
+<div ><button class="login-btn-chat ms-5 mt-5"><img src='/img/Button Chat Cannabis.svg'  class='chat_r_img'></button></div>
+<div ><button class="login-btn-call ms-5 mt-2">Call</button></div>
+ 
+</div>
+
+</div>
+
+</div>
+
+</div>
+

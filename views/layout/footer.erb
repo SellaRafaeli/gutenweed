@@ -1,69 +1,341 @@
 <style>
-.hp_bottom {
-  margin-top:30px; 
-  padding:10px;
-  zposition: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #C2D3D1;
-  zbackground-color: #1F5151;
-  background-color: #1e5353;
-  font-size: 12px;
-  padding: 20px;
-  z-index: 9999;
+.container-f{
+  width:100%
+  display:flex;
+  height:auto;
+  padding-top:25px;
+  padding-bottom:25px;
+  padding-right:250px;
+  padding-left:250px;
+  background-color:#2B6356;
+}
+.row-i{
+  display:inline-grid;
+  margin:40px;
 }
 
-.hp_bottom a {
-  color: white;
+.row-icon{
+  display:inline-block;
+  margin:20px;
 }
+
+.row-icon a{
+  color:white;
+  margin:20px;
+  
+  font-size:30px;
+}
+
+.row-i a{
+  color:white;
+  margin:20px;
+  text-decoration:none;
+}
+
+.container-bottom {
+height:15px;
+background-color: #05331D;
+}
+
+.margin-2{
+  margin-top:25px !important;
+}
+
+.img-logo{
+  margin-left:55px;
+  margin-bottom:-30px;
+}
+
+.sub-msg{
+  font-size: 12px; 
+  color:#1F5151; 
+  padding-left:15px;
+  font-weight:1000;
+  color:white;
+}
+
+@media screen and (max-width: 1300px) {
+  .container-f{
+  width:100%
+  display:flex;
+  height:auto;
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:150px;
+  padding-left:150px;
+  background-color:#2B6356;
+}
+.row-i{
+  display:inline-grid;
+  margin:35px;
+}
+
+.row-icon{
+  display:inline-block;
+  margin:20px;
+}
+
+.row-icon a{
+  color:white;
+  margin:20px;
+  
+  font-size:30px;
+}
+
+.row-i a{
+  color:white;
+  margin:20px;
+  text-decoration:none;
+}
+
+.container-bottom {
+height:15px;
+background-color: #05331D;
+}
+
+.margin-2{
+  margin-top:25px !important;
+}
+
+.img-logo{
+  margin-left:55px;
+  margin-bottom:-30px;
+}
+
+.sub-msg{
+  font-size: 12px; 
+  color:#1F5151; 
+  padding-left:15px;
+  font-weight:1000;
+  color:white;
+}
+}
+
+@media screen and (max-width: 1100px) {
+  .container-f{
+  width:100%
+  display:flex;
+  height:auto;
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:75px;
+  padding-left:75px;
+  background-color:#2B6356;
+}
+.row-i{
+  display:inline-grid;
+  margin:30px;
+}
+
+.row-icon{
+  display:inline-block;
+  margin:20px;
+}
+
+.row-icon a{
+  color:white;
+  margin:20px;
+  
+  font-size:30px;
+}
+
+.row-i a{
+  color:white;
+  margin:20px;
+  text-decoration:none;
+}
+
+.container-bottom {
+height:15px;
+background-color: #05331D;
+}
+
+.margin-2{
+  margin-top:25px !important;
+}
+
+.img-logo{
+  margin-left:55px;
+  margin-bottom:-30px;
+}
+
+.sub-msg{
+  font-size: 12px; 
+  color:#1F5151; 
+  padding-left:15px;
+  font-weight:1000;
+  color:white;
+}
+}
+
+
+@media screen and (max-width: 900px) {
+  .container-f{
+  width:100%
+  display:flex;
+  height:auto;
+  padding-top:20px;
+  padding-bottom:20px;
+ 
+  background-color:#2B6356;
+}
+.row-i{
+  display:inline-grid;
+  margin:15px;
+}
+
+.row-icon{
+  display:inline-block;
+  margin:20px;
+}
+
+.row-icon a{
+  color:white;
+  margin:15px;
+  
+  font-size:30px;
+}
+
+.row-i a{
+  color:white;
+  margin:15px;
+  text-decoration:none;
+}
+
+.container-bottom {
+height:15px;
+background-color:#05331D;
+}
+
+.margin-2{
+  margin-top:25px !important;
+}
+
+.img-logo{
+  margin-left:25px;
+  margin-bottom:-20px;
+}
+
+.sub-msg{
+  font-size: 12px; 
+  color:#1F5151; 
+  padding-left:15px;
+  font-weight:1000;
+  color:white;
+}
+}
+
+
+@media screen and (max-width: 600px) {
+  .container-f{
+  width:100%
+  display:block;
+  height:auto;
+  padding-top:20px;
+  padding-bottom:20px;
+ 
+  background-color:#2B6356;
+}
+.row-i{
+  display:grid;
+  margin:15px;
+}
+
+.row-icon{
+  display:inline-block;
+  
+}
+
+.row-icon a{
+  color:white;
+  margin:15px;
+  
+  font-size:30px;
+}
+
+.row-i a{
+  color:white;
+  margin:15px;
+  text-decoration:none;
+}
+
+.container-bottom {
+height:15px;
+background-color: #05331D;
+}
+
+.margin-2{
+  margin-top:25px !important;
+}
+
+.img-logo{
+  margin-left:25px;
+  margin-bottom:-20px;
+}
+
+.sub-msg{
+  font-size: 12px; 
+  color:#1F5151; 
+  padding-left:15px;
+  font-weight:1000;
+  color:white;
+}
+.margin-2{
+  display:none;
+}
+}
+
+
 </style>
+
+
+<%
+  path = _req.path rescue ''
+  logo = '/favicon.ico'
+  logo = '/img/landing_page/logo6.png'
+  use_client_logo = pr[:use_client_logo]
+  if use_client_logo 
+    logo = 'https://images.squarespace-cdn.com/content/v1/5488a9e6e4b0563d5788db1a/12d1da8f-17e9-4462-a4df-d58a3e7c0f27/Tilray+Logo+-+Header.png?format=1500w'
+  end
+  is_post_page = path.to_s.starts_with?('/posts/') rescue false
+  is_main_page = path.to_s == '/' rescue false
+%>
+
+
+<div class="container-f">
+
+<div class="img-logo"  href='/'> 
+        <img  src='<%=logo%>' style='height:30px'/>
+        <div class="sub-msg">cannabis deliveries.</div>
 </div>
 
-<div class="ct display_flex hp_bottom">
-    
-    <!-- <span class="flex1"><a href='/community?sec=help_center'>about</a></span> -->
-    <!-- <span class="flex1"><a href='/how_it_works'>how it works</a></span> -->
-    <!-- <span class="flex1"><a href='/start'>start</a></span>     -->
-    <!-- <span class="flex1"><a href='/faq'>FAQ</a></span> -->
-    <!-- <span class="flex1"><a href='/what_is_a_nowcast'>what's a nowcast?</a></span> -->
-    
-<!--     <span class="flex1"><a href='/support'>support</a></span> -->
-    <!-- <span class="flex1"><a href='/@pricing'>pricing</a></span> -->
-    <% if true %>
-    
-    <% end %>
-    
-    
-    <!-- <span class="flex1"><a href='/blog/about_cannabitech.html'>about</a></span> -->
-    <span class="flex1"><a href='/about'>about</a></span>
-    <!-- <span class="flex1"><a href='/blog'>blog</a></span> -->
-    <span class="flex1"><a href='/careers'>careers</a></span>    
-    <!--  <span class="flex1"><a href='/contact'>contact</a></span>
-    <span class="flex1"><a href='/faq'>FAQ</a></span>
-    <span class="flex1"><a href='/privacy_policy'><%= 'privacy policy' %></a></span>
-    <span class="flex1"><a href='/support'>support</a></span>
-    <span class="flex1"><a href='/team'>team</a></span>    
-    <span class="flex1"><a href='/terms_of_service'><%= 'terms of service' %></a></span> -->
-    <!-- <span class="flex1"><a href='/#'>blog</a></span> -->
-    <!-- <span class="flex1"><a href='/careers'>careers</a></span>     -->
-    <span class="flex1"><a href='/faq'>FAQ</a></span>
-    <span class="flex1"><a href='/pro'>Go Pro</a></span>
-    <span class="flex1"><a href='/contact'>contact</a></span>
-    <span class="flex1"><a href='/articles'>articles</a></span>
+<div class="row-i">
+<a  href='/about'>About</a>
+<a  href='/careers'>Careers</a>
+<a  href='/articles/good-weed-mission'>Values</a>
+</div>
+<div class="row-i">
+<a  href='/faq'>FAQ</a>
+<a  href='/pro'>Go Pro</a>
+<a  href='/contact'>Contact</a>
+</div>
+<div class="row-i" style='margin-top:25px'>
+<a class="margin-2" href='/articles'>Articles</a>
+<a href='/privacy_policy'>Privacy policy</a>
+<a href='/terms_of_service'>Terms of service</a>
+</div>
 
-    <span class="flex1"><a href='/articles/good-weed-mission'>values</a></span>
-    <!-- <span class="flex1"><a href='/#'>FAQ</a></span> -->
-    <span class="flex1"><a href='/privacy_policy'><%= 'privacy policy' %></a></span>
-    <!-- <span class="flex1"><a href='/#'>support</a></span> -->
-    <!-- <span class="flex1"><a href='/#'>team</a></span>     -->
-    <span class="flex1"><a href='/terms_of_service'><%= 'terms of service' %></a></span>
-    
-    <span class="flex1">
+<div class="row-i">
+<a class="margin-2" href='/'></a>
+<a class="margin-2" href='/'></a>
+<div class="row-icon">
+
       <a href='https://www.facebook.com/Nowcastco-101882414883776/'><i class='fa fa-facebook'></i></a>
       <span style='display: inline-block; margin-left: 10px;'></span>
       <a href='https://www.instagram.com/nowcast.co/'><i class='fa fa-instagram'></i></a>
-    </span>
-        
-    
-
+      <div class="sub-msg">cannabis deliveries.</div>
+</div>
+</div>
+</div>
+<div class="container-bottom">
 </div>
