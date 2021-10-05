@@ -1,3 +1,7 @@
+get '/cofounder' do 
+	erb :'other/cofounder', default_layout
+end
+
 get '/coding' do	
 	@fullstack = true
 	erb :'home/home', default_layout
