@@ -3,6 +3,7 @@ $users = $mongo.collection('users')
 $users.indexes.create_one({email: 1}, unique: true) rescue nil
 $users.indexes.create_one({city: 1}) rescue nil
 $users.indexes.create_one({city: 1, state: 1}) rescue nil
+$users.indexes.create_one({zipcodes: 1}) rescue nil
 
 FACETS    = [
     # {icon: 'star', key: 'minority_owned', label: 'Minority-owned'},
@@ -25,9 +26,10 @@ USER_KEYS = ["email",  "name", "handle", "img_url", "timezone",
 	"contact_me", "title", "subtitle", "desc", "lang", "country",
 	 "location", "my_theme", "media", "payout_info", "tags", 
 	 "media_object_fit", "license_url", "license_filename", 'license_numbers', 
-	 'license_text', 'delivery_area', 'active', 'contact','city', 'state', 
+	 'license_text', 'delivery_area', 'active', 'contact',
+	 'address','city', 'state', 
 	 'website',
-	 'shipping', 'zipcode', 'ambassador', 'subtype'] + SOCIAL_NETWORKS + FACETS.mapo(:key)
+	 'shipping', 'zipcodes', 'ambassador', 'subtype'] + SOCIAL_NETWORKS + FACETS.mapo(:key)
 
 #DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
 DEFAULT_IMG = DEFAULT_PIC = '/img/leaf.svg'
@@ -73,6 +75,7 @@ post '/update_me' do
 	pr[:media_types] ||= [] #sent alongsides the URLs arr
 	pr[:media_img].to_a.each_with_index { |url, idx| pr[:media].push({type: pr[:media_types][idx], url: url}) }
 
+	pr[:zipcodes] = pr[:zipcodes].split(',').map(&:strip).map(&:to_i)
 	data = pr.just_keys(USER_KEYS)
 
 	# data[:handle]   = data[:handle].to_s.gsub(/[^0-9A-Za-z]/, '') 

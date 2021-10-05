@@ -7,8 +7,11 @@
   msg = "Order Weed Now #{city}"
   msg = "Cannabis Delivery"  
 
+  #bp
+  brands = $users.all({zipcodes: pr[:zipcode].to_i}, {limit: 10})
   if city.present?
-    brands = $users.all({city: city, state: state}, {limit: 10})
+    brands += $users.all({city: city, state: state}, {limit: 10})
+    
   else 
     brands = []
   end

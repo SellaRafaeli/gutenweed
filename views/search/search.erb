@@ -15,7 +15,7 @@
   cities = []
   
   if (chosen_state) 
-    cities = areas_get_existing_cities(chosen_state_short)
+    cities = [] # areas_get_existing_cities(chosen_state_short)
     # cities = ['N/A'] if !cities.any?
     if !pr[:city].present? && cities.any?
       pr[:city] = cities[0]

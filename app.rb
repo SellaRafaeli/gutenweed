@@ -170,7 +170,8 @@ get '/zip' do
 end
 
 get '/zip/:code' do 
-	code = pr[:code]
+	code = pr[:zipcode] = pr[:code]
+	code = 90210 if code == 123
 	data = ZipCodes.identify(code)
 	if data
 		if use_redirect_here = false 

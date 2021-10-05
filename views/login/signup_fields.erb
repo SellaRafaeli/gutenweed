@@ -60,25 +60,28 @@
       <input class='input1' value="<%=pr[:password]%>" placeholder='Secret Password' name='password' type=password style='margin-right: 5px'/>
     </div>
 
-    <div>
+    <!-- <div>
       <label class='w200'> Your Zip Code </label>
       <input class='input1' value="<%=pr[:zipcode]%>" placeholder='Zip Code' name='zipcode' type=zipcode style='margin-right: 5px'/>
-    </div>
+    </div> -->
 
     <% end %>
 
     <% if true || pr[:type]=='seller' && false %>
     <div>
-      <label class='w200'> I am/We are a cannabis </label>
+      <label class='w200'> I am a </label>
       <select class=input1 name=subtype>        
-        <option value='seller'> Delivery Service </option>
-        <option value='seller'> Brand </option>
         <option value='seller'> Dispensary </option>
+        <option value='buyer'>  Person </option>
+
+        <!-- <option value='seller'> Delivery Service </option>
+        <option value='seller'> Brand </option>
+        
         <option value='seller'> Distributor </option>
         <option value='seller'> Grower </option>
         <option value='seller'> Manufacturer </option>
-        <option value='buyer'> Private Individual </option>
-        <option value='seller'> Other </option>
+        
+        <option value='seller'> Other </option> -->
       </select>
       <!-- <input class=input1 required list="browsers" name="type" id="user_types">
 
@@ -145,11 +148,13 @@
         <% if is_heb %>
         אני מקבל/ת את <a style='color: #6b6262' target=_blank href='/terms_of_service'>תנאי השימוש באתר</a>.
         <% else %>
-        I accept the <a style='color: #6b6262' target=_blank href='/terms_of_service'>Terms of Service</a>.
+        I am over 21 years old and I accept the <a style='color: #6b6262' target=_blank href='/terms_of_service'>Terms of Service</a>.
         <% end %>
       </span>
     </label>
     <br/>
+
+    <% if false %>
     <label>
       <input required type=checkbox <%="checked" if !$prod %> /> 
       <span class='tos_prompt'>
@@ -157,7 +162,7 @@
       </span>
     </label>
 
-    <% if false %>
+    
     <label>
       <input required type=checkbox <%="checked" if !$prod %> /> 
       <span class='tos_prompt'>
