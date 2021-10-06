@@ -16,7 +16,7 @@
   else 
     brands = []
   end
-  brands = brands[0..1]
+  # brands = brands[0..1]
   reviews = $reviews.get_many(seller_id: brands)
 
   #bp
@@ -52,8 +52,8 @@
 
 <!-- </h1> -->
 <% id = pr[:zip] || pr[:code] %>
-<h1> chat for <%= id %> </h1>
-<%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
+
+
 <div class='brands_list_container'>  
   <!-- <a href='/signup?type=seller&city=<%=city%>&state=<%=state%>&shipping=<%=shipping%>' class='btn btn-raised btn-primary'>List Your Cannabis Service.</a> -->
   <!-- <br/>
@@ -75,6 +75,8 @@
       <% if true %>
         <%#= erb :'search/area_posts', locals: {state: state, city: city} %>
           <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
+        <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
+        
         <% if brands.any? %>
           <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
           <!-- <h4 style='margin-left: 10px'> Recommended </h4> -->
