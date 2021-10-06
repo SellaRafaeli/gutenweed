@@ -49,6 +49,11 @@ get '/me' do
 	erb :'me/me', default_layout
 end
 
+get '/users/:id' do
+	user = $users.get(pr[:id])
+	redirect user_link(user)
+end
+
 get '/me/analytics' do
 	redirect_unless_user
 

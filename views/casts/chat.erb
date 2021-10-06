@@ -24,6 +24,9 @@
   max-height: 550px;
   /*margin-bottom: 20px;*/
   overflow: scroll;
+  background-color: whitesmoke;
+  padding: 20px;
+  max-height: 100px;
 }
 .chat_date {
   float: right;
@@ -44,7 +47,7 @@
   font-weight: bold;
 }
 .chat_msg {
-  margin-top: 20px;
+  margin-bottom: 0px;
   font-size: 14px;
 }
 .chat_user_img img {
@@ -255,7 +258,7 @@ presenceChannel.bind_global(showMembers);
 </div>
   
 <div class=''>
-  <!-- <h3> Chat </h3> -->
+  <h4> Chat </h4>
   <% if locals[:promote_last_link] %>
     <a target=_blank class='lastLink'></a>
   <% end %>
@@ -281,18 +284,18 @@ presenceChannel.bind_global(showMembers);
     <form onsubmit="submitChatText(); return false" style='margin-top:10px'>
       <input class='' style='width: 400px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
       <button class='btn btn-raised'> send </button>
-    </form>
+    
 
       <% if is_admin %>
       <%
       
       x=1
       %>
-      <div>
-        <a class='nowcast_color' style='margin:10px; display: inline-block;' href='<%=_req.path%>?clear_until=<%=Time.now%>' onclick='if (!(confirm("Are you sure?"))) return false'>clear all</a>
-      </div>
+      <span>
+        <a class='nowcast_color' style='margin:10px; display: inline-block;' href='<%=_req.path%>?clear_until=<%=Time.now%>' onclick='if (!(confirm("Are you sure?"))) return false'>x all </a>
+      </span>
       <% end %>  
-
+    </form>
     <% else %>
     <!-- <a href='/login' class='btn btn-primary btn-raised'>Login to Chat</a> -->
     <% end %>
