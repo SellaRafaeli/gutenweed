@@ -16,7 +16,7 @@
 }
 .home_cannabis_delivery {
   display: flex;
-  max-width: 800px;
+  zmax-width: 800px;
   margin: auto;
 }
 @media (max-width: 8000px) {
@@ -41,12 +41,22 @@
   font-weight: bold;
   width: 100%;
 }
+
+.main_img_wrapper {
+  width: 100%;
+  background-color: #386256;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
 </style>
 
 <div class='home_cannabis_delivery'>
   <div class='hcd_left'>
     <!-- <h1> Cannabis Delivery </h1> -->
-    <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
+    <span class='main_img_wrapper' style='width:100%;'>
+      <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
+    </span>
     <h1 class='lp_h1'> premium cannabis delivery services, dispensaries, and brands. </h2>    
   </div>
   <div class='hcd_right'>
