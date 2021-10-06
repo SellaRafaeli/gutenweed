@@ -23,6 +23,8 @@ is_special = is_special_item(nc)
 is_website = cast[:type].to_s=='website' || pr[:type]=='website'
 
 is_forum = is_cast_forum(nc)
+
+tags = cast[:tags].to_a.join(',') rescue ''
 %>
 <style>
 .nc_box {
@@ -243,10 +245,12 @@ is_forum = is_cast_forum(nc)
           <span></span>        
         </div>
 
+        <% if false %>
         <div class='display_flex' style='margin-top: 20px'>
-        <label>Product Type</label>
+          <label>Product Type</label>
         <%= erb :'/partials/select_product_type', locals: {product_type: cast[:product_type], simple_drop_down: true} %>      
-      </div>
+        </div>
+        <% end %>
 
         <div class='display_flex' style='margin-top:20px; display: none'>
           <label class='pic_label' onclick=$("#img_uploader").click()>
@@ -265,6 +269,14 @@ is_forum = is_cast_forum(nc)
         <br/>
         
       <% if true %>
+      <div>
+        <label> Tags </label>
+        <span style="width: 40%; display: inline-block; text-align: right">
+          <input style='width: 100%' value="<%=tags%>" name=tags placeholder='e.g. sativa, relaxing, edibles, og-kush' />
+        </span>          
+      </div>
+      <br/>
+
       <div class='zonly_if_costs_money'>
         <label> Payment Note </label>
         <span style="width: 40%; display: inline-block; text-align: right">
@@ -272,10 +284,12 @@ is_forum = is_cast_forum(nc)
         </span>          
       </div>
       <br/>
+
+      
       <% end %>
 
 
-        <% if is_admin %>
+        <% if false && is_admin %>
         <div style='background-color: goldenrod'>
         <label> Tags (Admin) </label>
           <span style="width: 40%; display: inline-block; text-align: right">
@@ -342,7 +356,7 @@ is_forum = is_cast_forum(nc)
           </div>
         </div>
 
-      <% if true %>
+      <% if false %>
       <div style='text-align: left'>
         <h4 style='margin-bottom: 40px'><span type=button class='zbtn' zonclick='$(".more_options").toggleClass("noDisplay")'>Extra Options </span> </h4>  
       </div>

@@ -434,6 +434,7 @@ post '/casts/edit/:id' do
 	[:datetime].each                  { |f| data[f] = DateTime.parse(pr[f]) if data[f].present? }
 	[:series_start, :series_end].each { |f| data[f] = Date.parse(pr[f])     if data[f].present? }
 	
+	pr[:tags] = pr[:tags].split(',').map(&:strip)
 	$casts.update_id(id, data)
 	if pr[:ajax] 
 		{msg: 'ok'}

@@ -68,9 +68,12 @@
       </a>      
     </div>
   </div>
+  
   <div class='product_stats' style='padding:0 5px; text-align: center;'>
     <% if !$prod; cast[:thc]     ||= rand(30); cast[:strain]  ||= 'sativa' end %>
+    
     <% if cast[:thc].to_i > 0 %> <span class='single_product_stat'> <%= cast[:thc] %>% THC,  <%= cast[:strain] %> </span><% end %>
+    
     <% avg_rating = rand(50).to_f/10 %>
     <% num_reviews = rand(10) %>
 

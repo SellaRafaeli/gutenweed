@@ -72,7 +72,7 @@
       <label class='w200'> I am a </label>
       <select class=input1 name=subtype>        
         <option value='seller'> Dispensary </option>
-        <option value='buyer'>  Person </option>
+        <option value='buyer' <%="selected" if pr[:type]=="buyer" %>> Person </option>
 
         <!-- <option value='seller'> Delivery Service </option>
         <option value='seller'> Brand </option>
