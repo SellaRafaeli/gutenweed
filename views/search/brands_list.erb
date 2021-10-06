@@ -8,14 +8,15 @@
   msg = "Cannabis Delivery"  
 
   #bp
-  brands = $users.all({zipcodes: pr[:zipcode].to_i}, {limit: 10})
+  brands = $users.get_many({zipcodes: pr[:zipcode].to_i}, {limit: 10}).to_a
+  
   if city.present?
     brands += $users.all({city: city, state: state}, {limit: 10})
     
   else 
     brands = []
   end
-
+  brands = brands[0..1]
   reviews = $reviews.get_many(seller_id: brands)
 
   #bp
@@ -50,6 +51,9 @@
   <% end %>
 
 <!-- </h1> -->
+<% id = pr[:zip] || pr[:code] %>
+<h1> chat for <%= id %> </h1>
+<%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
 <div class='brands_list_container'>  
   <!-- <a href='/signup?type=seller&city=<%=city%>&state=<%=state%>&shipping=<%=shipping%>' class='btn btn-raised btn-primary'>List Your Cannabis Service.</a> -->
   <!-- <br/>

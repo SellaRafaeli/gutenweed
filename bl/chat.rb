@@ -101,7 +101,9 @@ post '/chat/send' do
 	if pr[:user_chat]
 		cast = ensure_chat_exists(my_id, pr[:target_id])
 	else 
-		cast = $casts.get(pr[:cast_id])
+		#cast = $casts.get(pr[:cast_id])
+		id = pr[:cast_id]
+		cast = {_id: id, zipcode: id}.hwia
 	end
 
 	user = $users.get(my_id)
@@ -130,7 +132,7 @@ post '/chat/send' do
 		other_user_id = chat_cast_ouid(cast)
 		$casts.update_id(cast[:_id], "last_msg_for_#{other_user_id}" => Time.now)
 	end
-
+	
 	$pusher.trigger(cast_chat_channel(cast), type, data)
 
 	if pr[:redirect_back]
