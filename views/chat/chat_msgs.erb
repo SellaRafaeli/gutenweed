@@ -21,10 +21,10 @@
 <div style='max-height: 300px;'>
 <% chat_msgs.each do |msg| %>
   <div class='chat_msg' data-date="<%=msg[:created_at]%>">    
-    <span class='chat_name'>
+    <a target=blank href='/users/<%=msg[:user_id]%>' class='chat_name'>
       <span class='chat_user_img'><img src="<%=msg[:img_url]%>" /> </span>
       <%=msg[:name]%>        
-    </span> 
+    </a> 
     <span class='chat_msg_content'><%= escape_html msg[:message] %> </span>
     <span class="chat_date" data-date="<%=msg[:created_at]%>"><%=time_ago msg[:created_at]%></span></div>
 <% end %>
