@@ -75,7 +75,13 @@
       <% if true %>
         <%#= erb :'search/area_posts', locals: {state: state, city: city} %>
           <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
-        <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
+          <% 
+            msgs_crit   = {cast_id: cast_id, status: CHAT_MSG_OK}
+            chat_msgs   = $chat.get_many(msgs_crit)
+            if chat_msgs.any? 
+          %> 
+          <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
+          <% end %>
         
         <% if brands.any? %>
           <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
