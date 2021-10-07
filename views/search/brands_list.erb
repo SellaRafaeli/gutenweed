@@ -76,7 +76,7 @@
         <%#= erb :'search/area_posts', locals: {state: state, city: city} %>
           <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
           <% 
-            msgs_crit   = {cast_id: cast_id, status: CHAT_MSG_OK}
+            msgs_crit   = {cast_id: id, status: CHAT_MSG_OK}
             chat_msgs   = $chat.get_many(msgs_crit)
             if chat_msgs.any? 
           %> 
