@@ -26,7 +26,7 @@
   overflow: scroll;
   background-color: whitesmoke;
   padding: 20px;
-  max-height: 100px;
+  max-height: 150px;
 }
 .chat_date {
   float: right;
@@ -280,7 +280,7 @@ presenceChannel.bind_global(showMembers);
   </div>
 
   <div>
-    <% if cu %>
+    <% if cu && is_seller(cu) %>
     <form onsubmit="submitChatText(); return false" style='margin-top:10px'>
       <input class='' style='width: 400px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
       <button class='btn btn-raised'> send </button>

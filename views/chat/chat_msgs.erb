@@ -1,7 +1,6 @@
-<%
-  msgs_crit   = {cast_id: cast_id, status: CHAT_MSG_OK}
-  
+<%  
   # msgs_crit[:created_at] = {'$gt': locals[:msgs_since]} if locals[:msgs_since]
+  msgs_crit   = {cast_id: cast_id, status: CHAT_MSG_OK}
   chat_msgs   = $chat.get_many(msgs_crit)
   chat_videos ||= false
 %> 
