@@ -1,14 +1,14 @@
 <style>
   .top-nav {
-    margin: 0 20px;
-    margin: 0;
-  <% if !$prod %>
+    padding:0.5rem;
     display:inline-flex;
-  <% end %>
-  <% if heb %>
-    zdirection: rtl;
-  <% end %>
+    width:100%;
+    justify-content:space-between;
+  }
 
+
+  .log-sign-row{
+   
   }
 
   .grid-container {
@@ -20,12 +20,6 @@
     margin: 20px;
     /*color: #209CEE;*/
     color: #aab8c2
-  }
-
-  .top-nav a:not(.logo) {
-    color: #1e5353;
-    margin: 20px;
-    font-size: 14px;
   }
 
   .container-fluid, .container-lg, .container-xl, .container-xxl {
@@ -43,12 +37,7 @@
     justify-content: space-around!important;
   }
 
-  .row {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
-    display: flex;
-    flex-wrap: wrap;
-  }
+ 
 
   .align-items-center {
     align-items: center!important;
@@ -60,9 +49,7 @@
     display: flex!important;
   }
 
-  .top-nav a:not(.logo):hover {
-    color: black;
-  }
+  
 
   @media screen and (min-width: 1000px) {
     .logo {
@@ -76,20 +63,7 @@
       /*display: none;*/
     }
 
-    .top-nav {
-
-      height: 50px;
-      /*position: absolute;
-
-      top: 0;
-      left: 0;
-      z-index: 999;*/
-    }
-
-    .top-nav a:not(.logo) {
-      background-color: white;
-      padding: 5px 10px;
-    }
+   
   }
 
 
@@ -118,39 +92,7 @@
     .search_input {
       width: 300px;
     }
-    .top-nav {
-      margin: 10px;
-
-      position: relative;
-
-    }
-    .top-nav a, .top-nav .search_input_form {
-      display: none;
-      margin: 5px;
-    }
-    /*.fa-gear:hover {
-      color: red;
-    }*/
-    .top-nav a:not(.logo).expanded, .top-nav .search_input_form.expanded {
-      display: block;
-      padding: 15px;
-      background:whitesmoke;
-      padding-right: 30px;
-      margin-left: 50px;
-      color: black;
-      text-align: center;
-    }
-
-    .top-nav a.logo {
-      display: block;
-      text-align: center;
-    }
-    .top-nav a .sub_logo_msg {
-      display: block;
-      text-align: center;
-
-      width: 100%;
-    }
+    
     .hamburger {
       display: block;
     }
@@ -215,7 +157,8 @@
   .sign-up-btn{
     border:none;
     font-size:13px;
-    margin-left:8rem;
+    margin-left:3rem;
+    margin-right:5rem;
     background:inherit;
     color:#2B6356;
     text-decoration: none;
@@ -233,7 +176,7 @@
     border-radius: 20px;
     padding:5px;
     padding-left:30px;
-    margin-left: 45rem;
+    
     padding-right:30px;
     text-decoration: none;
   }
@@ -246,59 +189,32 @@
   .container-fluid a{
     text-decoration:none
   }
+ .login-row{
+   display:flex;
+   align-self: center;
+    float: inline-end;
+    margin-left:1rem;
+ }
+  
 
-  @media only screen and (max-width: 1400px){
-    .login-btn{
-      margin-left: 34rem;
-    }
-  }
+ @media screen and (max-width:550px){
+  .top-nav {
+  padding:0.5rem;
+  display:block;
+  width:100%;
+  justify-content:space-between;
+}
+.login-row{
+  margin-top:1rem;
+   display:flex;
+   align-self: center;
+    float: inline-end;
+    margin-left:1rem;
+ }
+  
 
-  @media only screen and (max-width: 1200px){
-    .login-btn{
-      margin-left: 25rem;
-    }
-  }
+}
 
-  @media only screen and (max-width: 800px){
-    .login-btn{
-      margin-left: 20rem;
-    }
-  }
-
-  @media only screen and (max-width: 700px){
-
-    .login-btn{
-      margin-left: 10rem;
-    }
-  }
-
-  @media only screen and (max-width: 700px){
-    .login-btn{
-      margin-left: 10rem;
-    }
-  }
-
-  @media only screen and (max-width: 500px){
-
-    .col-sm-7 {
-      flex: 0 0 auto;
-      width: 58.33333333%;
-    }
-
-
-    .login-btn{
-      background:#2B6356;
-      color:white;
-      border:none;
-      font-size:13px;
-      border-radius: 20px;
-      margin-left: -0.15rem;
-      padding:5px;
-      padding-left:20px;
-      padding-right:20px;
-      text-decoration: none;
-    }
-  }
 </style>
 
 <%
@@ -327,8 +243,8 @@
   </div>
 <% else %>
 
-  <div class='container-fluid justify-content-around p-2 '>
-    <div class="row">
+  <div class='top-nav'>
+    
       <% if path!='/z' %>
 
         <div class="grid-container col-12 col-sm-7">
@@ -391,11 +307,10 @@
         <a class='' href='/articles'>blog</a> -->
 
         <% if !cu %>
-          <div class='col-sm-4 col-12 d-flex align-items-center justify-content-around'>
+          <div class='login-row'>
             <div ><a href="/login" class="login-btn">Login</a></div>
 
             <div>
-
               <a href="/signup?type=seller" class="sign-up-btn "><i class='fa fa-user'></i> Sign Up</a>
             </div>
           </div>
