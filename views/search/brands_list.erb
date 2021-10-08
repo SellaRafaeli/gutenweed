@@ -8,11 +8,15 @@
   msg = "Cannabis Delivery"  
 
   #bp
-  brands = $users.get_many({zipcodes: pr[:zipcode].to_i}, {limit: 10}).to_a
-  
-  if city.present?
+  trying_just_chat_white_telegrass = true  
+
+  brands = []
+  if !trying_just_chat_white_telegrass
+    brands = $users.get_many({zipcodes: pr[:zipcode].to_i}, {limit: 10}).to_a
+    if city.present?
     brands += $users.all({city: city, state: state}, {limit: 10})
-    
+  end
+
   else 
     brands = []
   end
@@ -83,6 +87,7 @@
         <div class='flex1'>
           <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
         </div>
+        <% if !trying_just_chat_white_telegrass %>
           <% if brands.any? %>
           <div class='flex1'>
             <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
@@ -99,6 +104,7 @@
             </div>  
           <% end %>  
           </div>  
+        <% end %>
         <% end %>
       </div>
   </div>

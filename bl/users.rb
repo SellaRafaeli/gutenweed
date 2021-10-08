@@ -234,6 +234,14 @@ def has_tag(user, tag)
 	user[:tags].to_s.downcase.include?(tag.downcase) 
 end
 
+def user_type_logo(type)
+	if type.to_s == 'seller'
+		"<i class='fal fa-store-alt'></i>"
+	else
+		"<i class='fal fa-child'></i>"
+	end
+end
+
 post '/signup' do
 	verify_signup_data
 	res = add_user	

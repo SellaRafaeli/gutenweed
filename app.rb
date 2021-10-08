@@ -163,6 +163,7 @@ get '/' do
 	pr[:city]  = 'New York'
 	# erb :'search/search', default_layout
 	erb :'home/cannabis_delivery', default_layout
+	erb :'home/just_chats', default_layout
 end
 
 get '/zip' do
@@ -186,6 +187,14 @@ get '/zip/:code' do
 		flash.message = 'No results found for zip code '+code
 		redirect back
 	end
+end
+
+get '/chat/:code' do
+	code = pr[:zipcode] = pr[:code]
+	# data = ZipCodes.identify(code)
+	pr[:state] = 'unspecified_state'
+	pr[:city]  = code
+	return erb :'search/search', default_layout
 end
 
 get '/dispensaries/:state/?:city?' do

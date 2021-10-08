@@ -61,14 +61,24 @@
   </div>
   
   <div class='hcd_right'>
-    <h2 class='lp_h2'> <small style='font-size:16px; display: block;'>top cannabis delivery dispensaries.</small><br/> order good weed now. </h2> 
+    <h2 class='lp_h2'> <small style='font-size:16px; display: block;'>cannabis!</small><br/> let's get high. </h2> 
     
     <div class='links_city_selector_container'>
     <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
-    <form method=get action='/zip'>
-      <%= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
+    <form method=get action='/zip' onsubmit="return false">
+      <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
+
+      <%= erb :'/home/address_selector', locals: {cb: 'gotozip'} %>
       <button class='btn btn-primary btn-raised'> Let's Go </button>
     </form>
     </div>
   </div>
 </div>
+
+<script>
+function gotozip(place) {
+  console.log('going to zip', place);
+  var zip = place.address_components.filter(a => (a.types||[])[0]=='postal_code')[0].short_name;
+  window.location = '/zip/'+zip;
+}
+</script>

@@ -88,7 +88,7 @@ end
 post '/chat/send' do
 	my_id = cuid
 
-	if !cu && (email = pr[:email]).present? 
+	if !cu && (email = pr[:email]).present? #allow signup-on-first-msg by sending pr[:email]=...
 		if $users.get(email: email)
 			halt(200,{err: 'Email taken. Perhaps try to log in?', goto: "/login?email=#{email}&go_back_to=#{pr[:go_back_to]}"})
 		else 
@@ -111,7 +111,8 @@ post '/chat/send' do
 	data = {cast_id: cast[:_id], 
 		user_id: user[:_id], 
 		name: user[:name] || user[:handle], 
-		img_url: user[:img_url], 
+		img_url: user[:img_url],
+		type: user[:type], 
 		message: pr[:msg], 
 		status: CHAT_MSG_OK}
 

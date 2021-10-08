@@ -1,0 +1,26 @@
+<%
+  rooms = ['nyc', 'la', 'sf', 'seattle', 'chicago', 'san diego'].sort
+%>
+
+<style>
+.just_chats_wrapper {
+  max-width: 800px;
+  margin: auto;
+}
+.single_room {
+  display: inline-block;
+  padding: 20px;
+  width: 200px;
+}
+</style>
+<div class='just_chats_wrapper'>
+  <h1> Chats </h1>
+  <div class='rooms_list'>
+    <% rooms.each do |room| %>
+    <a class='single_room btn btn-primary btn-raised' href='/chat/<%=room%>'><%=room%> </a>    
+    <% end %>
+  </a>
+  <br/>
+  <br/>
+  <br/>
+</div>
