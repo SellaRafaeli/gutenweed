@@ -85,7 +85,7 @@
         
         <% if brands.any? %>
           <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
-          <h4 style='zmargin-left: 10px'> Dispensaries </h4>
+          <h4 style='zmargin-left: 10px'> Choose Dispensary / Product </h4>
           <% brands.each_with_index do |user, idx| %>
             <% brand_reviews = reviews.select {|rev| rev[:seller_id] == user[:_id] } %>
             <%= erb :'/brands/single_brand', locals: {user: user, idx: idx, reviews: brand_reviews} %>
