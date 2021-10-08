@@ -26,7 +26,7 @@
   overflow: scroll;
   background-color: whitesmoke;
   padding: 20px;
-  max-height: 150px;
+  max-height: 700px;
 }
 .chat_date {
   float: right;
@@ -216,10 +216,14 @@ function refreshChat() {
 // }
 
 function submitChatText() {
+  <% if cu %>
   var inp  = $("#chat_input");
   var text = inp.val();
   sendChatData({msg: text});
   inp.val('');
+  <% else %>
+  alert('You must signup/log in first.')
+  <% end %>
 }
 
 function setChatDates() {
@@ -258,7 +262,7 @@ presenceChannel.bind_global(showMembers);
 </div>
   
 <div class=''>
-  <h4> Chat with Delivery Service </h4>
+  <h4> Chat (<%= pr[:code]%>)</h4>
   <% if locals[:promote_last_link] %>
     <a target=_blank class='lastLink'></a>
   <% end %>
@@ -280,7 +284,7 @@ presenceChannel.bind_global(showMembers);
   </div>
 
   <div>
-    <% if cu && is_seller(cu) %>
+    <% if true || cu  %>
     <form onsubmit="submitChatText(); return false" style='margin-top:10px'>
       <input class='' style='width: 400px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
       <button class='btn btn-raised'> send </button>

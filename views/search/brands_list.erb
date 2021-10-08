@@ -67,7 +67,9 @@
           <h2 class='main_h1'> Cannabis delivery, dispensaries, and top local brands. </h2>    
         <% else %>
           <div class=ct>
-            <h1 class='main_h1'> the best weed in <%= pr[:city] %>, <%= @chosen_state %>: </h1> 
+            <h1 class='main_h1'> 
+              the best weed in <%= pr[:city] %>, <%= @chosen_state %>: 
+            </h1> 
             <h2 class='main_h1'> cannabis delivery, dispensaries, and brands </h2>    
           </div>
         <% end %>
@@ -75,28 +77,29 @@
       <% if true %>
         <%#= erb :'search/area_posts', locals: {state: state, city: city} %>
           <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
-          <% 
-            msgs_crit   = {cast_id: id, status: CHAT_MSG_OK}
-            chat_msgs   = $chat.get_many(msgs_crit)
-            if chat_msgs.any? 
-          %> 
-          <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
-          <% end %>
+          
         
-        <% if brands.any? %>
-          <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
-          <h4 style='zmargin-left: 10px'> Choose Dispensary / Product </h4>
-          <% brands.each_with_index do |user, idx| %>
-            <% brand_reviews = reviews.select {|rev| rev[:seller_id] == user[:_id] } %>
-            <%= erb :'/brands/single_brand', locals: {user: user, idx: idx, reviews: brand_reviews} %>
-          <% end %>
-        <% else %>
-          <div class='no_brands_found'>
-            No results found. Be the first!
-            <br/>
-            <br/>      
+      <div class='chat_and_brands' style='display: flex; flex-wrap: wrap'>
+        <div class='flex1'>
+          <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
+        </div>
+          <% if brands.any? %>
+          <div class='flex1'>
+            <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
+            <h4 style='zmargin-left: 10px'> Dispensaries </h4>
+            <% brands.each_with_index do |user, idx| %>
+              <% brand_reviews = reviews.select {|rev| rev[:seller_id] == user[:_id] } %>
+              <%= erb :'/brands/single_brand', locals: {user: user, idx: idx, reviews: brand_reviews} %>
+            <% end %>
+          <% else %>
+            <div class='no_brands_found'>
+              No results found. Be the first!
+              <br/>
+              <br/>      
+            </div>  
+          <% end %>  
           </div>  
-        <% end %>    
-      <% end %>
+        <% end %>
+      </div>
   </div>
 </div>
