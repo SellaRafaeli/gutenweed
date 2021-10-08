@@ -80,7 +80,15 @@
 <script>
 function gotozip(place) {
   console.log('going to zip', place);
-  var zip = place.address_components.filter(a => (a.types||[])[0]=='postal_code')[0].short_name;
-  window.location = '/zip/'+zip;
+  
+  //var place.address_components.map(c=>c.types||[]).filter(c=>c[0]);
+  var zip;
+  try {
+    zip = place.address_components.filter(a => (a.types||[])[0]=='postal_code')[0].short_name;
+    window.location = '/zip/'+zip;
+  } catch (e) {
+    console.log(e);
+    alert('Choose an address with a postal code.')
+  }
 }
 </script>
