@@ -64,14 +64,16 @@
     <h2 class='lp_h2'> <small style='font-size:16px; display: block;'>cannabis!</small><br/> let's get high. </h2> 
     
     <div class='links_city_selector_container'>
-    <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
-    <form method=get action='/zip' onsubmit="return false">
-      <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
+      <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+      <form method=get action='/zip' onsubmit="return false">
+        <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
 
-      <%= erb :'/home/address_selector', locals: {cb: 'gotozip'} %>
-      <button class='btn btn-primary btn-raised'> Let's Go </button>
-    </form>
+        <%= erb :'/home/address_selector', locals: {cb: 'gotozip'} %>
+        <button class='btn btn-primary btn-raised'> Let's Go </button>
+
+      </form>
     </div>
+    <%= erb :'home/just_chats' %>    
   </div>
 </div>
 

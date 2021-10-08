@@ -162,8 +162,7 @@ get '/' do
 	pr[:state] = 'New York'
 	pr[:city]  = 'New York'
 	# erb :'search/search', default_layout
-	erb :'home/cannabis_delivery', default_layout
-	erb :'home/just_chats', default_layout
+	erb :'home/cannabis_delivery', default_layout	
 end
 
 get '/zip' do
