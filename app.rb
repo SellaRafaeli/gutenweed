@@ -191,8 +191,20 @@ end
 get '/chat/:code' do
 	code = pr[:zipcode] = pr[:code]
 	# data = ZipCodes.identify(code)
-	pr[:state] = 'unspecified_state'
-	pr[:city]  = code
+	pr[:city] = code 
+	
+	states_for_rooms = {
+		nyc: 'New York',
+		la: 'California',
+		sf: 'California',
+		"san diego": 'California',
+		chicago: 'Illinois',
+		seattle: 'Washington'
+	}.hwia
+	
+	state = states_for_rooms[code] || 'New York'  
+	pr[:state] = state
+
 	return erb :'search/search', default_layout
 end
 
