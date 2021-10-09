@@ -84,7 +84,7 @@
   background-color: whitesmoke;
   font-size: 14px;
   padding: 10px;
-  margin-right: : 10px;
+  margin-right:10px;
 }
 </style>
 
@@ -293,7 +293,7 @@ presenceChannel.bind_global(showMembers);
     <div id="rtc_errors"></div>
   <% end %>
 
-  <div class='cast_chat'>    
+  <div class='cast_chat'  style='max-height: 500px; overflow: scroll'>    
     <%
       locals = {cast_id: cast_id, cast: cast, chat_videos: chat_videos}
       # locals[:msgs_since] = 3.hours.ago if !is_chat_cast(cast)
@@ -326,18 +326,27 @@ presenceChannel.bind_global(showMembers);
 
 <script>
 
-function updateChannelsData(data) {
-  console.log('updateChannelsData',data);
-  var data = data.all_channels_last_day;
-  $(".all_channels").html('');
-  for (channel in data) {
-    var val  = data[channel];
-    var html = `<a class='single_channel_data' href='/chat/${channel}'>${channel}: ${val}</div>`;
-    if (val) console.log('appending html',html)
-    $(".all_channels").append(html);
-  }
-}
+function updateChannelsData() {
+  //console.log('updateChannelsData',data);
+  var vals = [];
+  $.get('/chat_channels_data').then(res => {
+    var data = res;
+    $(".all_channels").html('');
+    for (channel in data) {
+      var val  = data[channel];
+      console.log(channel,val)
+      var html = `<a class='single_channel_data' href='/chat/${channel}'>${channel}: ${val}</div>`;
+      //console.log('appending html',html)      
+      if (channel && val && channel!='time') vals.push({val, html});
+    }
+    //window.vals = vals;
+    vals = vals.sort((a,b) => b.val - a.val);
+    //console.log('vals',vals)
+    vals.forEach(z => $(".all_channels").append(z.html));
+  });  
 
+}
+updateChannelsData();
 
 <% if is_admin %>
 function offerSilenceUser(el) {

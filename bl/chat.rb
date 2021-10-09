@@ -146,14 +146,21 @@ post '/chat/send' do
 	{res: 'ok'}
 end
 
-
 $all_channels_data = {}
 def update_all_channels_last_day
 	res = {} 
 	$chat.distinct(:cast_id).each {|v| res[v] = $chat.count(cast_id: v, created_at: {'$gt': 24.hours.ago}) }
+	
+	res = res.sort_by {|k,v| v }.reverse.to_h #sort by val 
 	$all_channels_data = res
 end
-Thread.new { while true do; update_all_channels_last_day; sleep 600; end }
+Thread.new { while true do; update_all_channels_last_day; sleep 6; end }
+
+get '/chat_channels_data' do 
+	# update_all_channels_last_day
+	res = $all_channels_data
+	return res
+end
 
 post '/chat/silence' do
 	cast_id = pr[:cast_id]
