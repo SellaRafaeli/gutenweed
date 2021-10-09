@@ -284,8 +284,7 @@ presenceChannel.bind_global(showMembers);
   <video controls id=other_video style='width:400px'></video>
 </div>
   
-<div class=''>
-  <div class='all_channels'></div>
+<div class=''>  
   <h4> Chat (<%= pr[:code]%>)</h4>
   <% if locals[:promote_last_link] %>
     <a target=_blank class='lastLink'></a>
@@ -327,6 +326,17 @@ presenceChannel.bind_global(showMembers);
     <% else %>
     <!-- <a href='/login' class='btn btn-primary btn-raised'>Login to Chat</a> -->
     <% end %>
+  </div>  
+
+  <div>
+    <div style='font-size: 80%;margin-bottom: 10px'><b>rooms:</b></div>
+    <div class='all_channels'></div>
+    <div>
+      <form method=get onsubmit='document.location="/chat/"+$("#room_name").val(); return false'>
+        <input id=room_name style='margin-top: 10px' placeholder="enter room name" />
+        <button> go </button>
+      </form>
+    </div>
   </div>  
 </div>
 
