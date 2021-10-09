@@ -156,7 +156,7 @@ post '/chat/send' do
 		{res: 'ok'}
 	# }	
 
-	return {html: html}
+	#return {html: html}
 end
 
 $all_channels_data = {}
