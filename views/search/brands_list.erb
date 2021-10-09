@@ -9,10 +9,11 @@
 
   #bp
   trying_just_chat_white_telegrass = true  
+  # trying_just_chat_white_telegrass = false
 
   brands = []
   if !trying_just_chat_white_telegrass
-    brands = $users.get_many({zipcodes: pr[:zipcode].to_i}, {limit: 10}).to_a
+    brands = $users.get_many({zipcodes: pr[:zipcode].to_i}, {limit: 30}).to_a
     if city.present?
     brands += $users.all({city: city, state: state}, {limit: 10})
   end
@@ -21,6 +22,7 @@
     brands = []
   end
   # brands = brands[0..1]
+  
   reviews = $reviews.get_many(seller_id: brands)
 
   #bp

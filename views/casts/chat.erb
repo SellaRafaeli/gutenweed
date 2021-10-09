@@ -328,15 +328,15 @@ presenceChannel.bind_global(showMembers);
     <% end %>
   </div>  
 
-  <div>
-    <div style='font-size: 80%;margin-bottom: 10px'><b>rooms:</b></div>
-    <div class='all_channels'></div>
-    <div>
-      <form method=get onsubmit='document.location="/chat/"+$("#room_name").val(); return false'>
+  <div style='margin-bottom: 100px'>
+    <div style='font-size: 80%;margin-bottom: 10px'>
+      <b>rooms:</b>
+      <form style='display:inline-block;' method=get onsubmit='document.location="/chat/"+$("#room_name").val(); return false'>
         <input id=room_name style='margin-top: 10px' placeholder="enter room name" />
         <button> go </button>
       </form>
     </div>
+    <div class='all_channels'></div>
   </div>  
 </div>
 
