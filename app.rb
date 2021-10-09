@@ -199,7 +199,10 @@ get '/chat/:code' do
 		sf: 'California',
 		"san diego": 'California',
 		chicago: 'Illinois',
-		seattle: 'Washington'
+		seattle: 'Washington',
+		boulder:'Colorado',
+		denver: 'Colorado',
+		portland: 'Oregon'
 	}.hwia
 	
 	state = states_for_rooms[code] || 'New York'  
