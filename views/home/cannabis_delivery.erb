@@ -60,9 +60,8 @@
     <h1 class='lp_h1'> the best cannabis delivery services. </h1>    
   </div>
   
-  <div class='hcd_right'>
-    <h2 class='lp_h2'> <small style='font-size:16px; display: block;'>cannabis!</small><br/> let's get high. </h2> 
-    
+  <div class='hcd_right'>    
+    <h2 class='lp_h2'> Order Cannabis! </h2> 
     <div class='links_city_selector_container'>
       <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
       <form method=get action='/zip' onsubmit="return false">
@@ -73,7 +72,9 @@
 
       </form>
     </div>
-    <%= erb :'home/just_chats' %>    
+    <h3 style='font-size:16px; display: block; margin-top: 0'>local buyers & sellers.</h3>
+    <%= erb :'home/just_chats' %>        
+    
   </div>
 </div>
 
