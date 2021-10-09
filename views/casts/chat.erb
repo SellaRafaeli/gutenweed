@@ -123,11 +123,16 @@ function castPusherCallback(event, data) {
   }
   if (event == 'new-msg') {
     refreshChat();
+    //addChatMsg(data);
     updateChannelsData(data);
   } 
   else if (event == 'newHTML') {
     if (data.user_id=="<%=cuid%>") { return console.log('my own code update, skipping'); }
     updateCode({html: data.html, prettyPrint: true});
+  }
+  else if (event == 'delete-msg') {
+    //$('.chat_msg[data-msg_id="i2IInnyVS"]').fadeOut()
+    $(`.chat_msg[data-msg_id=${data.msg_id}]`).fadeOut('slow');
   }
   else if (event == 'rtc-start') {
     // if (data.user_id=="<%=cuid%>") { return console.log('my own rtc-start, skipping'); }
@@ -211,6 +216,7 @@ function sendChatData(data) {
 }
 
 function refreshChat() {
+  console.log('refreshing Entire chat')
   $.get('/chat/<%=cast_id%>/all').then(res => {
     $('.cast_chat').html(res);
     scrollDown($('.cast_chat'));

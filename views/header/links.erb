@@ -173,6 +173,15 @@
   position: absolute;
   top: 26px;
 }
+
+.links_profile_pic {
+  height: 20px;
+  border-radius: 2px;
+  border: 1px solid grey;
+  padding: 4px;
+  margin-right: 5px;
+}
+
 </style>
 
 <%
@@ -207,7 +216,7 @@
     <span>
       <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
         <img src='<%=logo%>' style='height:30px'/>
-        <div class='sub_logo_msg'>have fun, enjoy life</div>
+        <div class='sub_logo_msg'>have fun responsibly</div>
       </a>
     </span>
     <% if use_client_logo %>
@@ -233,8 +242,10 @@
       Good-Weed
     </a>     -->
     <% if cu %>
-      <a class='' href='/me'>
+      <a class='user_name' href='/me'>
+        <img class='links_profile_pic' src='<%=cu[:img_url]%>'>
         <%= cu_logo %>         
+
          <b><%= cu[:name] %> </b><%= "<b class='nowcast_color'>(pro)</b>" if is_pro(cu) %>
        </a>       
       <!-- <a class='' target=_blank href='/@<%=cu['handle']%>'>
@@ -268,7 +279,7 @@
     <a class='' href='/articles'>blog</a> -->
 
     <% if !cu %>
-    <a class='btn btn-primary btn-raised' href='/signup?type=seller'>
+    <a class='btn btn-primary btn-raised' href='/signup?type=seller'>      
       <i class='fas fa-store' style='margin-right: 10px'></i> <%= !heb ? 'Sign up' : 'הרשמה' %></a>  
     <% end %>    
     <!-- <a class='' href='/forum'><i class='fa fa-forum'></i> <%= 'forum' %> </a> -->

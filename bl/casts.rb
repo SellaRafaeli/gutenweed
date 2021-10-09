@@ -476,7 +476,7 @@ post '/casts/delete/:id' do
 end
 
 post '/pusher/auth/:cast_id' do 	
-	halt(403, 'Forbidden') unless cu #&& (cast = $casts.get(pr[:cast_id])) && can_watch(cast)
+	halt(403, 'Forbidden (Sign up please)') unless cu #&& (cast = $casts.get(pr[:cast_id])) && can_watch(cast)
 	
 	# TODO: ensure user is subscribed to this cast. Pass cast_id to this route for that. I do that but there was some bug with it.
 	user_data = {

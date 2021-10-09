@@ -33,14 +33,6 @@
 <% end %>
 <% chat_msgs.each do |msg| %>
 <%#= msg.to_json %>
-  <div class='chat_msg' data-date="<%=msg[:created_at]%>">    
-    <a target=blank href='/users/<%=msg[:user_id]%>' class='chat_name'>
-      <span class='chat_user_img'><img src="<%=msg[:img_url]%>" /> </span>
-      <span class='user_type'> <%=user_type_logo(msg[:type]) %>  </span>
-      <span class='user_name'> <%=msg[:name]%> </span>
-
-    </a> 
-    <span class='chat_msg_content'><%= escape_html msg[:message] %> </span>
-    <span class="chat_date" data-date="<%=msg[:created_at]%>"><%=time_ago msg[:created_at]%></span></div>
+  <%= erb :'chat/single_chat_msg', locals: {msg: msg} %>  
 <% end %>
 </div>

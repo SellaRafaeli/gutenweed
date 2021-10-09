@@ -85,65 +85,78 @@ get '/chat/:cast_id/all' do
 	erb :'/chat/chat_msgs', locals: {cast_id: pr[:cast_id], cast: cast}
 end
 
+
+
 post '/chat/send' do
-	my_id = cuid
-
-	if !cu && (email = pr[:email]).present? #allow signup-on-first-msg by sending pr[:email]=...
-		if $users.get(email: email)
-			halt(200,{err: 'Email taken. Perhaps try to log in?', goto: "/login?email=#{email}&go_back_to=#{pr[:go_back_to]}"})
-		else 
-			add_user
-			new_user = $users.get(email: email)
-			session[:user_id] = my_id = new_user[:_id]
+	#optimistic_msg = {id: 'mock'+Time.now.to_s, user_id: cuid, img_url: cu[:img_url], type: cu[:type], name: cu[:name], msg: pr[:msg], created_at: Time.now}
+	
+	#html = erb :'chat/single_chat_msg', locals: {msg: optimistic_msg}
+	
+	# Thread.new {	
+		my_id = cuid
+		if !cu && (email = pr[:email]).present? #allow signup-on-first-msg by sending pr[:email]=...
+			if $users.get(email: email)
+				halt(200,{err: 'Email taken. Perhaps try to log in?', goto: "/login?email=#{email}&go_back_to=#{pr[:go_back_to]}"})
+			else 
+				add_user
+				new_user = $users.get(email: email)
+				session[:user_id] = my_id = new_user[:_id]
+			end
 		end
-	end
 
-	if pr[:user_chat]
-		cast = ensure_chat_exists(my_id, pr[:target_id])
-	else 
-		#cast = $casts.get(pr[:cast_id])
-		id = pr[:cast_id]
-		cast = {_id: id, zipcode: id}.hwia
-	end
+		if pr[:user_chat]
+			cast = ensure_chat_exists(my_id, pr[:target_id])
+		else 
+			#cast = $casts.get(pr[:cast_id])
+			id = pr[:cast_id]
+			cast = {_id: id, zipcode: id}.hwia
+		end
 
-	user = $users.get(my_id)
-	
-	data = {cast_id: cast[:_id], 
-		user_id: user[:_id], 
-		name: user[:name] || user[:handle], 
-		img_url: user[:img_url],
-		type: user[:type], 
-		message: pr[:msg], 
-		status: CHAT_MSG_OK}
+		user = $users.get(my_id)
+			
+		data = {cast_id: cast[:_id], 
+			user_id: user[:_id], 
+			name: user[:name] || user[:handle], 
+			img_url: user[:img_url],
+			type: user[:type], 
+			message: pr[:msg], 
+			status: CHAT_MSG_OK,
+			#html: html
+		}
 
-	if cast[silenced_key(user[:_id])]
-		# halt(401, {err: 'You have been silenced :('})
-	end
+		if cast[silenced_key(user[:_id])]
+			# halt(401, {err: 'You have been silenced :('})
+		end
 
-	type = pr[:type] || 'new-msg'
+		type = pr[:type] || 'new-msg'
 
-	#if type == 'rtc-offer' || type == 'rtc-answer' || type == 'rtc-start' || type == 'rtc-ice-candidate'
-	if type.to_s.include?('webrtc') || type == 'newHTML'
-		data = data.merge(pr) #send the rtc-desc (offer/answer)
-	else 
-		$chat.add(data) 
-	end
+		#if type == 'rtc-offer' || type == 'rtc-answer' || type == 'rtc-start' || type == 'rtc-ice-candidate'
+		if type.to_s.include?('webrtc') || type == 'newHTML'
+			data = data.merge(pr) #send the rtc-desc (offer/answer)
+		else 
+			$chat.add(data) 
+		end
 
-	if is_chat_cast(cast)
-		other_user_id = chat_cast_ouid(cast)
-		$casts.update_id(cast[:_id], "last_msg_for_#{other_user_id}" => Time.now)
-	end
-	
-	data[:all_channels_last_day] = $all_channels_data
+		if is_chat_cast(cast)
+			other_user_id = chat_cast_ouid(cast)
+			$casts.update_id(cast[:_id], "last_msg_for_#{other_user_id}" => Time.now)
+		end
+		
+		data[:all_channels_last_day] = $all_channels_data
 
-	$pusher.trigger(cast_chat_channel(cast), type, data)
+		Thread.new {
+			$pusher.trigger(cast_chat_channel(cast), type, data)	
+		}
 
-	if pr[:redirect_back]
-		flash.message = 'Thank you!'
-		redirect back
-	end
+		if pr[:redirect_back]
+			flash.message = 'Thank you!'
+			redirect back
+		end
 
-	{res: 'ok'}
+		{res: 'ok'}
+	# }	
+
+	return {html: html}
 end
 
 $all_channels_data = {}
@@ -154,7 +167,7 @@ def update_all_channels_last_day
 	res = res.sort_by {|k,v| v }.reverse.to_h #sort by val 
 	$all_channels_data = res
 end
-Thread.new { while true do; update_all_channels_last_day; sleep 6; end }
+Thread.new { while true do; update_all_channels_last_day; sleep 60; end }
 
 get '/chat_channels_data' do 
 	# update_all_channels_last_day
@@ -170,6 +183,20 @@ post '/chat/silence' do
 	$casts.update_id(cast_id, silenced_key(user_id) => true)
 	
 	$pusher.trigger(cast_chat_channel(cast), 'silence', {user_id: user_id})
+	{msg: "ok"}
+end
+
+post '/chat/delete_msg' do
+	cast_id = pr[:cast_id]
+	msg_id  = pr[:msg_id]
+	cast    = $casts.get(cast_id)
+	chat    = $chat.get(msg_id)
+	if chat 
+		Thread.new {
+			$chat.delete_one({_id: msg_id, user_id: cuid})	
+			$pusher.trigger(cast_chat_channel(cast), 'delete-msg', {msg_id: msg_id})
+		}
+	end
 	{msg: "ok"}
 end
 
