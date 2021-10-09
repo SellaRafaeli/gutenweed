@@ -72,6 +72,20 @@
 .lastLink:hover {
   background-color: #5adc5a;
 }
+
+.all_channels {
+  zposition: absolute;
+  bottom: 0;
+  left: 0;
+}
+.single_channel_data {
+  display: inline-block;
+  color: black;
+  background-color: whitesmoke;
+  font-size: 14px;
+  padding: 10px;
+  margin-right: : 10px;
+}
 </style>
 
 <script>
@@ -109,6 +123,7 @@ function castPusherCallback(event, data) {
   }
   if (event == 'new-msg') {
     refreshChat();
+    updateChannelsData(data);
   } 
   else if (event == 'newHTML') {
     if (data.user_id=="<%=cuid%>") { return console.log('my own code update, skipping'); }
@@ -264,6 +279,7 @@ presenceChannel.bind_global(showMembers);
 </div>
   
 <div class=''>
+  <div class='all_channels'></div>
   <h4> Chat (<%= pr[:code]%>)</h4>
   <% if locals[:promote_last_link] %>
     <a target=_blank class='lastLink'></a>
@@ -305,10 +321,24 @@ presenceChannel.bind_global(showMembers);
     <% else %>
     <!-- <a href='/login' class='btn btn-primary btn-raised'>Login to Chat</a> -->
     <% end %>
-  </div>
+  </div>  
 </div>
 
 <script>
+
+function updateChannelsData(data) {
+  console.log('updateChannelsData',data);
+  var data = data.all_channels_last_day;
+  $(".all_channels").html('');
+  for (channel in data) {
+    var val  = data[channel];
+    var html = `<a class='single_channel_data' href='/chat/${channel}'>${channel}: ${val}</div>`;
+    if (val) console.log('appending html',html)
+    $(".all_channels").append(html);
+  }
+}
+
+
 <% if is_admin %>
 function offerSilenceUser(el) {
   var name    = $(el).attr('data-name');

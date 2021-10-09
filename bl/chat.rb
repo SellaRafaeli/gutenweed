@@ -134,6 +134,8 @@ post '/chat/send' do
 		$casts.update_id(cast[:_id], "last_msg_for_#{other_user_id}" => Time.now)
 	end
 	
+	data[:all_channels_last_day] = $all_channels_data
+
 	$pusher.trigger(cast_chat_channel(cast), type, data)
 
 	if pr[:redirect_back]
@@ -143,6 +145,15 @@ post '/chat/send' do
 
 	{res: 'ok'}
 end
+
+
+$all_channels_data = {}
+def update_all_channels_last_day
+	res = {} 
+	$chat.distinct(:cast_id).each {|v| res[v] = $chat.count(cast_id: v, created_at: {'$gt': 24.hours.ago}) }
+	$all_channels_data = res
+end
+Thread.new { while true do; update_all_channels_last_day; sleep 600; end }
 
 post '/chat/silence' do
 	cast_id = pr[:cast_id]
