@@ -1,0 +1,16 @@
+<%
+  if pr[:type] == 'seller'
+    benefits = [
+      {icon: 'cannabis', text: 'Get more orders.', subtext: 'Get orders from local buyers for your products.'},
+      {icon: 'seedling', text: 'Sell More cannabis.', subtext: 'Online sales are the shizzle.'},
+      {icon: 'comments-dollar', text: 'Earn more money.', subtext: 'Satisfy your clients and increase your revenues.'}
+    ]
+  else 
+    benefits = [
+      {icon: 'cannabis', text: 'Order cannabis online.', subtext: 'Super easy and convenient.'},
+      {icon: 'seedling', text: 'Enjoy awesome delivery and flower.', subtext: 'Our supported brands focus on price, quality, and customer service.'},
+      {icon: 'comments-dollar', text: 'Cannabis is great.', subtext: 'Get awesome deals from local sellers.'}
+    ]
+  end
+      %>
+<%= erb :'home/benefits', locals: {benefits: benefits} %>        
