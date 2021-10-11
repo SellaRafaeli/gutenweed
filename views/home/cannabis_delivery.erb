@@ -96,6 +96,10 @@
 
 </style>
 
+<%
+  seller_mode = pr[:type] == 'seller'
+%>
+
 <div class='home_cannabis_delivery'>
 
   <div class='hcd_left'>
@@ -104,8 +108,16 @@
   
   <div class='hcd_right'>    
     <div class='hero_texts'>
-      <h2 class='lp_h2'>Cannabis For You.</h2> 
-      <h3 style='font-size: 20px'>Order a local cannabis delivery.</h3> 
+      <%
+        text1 = "The best cannabis."
+        text2 = "Order delivery from America's best."
+        if seller_mode
+          text1 = 'An online store that converts.'
+          text2 = 'Grow your market by and get more orders.'
+        end
+      %>
+      <h2 class='lp_h2'><%= text1 %></h2> 
+      <h3 style='font-size: 20px'><%= text2 %> </h3> 
     
 
       <span class='main_img_wrapper' style='zwidth:100%;'>
@@ -118,8 +130,13 @@
         <form method=get action='/zip' onsubmit="return false">
           <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
 
+          <% if seller_mode %>
+          <a href='/signup?type=seller' class='btn btn-primary btn-raised'> Try Now </a>
+          <% else %>
           <%= erb :'/home/address_selector', locals: {cb: 'gotozip'} %>
           <button class='btn btn-primary btn-raised'> Let's Go </button>
+          <% end %>
+          
 
         </form>
       </div>
