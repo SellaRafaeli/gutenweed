@@ -20,7 +20,7 @@
 <h2 class='orders_top_list'> 
 <span>Orders </span>
 
-  <% if is_seller %>
+  <% if is_seller && false %>
   <% my_cast_ids = $casts.get_many(user_id: cuid).mapo(:_id) %>
   <select class='input1' onchange='filterOrders(this)'>
     <% (['Any'] + ORDER_STATUSES).each do |status| %>
@@ -48,7 +48,11 @@
 
 <% if is_seller %>
 <div>
+  <% if $casts.exists?(user_id: cuid) %>
   <button class='btn btn-raised btn-primary' type=button onclick=addOrder()>+ Add Order</button>
+  <% else %>
+  <h5> Create a product so you can create orders. </h5>
+  <% end %>
 </div>
 <% end %>
 

@@ -5,6 +5,7 @@
   title += 'of me' if is_seller(user)
   title += 'by me' if is_buyer(user)
   is_self_post = seller == cu 
+  is_self_post = false
 %>
 
 <% if reviews.any? %>

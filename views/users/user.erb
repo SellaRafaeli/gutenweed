@@ -224,7 +224,8 @@
 
       
       <% if is_seller %>
-      <%= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>  
+      <%# recommendations_box %>
+      <%#= erb :'vouches/vouches_box', locals: {user_id: user[:_id]} %>  
       <% end %>
       <% if false %>
         <span class='num_views'><i class='fal fa-eye'></i> <%= num_views %> views </span>      
@@ -239,7 +240,7 @@
           <small style='color: black; font-style: italic'> <%= [user[:city],user[:state]].compact.join(', ') %></small>
         </div>
         <div>
-          <small style='color: black; font-style: italic'> <%= [user[:email], user[:contact]].compact.join(', ') %></small>
+          <small style='color: black; font-style: italic'> <%= [user[:email], user[:contact]].compact.join('<br> ') %></small>
         </div>
 
         <% if false && user[:ambassador] %>

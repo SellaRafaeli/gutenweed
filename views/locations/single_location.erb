@@ -46,10 +46,12 @@
         </select>        
       </div>
       
+      <% if false %>
       <div class='location_input'>
         <label> City </label>
         <%= erb :'/partials/select_state_city', locals: {city: loc[:city]} %>      
       </div>
+      <% end %>
 
       <div class='location_input'><label> Address </label> <input autocomplete="new-password" id=address_input name=address value="<%=loc[:address]%>"> </div>
 

@@ -3,7 +3,9 @@
   title2 = is_heb ? 'ממי קנית?' : 'Who did you buy from?'
   title3 = is_heb ? 'מה קנית, ואיך היה?' : '' || 'What did you buy and how was it?'
   placeholder = is_heb ? 'התייחס/י למחיר, איכות, שירות, וכל דבר אחר.' : 'Review price, quality, service, and anything else.'
-  self_post = seller == cu 
+  self_post = false # seller == cu 
+
+  title1 = 'Add Review'
 %>
 
 <style>
@@ -19,7 +21,7 @@
   <div class='submit_review_form'>    
 
     <form method=post action='/reviews/new' class="<%= rtl_if_heb %> <%= text_align_right_if_heb %> ">
-      <h5 style='margin:0'> <%= title1 %></h5>
+      <h6 style='margin:0'> <%= title1 %></h6>
       <input name=seller_id value="<%=user[:_id]%>" hidden />
       <% if locals[:seller] %>
       <input name=user_id value="<%=user[:_id]%>" hidden />
@@ -28,7 +30,7 @@
       <br/>
       <label> <%= title2 %> </label>
       <br/>
-      <input name=seller_name placeholder='@bob_marley2'/>
+      <input name=seller_name placeholder='@bob_marley2' />
       <br/>
       <br/>
  
@@ -36,7 +38,7 @@
       <label> <%= title3 %> </label>
       <br/>
       <!-- <textarea placeholder='Your review...' name=msg></textarea>   -->
-      <textarea class="<%= rtl_if_heb %> <%=text_align_right_if_heb%>" style='height:50px' placeholder='<%=placeholder%>' name=text required ></textarea>
+      <textarea class="<%= rtl_if_heb %> <%=text_align_right_if_heb%>" style='height:50px; font-size: 14px;' placeholder='<%=placeholder%>' name=text required ></textarea>
 
       <br/>
       <br/>

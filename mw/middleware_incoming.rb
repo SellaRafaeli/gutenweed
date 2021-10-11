@@ -64,13 +64,16 @@ end
 
 before do
   session[:country] = pr[:country] if pr[:country]
+
   #require_user unless is_open_route       
   @time_started_request = Time.now    
   # flash.message= ("session ref is "+session[:ref].to_s)
   validate_params
 
   store_external_ref
-  $users.update_id(cuid,{active_at: Time.now})
+  data = {active_at: Time.now}
+  data[:pid] = pr[:pid] if pr[:pid].present?
+  $users.update_id(cuid,data)
 end
 
 get '/headers' do
