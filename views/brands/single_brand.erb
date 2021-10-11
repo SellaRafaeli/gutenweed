@@ -124,7 +124,7 @@ rating = reviews.map {|r| r[:rating].to_i }.avg rescue 0
       <div class='single_brand_column_b'>
         <% if user[:img_url].present? %><img class='brand_img' src='<%=user[:img_url]%>' /><% end %>
 
-        <% if locals[:idx] && locals[:idx] < 3 %>
+        <% if false && locals[:idx] && locals[:idx] < 3 %>
           <img class='place_ribbon' src='/img/search/num<%=idx+1%>.png' />
         <% end %>
         <a href='<%=user_link(user)%>' class='simple_link brand_handle'><%=user[:name]%> <%= "<b class='nowcast_color'><i class='fas fa-badge-check'></i> (pro)</b>" if is_pro(user) %></a>          

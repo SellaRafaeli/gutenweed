@@ -8,7 +8,7 @@
   msg = "Cannabis Delivery"  
 
   #bp
-  trying_just_chat_white_telegrass = true  
+  trying_just_chat_white_telegrass = false  
   # trying_just_chat_white_telegrass = false
 
   brands = []
@@ -45,6 +45,16 @@
   font-size: 14px;
   text-align: center;
   display: inline-block;
+}
+.no_brands_found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgreen;
+  zcolor: white;
+  font-size: 20px;
+  zheight: 200px;
+  padding: 20px;
 }
 </style>
   <% if false %>
@@ -85,7 +95,7 @@
           <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
           
         
-      <div class='chat_and_brands' style='display: flex; flex-wrap: wrap'>
+      <div class='chat_and_brands' style='display: flex; flex-wrap: wrap; flex-direction: column-reverse;'>
         <div class='flex1'>
           <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
         </div>
@@ -100,9 +110,7 @@
             <% end %>
           <% else %>
             <div class='no_brands_found'>
-              No results found. Be the first!
-              <br/>
-              <br/>      
+              <a class=simple_link href='/signup?type=seller'>advertise your cannabis here.</a>
             </div>  
           <% end %>  
           </div>  
