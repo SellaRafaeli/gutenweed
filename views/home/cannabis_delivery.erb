@@ -38,6 +38,7 @@
 }
 .hero_texts {
   text-align: left;
+  display: flex;
   padding-left: 150px;
 }
 .main_delivery_img {
@@ -66,6 +67,12 @@
   height: 40px;
 }
 
+.homepage_clip {
+  display: inline-block;
+  margin-left: 100px;
+  margin-top: 50px;
+}
+
 @media (max-width: 800px) {
   .home_cannabis_delivery {
     flex-direction: column-reverse;
@@ -77,6 +84,7 @@
   }
   .hero_texts {
     padding: 0 15px;
+    display: block;
   }
   .main_img_wrapper {
     display: block;
@@ -92,8 +100,12 @@
   form {
     text-align: center;
   }
+  .homepage_clip {
+    display: block;
+    margin: auto;
+    text-align: center;
+  }
 }
-
 </style>
 
 <%
@@ -112,33 +124,41 @@
         text1 = "Cannabis for You."
         text2 = "Order a local delivery from top dispensaries."
         if seller_mode
-          text1 = 'An online store that converts.'
-          text2 = 'Grow your market by and get more orders.'
+          text1 = 'Sell cannabis on good-weed.com.'
+          text2 = 'Launch an online shop that converts. Get more orders.'
         end
       %>
-      <h2 class='lp_h2'><%= text1 %></h2> 
-      <h3 style='font-size: 20px'><%= text2 %> </h3> 
-    
 
-      <span class='main_img_wrapper' style='zwidth:100%;'>
-        <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
-      </span>    
+      <div class='texts_and_search'>
+        <h2 class='lp_h2'><%= text1 %></h2> 
+        <h3 style='font-size: 20px'><%= text2 %> </h3> 
+      
+        <span class='main_img_wrapper' style='zwidth:100%;'>
+          <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
+        </span>    
 
-      <div class='links_city_selector_container main_search_wrapper'>
-        <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
-        <img src='/img/icons/icon.png' class='search_icon'>
-        <form method=get action='/zip' onsubmit="return false">
-          <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
+        <div class='links_city_selector_container main_search_wrapper'>
+          <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+          <img src='/img/icons/icon.png' class='search_icon'>
+          <form method=get action='/zip' onsubmit="return false">
+            <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
 
-          <% if seller_mode %>
-          <a href='/signup?type=seller' class='btn btn-primary btn-raised'> Open Your Shop </a>
-          <% else %>
-          <%= erb :'/home/address_selector', locals: {cb: 'gotozip'} %>
-          <button class='btn btn-primary btn-raised'> Let's Go </button>
-          <% end %>
-          
+            <% if seller_mode %>
+            <a href='/signup?type=seller' class='btn btn-primary btn-raised'> Open Your Shop </a>
+            <% else %>
+            <%= erb :'/home/address_selector', locals: {cb: 'gotozip'} %>
+            <button class='btn btn-primary btn-raised'> Let's Go </button>
+            <% end %>
+            
 
-        </form>
+          </form>
+        </div>
+
+      </div>
+      <div class='homepage_clip'>
+        <video width="320" height="240" controls>
+          <source src="https://i.imgur.com/RVGUIFI.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
     <h3 style='font-size:16px; display: block; margin-top: 0'></h3>
