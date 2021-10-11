@@ -72,7 +72,7 @@ before do
 
   store_external_ref
   data = {active_at: Time.now}
-  data[:pid] = pr[:pid] if pr[:pid].present?
+  data[:af_id] = pr[:af_id] if pr[:af_id].present?
   $users.update_id(cuid,data)
 end
 
