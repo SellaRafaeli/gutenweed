@@ -131,7 +131,7 @@
           <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
 
           <% if seller_mode %>
-          <a href='/signup?type=seller' class='btn btn-primary btn-raised'> Try Now </a>
+          <a href='/signup?type=seller' class='btn btn-primary btn-raised'> Open Your Shop </a>
           <% else %>
           <%= erb :'/home/address_selector', locals: {cb: 'gotozip'} %>
           <button class='btn btn-primary btn-raised'> Let's Go </button>
