@@ -30,7 +30,7 @@
 }
 </style>
 <div class='just_chats_wrapper'>
-  <!-- <h1> or, chat </h1> -->
+  <h1> Top Markets </h1>
   <div class='rooms_list'>
     <% rooms.each do |room| %>
     <a class='single_room zbtn btn-primary btn-raised' href='/zip/<%=room[:zip]%>'>
@@ -38,8 +38,5 @@
       <%=room[:label] %> 
     </a>    
     <% end %>
-  </a>
-  <br/>
-  <br/>
-  <br/>
+  </div>
 </div>
