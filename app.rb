@@ -184,7 +184,7 @@ get '/zip/:code' do
 		end
 	else 	
 		flash.message = 'No results found for zip code '+code
-		redirect back
+		redirect '/'
 	end
 end
 

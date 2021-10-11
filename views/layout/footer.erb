@@ -1,6 +1,7 @@
 <style>
   .container-f{
     width:100%
+
     display:flex;
     height:auto;
     padding-top:25px;
@@ -8,6 +9,7 @@
     padding-right:250px;
     padding-left:250px;
     background-color:#2B6356;
+    border-top:1px solid white;
   }
   .row-i{
     display:inline-grid;
@@ -304,10 +306,12 @@
 
 <div class="container-f">
 
+  <% if false %>
   <div class="img-logo"  href='/'>
     <img  src='<%=logo%>' style='height:30px'/>
     <div class="sub-msg">cannabis deliveries.</div>
   </div>
+  <% end %>
 
   <div class="row-i">
     <a  href='/about'>About</a>

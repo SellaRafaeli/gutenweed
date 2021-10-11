@@ -22,8 +22,8 @@
     brands = []
   end
   # brands = brands[0..1]
-  
-  reviews = $reviews.get_many(seller_id: brands)
+  brands = brands[0..2]
+  reviews = $reviews.get_many(seller_id: {'$in': brands.mapo(:_id)})
 
   #bp
   x=1

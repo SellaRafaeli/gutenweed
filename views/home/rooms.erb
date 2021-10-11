@@ -1,0 +1,44 @@
+<%
+  rooms = [
+    {label: 'nyc', zip: 10009},
+    {label: 'sf', zip: 94104},
+    {label: 'la', zip: 90210},
+    {label: 'seattle', zip: 98101},
+    {label: 'portland', zip: 97035},
+    {label: 'chicago', zip: 62287},
+    {label: 'bend', zip: 97701},
+    {label: 'boulder', zip: 80301},
+    {label: 'denver', zip: 80014},    
+  ].shuffle
+%>
+
+<style>
+.just_chats_wrapper {
+  max-width: 800px;
+  margin: auto;
+}
+.single_room {
+  display: inline-block;
+  padding: 20px;
+  width: 200px;
+  color: white;
+  text-align: left;
+}
+.single_room:hover {
+  color: lightgreen;
+}
+</style>
+<div class='just_chats_wrapper'>
+  <!-- <h1> or, chat </h1> -->
+  <div class='rooms_list'>
+    <% rooms.each do |room| %>
+    <a class='single_room zbtn btn-primary btn-raised' href='/zip/<%=room[:zip]%>'>
+      <i class='fal fa-leaf-maple' style='padding-right: 5px'></i>
+      <%=room[:label] %> 
+    </a>    
+    <% end %>
+  </a>
+  <br/>
+  <br/>
+  <br/>
+</div>

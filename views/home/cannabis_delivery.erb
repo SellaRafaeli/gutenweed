@@ -1,33 +1,20 @@
 <style>
-.main_delivery_img {
-  flex:1;
-  max-width: 100%;
-  max-height: 500px;
-  zborder-radius: 0 100px 0 100px;
-}
 .hcd_left {
   text-align: left;
   
   flex: 1;
+  display: none;
 }
 .hcd_right {
   flex: 1;
-  margin-left: 50px;    
+  zmargin-left: 50px; 
+  background-color: #386256;
+  color: white;    
 }
 .home_cannabis_delivery {
   display: flex;
   zmax-width: 800px;
   margin: auto;
-}
-@media (max-width: 8000px) {
-  .home_cannabis_delivery {
-    flex-direction: column-reverse;
-  }
-  .hcd_right {
-    display: block;
-    text-align: center;
-    margin-left: 0px;    
-  }
 }
 
 .lp_h1 {
@@ -36,45 +23,108 @@
   text-align: center;
 }
 .lp_h2 {
-  font-size: 22px;
+  font-size: 42px;
   
   font-weight: bold;
   width: 100%;
 }
 
 .main_img_wrapper {
-  width: 100%;
   background-color: #386256;
   display: inline-block;
-  width: 100%;
+  
   text-align: center;
 }
+.hero_texts {
+  text-align: left;
+  padding-left: 150px;
+}
+.main_delivery_img {
+  flex: 1;
+  width: 220px;
+  /* margin-right: 20px; */
+  zmax-height: 500px;
+  position: relative;
+  top: 10px;
+  right: 60px;
+}
+
+.main_search_wrapper {
+  background-color: white;
+  border-radius: 70px;
+  padding: 5px 30px;
+}
+.main_search_wrapper input {
+  outline: none;
+  border: none;
+}
+.main_search_wrapper form {
+  display: inline-block;
+}
+.search_icon {
+  height: 40px;
+}
+
+@media (max-width: 800px) {
+  .home_cannabis_delivery {
+    flex-direction: column-reverse;
+  }
+  .hcd_right {
+    display: block;
+    text-align: center;
+    margin-left: 0px;    
+  }
+  .hero_texts {
+    padding: 0 15px;
+  }
+  .main_img_wrapper {
+    display: block;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .main_search_wrapper {
+    margin-top: 20px;
+  }
+  .search_icon {
+    display: none;
+  }
+  form {
+    text-align: center;
+  }
+}
+
 </style>
 
 <div class='home_cannabis_delivery'>
+
   <div class='hcd_left'>
-    <!-- <h1> Cannabis Delivery </h1> -->
-    <span class='main_img_wrapper' style='width:100%;'>
-      <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
-    </span>
-    <h1 class='lp_h1'> good-weed is the best way to buy and sell cannabis online.</h1>    
+    <!-- <h1> Cannabis Delivery </h1> -->    
   </div>
   
   <div class='hcd_right'>    
-    <h2 class='lp_h2'>Cannabis For You.</h2> 
-    <h3 style='font-size: 20px'>Your local cannabis marketplace.</h3> 
-    <div class='links_city_selector_container'>
-      <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
-      <form method=get action='/zip' onsubmit="return false">
-        <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
+    <div class='hero_texts'>
+      <h2 class='lp_h2'>Cannabis For You.</h2> 
+      <h3 style='font-size: 20px'>Your local cannabis marketplace.</h3> 
+    
 
-        <%= erb :'/home/address_selector', locals: {cb: 'gotozip'} %>
-        <button class='btn btn-primary btn-raised'> Let's Go </button>
+      <span class='main_img_wrapper' style='zwidth:100%;'>
+        <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
+      </span>    
 
-      </form>
+      <div class='links_city_selector_container main_search_wrapper'>
+        <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
+        <img src='/img/icons/icon.png' class='search_icon'>
+        <form method=get action='/zip' onsubmit="return false">
+          <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
+
+          <%= erb :'/home/address_selector', locals: {cb: 'gotozip'} %>
+          <button class='btn btn-primary btn-raised'> Let's Go </button>
+
+        </form>
+      </div>
     </div>
     <h3 style='font-size:16px; display: block; margin-top: 0'></h3>
-    <%= erb :'home/just_chats' %>        
+    <%= erb :'home/rooms' %>        
     
   </div>
 </div>
