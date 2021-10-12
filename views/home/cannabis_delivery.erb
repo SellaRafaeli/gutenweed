@@ -124,8 +124,8 @@
         text1 = "Cannabis for You."
         text2 = "Order a local delivery from top dispensaries."
         if seller_mode
-          text1 = 'Sell cannabis on good-weed.com.'
-          text2 = 'Launch an online shop that converts. Get more orders.'
+          text1 = 'Your online cannabis shop.'
+          text2 = 'Sell cannabis on good-weed.com. Get orders via email and SMS.'
         end
       %>
 
@@ -155,11 +155,13 @@
         </div>
 
       </div>
+      <% if pr[:type]=='seller' %>
       <div class='homepage_clip'>
         <video width="320" height="240" controls>
           <source src="https://i.imgur.com/RVGUIFI.mp4" type="video/mp4">
         </video>
       </div>
+      <% end %>
     </div>
     <h3 style='font-size:16px; display: block; margin-top: 0'></h3>
     

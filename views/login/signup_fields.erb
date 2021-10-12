@@ -95,6 +95,13 @@
     <% else %>
     <% end %>
     
+    <% if pr[:type] == 'seller' %>
+    <div>
+      <label class=w200>Zip codes you deliver </label> 
+      <input class=input1 name=zipcodes placeholder='90210,94103' required value="<%=90210 if !$prod%>">
+    </div>
+    <% end %>
+
     <% if pr[:enable_token] %>
     <br/>
     <label class='w200'> Your token </label>

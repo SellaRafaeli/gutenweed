@@ -132,7 +132,7 @@ end
 def verify_signup_data
 	if pr[:name] == 'test' || (pr[:email] == 'test')
 		num        = nice_id
-		pr[:name]  = "Name "+num
+		pr[:name]  = Faker::Name.name #{}"Name "+num
 		pr[:email] = "email_#{num}@domain.com"
 	end
 
