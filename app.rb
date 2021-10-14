@@ -173,7 +173,7 @@ get '/zip/:code' do
 	code = pr[:zipcode] = pr[:code]
 	code = 90210 if code == 123
 	data = ZipCodes.identify(code)
-	bp
+	
 	if data
 		if use_redirect_here = false 
 			url  = URI.escape "/dispensaries/#{data[:state_name]}/#{data[:city]}?zipcode=#{code}"

@@ -1,6 +1,18 @@
 Management Dashboard: 
 https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/edit?usp=sharing
 
+Legal:
+> https://cannabis.ny.gov/
+
+> Individuals may hold up to 80 grams 
+> Social Equity laws: https://cannabis.ny.gov/system/files/documents/2021/09/cannabis-management-fact-sheet-9-21-social-equity-04_0.pdf
+> Licenses: TBD. https://cannabis.ny.gov/licensing
+>> License types: https://cannabis.ny.gov/system/files/documents/2021/09/cannabis-management-fact-sheet-9-21-adult-use-license-04_0.pdf
+
+
+
+Our Clients - people who can receive and handle deliveries. iHeartJane takes 1$ per order. 
+
 TODOs
 - create XML sitemap
 

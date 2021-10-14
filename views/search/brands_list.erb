@@ -96,9 +96,12 @@
           
         
       <div class='chat_and_brands' style='display: flex; flex-wrap: wrap; flex-direction: column-reverse;'>
+        <% if false %>
         <div class='flex1'>
           <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
         </div>
+        <% end %>
+        
         <% if !trying_just_chat_white_telegrass %>
           <% if brands.any? %>
           <div class='flex1'>
