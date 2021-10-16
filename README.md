@@ -9,7 +9,8 @@ Legal:
 > Licenses: TBD. https://cannabis.ny.gov/licensing
 >> License types: https://cannabis.ny.gov/system/files/documents/2021/09/cannabis-management-fact-sheet-9-21-adult-use-license-04_0.pdf
 
-
+California
+* Distributor license: https://bcc.ca.gov/about_us/documents/19-256_dist_factsheet.pdf
 
 Our Clients - people who can receive and handle deliveries. iHeartJane takes 1$ per order. 
 
