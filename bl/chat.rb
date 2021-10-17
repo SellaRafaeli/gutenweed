@@ -50,15 +50,15 @@ def clear_cast_chat(cast, until_time)
 	$chat.update_many({cast_id: cast[:_id]}, {'$set': {status: CHAT_MSG_CLEARED, cleared_at: Time.now}} )
 end
 
-get '/chat' do 
-	require_user
+# get '/chat' do 
+# 	require_user
 
-	if pr[:ouid] && (user = $users.get(pr[:ouid]))
-		ensure_chat_exists(cuid, user[:_id]) 
-	end
+# 	if pr[:ouid] && (user = $users.get(pr[:ouid]))
+# 		ensure_chat_exists(cuid, user[:_id]) 
+# 	end
 		
-	erb :'/chat/home', default_layout
-end
+# 	erb :'/chat/home', default_layout
+# end
 
 def get_unread_chats_ouids(user_id, opts = {})
 	chats = get_my_chats(user_id, opts)

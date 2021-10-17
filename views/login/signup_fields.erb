@@ -71,8 +71,9 @@
     <div>
       <label class='w200'> I am a </label>
       <select class=input1 name=type>        
-        <option value='seller'> Dispensary </option>
-        <option value='buyer' <%="selected" if pr[:type]=="buyer" %>> Person </option>
+        <option value='seller'> Cultivator </option>
+        <option value='buyer'> Dispensary </option>
+        <option value='buyer' <%="selected" if pr[:type]=="buyer" %>> Distributor </option>
 
         <!-- <option value='seller'> Delivery Service </option>
         <option value='seller'> Brand </option>
@@ -95,7 +96,7 @@
     <% else %>
     <% end %>
     
-    <% if pr[:type] == 'seller' %>
+    <% if false && pr[:type] == 'seller' %>
     <div>
       <label class=w200>Zip codes you deliver </label> 
       <input class=input1 name=zipcodes placeholder='90210,94103' required value="<%=90210 if !$prod%>">

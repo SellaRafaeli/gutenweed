@@ -284,7 +284,11 @@ presenceChannel.bind_global(showMembers);
 </div>
   
 <div class=''>  
-  <h4> Chat (<%= pr[:code]%>)</h4>
+  <%
+    chatroom_name = pr[:code] ? "(#{pr[:code]})" : ''
+  %>
+  
+  <h4> Chat <%= chatroom_name %> </h4>
   <% if locals[:promote_last_link] %>
     <a target=_blank class='lastLink'></a>
   <% end %>
@@ -327,7 +331,7 @@ presenceChannel.bind_global(showMembers);
     <% end %>
   </div>  
 
-  <div style='margin-bottom: 100px'>
+  <div style='margin-bottom: 100px; display: none'>
     <div style='font-size: 80%;margin-bottom: 10px'>
       <b>other rooms:</b>
       <form style='display:inline-block;' method=get onsubmit='document.location="/chat/"+$("#room_name").val(); return false'>
