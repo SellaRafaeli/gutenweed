@@ -72,8 +72,10 @@
       <label class='w200'> I am a </label>
       <select class=input1 name=type>        
         <option value='seller'> Cultivator </option>
-        <option value='buyer'> Dispensary </option>
+        <option value='seller'> Dispensary </option>
         <option value='buyer' <%="selected" if pr[:type]=="buyer" %>> Distributor </option>
+        <option value='other' <%="selected" if pr[:type]=="buyer" %>> Lawyer </option>
+        <option value='other' <%="selected" if pr[:type]=="buyer" %>> Consultant </option>
 
         <!-- <option value='seller'> Delivery Service </option>
         <option value='seller'> Brand </option>
