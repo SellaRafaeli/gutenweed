@@ -286,9 +286,14 @@ presenceChannel.bind_global(showMembers);
 <div class=''>  
   <%
     chatroom_name = pr[:code] ? "(#{pr[:code]})" : ''
+
   %>
+  <% if locals[:title] %>
+    <h4> <%= locals[:title] %> </h4>
+  <% else %>
+    <h4> Chat <%= chatroom_name %> </h4>
+  <% end %>
   
-  <h4> Chat <%= chatroom_name %> </h4>
   <% if locals[:promote_last_link] %>
     <a target=_blank class='lastLink'></a>
   <% end %>

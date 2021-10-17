@@ -171,6 +171,14 @@ get '/chat' do
 	erb :'home/home_chat', default_layout	
 end
 
+get '/vip' do 
+	if cu && cu[:vip]
+		erb :'home/home_chat', default_layout.merge(locals: {code: 'vip'})
+	else 
+		erb :'home/contact_us_for_vip', default_layout
+	end
+end
+
 get '/zip' do
 	redirect '/zip/'+pr[:zip]
 end
