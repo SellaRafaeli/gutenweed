@@ -1,0 +1,13 @@
+<%
+  id = 'home'
+%>
+<style>
+.home_chat_container {
+  max-width: 800px;
+  margin: auto;
+}
+</style>
+
+<div class='home_chat_container'>
+<%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
+</div>
