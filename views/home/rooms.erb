@@ -9,7 +9,7 @@
     {label: 'bend', zip: 97702},
     {label: 'boulder', zip: 80301},
     {label: 'denver', zip: 80014},    
-  ].shuffle
+  ].sort_by {|z| z[:label]}
 %>
 
 <style>
