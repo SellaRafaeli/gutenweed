@@ -1,5 +1,5 @@
 <%
-  placeholder = 'Add message'
+  placeholder = 'Post'
   cast_id     = cast[:_id]  
 %>
 
@@ -23,7 +23,7 @@
   max-height: 550px;
   /*margin-bottom: 20px;*/
   overflow: scroll;
-  background-color: whitesmoke;
+  zbackground-color: whitesmoke;
   padding: 20px;
   max-height: 700px;
 }
@@ -48,6 +48,9 @@
 .chat_msg {
   margin-bottom: 0px;
   font-size: 14px;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: whitesmoke;
 }
 .chat_user_img img {
   height: 30px;
@@ -285,15 +288,15 @@ presenceChannel.bind_global(showMembers);
   
 <div class=''>  
   <%
-    chatroom_name = pr[:code] ? "(#{pr[:code]})" : ''
+    chatroom_name = pr[:code] ? "#{pr[:code]}" : ''
 
   %>
   <% if locals[:title] %>
     <h4> <%= locals[:title] %> </h4>
-  <% else %>
-    <h4> Chat <%= chatroom_name %> </h4>
+  <% elsif chatroom_name.present? %>
+    <h4> <%= chatroom_name %> </h4>
   <% end %>
-  
+
   <% if locals[:promote_last_link] %>
     <a target=_blank class='lastLink'></a>
   <% end %>
@@ -316,9 +319,11 @@ presenceChannel.bind_global(showMembers);
 
   <div>
     <% if true || cu  %>
-    <form onsubmit="submitChatText(); return false" style='margin-top:10px'>
-      <input class='' style='width: 400px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
-      <button class='btn btn-raised'> send </button>
+    <form onsubmit="submitChatText(); return false" style='margin-top:10px; background-color: peachpuff;
+    padding: 20px;
+    margin: 20px;'>
+      <input class='' style='width: 400px; font-size: 20px; padding: 10px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
+      <button class='btn btn-primary btn-raised'> post </button>
     
 
       <% if is_admin %>

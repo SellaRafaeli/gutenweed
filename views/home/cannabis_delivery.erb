@@ -24,7 +24,7 @@
   text-align: center;
 }
 .lp_h2 {
-  font-size: 42px;
+  font-size: 32px;
   
   font-weight: bold;
   width: 100%;
@@ -32,14 +32,16 @@
 
 .main_img_wrapper {
   background-color: #386256;
-  display: inline-block;
+  zdisplay: inline-block;
   
   text-align: center;
 }
 .hero_texts {
-  text-align: left;
+  /*text-align: left;
   display: flex;
-  padding-left: 150px;
+  padding-left: 150px;*/
+      text-align: center;
+    margin-top: 50px;
 }
 .main_delivery_img {
   flex: 1;
@@ -48,7 +50,7 @@
   zmax-height: 500px;
   position: relative;
   top: 10px;
-  right: 60px;
+  right: 40px;
 }
 
 .main_search_wrapper {
@@ -131,16 +133,17 @@
           text1 = 'Your online cannabis shop.'
           text2 = 'Sell cannabis on good-weed.com. Get orders via email and SMS.'
         end
+
+        text1 = 'good-weed.com'
       %>
 
       <div class='texts_and_search'>
-        <h2 class='lp_h2'><%= text1 %></h2> 
-        <h3 style='font-size: 24px'><%= text2 %> </h3> 
-      
-        <span class='main_img_wrapper' style='zwidth:100%;'>
-          <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
-        </span>    
-
+        
+          <h2 class='lp_h2'><%= text1 %></h2> 
+        <% if show_texts = false %>
+          <h3 style='font-size: 24px'><%= text2 %> </h3> 
+        <% end %>
+              
         <div class='links_city_selector_container main_search_wrapper'>
           <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
           <img src='/img/icons/icon.png' class='search_icon'>
@@ -157,6 +160,10 @@
 
           </form>
         </div>
+
+        <div class='main_img_wrapper' style='zwidth:100%;'>
+          <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
+        </div>    
 
       </div>
       <% if pr[:type]=='seller' %>
