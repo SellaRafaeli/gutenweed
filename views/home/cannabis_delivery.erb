@@ -144,11 +144,13 @@
         <% if show_texts = false %>
           <h3 style='font-size: 24px'><%= text2 %> </h3> 
         <% end %>
+
+        <%= erb :'home/rooms' %>     
               
         <div class='links_city_selector_container main_search_wrapper'>
           <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
           <img src='/img/icons/icon.png' class='search_icon'>
-          <form method=get action='/zip' onsubmit="return false">
+          <form method=get action='/zip' onsubmit="trySubmitZipCode()">
             <%#= erb :'/partials/select_area2', locals: {searchOnChange: true, zip_search: true, no_state: true, no_city: true, no_title: true} %>    
 
             <% if seller_mode %>
@@ -161,8 +163,6 @@
 
           </form>
         </div>
-
-        <%= erb :'home/rooms' %>        
 
         <div class='main_img_wrapper' style='zwidth:100%;'>
           <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
@@ -190,6 +190,13 @@
 </div>
 
 <script>
+function trySubmitZipCode(el) {
+  var val = parseInt($(el).find('input').val());
+  if (val.length == 5) {
+    document.location = '/chat/'+val;
+  }
+}
+
 function gotozip(place) {
   console.log('going to zip', place);
   
