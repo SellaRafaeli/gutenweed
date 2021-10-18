@@ -8,7 +8,7 @@
   msg = "Cannabis Delivery"  
 
   #bp
-  trying_just_chat_white_telegrass = false  
+  trying_just_chat_white_telegrass = true  
   # trying_just_chat_white_telegrass = false
 
   brands = []
@@ -16,7 +16,7 @@
     brands = $users.get_many({zipcodes: pr[:zipcode].to_i}, {limit: 30}).to_a
     if city.present?
       brands += $users.all({city: city, state: state}, {limit: 10})
-      brands += $users.all({room: city},{limit: 10}).to_a
+      # brands += $users.all({room: city},{limit: 10}).to_a
     end
 
     
@@ -115,7 +115,7 @@
             <% end %>
           <% else %>
             <div class='no_brands_found'>
-              <a class=simple_link href='/signup?type=seller&room=<%=id%>'>advertise your cannabis here.</a>
+              <a class=simple_link href='/signup?type=seller&room=<%=id%>'>Sign up to advertise your cannabis here.</a>
             </div>  
           <% end %>  
           </div>  
