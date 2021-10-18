@@ -1,8 +1,8 @@
 <%
   rooms = [
-    {label: 'new york city', zip: 10009},
+    {label: 'new-york-city', zip: 10009},
     #{label: 'sf', zip: 94104},
-    {label: 'los angeles', zip: 90210},
+    {label: 'los-angeles', zip: 90210},
     # {label: 'seattle', zip: 98101},
     # {label: 'portland', zip: 97035},
     # {label: 'chicago', zip: 60610},
@@ -37,7 +37,7 @@
     <% rooms.each do |room| %>
     <a class='single_room btn btn-inverse btn-primary ct' href='/chat/<%=room[:label]%>' style='text-align: center;'>
       <i class='fal fa-leaf-maple' style='padding-right: 5px'></i>
-      <%=room[:label] %> 
+      <%=room[:label].gsub('-',' ') %> 
     </a>    
     <% end %>
   </div>
