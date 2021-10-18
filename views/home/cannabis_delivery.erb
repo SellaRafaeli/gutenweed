@@ -42,6 +42,7 @@
   padding-left: 150px;*/
       text-align: center;
     margin-top: 50px;
+    padding-bottom: 150px;
 }
 .main_delivery_img {
   flex: 1;
@@ -166,7 +167,7 @@
         </div>    
 
       </div>
-      <% if pr[:type]=='seller' %>
+      <% if false && pr[:type]=='seller' %>
       <div class='homepage_clip'>
         <video width="320" height="240" controls>
           <source src="https://i.imgur.com/RVGUIFI.mp4" type="video/mp4">
@@ -176,12 +177,11 @@
     </div>
     <h3 style='font-size:16px; display: block; margin-top: 0'></h3>
     
-    <%= erb :'home/benefits_top' %>
-    <%= erb :'home/rooms' %>        
-    <%= erb :'home/benefits_bottom' %>
-
-
-    
+    <% if false %>
+      <%= erb :'home/benefits_top' %>
+      <%= erb :'home/rooms' %>        
+      <%= erb :'home/benefits_bottom' %>
+    <% end %>
   </div>
 </div>
 
