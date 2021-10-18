@@ -25,7 +25,7 @@
   overflow: scroll;
   zbackground-color: whitesmoke;
   padding: 20px;
-  zmax-height: 700px;
+  max-height: 700px;
 }
 .chat_date {
   float: right;
@@ -292,9 +292,9 @@ presenceChannel.bind_global(showMembers);
 
   %>
   <% if locals[:title] %>
-    <h4> <%= locals[:title] %> </h4>
+    <h4> <%= locals[:title].titleize %> </h4>
   <% elsif chatroom_name.present? %>
-    <h4> <%= chatroom_name %> </h4>
+    <h4> <%= chatroom_name.titleize %> </h4>
   <% end %>
 
   <% if locals[:promote_last_link] %>

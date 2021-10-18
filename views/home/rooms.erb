@@ -2,7 +2,7 @@
   rooms = [
     {label: 'nyc', zip: 10009},
     {label: 'sf', zip: 94104},
-    {label: 'la', zip: 90210},
+    # {label: 'la', zip: 90210},
     {label: 'seattle', zip: 98101},
     {label: 'portland', zip: 97035},
     {label: 'chicago', zip: 60610},
@@ -15,8 +15,8 @@
 <style>
 .just_chats_wrapper {
   max-width: 1000px;
-  margin: auto;
-  margin-top: 60px;
+  zmargin: auto;
+  margin: 30px auto;
 }
 .single_room {
   display: inline-block;
@@ -30,10 +30,9 @@
 }
 </style>
 <div class='just_chats_wrapper'>
-  <h1> Top Markets </h1>
   <div class='rooms_list'>
     <% rooms.each do |room| %>
-    <a class='single_room zbtn btn-primary btn-raised' href='/zip/<%=room[:zip]%>'>
+    <a class='single_room btn btn-inverse btn-main zbtn-raised ct' href='/chat/<%=room[:label]%>' style='text-align: center'>
       <i class='fal fa-leaf-maple' style='padding-right: 5px'></i>
       <%=room[:label] %> 
     </a>    

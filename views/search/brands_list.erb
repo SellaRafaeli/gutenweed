@@ -84,9 +84,9 @@
         <% else %>
           <div class=ct>
             <h1 class='main_h1'> 
-              Cannabis in <%= pr[:city] %>, <%= @chosen_state %>: 
+              Cannabis in <%= pr[:city].titleize %><!-- , <%= @chosen_state %>:  -->
             </h1> 
-            <h2 class='main_h1'> delivery, top dispensaries, recommendations </h2>    
+            <h2 class='main_h1' style='display: none'> delivery, top dispensaries, recommendations </h2>    
           </div>
         <% end %>
       </div>
