@@ -15,14 +15,16 @@
   if !trying_just_chat_white_telegrass
     brands = $users.get_many({zipcodes: pr[:zipcode].to_i}, {limit: 30}).to_a
     if city.present?
-    brands += $users.all({city: city, state: state}, {limit: 10})
-  end
+      brands += $users.all({city: city, state: state}, {limit: 10})
+      brands += $users.all({room: city},{limit: 10}).to_a
+    end
 
+    
   else 
     brands = []
   end
-  # brands = brands[0..1]
-  brands = brands[0..2]
+  brands = brands[0..1]
+  # brands = brands[0..2]
   reviews = $reviews.get_many(seller_id: {'$in': brands.mapo(:_id)})
 
   #bp
@@ -95,7 +97,7 @@
           <%#= erb :'/brands/facet_filter', locals: {brands: brands} %>
           
         
-      <div class='chat_and_brands' style='display: flex; flex-wrap: wrap; flex-direction: column-reverse; flex-direction: column'>
+      <div class='chat_and_brands' style='display: flex; flex-wrap: wrap; flex-direction: column-reverse; flex-direction: column-reverse'>
         <% if true %>
         <div class='flex1'>
           <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
@@ -106,14 +108,14 @@
           <% if brands.any? %>
           <div class='flex1'>
             <%= erb :'/brands/subtype_filter', locals: {brands: brands} %>
-            <h4 style='zmargin-left: 10px'> Sponsors </h4>
+            <h4 style='zmargin-left: 10px'> Recommended </h4>
             <% brands.each_with_index do |user, idx| %>
               <% brand_reviews = reviews.select {|rev| rev[:seller_id] == user[:_id] } %>
               <%= erb :'/brands/single_brand', locals: {user: user, idx: idx, reviews: brand_reviews} %>
             <% end %>
           <% else %>
             <div class='no_brands_found'>
-              <a class=simple_link href='/signup?type=seller'>advertise your cannabis here.</a>
+              <a class=simple_link href='/signup?type=seller&room=<%=id%>'>advertise your cannabis here.</a>
             </div>  
           <% end %>  
           </div>  

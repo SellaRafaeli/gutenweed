@@ -29,7 +29,7 @@ USER_KEYS = ["email",  "name", "handle", "img_url", "timezone",
 	 'license_text', 'delivery_area', 'active', 'contact',
 	 'address','city', 'state', 
 	 'website',
-	 'shipping', 'zipcodes', 'ambassador', 'subtype'] + SOCIAL_NETWORKS + FACETS.mapo(:key)
+	 'shipping', 'zipcodes', 'ambassador', 'subtype', 'room'] + SOCIAL_NETWORKS + FACETS.mapo(:key)
 
 #DEFAULT_IMG = DEFAULT_PIC = '/img/profile.png'
 DEFAULT_IMG = DEFAULT_PIC = '/img/leaf.svg'
@@ -176,6 +176,8 @@ def add_user
 	email    = pr[:email].to_s.downcase	
 	password = pr[:password].to_s.downcase
 	name     = pr[:name].to_s.downcase
+	room     = pr[:room].to_s.downcase
+
 	# state    = pr[:state] || 'NY'
 	timezone = (pr[:timezone] || 0).to_i
 	
@@ -191,6 +193,8 @@ def add_user
 	data[:state]    = pr[:state]
 	data[:shipping] = pr[:shipping]
 	data[:zipcode]  = pr[:zipcode]
+	data[:room]     = pr[:room]
+	
 	u = user = $users.add(data)
 
 
@@ -201,11 +205,15 @@ def add_user
 	if pr[:ajax] 
 		{msg: "signed up"}
 	else 
-		flash.message = "Welcome to good-weed.com, the online cannabis marketplace."
+		flash.message = "Welcome to good-weed.com, the online cannabis marketplace. Please set up your profile."
 		if pr[:event_title] #signup and create event at once
 			redirect "/casts/create?event_title=#{pr[:event_title]}"
 		else 
-			redirect '/me'
+			if pr[:zroom]
+				redirect '/chat/room'
+			else 
+				redirect '/me'
+			end
 		end
 	end
 end
@@ -245,7 +253,7 @@ end
 post '/signup' do
 	verify_signup_data
 	res = add_user	
-	send_email('sella@good-weed.com', 'New user '+res.to_json, 'New user '+res.to_json) rescue nil
+	send_email('sella@good-weed.com', 'New user '+res.to_json, 'New user '+res.to_json) rescue nil	
 	res
 end
 
