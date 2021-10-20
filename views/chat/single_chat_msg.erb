@@ -1,8 +1,9 @@
-<div class='chat_msg' data-msg_id="<%=msg[:_id]%>" data-date="<%=msg[:created_at]%>">    
+<div class='chat_msg <%=msg[:type]%>' data-msg_id="<%=msg[:_id]%>" data-date="<%=msg[:created_at]%>">    
     <a target=blank href='/users/<%=msg[:user_id]%>' class='chat_name'>
       <span class='chat_user_img'><img src="<%=msg[:img_url]%>" /> </span>
       <span class='user_type'> <%=user_type_logo(msg[:type]) %>  </span>
       <span class='user_name'> <%=msg[:name]%> </span>
+      <span class='user_name'> (<%=msg[:type]%>)</span>
 
     </a> 
     <span class='chat_msg_content'><%= escape_html msg[:message] %> </span>
