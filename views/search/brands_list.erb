@@ -8,7 +8,7 @@
   msg = "Cannabis Delivery"  
 
   #bp
-  trying_just_chat_white_telegrass = false  
+  trying_just_chat_white_telegrass = true
   # trying_just_chat_white_telegrass = false
 
   brands = []
@@ -83,7 +83,7 @@
           <img src='/img/cannabis_delivery.jpg' style='width: 100px; flex: 1' />
           <h1 class='main_h1'> good weed, wherever it's legal. </h1> 
           <h2 class='main_h1'> Cannabis delivery, dispensaries, and top local brands. </h2>    
-        <% else %>
+        <% elsif false %>
           <div class=ct>
             <h1 class='main_h1'> 
               Cannabis in <%= pr[:city].titleize %><!-- , <%= @chosen_state %>:  -->
@@ -113,7 +113,7 @@
               <% brand_reviews = reviews.select {|rev| rev[:seller_id] == user[:_id] } %>
               <%= erb :'/brands/single_brand', locals: {user: user, idx: idx, reviews: brand_reviews} %>
             <% end %>
-          <% else %>
+          <% elsif false %>
             <div class='no_brands_found'>
               <a class=simple_link href='/signup?type=seller&room=<%=id%>'>Sign up to advertise your cannabis here.</a>
             </div>  

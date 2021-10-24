@@ -31,7 +31,7 @@
 <% if !chat_msgs.any? %>
 <div>No posts here yet.</div>
 <% end %>
-<% chat_msgs.each do |msg| %>
+<% chat_msgs.reverse.each do |msg| %>
 <%#= msg.to_json %>
   <%= erb :'chat/single_chat_msg', locals: {msg: msg} %>  
 <% end %>

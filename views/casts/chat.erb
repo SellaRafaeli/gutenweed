@@ -56,7 +56,7 @@
 
 .chat_msg.buyer {
   border:2px solid lightblue;
-  text-align: right;
+  ztext-align: right;
 }
 .chat_msg.seller {
   border:2px solid #386256;
@@ -319,19 +319,15 @@ presenceChannel.bind_global(showMembers);
     <div id="rtc_errors"></div>
   <% end %>
 
-  <div class='cast_chat'  style='max-height: 500px; overflow: scroll'>    
-    <%
-      locals = {cast_id: cast_id, cast: cast, chat_videos: chat_videos}
-      # locals[:msgs_since] = 3.hours.ago if !is_chat_cast(cast)
-    %>
-    <%= erb :'chat/chat_msgs', locals: locals %>
-  </div>
-
   <div>
     <% if true || cu  %>
     <form onsubmit="submitChatText(); return false" style='margin-top:10px; background-color: peachpuff;
     padding: 20px;
     margin: 20px;'>
+    <style>
+      .poster_name { font-weight: bold; display: block; font-size: 14px; margin-bottom: 10px }
+    </style>
+      <% if cu %><span class='poster_name'><%= (cu||{name: 'Post'})[:name] %>:</span><% end %>
       <input class='' style='width: 400px; font-size: 20px; padding: 10px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
       <button class='btn btn-primary btn-raised'> post </button>
     
@@ -349,7 +345,16 @@ presenceChannel.bind_global(showMembers);
     <% else %>
     <!-- <a href='/login' class='btn btn-primary btn-raised'>Login to Chat</a> -->
     <% end %>
-  </div>  
+  </div> 
+
+  <div class='cast_chat'  style='max-height: 500px; overflow: scroll'>    
+    <%
+      locals = {cast_id: cast_id, cast: cast, chat_videos: chat_videos}
+      # locals[:msgs_since] = 3.hours.ago if !is_chat_cast(cast)
+    %>
+    <%= erb :'chat/chat_msgs', locals: locals %>
+  </div>
+
 
   <div style='margin-bottom: 100px; display: none'>
     <div style='font-size: 80%;margin-bottom: 10px'>

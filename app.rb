@@ -157,10 +157,17 @@ def search_input_on_top
 	!(is_home || @fullstack)
 end
 
-get '/' do	
+get '/r/:code' do 
+	pr[:state] = 'New York'
+	pr[:city]  = 'New York'
+	return erb :'search/search', default_layout
+end
+
+get '/' do		
 	# erb :'other/landing_page'
 	pr[:state] = 'New York'
 	pr[:city]  = 'New York'
+#	return redirect '/r/ny'
 	# erb :'search/search', default_layout
 	# 
 	erb :'home/cannabis_delivery', default_layout	
