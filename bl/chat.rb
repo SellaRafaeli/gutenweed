@@ -124,6 +124,10 @@ post '/chat/send' do
 			#html: html
 		}
 
+		data[:address] = user[:address] if user[:address].present?
+		data[:contact] = user[:contact] if user[:contact].present?
+		data[:website] = user[:website] if user[:website].present?
+
 		if cast[silenced_key(user[:_id])]
 			# halt(401, {err: 'You have been silenced :('})
 		end
@@ -159,15 +163,16 @@ post '/chat/send' do
 	#return {html: html}
 end
 
-DEFAULT_CHAT_MSGS = 
+# DEFAULT_CHAT_MSGS = 
 
 def gen_default_msg_text
-	['Foo','Bar','Baz'].sample
+	msg1 = "#{Faker::Cannabis.buzzword} #{Faker::Cannabis.strain} #{Faker::Cannabis.category} - #{Faker::Cannabis.health_benefit}!"	
+	[msg1].sample
 end
 
 PROFILE_PICS=['https://i.imgur.com/dVQqf0w.jpg', 'https://i.imgur.com/BjSL4y7.jpg', 'https://i.imgur.com/HdNglT0.jpg', 'https://i.imgur.com/ji1DMWG.jpg', 'https://i.imgur.com/QdoiKdQ.jpg', 'https://i.imgur.com/nr3SmN1.jpg', 'https://i.imgur.com/M2o9OAr.jpg', 'https://i.imgur.com/kEWklZj.jpg', 'https://i.imgur.com/MG9VqR7.jpg', 'https://i.imgur.com/zEaIG3F.jpg', 'https://i.imgur.com/Rjq4PDR.jpg', 'https://i.imgur.com/MyE4ahG.jpg', 'https://i.imgur.com/461CzUV.jpg', 'https://i.imgur.com/xPrkGVn.jpg', 'https://i.imgur.com/rdYaRDN.jpg', 'https://i.imgur.com/HYweafn.jpg', 'https://i.imgur.com/pEwcfMH.jpg', 'https://i.imgur.com/Iopcsd2.jpg', 'https://i.imgur.com/OHCdzow.jpg', 'https://i.imgur.com/w49BkF8.jpg', 'https://i.imgur.com/Ptkk76P.jpg', 'https://i.imgur.com/lYWTnTB.jpg', 'https://i.imgur.com/T3Foo3X.jpg' ]
 
-def ensure_default_users
+def ensure_default_users(cast_id = nil)
 	users  = []
 	images = PROFILE_PICS
 	['id1','id2','id3'].each_with_index do |id, idx| 
@@ -175,8 +180,10 @@ def ensure_default_users
 		name = Faker::Cannabis.brand #Faker::Name.unique.name 
 		email= Faker::Internet.email
 		phone= [Faker::PhoneNumber.phone_number,Faker::PhoneNumber.cell_phone].sample
-		address = Faker::Address.full_address
-		user = $users.update_id(id,{seed: true, name: name, handle: name, email: email, address: address, phone: phone, img_url: img},{upsert: true})
+		# address = Faker::address.full_address
+		address = Faker::Address.street_address
+		address+=", "+cast_id.to_s.titleize if cast_id
+		user = $users.update_id(id,{seed: true, name: name, handle: name, email: email, address: address, contact: phone, img_url: img},{upsert: true})
 		users.push(user)
 	end
 
@@ -187,7 +194,7 @@ def generate_default_chat_msgs(channel_id)
 	cast_id = channel_id
 	msgs    = []
 
-	users  = ensure_default_users
+	users  = ensure_default_users(cast_id)
 	names  = ['Alice', 'Bob', 'Claire']
 	
 	2.times {|i|
@@ -198,6 +205,8 @@ def generate_default_chat_msgs(channel_id)
 		id   = "chat_#{safe_name}_#{cast_id}_msg_#{i}_#{nice_id}"
 		msg  = {_id: id, seed: true, cast_id: "#{cast_id}", "user_id"=>"#{user[:_id]}", 
 		"name"=>user[:name], "img_url"=>user[:img_url], "type"=>"seller", "message"=>gen_default_msg_text, "status"=>"chat_msg_ok", "created_at"=>time}
+		
+		[:address, :website, :contact].each {|f| msg[f] = user[f] }
 		msg  = msg.hwia
 		msgs.push(msg)
 		# $chat.add(msg)

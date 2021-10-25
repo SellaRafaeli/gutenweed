@@ -1,9 +1,35 @@
+<% if !@single_chat_msg_styles_defined %>
+<% @single_chat_msg_styles_defined = true %>
+<style>
+.name_and_details {
+  display: inline-block;
+  margin-left: 10px;
+}
+.chat_user_img {
+  vertical-align: top;
+}
+  .user_details {
+  font-size: 70%;
+  color: grey;
+  margin-top: 2px;
+}
+.single_user_detail {
+
+}
+</style>
+<% end %>
+
 <div class='chat_msg <%=msg[:type]%>' data-msg_id="<%=msg[:_id]%>" data-date="<%=msg[:created_at]%>">    
     <a target=blank href='/users/<%=msg[:user_id]%>' class='chat_name'>
       <span class='chat_user_img'><img src="<%=msg[:img_url]%>" /> </span>
       <!-- <span class='user_type'> <%=user_type_logo(msg[:type]) %>  </span> -->
-      <span class='user_name'> <%=msg[:name]%> </span>
-      <!-- <span class='user_name'> (<%=msg[:type]%>)</span> -->
+      <div class='name_and_details'>
+        <span class='user_name'> <%=msg[:name]%> </span>
+        <div class='user_details'>
+          <div class='single_user_detail'> <%=msg[:address]%> </div>
+          <div class='single_user_detail'> <%=msg[:contact]%> <%=msg[:website]%> </div>
+        </div>
+      </div>
 
     </a> 
     <span class='chat_msg_content'><%= escape_html msg[:message] %> </span>

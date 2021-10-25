@@ -269,7 +269,7 @@ post '/login' do
 	email    = pr[:email].to_s.downcase
 	password = pr[:password].to_s.downcase
 	user = $users.get(email: email)
-	bp
+
 	if (user) && (BCrypt::Password.new(user[:password]) == password)
 		session[:user_id] = user[:_id]
 		flash.message = 'Welcome back.'
