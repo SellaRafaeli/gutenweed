@@ -1,6 +1,21 @@
 Management Dashboard: 
 https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/edit?usp=sharing
 
+PPT:
+https://docs.google.com/presentation/d/1bKF4wVzLuhBZP6bKdq7gKPFsgpqXggA7ZO2vl6bRy0g/edit?usp=sharing
+
+Options
+- Weedmaps
+- Leafly
+- Dutchie 
+- iHeartJane
+- LeafLink
+- Nabis 
+- Flowhub
+- Medmen 
+- Tilray 
+- Canopy Growth 
+
 Legal:
 > https://cannabis.ny.gov/
 
