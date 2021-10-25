@@ -79,6 +79,13 @@
   </div>
   <br/>
 
+  <div class='display_flex'>
+    <label> Type </label>
+    <%= erb :'/login/type_chooser', locals: {pr: user} %>
+    <!-- <span>Use #hashtags like #actor or #dance_teacher</span> -->
+  </div>
+  <br/>
+
   <% if false %>
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
