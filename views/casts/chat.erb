@@ -103,6 +103,9 @@
   top: 5px;
   right: 5px;
 }
+#chat_pic_uploader_img {
+  height: 100px;
+}
 </style>
 
 <script>
@@ -256,9 +259,12 @@ function refreshChat() {
 function submitChatText() {
   <% if cu %>
   var inp  = $("#chat_input");
+  var msg_img = $("#msg_body_img");
   var text = inp.val();
-  sendChatData({msg: text});
+  sendChatData({msg: text, msg_body_img: msg_img.val()});
   inp.val('');
+  msg_img.val('');
+  $("#chat_pic_uploader_img").attr('src','')
   <% else %>
   alert('You must signup/log in first.')
   //var email = prompt("What is your email? By submitting your email, you accept our terms of /service, to be found at good-weed.com/tos");
@@ -334,8 +340,20 @@ presenceChannel.bind_global(showMembers);
     </style>
       <% if cu %><span class='poster_name'><%= (cu||{name: 'Post'})[:name] %>:</span><% end %>
       <input class='' style='width: 90%; font-size: 20px; padding: 10px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
+
+      <img id=chat_pic_uploader_img />      
+      <input name=msg_body_img id=msg_body_img style='display: none' />
+      <script>
+        function uploadChatPic() {
+          filestackUpload(res => {
+            $("#chat_pic_uploader_img").attr('src',res.url);      
+            $("input#msg_body_img").val(res.url);
+          });
+        }
+      </script>
+
       <button class='btn btn-primary btn-raised'> post </button>
-    
+      <span><button type=button id=chat_pic_uploader onclick=uploadChatPic()> attach pic </button></span>
 
       <% if is_admin %>
       <%

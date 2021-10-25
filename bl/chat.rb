@@ -124,6 +124,7 @@ post '/chat/send' do
 			#html: html
 		}
 
+		data[:msg_body_img] = pr[:msg_body_img] if pr[:msg_body_img].present?
 		data[:address] = user[:address] if user[:address].present?
 		data[:contact] = user[:contact] if user[:contact].present?
 		data[:website] = user[:website] if user[:website].present?
