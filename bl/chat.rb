@@ -165,12 +165,14 @@ def gen_default_msg_text
 	['Foo','Bar','Baz'].sample
 end
 
+PROFILE_PICS=['https://i.imgur.com/dVQqf0w.jpg', 'https://i.imgur.com/BjSL4y7.jpg', 'https://i.imgur.com/HdNglT0.jpg', 'https://i.imgur.com/ji1DMWG.jpg', 'https://i.imgur.com/QdoiKdQ.jpg', 'https://i.imgur.com/nr3SmN1.jpg', 'https://i.imgur.com/M2o9OAr.jpg', 'https://i.imgur.com/kEWklZj.jpg', 'https://i.imgur.com/MG9VqR7.jpg', 'https://i.imgur.com/zEaIG3F.jpg', 'https://i.imgur.com/Rjq4PDR.jpg', 'https://i.imgur.com/MyE4ahG.jpg', 'https://i.imgur.com/461CzUV.jpg', 'https://i.imgur.com/xPrkGVn.jpg', 'https://i.imgur.com/rdYaRDN.jpg', 'https://i.imgur.com/HYweafn.jpg', 'https://i.imgur.com/pEwcfMH.jpg', 'https://i.imgur.com/Iopcsd2.jpg', 'https://i.imgur.com/OHCdzow.jpg', 'https://i.imgur.com/w49BkF8.jpg', 'https://i.imgur.com/Ptkk76P.jpg', 'https://i.imgur.com/lYWTnTB.jpg', 'https://i.imgur.com/T3Foo3X.jpg' ]
+
 def ensure_default_users
 	users  = []
-	images = ["/img/profile.png","/img/profile.png","/img/profile.png"]
+	images = PROFILE_PICS
 	['id1','id2','id3'].each_with_index do |id, idx| 
 		img  = images[idx % images.size] 
-		name = Faker::Name.unique.name 
+		name = Faker::Cannabis.brand #Faker::Name.unique.name 
 		email= Faker::Internet.email
 		phone= [Faker::PhoneNumber.phone_number,Faker::PhoneNumber.cell_phone].sample
 		address = Faker::Address.full_address
