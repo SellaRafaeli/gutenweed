@@ -100,11 +100,13 @@
   </div>
   <% end %>
 
+  <% if is_seller %>
   <div class='display_flex' style='margin-top:20px'>
     <label class='ztooltip'> Zip Codes Where You Deliver </label>
 
     <textarea class='input1' required placeholder='12345,12346' value="<%=user['zipcodes'].to_a%>" name='zipcodes' style='margin-right: 0px; margin-left: 0'/><%=user['zipcodes'].to_a.join(',')%></textarea>
   </div>
+  <% end %>
 
 
   <% if false %>

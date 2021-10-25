@@ -26,9 +26,12 @@ img.msg_body_img_img {
 <div class='chat_msg <%=msg[:type]%>' data-msg_id="<%=msg[:_id]%>" data-date="<%=msg[:created_at]%>">    
     <a target=blank href='/users/<%=msg[:user_id]%>' class='chat_name'>
       <span class='chat_user_img'><img src="<%=msg[:img_url]%>" /> </span>
-      <!-- <span class='user_type'> <%=user_type_logo(msg[:type]) %>  </span> -->
+      
       <div class='name_and_details'>
-        <span class='user_name'> <%=msg[:name]%> </span>
+        <span class='user_name'> 
+          <%=msg[:name]%> 
+          <span class='user_type'> <%=user_type_logo(msg[:type]) %>  </span> 
+        </span>
         <div class='user_details'>
           <div class='single_user_detail'> <%=msg[:address]%> </div>
           <div class='single_user_detail'> <%=msg[:contact]%> <%=msg[:website]%> </div>

@@ -44,6 +44,20 @@ def build_fake_brands(state, city)
 	x=1
 end
 
+def generate_products_for_seed_user(user)
+	faker = Faker::Cannabis
+	title = "#{faker.brand} #{[faker.buzzword,faker.category].sample}"
+	desc  = "#{['good','great','perfect','useful','beneficial','fun','nice','enjoyable'].sample} for #{faker.medical_use} and #{faker.buzzword}"
+	cast_data = {
+		user_id: user[:_id],
+		title: title,
+		cost_dollars: [5,10,15,20,25].sample,
+		desc: desc,
+		img_url: PRODUCT_PICS.sample
+	}
+	$casts.add(cast_data)
+end
+
 
 # def add_seed_data
 # 	password = BCrypt::Password.create(password)

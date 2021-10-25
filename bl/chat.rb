@@ -177,7 +177,7 @@ PRODUCT_PICS=['https://i.imgur.com/4JOG6XV.jpg', 'https://i.imgur.com/anFBkBa.jp
 def ensure_default_users(cast_id = nil)
 	users  = []
 	images = PROFILE_PICS
-	['id1','id2','id3'].each_with_index do |id, idx| 
+	[nice_id, nice_id, nice_id].each_with_index do |id, idx| 
 		img  = images.sample
 		name = Faker::Cannabis.brand #Faker::Name.unique.name 
 		email= Faker::Internet.email
@@ -199,8 +199,8 @@ def generate_default_chat_msgs(channel_id)
 	users  = ensure_default_users(cast_id)
 	names  = ['Alice', 'Bob', 'Claire']
 	
-	2.times {|i|
-		time = i.days.ago
+	[2,3,4,5].sample.times {|i|
+		time = ([1,2,3,4].sample).hours.ago
 		user = users[i % users.size].hwia
 		name = user[:name]
 		safe_name = name.to_s.gsub(/[^0-9a-z]/i, '').downcase
@@ -208,12 +208,15 @@ def generate_default_chat_msgs(channel_id)
 		msg  = {_id: id, seed: true, cast_id: "#{cast_id}", "user_id"=>"#{user[:_id]}", 
 		"name"=>user[:name], "img_url"=>user[:img_url], "type"=>"seller", "message"=>gen_default_msg_text, 
 		msg_body_img: PRODUCT_PICS.sample,
-		"status"=>"chat_msg_ok", "created_at"=>time}
+		"status"=>"chat_msg_ok", created_at: time}
 		
+
 		[:address, :website, :contact].each {|f| msg[f] = user[f] }
 		msg  = msg.hwia
 		msgs.push(msg)
-		# $chat.add(msg)
+		
+		msg[:force_created_at] = msg[:created_at]
+		$chat.add(msg)
 	}
 	
 	msgs

@@ -80,10 +80,10 @@
       <label class='w200'> I am a </label>
       <select class=input1 name=type required>        
         <option value="" selected disabled hidden> (please choose) </option>
-        <option value='buyer' <%="selected" if pr[:type]=="buyer" %>> Person over 21  </option>
+        <option value='buyer' <%="zselected" if pr[:type]=="buyer" %>> Person over 21  </option>
         <!-- <option value='seller'> Dispensary (Seller) </option> -->
         <!-- <option value='seller'> Cultivator </option>-->
-        <option value='seller' <%="selected" if pr[:type]=="seller" %>> Dispensary  </option> 
+        <option value='seller' <%="zselected" if pr[:type]=="seller" %>> Dispensary  </option> 
         <option value='cultivator' <%="zselected" %>> Cultivator  </option> 
         
         

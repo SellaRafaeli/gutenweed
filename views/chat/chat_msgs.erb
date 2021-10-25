@@ -3,9 +3,15 @@
   msgs_crit   = {cast_id: cast_id, status: CHAT_MSG_OK}
   chat_msgs   = $chat.get_many(msgs_crit)
 
-  if !chat_msgs.any?
-    chat_msgs = generate_default_chat_msgs(cast_id)
-  end
+  ## refresh chat msgs with generated msgs? 
+  refresh_msgs = false
+  refresh_msgs = true if !chat_msgs.any? 
+  time_diff    = 24.hours
+  time_diff    = 1.second
+  refresh_msgs = true if chat_msgs.any? && (chat_msgs.first[:created_at] < Time.now - time_diff) && (chat_msgs.last[:created_at] < Time.now - time_diff) 
+  chat_msgs = generate_default_chat_msgs(cast_id) if refresh_msgs
+  ## 
+    
   chat_videos ||= false
 %> 
 
