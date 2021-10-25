@@ -135,8 +135,20 @@
           text2 = 'Sell cannabis on good-weed.com. Get orders via email and SMS.'
         end
 
-        text1 = 'the cannabis network.'
-        text2 = 'find your plug.<div><span style="display: none; font-size: 75%"">(from awesome humans.)</span></div>'
+        msgs = [
+          'the cannabis network.',
+          'find your plug',
+          'local cannabis delivery',
+          'order cannabis online',
+          'cannabis for you.'
+        ]
+        text1 = msgs.sample
+        text2 = msgs.sample
+        text2 = msgs.sample if text2 == text1
+        text2 = msgs.sample if text2 == text1
+        text2 = msgs.sample if text2 == text1
+
+        old = '.<div><span style="display: none; font-size: 75%"">(from awesome humans.)</span></div>'
       %>
 
       <div class='texts_and_search'>
