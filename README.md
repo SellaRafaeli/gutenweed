@@ -4,7 +4,8 @@ https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/
 PPT:
 https://docs.google.com/presentation/d/1bKF4wVzLuhBZP6bKdq7gKPFsgpqXggA7ZO2vl6bRy0g/edit?usp=sharing
 
-Options
+Options. 
+> Ecommerce companies:
 - Weedmaps
 - Leafly
 - Dutchie 
@@ -12,9 +13,19 @@ Options
 - LeafLink
 - Nabis 
 - Flowhub
-- Medmen 
+
 - Tilray 
 - Canopy Growth 
+- Eaze 
+> Growers
+- Tilray
+- Hexo
+- Medmen 
+- Curaleaf, Columbia Care, and Green Thumb Industries
+
+If we sell for 3M USD in 3 years, that's 1M a year, that's let's say 83K USD a month. 
+
+83K = 240K NIS a month. - 20 for yuval, -20 for bilu, -20 for juniors, -20 expenses - left with 160. 
 
 Legal:
 > https://cannabis.ny.gov/
