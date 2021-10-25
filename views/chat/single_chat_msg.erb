@@ -16,6 +16,10 @@
 .single_user_detail {
 
 }
+img.msg_body_img_img {
+    height: 100px;
+    margin-top: 10px;
+}
 </style>
 <% end %>
 
@@ -32,7 +36,14 @@
       </div>
 
     </a> 
-    <span class='chat_msg_content'><%= escape_html msg[:message] %> </span>
+    <span class='chat_msg_content'>
+      <%= escape_html msg[:message] %> 
+      <% if msg[:msg_body_img] %>
+      <div class='msg_body_img'>
+        <img class='msg_body_img_img' src="<%=msg[:msg_body_img]%>" />
+      </div>
+      <% end %>
+    </span>
 
     <span class='chat_msg_actions'>
       <span class="chat_date" data-date="<%=msg[:created_at]%>"><%=time_ago msg[:created_at]%></span>
