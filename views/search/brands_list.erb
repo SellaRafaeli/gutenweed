@@ -99,7 +99,12 @@
         
       <div class='chat_and_brands' style='display: flex; flex-wrap: wrap; flex-direction: column-reverse; flex-direction: column-reverse'>
         <% if true %>
-        <div class='flex1'>
+        <style>
+          .chat_msgs_container {
+            max-width: 100%;
+          }
+        </style>
+        <div class='flex1 chat_msgs_container'>
           <%= erb :'/casts/chat', locals: {cast_id: id, cast: {_id: id}} %>
         </div>
         <% end %>

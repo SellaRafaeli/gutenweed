@@ -2,10 +2,18 @@
   # msgs_crit[:created_at] = {'$gt': locals[:msgs_since]} if locals[:msgs_since]
   msgs_crit   = {cast_id: cast_id, status: CHAT_MSG_OK}
   chat_msgs   = $chat.get_many(msgs_crit)
+
+  if !chat_msgs.any?
+    chat_msgs = generate_default_chat_msgs(cast_id)
+  end
   chat_videos ||= false
 %> 
 
 <style>
+.chat_msg_content {
+  display: block;
+  margin: 10px 0 0 40px;
+}
 .chat_msg_content a {
   color: goldenrod;
   font-weight: bold;

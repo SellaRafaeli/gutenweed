@@ -159,6 +159,49 @@ post '/chat/send' do
 	#return {html: html}
 end
 
+DEFAULT_CHAT_MSGS = 
+
+def gen_default_msg_text
+	['Foo','Bar','Baz'].sample
+end
+
+def ensure_default_users
+	users  = []
+	images = ["/img/profile.png","/img/profile.png","/img/profile.png"]
+	['id1','id2','id3'].each_with_index do |id, idx| 
+		img  = images[idx % images.size] 
+		name = Faker::Name.unique.name 
+		email= Faker::Internet.email
+		phone= [Faker::PhoneNumber.phone_number,Faker::PhoneNumber.cell_phone].sample
+		address = Faker::Address.full_address
+		user = $users.update_id(id,{seed: true, name: name, handle: name, email: email, address: address, phone: phone, img_url: img},{upsert: true})
+		users.push(user)
+	end
+
+	users
+end
+
+def generate_default_chat_msgs(channel_id)
+	cast_id = channel_id
+	msgs    = []
+
+	users  = ensure_default_users
+	names  = ['Alice', 'Bob', 'Claire']
+	
+	2.times {|i|
+		time = i.days.ago
+		user = users[i % users.size].hwia
+		id   = "chat_#{user[:name]}_#{cast_id}_msg_#{i}_#{nice_id}"
+		msg  = {_id: id, seed: true, cast_id: "#{cast_id}", "user_id"=>"#{user[:_id]}", 
+		"name"=>user[:name], "img_url"=>user[:img_url], "type"=>"seller", "message"=>gen_default_msg_text, "status"=>"chat_msg_ok", "created_at"=>time}
+		msg  = msg.hwia
+		msgs.push(msg)
+		# $chat.add(msg)
+	}
+	
+	msgs
+end
+
 $all_channels_data = {}
 def update_all_channels_last_day
 	res = {} 
@@ -194,6 +237,9 @@ post '/chat/delete_msg' do
 	if chat 
 		Thread.new {
 			$chat.delete_one({_id: msg_id, user_id: cuid})	
+			if is_admin 
+				$chat.delete_one({_id: msg_id})	
+			end
 			$pusher.trigger(cast_chat_channel(cast), 'delete-msg', {msg_id: msg_id})
 		}
 	end

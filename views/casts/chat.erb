@@ -29,11 +29,10 @@
 }
 .chat_date {
   float: right;
-  position: relative;
-  top: 3px;
+  position: relative;  
   color: grey;
   font-size: 80%;  
-  margin-left: 30px;
+  margin-left: 10px;
 }
 .chat_name {
   color: black;
@@ -52,6 +51,7 @@
   margin-bottom: 20px;
   padding: 20px;
   background-color: whitesmoke;
+  position: relative;
 }
 
 .chat_msg.buyer {
@@ -97,6 +97,11 @@
   font-size: 14px;
   padding: 10px;
   margin-right:10px;
+}
+.chat_msg_actions {
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 </style>
 
@@ -328,7 +333,7 @@ presenceChannel.bind_global(showMembers);
       .poster_name { font-weight: bold; display: block; font-size: 14px; margin-bottom: 10px }
     </style>
       <% if cu %><span class='poster_name'><%= (cu||{name: 'Post'})[:name] %>:</span><% end %>
-      <input class='' style='width: 400px; font-size: 20px; padding: 10px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
+      <input class='' style='width: 90%; font-size: 20px; padding: 10px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
       <button class='btn btn-primary btn-raised'> post </button>
     
 
