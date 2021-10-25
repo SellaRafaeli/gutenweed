@@ -171,7 +171,7 @@ def ensure_default_users
 	users  = []
 	images = PROFILE_PICS
 	['id1','id2','id3'].each_with_index do |id, idx| 
-		img  = images[idx % images.size] 
+		img  = images.sample
 		name = Faker::Cannabis.brand #Faker::Name.unique.name 
 		email= Faker::Internet.email
 		phone= [Faker::PhoneNumber.phone_number,Faker::PhoneNumber.cell_phone].sample
@@ -193,7 +193,9 @@ def generate_default_chat_msgs(channel_id)
 	2.times {|i|
 		time = i.days.ago
 		user = users[i % users.size].hwia
-		id   = "chat_#{user[:name]}_#{cast_id}_msg_#{i}_#{nice_id}"
+		name = user[:name]
+		safe_name = name.to_s.gsub(/[^0-9a-z]/i, '').downcase
+		id   = "chat_#{safe_name}_#{cast_id}_msg_#{i}_#{nice_id}"
 		msg  = {_id: id, seed: true, cast_id: "#{cast_id}", "user_id"=>"#{user[:_id]}", 
 		"name"=>user[:name], "img_url"=>user[:img_url], "type"=>"seller", "message"=>gen_default_msg_text, "status"=>"chat_msg_ok", "created_at"=>time}
 		msg  = msg.hwia

@@ -20,12 +20,12 @@
   /*border: 1px solid whitesmoke;*/
   text-align: left;
   /*padding: 10px;*/
-  max-height: 550px;
+  zmax-height: 550px;
   /*margin-bottom: 20px;*/
   overflow: scroll;
   zbackground-color: whitesmoke;
   padding: 20px;
-  max-height: 700px;
+  zmax-height: 700px;
 }
 .chat_date {
   float: right;
@@ -352,7 +352,7 @@ presenceChannel.bind_global(showMembers);
     <% end %>
   </div> 
 
-  <div class='cast_chat'  style='max-height: 500px; overflow: scroll'>    
+  <div class='cast_chat'  style='zmax-height: 500px; overflow: scroll'>    
     <%
       locals = {cast_id: cast_id, cast: cast, chat_videos: chat_videos}
       # locals[:msgs_since] = 3.hours.ago if !is_chat_cast(cast)
