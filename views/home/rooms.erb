@@ -27,11 +27,11 @@
   zcolor: white !important;
   background-color: rgba(153,153,153,.2);
   background-color: white;
-  color: #003c37 !important;
+  zcolor: #003c37 !important;
   border:1px solid transparent;
 }
 .single_room:hover {
-  background-color: darkgreen;
+  background-color: #15cb12 !important;
   border:1px solid white;
   color: white !important;
 }
@@ -41,7 +41,7 @@
   <div class='rooms_list'>
     <% rooms.each do |room| %>
     <a class='single_room btn btn-inverse btn-primary ct' href='/chat/<%=room[:label]%>' style='text-align: center;'>
-      <i class='fal fa-leaf-maple' style='padding-right: 5px'></i>
+      <i class='fal fa-leaf-maple noDisplay' style='padding-right: 5px'></i>
       <%=room[:label].gsub('-',' ') %> 
     </a>    
     <% end %>

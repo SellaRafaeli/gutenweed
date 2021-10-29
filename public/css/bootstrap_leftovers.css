@@ -24,6 +24,7 @@
 /*buttons*/
 .btn:not(.btn-raised).btn-primary, .input-group-btn .btn:not(.btn-raised).btn-primary {
     color: #009688;
+    color: #624038; /* !important;    */
 }
 .btn:not(.btn-raised), .btn:not(.btn-raised).btn-default, .input-group-btn .btn:not(.btn-raised), .input-group-btn .btn:not(.btn-raised).btn-default {
     color: rgba(0,0,0,.87);
