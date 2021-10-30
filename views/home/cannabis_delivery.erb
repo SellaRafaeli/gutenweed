@@ -148,8 +148,8 @@
 
       <div class='texts_and_search'>
         
-          <h2 class='lp_h2' style='letter-spacing: 1.1px'><%= text1 %></h2> 
-        <% if show_texts = true %>
+          <h2 class='lp_h2' style='letter-spacing: 1.1px'><%= 'good-weed.com' %></h2> 
+        <% if show_texts = false %>
           <h3 style='font-size: 24px'><%= text2 %> </h3> 
         <% end %>
 
@@ -215,7 +215,8 @@ function gotozip(place) {
     window.location = '/zip/'+zip;
   } catch (e) {
     console.log(e);
-    alert('Choose an address with a postal code.')
+    window.location = '/zip/'+place.name;
+    //alert('Choose an address with a postal code.')
   }
 }
 </script>

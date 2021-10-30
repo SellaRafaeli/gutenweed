@@ -205,8 +205,9 @@ get '/zip/:code' do
 			return erb :'search/search', default_layout
 		end
 	else 	
-		flash.message = 'No results found for zip code '+code
-		redirect '/'
+		# flash.message = 'No results found for zip code '+code
+		# redirect '/'
+		redirect '/chat/'+code
 	end
 end
 

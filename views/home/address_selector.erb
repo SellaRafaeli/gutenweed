@@ -8,12 +8,18 @@
     width: 90%;
   }
 }
-
+.magnifying-glass-icon {
+      color: #386256;
+    /* color: red; */
+    font-size: 20px;
+    margin-left: 10px;
+}
 
 </style>
 
 <span class='location_input'>
-  <input class='main_search_input' placeholder='Search in your area...' autocomplete="new-password" id=address_input name=address value="<%=pr[:address]%>" style=''/> 
+  <i class='fal fa-search magnifying-glass-icon'></i>
+  <input class='main_search_input' placeholder='' autofocus autocomplete="new-password" id=address_input name=address value="<%=pr[:address]%>" style=''/> 
 </span>
 
 
