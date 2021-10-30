@@ -11,16 +11,7 @@
     {label: 'denver', zip: 80014},    
   ].sort_by {|z| z[:label]}
 
-  rooms = [
-    {label: 'brands', zip: 'no_zip'},    
-    {label: 'dispensaries', zip: 'no_zip'},        
-    {label: 'distributors', zip: 'no_zip'},    
-    {label: 'cultivators', zip: 'no_zip'},
-    {label: 'manufacturers', zip: 'no_zip'},    
-    {label: 'investors', zip: 'no_zip'},    
-    {label: 'lawyers', zip: 'no_zip'},    
-    {label: 'startups', zip: 'no_zip'},    
-  ]
+  rooms = ROOMS_LIST
 %>
 
 <style>
@@ -50,6 +41,7 @@
 }
 
 </style>
+
 <div class='just_chats_wrapper'>
   <div class='rooms_list'>
     <% rooms.each do |room| %>

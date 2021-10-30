@@ -340,3 +340,14 @@ OUR_TAGLINES = [
   'cannabis for you.',
   'the online cannabis marketplace'
 ]
+
+ROOMS_LIST = [
+    {label: 'brands', zip: 'no_zip'},    
+    {label: 'dispensaries', zip: 'no_zip'},        
+    {label: 'distributors', zip: 'no_zip'},    
+    {label: 'cultivators', zip: 'no_zip'},
+    {label: 'manufacturers', zip: 'no_zip'},    
+    {label: 'investors', zip: 'no_zip'},    
+    {label: 'lawyers', zip: 'no_zip'},    
+    {label: 'startups', zip: 'no_zip'},    
+  ]

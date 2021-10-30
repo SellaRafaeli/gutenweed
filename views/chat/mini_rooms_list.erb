@@ -1,0 +1,30 @@
+<%
+  rooms = ROOMS_LIST
+%>
+
+<style>
+.single_mini_room {
+  display: inline-block;
+  background-color: #386256;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 5px;
+}
+.single_mini_room:hover {
+  cursor: pointer;  
+  
+}
+.single_mini_room:hover .single_mini_room_link {
+  color: white !important;
+}
+.single_mini_room:hover {
+  
+}
+</style>
+<div class='rooms_list_mini'>
+  <% rooms.each do |room| %>
+    <div class='single_mini_room btn btn-raised btn-primary'>
+      <a class='single_mini_room_link' href='/chat/<%=room[:label]%>' ><%= room[:label] %></a>
+    </div>
+  <% end %>
+</div>
