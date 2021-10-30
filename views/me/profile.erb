@@ -79,6 +79,7 @@
   </div>
   <br/>
 
+    <% if false %>
   <div class='display_flex'>
     <label> Type </label>
     <%= erb :'/login/type_chooser', locals: {pr: user} %>
@@ -86,7 +87,7 @@
   </div>
   <br/>
 
-  <% if false %>
+
   <div class='display_flex' style='margin-top:20px'>
     <%#= user.to_json %>
 
@@ -107,7 +108,7 @@
   </div>
   <% end %>
 
-  <% if is_seller %>
+  <% if false && is_seller %>
   <div class='display_flex' style='margin-top:20px'>
     <label class='ztooltip'> Zip Codes Where You Deliver </label>
 
