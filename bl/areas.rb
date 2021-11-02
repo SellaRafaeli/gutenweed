@@ -29,7 +29,7 @@ def areas_get_existing_cities(short_name)
 	# users  = $users.all(state: full_name)
 	# puts "fetched "+users.count.to_s
 	# cities = users.mapo(:city).uniq.sort
-	cities = $cities_by_state[short_name]
+	cities = $cities_by_state[short_name].to_a
 	cities
 end
 
