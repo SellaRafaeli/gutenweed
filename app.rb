@@ -255,7 +255,7 @@ get '/sitemap' do
 end
 
 
-if $prod 
+if false && $prod 
 	Thread.new {
 		while true 
 			sleep 6000
