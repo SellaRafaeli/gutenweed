@@ -1,5 +1,7 @@
 <%
   rooms = ROOMS_LIST
+  states = ['california','washington','new york']
+  states = []
 %>
 
 <style>
@@ -31,4 +33,14 @@
       <a class='single_mini_room_link <%="selected" if pr[:code]==room[:label]%>' href='/chat/<%=room[:label]%>' ><%= room[:label] %></a>
     </div>
   <% end %>
+
+  <div>
+  <% states.each do |state| %>
+  <%
+  %>
+    <div class='single_mini_room'>
+      <a class='single_mini_room_link <%="selected" if pr[:stateroom]==state%>' href='/chat/<%=pr[:code]%>?stateroom=<%=state%>' style='font-size: 80%' ><%= state %></a>
+    </div>
+  <% end %>
+  </div>
 </div>

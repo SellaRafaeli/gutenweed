@@ -19,6 +19,7 @@
 img.msg_body_img_img {
     height: 100px;
     margin-top: 10px;
+
 }
 </style>
 <% end %>
@@ -30,7 +31,7 @@ img.msg_body_img_img {
       <div class='name_and_details'>
         <span class='user_name'> 
           <%=msg[:name]%> 
-          <span class='user_type'> <%=user_type_logo(msg[:type]) %>  </span> 
+          <% if false %><span class='user_type'> <%=user_type_logo(msg[:type]) %>  </span> <% end %>
         </span>
         <div class='user_details'>
           <div class='single_user_detail'> <%=msg[:address]%> </div>

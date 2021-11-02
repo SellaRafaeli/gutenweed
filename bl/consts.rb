@@ -351,3 +351,8 @@ ROOMS_LIST = [
     {label: 'lawyers', zip: 'no_zip'},    
     {label: 'startups', zip: 'no_zip'},    
   ]
+
+ROOMS_LIST = [
+  {label: 'california', zip: 'ca'},    
+  {label: 'new york', zip: 'ny'},    
+]

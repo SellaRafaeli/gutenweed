@@ -118,7 +118,7 @@ post '/chat/send' do
 			user_id: user[:_id], 
 			name: user[:name] || user[:handle], 
 			img_url: user[:img_url],
-			type: user[:type], 
+			type: pr[:type], 
 			message: pr[:msg], 
 			status: CHAT_MSG_OK,
 			#html: html

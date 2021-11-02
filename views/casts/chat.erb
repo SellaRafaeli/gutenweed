@@ -52,14 +52,23 @@
   padding: 20px;
   background-color: whitesmoke;
   position: relative;
+  width: 45%;
+  margin: 10px 0;
 }
 
 .chat_msg.buyer {
   border:2px solid lightblue;
-  ztext-align: right;
+  text-align: right;
+  margin-right: 0;
+  margin-left: auto;
 }
 .chat_msg.seller {
   border:2px solid #386256;
+}
+
+.chat_msg.buyer .chat_msg_actions {
+  left: 0;
+  right: auto;
 }
 
 .chat_user_img img {
@@ -104,7 +113,10 @@
   right: 5px;
 }
 #chat_pic_uploader_img {
-  height: 100px;
+  zheight: 100px;
+}
+.msg_body_img {
+  overflow: hidden;
 }
 </style>
 
@@ -231,7 +243,10 @@ function sendChatData(data) {
   postJSON('/chat/send', data).then(res => { 
     if (res.err) { 
       alert(res.err) 
+    } else {
+      refreshChat();  
     }
+    
   });
 }
 
@@ -261,7 +276,8 @@ function submitChatText() {
   var inp  = $("#chat_input");
   var msg_img = $("#msg_body_img");
   var text = inp.val();
-  sendChatData({msg: text, msg_body_img: msg_img.val()});
+  var type = $("#chat_type").val();
+  sendChatData({msg: text, type, msg_body_img: msg_img.val()});
   inp.val('');
   msg_img.val('');
   $("#chat_pic_uploader_img").attr('src','')
@@ -317,9 +333,9 @@ presenceChannel.bind_global(showMembers);
 
   %>
   <% if locals[:title] %>
-    <h4> <%= locals[:title].titleize %> </h4>
+    <h4> <%= locals[:title].titleize %> <%=pr[:stateroom].to_s.titleize %></h4>
   <% elsif chatroom_name.present? %>
-    <h4> <%= chatroom_name.titleize %> </h4>
+    <h4> <%= chatroom_name.titleize %> <%=pr[:stateroom].to_s.titleize %></h4>
   <% end %>  
   <% if locals[:promote_last_link] %>
     <a target=_blank class='lastLink'></a>
@@ -350,41 +366,47 @@ presenceChannel.bind_global(showMembers);
         background-color: whitesmoke;
         padding: 20px;
         margin: auto 20px;
-        text-align: center;
+        ztext-align: center;
       }
     </style>
-    <form class='submit_post_form noDisplay' onsubmit="submitChatText(); return false">          
-    <style>
-      .poster_name { font-weight: bold; display: block; font-size: 14px; margin-bottom: 10px }
-    </style>
-      <% if cu %><span class='poster_name'><%= (cu||{name: 'Post'})[:name] %>:</span><% end %>
-      <input class='' style='width: 90%; font-size: 20px; padding: 10px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
 
-      <img id=chat_pic_uploader_img />      
-      <input name=msg_body_img id=msg_body_img style='display: none' />
-      <script>
-        function uploadChatPic() {
-          filestackUpload(res => {
-            $("#chat_pic_uploader_img").attr('src',res.url);      
-            $("input#msg_body_img").val(res.url);
-          });
-        }
-      </script>
+    <form class='submit_post_form znoDisplay' onsubmit="submitChatText(); return false">          
+      <style>
+        .poster_name { font-weight: bold; zdisplay: block; font-size: 14px; margin-bottom: 10px; text-align: left }
+      </style>
+        <% if cu %><span class='poster_name'><%= (cu||{name: 'Post'})[:name] %>:</span><% end %>
+        
+        <input class='' style='zwidth: 90%; zfont-size: 20px; padding: 10px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
 
-      <button class='btn btn-primary btn-raised'> post </button>
-      <span><button type=button id=chat_pic_uploader onclick=uploadChatPic()> attach pic </button></span>
-<!--       <span><small style='font-size: 70%'>(posts cleared every 24 hours.)</small></span> -->
+        <select id=chat_type name=type>
+          <option value=buyer>buying</option>
+          <option value=seller>selling</option>
+        </select>
+        <img id=chat_pic_uploader_img />      
+        <input name=msg_body_img id=msg_body_img style='display: none' />
+        <script>
+          function uploadChatPic() {
+            filestackUpload(res => {
+              $("#chat_pic_uploader_img").attr('src',res.url).css('height','100px');      
+              $("input#msg_body_img").val(res.url);
+            });
+          }
+        </script>
 
-      <% if is_admin %>
-      <%
-      
-      x=1
-      %>
-      <span>
-        <a class='nowcast_color' style='margin:10px; display: inline-block;' href='<%=_req.path%>?clear_until=<%=Time.now%>' onclick='if (!(confirm("Are you sure?"))) return false'>x all </a>
-      </span>
-      <% end %>  
-    </form>
+        <button class='btn btn-primary btn-raised'> <i class='fal fa-paper-plane'></i></button>
+        <span><button type=button id=chat_pic_uploader onclick=uploadChatPic()> + <i class='fas fa-image'></i> </button></span>
+  <!--       <span><small style='font-size: 70%'>(posts cleared every 24 hours.)</small></span> -->
+
+        <% if is_admin %>
+        <%
+        
+        x=1
+        %>
+        <span>
+          <a class='nowcast_color' style='margin:10px; display: inline-block;' href='<%=_req.path%>?clear_until=<%=Time.now%>' onclick='if (!(confirm("Are you sure?"))) return false'>x all </a>
+        </span>
+        <% end %>  
+      </form>
     <% else %>
     <!-- <a href='/login' class='btn btn-primary btn-raised'>Login to Chat</a> -->
     <% end %>
@@ -395,6 +417,7 @@ presenceChannel.bind_global(showMembers);
       locals = {cast_id: cast_id, cast: cast, chat_videos: chat_videos}
       # locals[:msgs_since] = 3.hours.ago if !is_chat_cast(cast)
     %>
+
     <%= erb :'chat/chat_msgs', locals: locals %>
   </div>
 
