@@ -258,10 +258,10 @@ end
 if $prod 
 	Thread.new {
 		while true 
+			sleep 6000
 			puts "Updating sitemap #{Time.now}"
 			$sitemap = Tempfile.new('sitemap.txt')
-			File.open($sitemap, 'w') { |file| file.write(zerb :'other/sitemap') }	
-			sleep 600
+			File.open($sitemap, 'w') { |file| file.write(zerb :'other/sitemap') }				
 		end
 	}
 end
