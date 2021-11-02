@@ -1,7 +1,7 @@
 $users     = $mongo.collection('users')
 $users.delete_many(city: '5 Cities')
-$all_users        = $users.all
-cities_from_data = $all_users.mapo(:city).uniq.compact
+# $all_users        = $users.all
+cities_from_data = [] # $all_users.mapo(:city).uniq.compact
 cities_from_data-=['5 Cities']
 
 $cities_by_state = {}
@@ -15,7 +15,7 @@ def update_each_state_cities
 	}; 
 	puts 'done update_each_state_cities'
 end
-Thread.new { update_each_state_cities; puts $cities_by_state['CA'] }
+# Thread.new { update_each_state_cities; puts $cities_by_state['CA'] }
 
 
 

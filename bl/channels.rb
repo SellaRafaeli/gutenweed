@@ -34,7 +34,7 @@ end
 
 Thread.new {
 	while true do
-		$all_casts = add_user_to_casts($casts.all)
+		$all_casts = [] #add_user_to_casts($casts.all)
 		sleep 5		
 	end
 }
