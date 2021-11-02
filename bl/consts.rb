@@ -353,6 +353,10 @@ ROOMS_LIST = [
   ]
 
 ROOMS_LIST = [
+  {label: 'new york', zip: 'ny'},
   {label: 'california', zip: 'ca'},    
-  {label: 'new york', zip: 'ny'},    
+  {label: 'washington', zip: 'wa'},    
+  {label: 'oregon', zip: 'or'},    
+  {label: 'colorado', zip: 'co'},    
+  {label: 'canada', zip: 'canada'},    
 ]

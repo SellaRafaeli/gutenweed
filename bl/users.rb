@@ -212,7 +212,8 @@ def add_user
 			if pr[:zroom]
 				redirect '/chat/room'
 			else 
-				redirect '/me'
+				redirect '/'
+				# redirect '/me'
 			end
 		end
 	end

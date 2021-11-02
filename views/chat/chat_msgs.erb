@@ -45,6 +45,11 @@
 <% if !chat_msgs.any? %>
 <div>No posts here yet.</div>
 <% end %>
+
+<div class='buyers_sellers_titles' style='height: 20px; margin-bottom: 20px'>
+  <b style='float: left'> buying </b>
+  <b style='float: right'> selling </b>
+</div>
 <% chat_msgs.reverse.each do |msg| %>
 <%#= msg.to_json %>
   <%= erb :'chat/single_chat_msg', locals: {msg: msg} %>  

@@ -1,5 +1,5 @@
 <%
-  placeholder = 'submit post'
+  placeholder = 'write a message...'
   cast_id     = cast[:_id]  
 %>
 
@@ -58,17 +58,19 @@
 
 .chat_msg.buyer {
   border:2px solid lightblue;
-  text-align: right;
-  margin-right: 0;
-  margin-left: auto;
+  text-align: left;
+  margin-left: 0;
+  margin-right: auto;
 }
 .chat_msg.seller {
   border:2px solid #386256;
+  ztext-align: right;
+  margin-left: auto;
 }
 
-.chat_msg.buyer .chat_msg_actions {
-  left: 0;
-  right: auto;
+.chat_msg.seller .chat_msg_actions {
+  zleft: 0;
+  zright: auto;
 }
 
 .chat_user_img img {
@@ -347,6 +349,7 @@ presenceChannel.bind_global(showMembers);
     top: -10px;
     right: 10px;
     font-size: 12px;
+    display: none;
   }
   </style>
   <button class='toggle-post-form-btn btn btn-primary btn-raised' onclick='$(".submit_post_form").toggleClass("noDisplay")'>post</button> 
@@ -364,7 +367,7 @@ presenceChannel.bind_global(showMembers);
     <style>
       .submit_post_form {
         background-color: whitesmoke;
-        padding: 20px;
+        padding: 5px 10px;
         margin: auto 20px;
         ztext-align: center;
       }
