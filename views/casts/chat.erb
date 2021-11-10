@@ -332,9 +332,12 @@ presenceChannel.bind_global(showMembers);
 <div class='chatroom_container' style='position: relative;'>    
   <%
     chatroom_name = pr[:code] ? "#{pr[:code]}" : ''
-
+    title = locals[:title] || chatroom_name
+    title = title.titleize
   %>
-  <% if locals[:title] %>
+  <% if true %>
+    <h4> <%= title %>: Join the conversation </h4>
+  <% elsif locals[:title] %>
     <h4> <%= locals[:title].titleize %> <%=pr[:stateroom].to_s.titleize %></h4>
   <% elsif chatroom_name.present? %>
     <h4> <%= chatroom_name.titleize %> <%=pr[:stateroom].to_s.titleize %></h4>
