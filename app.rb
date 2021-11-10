@@ -187,7 +187,7 @@ get '/vip' do
 end
 
 get '/zip' do
-	redirect '/zip/'+pr[:zip]
+	redirect '/zip/'+pr[:zip].to_s
 end
 
 get '/zip/:code' do 
