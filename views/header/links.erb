@@ -216,7 +216,11 @@
     <span>
       <a class='logo <%=use_client_logo ? 'client_logo' : ''%>' href='/'> 
         <img src='<%=logo%>' style='height:30px'/>
-        <div class='sub_logo_msg'><%= OUR_TAGLINES.sample%></div>
+        <% 
+          msg = OUR_TAGLINES.sample
+          msg = 'the online cannabis economy'
+        %>
+        <div class='sub_logo_msg'><%= msg %></div>
       </a>
     </span>
     <% if use_client_logo %>

@@ -135,21 +135,21 @@
           text2 = 'Sell cannabis on good-weed.com. Get orders via email and SMS.'
         end
 
-        msgs = OUR_TAGLINES
+        msgs = OUR_TAGLINES        
         text1 = msgs.sample
         text2 = msgs.sample
         text2 = msgs.sample if text2 == text1
         text2 = msgs.sample if text2 == text1
         text2 = msgs.sample if text2 == text1
         # text1 = msgs[0] if true
-
+        text2 = 'one-stop-shop for all things cannabis.'
         old = '.<div><span style="display: none; font-size: 75%"">(from awesome humans.)</span></div>'
       %>
 
       <div class='texts_and_search'>
         
           <h2 class='lp_h2' style='letter-spacing: 1.1px'><%= 'good-weed.com' %></h2> 
-        <% if show_texts = false %>
+        <% if show_texts = true %>
           <h3 style='font-size: 24px'><%= text2 %> </h3> 
         <% end %>
 
