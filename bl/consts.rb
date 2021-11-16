@@ -366,6 +366,7 @@ ROOMS_LIST = [
   {label: 'licensing', zip: 'law'},
   {label: 'financing', zip: 'b'},    
   {label: 'videos', zip: 'leg'},
+  {label: 'lawyers', zip: 'lw'},
   {label: 'investors',    zip: 'd'},
   {label: 'software management systems',    zip: 'e'},
 
