@@ -364,6 +364,8 @@ ROOMS_LIST = [
   {label: 'education',    zip: 'edu'},
   {label: 'staffing',  zip: 'a'},
   {label: 'licensing', zip: 'law'},
+  {label: 'jobs',  zip: 'a'},
+  {label: 'brands',  zip: 'br'},
   {label: 'financing', zip: 'b'},    
   {label: 'videos', zip: 'leg'},
   {label: 'lawyers', zip: 'lw'},
