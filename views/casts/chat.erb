@@ -1,5 +1,5 @@
 <%
-  placeholder = 'write a message...'
+  placeholder = 'Advertise yourself or write a message...'
   cast_id     = cast[:_id]  
 %>
 
@@ -387,7 +387,7 @@ presenceChannel.bind_global(showMembers);
       </style>
         <% if cu %><span class='poster_name'><%= (cu||{name: 'Post'})[:name] %>:</span><% end %>
         
-        <input class='' style='zwidth: 90%; zfont-size: 20px; padding: 10px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
+        <input class='' style='width: 50%; zfont-size: 20px; padding: 10px' id=chat_input zautofocus placeholder='<%=placeholder%>' />
 
         <!-- <select id=chat_type name=type>
           <option value=buyer>buying</option>

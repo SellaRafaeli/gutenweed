@@ -4,6 +4,18 @@ https://docs.google.com/document/d/19dCCQP2hArLIuG0QZxb2lpRxgltqgdX54uFKJhBNB1Y/
 PPT:
 https://docs.google.com/presentation/d/1bKF4wVzLuhBZP6bKdq7gKPFsgpqXggA7ZO2vl6bRy0g/edit?usp=sharing
 
+Ideas
+> Platform
+	- B2B2C? / B2B? 
+		- pros: just online, easier 
+		- cons: less fun, not sure how to market 
+> Flower deliveries
+	- Tel Aviv
+	- NYC
+		- pros
+		- cons 
+
+
 Options:
 > Cannabis VCs
 
