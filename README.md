@@ -30,8 +30,7 @@ Options:
 - Green Thumb Industries
 
 > E-commerce (no cannabis) companies:
-* Amazon 
-* 
+* Amazon  
 
 If we sell for 3M USD in 3 years, that's 1M a year, that's let's say 83K USD a month. 
 
