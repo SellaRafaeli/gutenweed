@@ -360,7 +360,7 @@ presenceChannel.bind_global(showMembers);
     zdisplay: none;
   }
   </style>
-  <button class='toggle-post-form-btn btn btn-primary btn-raised' onclick='$(".submit_post_form").toggleClass("noDisplay")'>post</button> 
+  <button class='toggle-post-form-btn btn btn-primary btn-raised' onclick='$(".submit_post_form").toggleClass("noDisplay")'><i class='fas fa-plus'></i></button> 
 
   <% chat_videos = is_chat_cast(cast) && pr[:show_videos].to_s=='true' %>
   <% if chat_videos %>
