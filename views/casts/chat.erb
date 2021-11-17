@@ -336,7 +336,12 @@ presenceChannel.bind_global(showMembers);
     title = title.titleize
   %>
   <% if true %>
-    <h4> <%= title %>: Join the conversation </h4>
+  <style>
+    .chat_title {
+      text-align: center;
+    }
+  </style>
+    <h4 class='chat_title'> good-weed.com: <%= title %> </h4>
   <% elsif locals[:title] %>
     <h4> <%= locals[:title].titleize %> <%=pr[:stateroom].to_s.titleize %></h4>
   <% elsif chatroom_name.present? %>
@@ -352,7 +357,7 @@ presenceChannel.bind_global(showMembers);
     top: -10px;
     right: 10px;
     font-size: 12px;
-    display: none;
+    zdisplay: none;
   }
   </style>
   <button class='toggle-post-form-btn btn btn-primary btn-raised' onclick='$(".submit_post_form").toggleClass("noDisplay")'>post</button> 
@@ -372,11 +377,11 @@ presenceChannel.bind_global(showMembers);
         background-color: whitesmoke;
         padding: 5px 10px;
         margin: auto 20px;
-        ztext-align: center;
+        ztext-align: center;        
       }
     </style>
 
-    <form class='submit_post_form znoDisplay' onsubmit="submitChatText(); return false">          
+    <form class='submit_post_form noDisplay' onsubmit="submitChatText(); return false">          
       <style>
         .poster_name { font-weight: bold; zdisplay: block; font-size: 14px; margin-bottom: 10px; text-align: left }
       </style>

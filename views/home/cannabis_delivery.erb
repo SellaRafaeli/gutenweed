@@ -142,7 +142,7 @@
         text2 = msgs.sample if text2 == text1
         text2 = msgs.sample if text2 == text1
         # text1 = msgs[0] if true
-        text2 = 'one-stop-shop for all things cannabis.'
+        text2 = 'All things cannabis.'
         old = '.<div><span style="display: none; font-size: 75%"">(from awesome humans.)</span></div>'
       %>
 
@@ -154,7 +154,8 @@
         <% end %>
 
         <%= erb :'home/rooms' %>     
-              
+            
+        <% if false %>  
         <div class='links_city_selector_container main_search_wrapper'>
           <%#= erb :'/partials/select_state_city', locals: {searchOnChange: true} %>      
           <img src='/img/icons/icon.png' class='search_icon'>
@@ -171,6 +172,7 @@
 
           </form>
         </div>
+        <% end %>
 
         <div class='main_img_wrapper' style='zwidth:100%;'>
           <img src='/img/cannabis_delivery.jpg' class='main_delivery_img'>
