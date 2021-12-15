@@ -61,7 +61,7 @@
     <% rooms.each do |room| %>
     <a class='single_room zbtn zbtn-inverse zbtn-primary ct' href='/chat/<%=room[:label]%>' style='text-align: center;'>
       <i class='fal fa-leaf-maple noDisplay' style='padding-right: 5px'></i>
-      <div class='room_short'><%=room[:zip]%></div>
+      <!-- <div class='room_short'><%=room[:zip]%></div> -->
       <%=room[:label].gsub('-',' ') %> 
     </a>    
     <% end %>
